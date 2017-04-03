@@ -64,6 +64,12 @@ namespace gloop {
         
         const std::string getSource() const;
         
+        bool isInitialized() const;
+        
+        operator bool();
+        
+        operator GLuint();
+        
         static shader makeVertexShader(const std::string srcOrFileName);
         
         static shader makeFragmentShader(const std::string srcOrFileName);

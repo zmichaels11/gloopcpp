@@ -37,8 +37,10 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/application.o \
 	${OBJECTDIR}/gloop/exception.o \
+	${OBJECTDIR}/gloop/program.o \
 	${OBJECTDIR}/gloop/shader.o \
 	${OBJECTDIR}/gloop/tools.o \
+	${OBJECTDIR}/gloop/vertex_attributes.o \
 	${OBJECTDIR}/gltools.o \
 	${OBJECTDIR}/main.o
 
@@ -77,6 +79,11 @@ ${OBJECTDIR}/gloop/exception.o: gloop/exception.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/exception.o gloop/exception.cpp
 
+${OBJECTDIR}/gloop/program.o: gloop/program.cpp
+	${MKDIR} -p ${OBJECTDIR}/gloop
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/program.o gloop/program.cpp
+
 ${OBJECTDIR}/gloop/shader.o: gloop/shader.cpp
 	${MKDIR} -p ${OBJECTDIR}/gloop
 	${RM} "$@.d"
@@ -86,6 +93,11 @@ ${OBJECTDIR}/gloop/tools.o: gloop/tools.cpp
 	${MKDIR} -p ${OBJECTDIR}/gloop
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/tools.o gloop/tools.cpp
+
+${OBJECTDIR}/gloop/vertex_attributes.o: gloop/vertex_attributes.cpp
+	${MKDIR} -p ${OBJECTDIR}/gloop
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/vertex_attributes.o gloop/vertex_attributes.cpp
 
 ${OBJECTDIR}/gltools.o: gltools.cpp
 	${MKDIR} -p ${OBJECTDIR}

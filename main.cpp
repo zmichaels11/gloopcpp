@@ -20,12 +20,14 @@
 #include "gltools.hpp"
 #include "gloop/shader.hpp"
 #include "gloop/tools.hpp"
+#include "gloop/program.hpp"
+#include "gloop/vertex_attributes.hpp"
 
 struct Context {
-    GLuint program;
+    gloop::program program;
     GLuint vbo;
     GLuint ibo;
-    GLint gVertexPos2DLocation;
+    gloop::vertex_attributes attribs;
 } glContext;
 
 int main(int argc, char** argv) {
@@ -48,28 +50,18 @@ int main(int argc, char** argv) {
         if (ctx == nullptr) {
             throw "Context is null!";
         }
+        
         Context * glCtx = (Context *) ctx;
         
-        if (!glCtx->program) {                        
-            gloop::shader shVertex = gloop::shader::makeVertexShader("basic.vert");
-            gloop::shader shFragment = gloop::shader::makeFragmentShader("basic.frag");
+        if (!glCtx->program) {
+            gloop::shader shaders[] = {
+                gloop::shader::makeVertexShader("basic.vert"),
+                gloop::shader::makeFragmentShader("basic.frag")
+            };
             
-            GLuint shaders[] = {
-                shVertex.getId(),
-                shFragment.getId()};
-                        
-            glCtx->program = gltools::createProgram(shaders, 2);
-            
-            auto err = glGetError();
-        
-            if (err != GL_NO_ERROR) {
-                std::cerr << "Error creating program: " << err << std::endl;
-            }
-            
-            glCtx->gVertexPos2DLocation = glGetAttribLocation(glCtx->program, "LVertexPos2D");
-                            
-            //shFragment.free();
-            //shVertex.free();
+            glCtx->attribs.setLocation("LVertexPos2D", 0);
+            glCtx->program.setVertexAttributes(glCtx->attribs);
+            glCtx->program.linkShaders(shaders, 2);            
         }
         
         if (!glCtx->ibo) {
@@ -108,15 +100,18 @@ int main(int argc, char** argv) {
         
         glClear(GL_COLOR_BUFFER_BIT);
         
-        glUseProgram(glCtx->program);                
+        glCtx->program.use();
+
+        const auto attrib = glCtx->attribs["LVertexPos2D"];
         
-        glEnableVertexAttribArray(glCtx->gVertexPos2DLocation);
-        glBindBuffer(GL_ARRAY_BUFFER, glCtx->vbo);
-        glVertexAttribPointer(glCtx->gVertexPos2DLocation, 2, GL_FLOAT, GL_FALSE, 0, nullptr);
+        attrib.enable();
+        attrib.bindBuffer(glCtx->vbo, 2, GL_FLOAT);
         
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, glCtx->ibo);
-        
+                
         glDrawElements(GL_TRIANGLE_FAN, 4, GL_UNSIGNED_INT, nullptr);        
+        
+        glCtx->attribs.disableAttributes();
     });
 
     try {

@@ -154,7 +154,7 @@ void gloop::shader::init() {
 }
 
 GLuint gloop::shader::getId() {
-    if (this->_id.get() == nullptr) {
+    if (!this->isInitialized()) {
         this->init();
     }
     
@@ -162,7 +162,7 @@ GLuint gloop::shader::getId() {
 }
 
 void gloop::shader::free() {
-    if (this->_id.get() != nullptr) {        
+    if (this->isInitialized()) {        
         glDeleteShader(*(this->_id));
         this->_id.reset();
     }
@@ -174,6 +174,18 @@ gloop::shader_type gloop::shader::getType() const {
 
 const std::string gloop::shader::getSource() const {
     return this->_src;
+}
+
+bool gloop::shader::isInitialized() const {    
+    return this->_id.get() != nullptr;
+}
+
+gloop::shader::operator bool() {
+    return this->getId() != 0;
+}
+
+gloop::shader::operator GLuint() {
+    return this->getId();
 }
 
 gloop::shader gloop::shader::makeVertexShader(const std::string srcOrFileName) {
