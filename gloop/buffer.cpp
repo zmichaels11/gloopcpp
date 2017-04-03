@@ -6,6 +6,8 @@
 
 #include "buffer.hpp"
 
+#include <iostream>
+
 #include <GL/glew.h>
 
 #include "exception.hpp"
@@ -100,7 +102,8 @@ void gloop::buffer::allocate(
 
     this->_id = std::shared_ptr<GLuint>(new GLuint, [ = ] (GLuint * id){
         if (id != nullptr) {
-            glDeleteBuffers(1, id);
+            std::cout << "Deleting buffer: " << *id << std::endl;
+            glDeleteBuffers(1, id);                        
             delete id;
         }
     });
@@ -114,7 +117,7 @@ bool gloop::buffer::isInitialized() const {
     return (this->_id.get() != nullptr);
 }
 
-GLuint gloop::buffer::getId() {
+GLuint gloop::buffer::getId() const {
     if (this->isInitialized()) {
         return *(this->_id);
     } else {

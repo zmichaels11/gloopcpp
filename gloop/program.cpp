@@ -7,6 +7,7 @@
 #include "program.hpp"
 
 #include <cstddef>
+#include <memory>
 #include <string>
 
 #include <GL/glew.h>
@@ -60,7 +61,7 @@ bool gloop::program::isInitialized() const {
     return (this->_id.get() != nullptr);
 }
 
-void gloop::program::linkShaders(shader * const shaders, const std::size_t count) {
+void gloop::program::linkShaders(shader * shaders, const std::size_t count) {
     GLuint glId = glCreateProgram();
 
     this->_attribs.bindAttributes(glId);

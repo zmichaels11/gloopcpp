@@ -14,13 +14,14 @@
 #ifndef PROGRAM_HPP
 #define PROGRAM_HPP
 
-#include <string>
+#include <cstddef>
 #include <memory>
+#include <string>
 
 #include <GL/glew.h>
 
-#include "shader.hpp"
 #include "exception.hpp"
+#include "shader.hpp"
 #include "vertex_attributes.hpp"
 
 namespace gloop {
@@ -39,7 +40,7 @@ namespace gloop {
         
         void setVertexAttributes(const vertex_attributes attribs);
         
-        void linkShaders(shader * const shaders, const std::size_t count);
+        void linkShaders(shader * shaders, const std::size_t count);                                
         
         GLuint getId() const;
         

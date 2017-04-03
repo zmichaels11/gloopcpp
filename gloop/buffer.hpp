@@ -99,7 +99,7 @@ namespace gloop {
 
         bool isInitialized() const;
 
-        GLuint getId();
+        GLuint getId() const;
 
         operator GLuint();
 
