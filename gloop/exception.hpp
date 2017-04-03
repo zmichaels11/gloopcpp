@@ -46,6 +46,8 @@ namespace gloop {
 
         error() : _msg("An OpenGL error occurred! The GLContext is now invalid.") {
         }
+        
+        virtual const char * what() const throw ();
     };
 
     class invalid_enum_exception : public exception {
@@ -96,7 +98,7 @@ namespace gloop {
 
         out_of_memory_exception() : error("OpenGL ran out of memory!") {
         }
-    };
+    };        
 }
 
 #endif /* EXCEPTION_HPP */

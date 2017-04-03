@@ -12,3 +12,7 @@
 const char * gloop::exception::what() const throw() {
     return _msg.c_str();
 }
+
+const char * gloop::error::what() const throw() {
+    return _msg.c_str();
+}

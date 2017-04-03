@@ -139,8 +139,10 @@ void gloop::shader::init() {
     
     if (isCompiled) {
         this->_id = std::shared_ptr<GLuint>(new GLuint, [=](GLuint * id) {
-            glDeleteShader(*id);            
-            delete id;
+            if (id != nullptr) {
+                glDeleteShader(*id);            
+                delete id;
+            }
         });
         
         *(this->_id) = glId;

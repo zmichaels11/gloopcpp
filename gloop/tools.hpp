@@ -23,6 +23,10 @@ namespace gloop {
         std::string readAll(const std::istream& in);
 
         std::string readAll(std::ifstream& in);
+        
+        void assertGLError(std::string customMsg);
+        
+        void assertGLError();
     }
 }
 
