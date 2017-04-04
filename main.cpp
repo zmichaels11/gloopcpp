@@ -11,13 +11,14 @@
  * Created on March 20, 2017, 9:46 AM
  */
 
-#include <SDL2/SDL.h>
 #include <iostream>
 #include <fstream>
+
 #include <GL/glew.h>
+#include <SDL2/SDL.h>
 
 #include "application.hpp"
-#include "gltools.hpp"
+#include "gloop/context.hpp"
 #include "gloop/shader.hpp"
 #include "gloop/tools.hpp"
 #include "gloop/program.hpp"
@@ -25,7 +26,7 @@
 #include "gloop/buffer.hpp"
 #include "gloop/vertex_array.hpp"
 
-struct Context {
+struct Context : gloop::context {
     gloop::program program; 
     gloop::uniform_binding color;
     gloop::vertex_array vao;
@@ -48,7 +49,7 @@ int main(int argc, char** argv) {
     app.setGLContext(&glContext);
 
 
-    app.setMainLoop([](const application * app, void * ctx) {
+    app.setMainLoop([](const application * app, gloop::context * ctx) {
         if (ctx == nullptr) {
             throw "Context is null!";
         }
@@ -89,7 +90,7 @@ int main(int argc, char** argv) {
 
         gloop::tools::assertGLError();
 
-        glClear(GL_COLOR_BUFFER_BIT);
+        glCtx->currentClear();        
 
         glCtx->program.use();        
         glCtx->vao.bind();

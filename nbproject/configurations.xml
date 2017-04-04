@@ -5,13 +5,18 @@
                    displayName="Header Files"
                    projectFiles="true">
       <logicalFolder name="f1" displayName="gloop" projectFiles="true">
+        <itemPath>gloop/blend.hpp</itemPath>
         <itemPath>gloop/buffer.hpp</itemPath>
+        <itemPath>gloop/clear.hpp</itemPath>
+        <itemPath>gloop/context.hpp</itemPath>
         <itemPath>gloop/exception.hpp</itemPath>
         <itemPath>gloop/program.hpp</itemPath>
+        <itemPath>gloop/scissor.hpp</itemPath>
         <itemPath>gloop/shader.hpp</itemPath>
         <itemPath>gloop/tools.hpp</itemPath>
         <itemPath>gloop/vertex_array.hpp</itemPath>
         <itemPath>gloop/vertex_attributes.hpp</itemPath>
+        <itemPath>gloop/viewport.hpp</itemPath>
       </logicalFolder>
       <itemPath>application.hpp</itemPath>
       <itemPath>gltools.hpp</itemPath>
@@ -79,9 +84,15 @@
       </item>
       <item path="basic.vert" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/blend.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/buffer.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/buffer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/clear.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/context.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/exception.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -98,6 +109,8 @@
             tool="1"
             flavor2="0">
       </item>
+      <item path="gloop/scissor.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/shader.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/shader.hpp" ex="false" tool="3" flavor2="0">
@@ -113,6 +126,8 @@
       <item path="gloop/vertex_attributes.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/vertex_attributes.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/viewport.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gltools.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -156,9 +171,15 @@
       </item>
       <item path="basic.vert" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/blend.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/buffer.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/buffer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/clear.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/context.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/exception.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -175,6 +196,8 @@
             tool="1"
             flavor2="0">
       </item>
+      <item path="gloop/scissor.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/shader.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/shader.hpp" ex="false" tool="3" flavor2="0">
@@ -190,6 +213,8 @@
       <item path="gloop/vertex_attributes.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/vertex_attributes.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/viewport.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gltools.cpp" ex="false" tool="1" flavor2="0">
       </item>

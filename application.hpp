@@ -14,9 +14,12 @@
 #ifndef APPLICATION_HPP
 #define APPLICATION_HPP
 
-#include <SDL2/SDL.h>
-#include <string>
 #include <functional>
+#include <string>
+
+#include <SDL2/SDL.h>
+
+#include "gloop/context.hpp"
 
 enum class gl_context_profile {
     DONT_CARE,
@@ -41,13 +44,13 @@ private:
     const int _width;
     const int _height;
     const std::string _title;
-    std::function<void(const application *, void *) > _mainLoop;
+    std::function<void(const application *, gloop::context *) > _mainLoop;
     SDL_Window * _window;
     SDL_Surface * _surface;
     SDL_GLContext _glContext;
     
     gl_hints _hints;
-    void * _context;
+    gloop::context * _context;
 
 public:
 
@@ -58,7 +61,9 @@ public:
 
     ~application();
     
-    void setGLContext(void * ctx);        
+    void setGLContext(gloop::context * ctx);        
+    
+    const gloop::context * getGLContext() const;
 
     int getWidth() const;
 
@@ -72,7 +77,7 @@ public:
 
     bool isInitialized() const;
 
-    void setMainLoop(const std::function<void(const application *, void*) > callback);
+    void setMainLoop(const std::function<void(const application *, gloop::context *) > callback);
 
     void setGLHints(const gl_hints hints);
 

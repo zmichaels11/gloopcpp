@@ -6,12 +6,15 @@
 
 #include "application.hpp"
 
-#include <SDL2/SDL.h>
-#include <functional>
 #include <iostream>
-#include <GL/glew.h>
+#include <functional>
 
-void application::setMainLoop(const std::function<void(const application *, void*)> callback) {
+#include <GL/glew.h>
+#include <SDL2/SDL.h>
+
+#include "gloop/context.hpp"
+
+void application::setMainLoop(const std::function<void(const application *, gloop::context *)> callback) {
     if (this->isInitialized()) {
         throw "Unable to set main loop after application is initialized!";
     }
@@ -82,6 +85,10 @@ void application::start() {
     
     this->_surface = SDL_GetWindowSurface(_window);
     
+    if (this->_context != nullptr) {
+        *_context = gloop::context(_width, _height);
+    }
+    
     bool quit = false;
     while(!quit) {
         try {
@@ -147,10 +154,14 @@ const gl_hints application::getGLHints() const {
     return this->_hints;
 }
 
-void application::setGLContext(void * ctx) {
+void application::setGLContext(gloop::context * ctx) {
     if (this->isInitialized()) {
         throw "Unable to specify GL context after SDL is initialized!";
     }
     
     this->_context = ctx;
+}
+
+const gloop::context * application::getGLContext() const {
+    return _context;
 }
