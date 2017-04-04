@@ -35,7 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/application.o \
+	${OBJECTDIR}/gloop/application.o \
 	${OBJECTDIR}/gloop/buffer.o \
 	${OBJECTDIR}/gloop/exception.o \
 	${OBJECTDIR}/gloop/program.o \
@@ -45,7 +45,6 @@ OBJECTFILES= \
 	${OBJECTDIR}/gloop/tools.o \
 	${OBJECTDIR}/gloop/vertex_array.o \
 	${OBJECTDIR}/gloop/vertex_attributes.o \
-	${OBJECTDIR}/gltools.o \
 	${OBJECTDIR}/main.o
 
 
@@ -73,10 +72,10 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/camstreamtest: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/camstreamtest ${OBJECTFILES} ${LDLIBSOPTIONS}
 
-${OBJECTDIR}/application.o: application.cpp
-	${MKDIR} -p ${OBJECTDIR}
+${OBJECTDIR}/gloop/application.o: gloop/application.cpp
+	${MKDIR} -p ${OBJECTDIR}/gloop
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/application.o application.cpp
+	$(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/application.o gloop/application.cpp
 
 ${OBJECTDIR}/gloop/buffer.o: gloop/buffer.cpp
 	${MKDIR} -p ${OBJECTDIR}/gloop
@@ -122,11 +121,6 @@ ${OBJECTDIR}/gloop/vertex_attributes.o: gloop/vertex_attributes.cpp
 	${MKDIR} -p ${OBJECTDIR}/gloop
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/vertex_attributes.o gloop/vertex_attributes.cpp
-
-${OBJECTDIR}/gltools.o: gltools.cpp
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gltools.o gltools.cpp
 
 ${OBJECTDIR}/main.o: main.cpp
 	${MKDIR} -p ${OBJECTDIR}

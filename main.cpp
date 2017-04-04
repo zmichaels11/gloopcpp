@@ -17,7 +17,7 @@
 #include <GL/glew.h>
 #include <SDL2/SDL.h>
 
-#include "application.hpp"
+#include "gloop/application.hpp"
 #include "gloop/context.hpp"
 #include "gloop/shader.hpp"
 #include "gloop/tools.hpp"
@@ -26,7 +26,7 @@
 #include "gloop/buffer.hpp"
 #include "gloop/vertex_array.hpp"
 
-struct Context : gloop::context {
+struct context : gloop::context {
     gloop::program program; 
     gloop::uniform_binding color;
     gloop::vertex_array vao;
@@ -34,10 +34,10 @@ struct Context : gloop::context {
 } glContext;
 
 int main(int argc, char** argv) {
-    application app(640, 480, "SDL Tutorial");
+    gloop::application app(640, 480, "SDL Tutorial");
 
     {
-        gl_hints hints;
+        gloop::context_hints hints;
 
         hints.version.major = 3;
         hints.version.minor = 1;
@@ -49,12 +49,12 @@ int main(int argc, char** argv) {
     app.setGLContext(&glContext);
 
 
-    app.setMainLoop([](const application * app, gloop::context * ctx) {
+    app.setMainLoop([](const gloop::application * app, gloop::context * ctx) {
         if (ctx == nullptr) {
             throw "Context is null!";
         }
 
-        Context * glCtx = reinterpret_cast<Context *> (ctx);
+        context * glCtx = reinterpret_cast<context *> (ctx);
 
         if (!glCtx->program) {
             gloop::shader shaders[] {
