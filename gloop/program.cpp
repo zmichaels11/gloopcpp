@@ -120,38 +120,6 @@ void gloop::program::setVertexAttributes(const vertex_attributes attribs) {
     this->_attribs = attribs;
 }
 
-const gloop::uniform_binding gloop::program::getUniform(const std::string& uniformName) const {
-    auto it = this->_uniforms.find(uniformName);
-    
-    if (it != this->_uniforms.end()) {
-        return it->second;
-    } else {
-        return gloop::uniform_binding();
-    }
-}
-
-const gloop::uniform_binding gloop::program::bindUniform(const std::string& uniformName) {
-    {
-        auto it = this->_uniforms.find(uniformName);
-        
-        if (it != this->_uniforms.end()) {
-            return it->second;
-        }
-    }
-        
-    GLint glLoc = glGetUniformLocation(this->getId(), uniformName.c_str());
-    
-    if (glLoc == -1) {
-        throw new gloop::invalid_uniform_name_exception("Could not find uniform name: " + uniformName);
-    }
-    
-    gloop::uniform_binding out(this->_id, glLoc);
-    
-    this->_uniforms[uniformName] = out;
-    
-    return out;
-}
-
 const gloop::uniform_block_binding gloop::program::getUniformBlock(const std::string& uniformName) const {
     auto it = this->_uniformBlocks.find(uniformName);
     
@@ -175,7 +143,7 @@ const gloop::uniform_block_binding gloop::program::bindUniformBlock(const std::s
         throw gloop::invalid_uniform_name_exception("Could not find uniform block name: " + uniformName);
     }
     
-    out = gloop::uniform_block_binding(this->_id, glIndex);
+    out = gloop::uniform_block_binding(*_id, glIndex);
     
     this->_uniformBlocks[uniformName] = out;
     

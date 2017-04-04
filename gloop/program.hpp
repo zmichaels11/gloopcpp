@@ -41,100 +41,313 @@ namespace gloop {
         }
     };
 
-    class uniform_binding {
-    private:
-        std::shared_ptr<GLuint> _pId;
-        GLuint _loc;
+    struct uniform_binding {
+        virtual void apply() const = 0;
 
-    public:
+        inline virtual void operator()() {
+            apply();
+        }
+    };
 
-        uniform_binding(const std::shared_ptr<GLuint> pId = std::shared_ptr<GLuint>(nullptr), const GLuint loc = 0)
-        : _pId(pId), _loc(loc) {
+    struct uniform_float_binding : uniform_binding {
+        GLuint pId;
+        GLuint loc;
+        GLfloat value;
+
+        uniform_float_binding(
+                const GLuint pId = 0,
+                const GLuint loc = 0,
+                const GLfloat value = 0.0F) :
+        pId(pId), loc(loc), value(value) {
         }
 
-        operator bool() const;
+        virtual void apply() const;
+    };
 
-        bool isValid() const;
+    struct uniform_float_array_binding : uniform_binding {
+        GLuint pId;
+        GLuint loc;
+        GLsizei count;
+        const GLfloat * values;
 
-        void pushFloat(const GLfloat * v, const GLsizei count) const;
-
-        inline void pushFloat(GLfloat x) const {
-            const GLfloat v[] = {x};
-
-            pushFloat(v, 1);
+        uniform_float_array_binding(
+                const GLuint pId = 0, const GLuint loc = 0,
+                const GLfloat * values = nullptr,
+                const GLsizei count = 1) :
+        pId(pId), loc(loc), count(count), values(values) {
         }
 
-        void pushVec2(const GLfloat * v, const GLsizei count) const;
+        virtual void apply() const;
+    };
 
-        inline void pushVec2(GLfloat x, GLfloat y) const {
-            const GLfloat v[] = {x, y};
+    struct uniform_int_binding : uniform_binding {
+        GLuint pId;
+        GLuint loc;
+        GLint value;
 
-            pushVec2(v, 1);
+        uniform_int_binding(
+                const GLuint pId = 0, const GLuint loc = 0,
+                const GLint value = 0) :
+        pId(pId), loc(loc), value(value) {
         }
 
-        void pushVec3(const GLfloat * v, const GLsizei count) const;
+        virtual void apply() const;
+    };
 
-        inline void pushVec3(GLfloat x, GLfloat y, GLfloat z) const {
-            const GLfloat v[] = {x, y, z};
+    struct uniform_int_array_binding : uniform_binding {
+        GLuint pId;
+        GLuint loc;
+        GLsizei count;
+        const GLint * values;
 
-            pushVec3(v, 1);
+        uniform_int_array_binding(
+                const GLuint pId = 0, const GLuint loc = 0,
+                const GLint * values = nullptr, const GLsizei count = 1) :
+        pId(pId), loc(loc), values(values), count(count) {
         }
 
-        void pushVec4(const GLfloat * v, const GLsizei count) const;
+        virtual void apply() const;
+    };
 
-        inline void pushVec4(GLfloat x, GLfloat y, GLfloat z, GLfloat w) const {
-            const GLfloat v[] = {x, y, z, w};
+    struct uniform_vec2_binding : uniform_binding {
+        GLuint pId;
+        GLuint loc;
+        GLfloat x;
+        GLfloat y;
 
-            pushVec4(v, 1);
+        uniform_vec2_binding(
+                const GLuint pId = 0, const GLuint loc = 0,
+                const GLfloat x = 0.0F, const GLfloat y = 0.0F) :
+        pId(pId), loc(loc), x(x), y(y) {
         }
 
-        void pushInt(const GLint * v, const GLsizei count) const;
+        virtual void apply() const;
+    };
 
-        inline void pushInt(GLint x) const {
-            const GLint v[] = {x};
+    struct uniform_vec2_array_binding : uniform_binding {
+        GLuint pId;
+        GLuint loc;
+        GLsizei count;
+        const GLfloat * values;
 
-            pushInt(v, 1);
+        uniform_vec2_array_binding(
+                const GLuint pId = 0, const GLuint loc = 0,
+                const GLfloat * values = nullptr, const GLsizei count = 1) :
+        pId(pId), loc(loc), values(values), count(count) {
         }
 
-        void pushIVec2(const GLint * v, const GLsizei count) const;
+        virtual void apply() const;
+    };
 
-        inline void pushIVec2(GLint x, GLint y) const {
-            const GLint v[] = {x, y};
+    struct uniform_vec3_binding : uniform_binding {
+        GLuint pId;
+        GLuint loc;
+        GLfloat x;
+        GLfloat y;
+        GLfloat z;
 
-            pushIVec2(v, 1);
+        uniform_vec3_binding(
+                const GLuint pId = 0, const GLuint loc = 0,
+                const GLfloat x = 0.0F, const GLfloat y = 0.0F, const GLfloat z = 0.0F) :
+        pId(pId), loc(loc), x(x), y(y), z(z) {
         }
 
-        void pushIVec3(const GLint * v, const GLsizei count) const;
+        virtual void apply() const;
+    };
 
-        inline void pushIVec3(GLint x, GLint y, GLint z) const {
-            const GLint v[] = {x, y, z};
+    struct uniform_vec3_array_binding : uniform_binding {
+        GLuint pId;
+        GLuint loc;
+        GLsizei count;
+        const GLfloat * values;
 
-            pushIVec3(v, 1);
+        uniform_vec3_array_binding(
+                const GLuint pId = 0, const GLuint loc = 0,
+                const GLfloat * values = nullptr, const GLsizei count = 1) :
+        pId(pId), loc(loc), values(values), count(count) {
         }
 
-        void pushIVec4(const GLint * v, const GLsizei count) const;
+        virtual void apply() const;
+    };
 
-        inline void pushIVec4(GLint x, GLint y, GLint z, GLint w) const {
-            const GLint v[] = {x, y, z, w};
+    struct uniform_vec4_binding : uniform_binding {
+        GLuint pId;
+        GLuint loc;
+        GLfloat x;
+        GLfloat y;
+        GLfloat z;
+        GLfloat w;
 
-            pushIVec4(v, 1);
+        uniform_vec4_binding(
+                const GLuint pId = 0, const GLuint loc = 0,
+                const GLfloat x = 0.0F, const GLfloat y = 0.0F, const GLfloat z = 0.0F, const GLfloat w = 0.0F) :
+        pId(pId), loc(loc), x(x), y(y), z(z), w(w) {            
         }
 
-        void pushMat2(const GLfloat * m, const GLsizei count) const;
+        virtual void apply() const;
+    };
 
-        void pushMat3(const GLfloat * m, const GLsizei count) const;
+    struct uniform_vec4_array_binding : uniform_binding {
+        GLuint pId;
+        GLuint loc;
+        GLsizei count;
+        const GLfloat * values;
 
-        void pushMat4(const GLfloat * m, const GLsizei count) const;
+        uniform_vec4_array_binding(
+                const GLuint pId = 0, const GLuint loc = 0,
+                const GLfloat * values = nullptr, const GLsizei count = 1) :
+        pId(pId), loc(loc), values(values), count(count) {
+        }
+
+        virtual void apply() const;
+    };
+
+    struct uniform_ivec2_binding : uniform_binding {
+        GLuint pId;
+        GLuint loc;
+        GLint x;
+        GLint y;
+
+        uniform_ivec2_binding(
+                const GLuint pId = 0, const GLuint loc = 0,
+                const GLint x = 0, const GLint y = 0) :
+        pId(pId), loc(loc), x(x), y(y) {
+        }
+
+        virtual void apply() const;
+    };
+
+    struct uniform_ivec3_binding : uniform_binding {
+        GLuint pId;
+        GLuint loc;
+        GLint x;
+        GLint y;
+        GLint z;
+
+        uniform_ivec3_binding(
+                const GLuint pId = 0, const GLuint loc = 0,
+                const GLint x = 0, const GLint y = 0, const GLint z = 0) :
+        pId(pId), loc(loc), x(x), y(y), z(z) {
+        }
+
+        virtual void apply() const;
+    };
+
+    struct uniform_ivec4_binding : uniform_binding {
+        GLuint pId;
+        GLuint loc;
+        GLint x;
+        GLint y;
+        GLint z;
+        GLint w;
+
+        uniform_ivec4_binding(
+                const GLuint pId = 0, const GLuint loc = 0,
+                const GLint x = 0, const GLint y = 0, const GLint z = 0, const GLint w = 0) :
+        pId(pId), loc(loc), x(x), y(y), z(z), w(w) {
+        }
+
+        virtual void apply() const;
+    };
+
+    struct uniform_ivec2_array_binding : uniform_binding {
+        GLuint pId;
+        GLuint loc;
+        GLsizei count;
+        const GLint * values;
+
+        uniform_ivec2_array_binding(
+                const GLuint pId = 0, const GLuint loc = 0,
+                const GLint * values = nullptr, const GLsizei count = 1) :
+        pId(pId), loc(loc), count(count), values(values) {
+        }
+
+        virtual void apply() const;
+    };
+
+    struct uniform_ivec3_array_binding : uniform_binding {
+        GLuint pId;
+        GLuint loc;
+        GLsizei count;
+        const GLint * values;
+
+        uniform_ivec3_array_binding(
+                const GLuint pId = 0, const GLuint loc = 0,
+                const GLint * values = nullptr, const GLsizei count = 1) :
+        pId(pId), loc(loc), values(values), count(count) {
+        }
+
+        virtual void apply() const;
+    };
+
+    struct uniform_ivec4_array_binding : uniform_binding {
+        GLuint pId;
+        GLuint loc;
+        GLsizei count;
+        const GLint * values;
+
+        uniform_ivec4_array_binding(
+                const GLuint pId = 0, const GLuint loc = 0,
+                const GLint * values = nullptr, const GLsizei count = 1) :
+        pId(pId), loc(loc), count(count), values(values) {
+        }
+
+        virtual void apply() const;
+    };
+
+    struct uniform_mat2_binding : uniform_binding {
+        GLuint pId;
+        GLuint loc;
+        GLsizei count;
+        const GLfloat * values;
+
+        uniform_mat2_binding(
+                const GLuint pId = 0, const GLuint loc = 0,
+                const GLfloat * values = nullptr, const GLsizei count = 1) :
+        pId(pId), loc(loc), values(values), count(count) {
+        }
+
+        virtual void apply() const;
+    };
+
+    struct uniform_mat3_binding : uniform_binding {
+        GLuint pId;
+        GLuint loc;
+        GLsizei count;
+        const GLfloat * values;
+
+        uniform_mat3_binding(
+                const GLuint pId = 0, const GLuint loc = 0,
+                const GLfloat * values = nullptr, const GLsizei count = 1) :
+        pId(pId), loc(loc), count(count), values(values) {
+        }
+
+        virtual void apply() const;
+    };
+
+    struct uniform_mat4_binding : uniform_binding {
+        GLuint pId;
+        GLuint loc;
+        GLsizei count;
+        const GLfloat * values;
+
+        uniform_mat4_binding(
+                const GLuint pId = 0, const GLuint loc = 0,
+                const GLfloat * values = nullptr, const GLsizei count = 1) :
+        pId(pId), loc(loc), values(values), count(count) {
+        }
+
+        virtual void apply() const;
     };
 
     class uniform_block_binding {
     private:
-        std::shared_ptr<GLuint> _pId;
-        GLuint _blockIndex;        
+        GLuint _pId;
+        GLuint _blockIndex;
 
     public:
 
-        uniform_block_binding(const std::shared_ptr<GLuint> pId = std::shared_ptr<GLuint>(nullptr), const GLuint blockIndex = 0) :
+        uniform_block_binding(const GLuint pId = 0, const GLuint blockIndex = 0) :
         _pId(pId), _blockIndex(blockIndex) {
         }
 
@@ -149,8 +362,9 @@ namespace gloop {
     private:
         std::shared_ptr<GLuint> _id;
         vertex_attributes _attribs;
-        std::map<std::string, uniform_binding> _uniforms;
+        std::map<std::string, GLuint> _uniforms;
         std::map<std::string, uniform_block_binding> _uniformBlocks;
+        GLuint getUniform(const std::string& uniformName);
 
     public:
 
@@ -173,13 +387,47 @@ namespace gloop {
 
         operator GLuint() const;
 
-        const uniform_binding bindUniform(const std::string& uniformName);
-
         const uniform_block_binding bindUniformBlock(const std::string& uniformName);
 
-        const uniform_binding getUniform(const std::string& uniformName) const;
-
         const uniform_block_binding getUniformBlock(const std::string& uniformName) const;
+
+        const uniform_float_binding getUniformFloatBinding(const std::string& uniformName, const GLfloat x);
+
+        const uniform_float_array_binding getUniformFloatArrayBinding(const std::string& uniformName, const GLfloat * values, const GLsizei count);
+
+        const uniform_int_binding getUniformIntBinding(const std::string& uniformName, const GLint x);
+
+        const uniform_int_array_binding getUniformIntArrayBinding(const std::string& uniformName, const GLint * values, const GLsizei count);
+
+        const uniform_vec2_binding getUniformVec2Binding(const std::string& uniformName, const GLfloat x, const GLfloat y);
+
+        const uniform_vec2_array_binding getUniformVec2ArrayBinding(const std::string& uniformName, const GLfloat * values, const GLsizei count);
+
+        const uniform_vec3_binding getUniformVec3Binding(const std::string& uniformName, const GLfloat x, const GLfloat y, const GLfloat z);
+
+        const uniform_vec3_array_binding getUniformVec3ArrayBinding(const std::string& uniformName, const GLfloat * values, const GLsizei count);
+
+        const uniform_vec4_binding getUniformVec4Binding(const std::string& uniformName, const GLfloat x, const GLfloat y, const GLfloat z, const GLfloat w);
+
+        const uniform_vec4_array_binding getUniformVec4ArrayBinding(const std::string& uniformName, const GLfloat * values, const GLsizei count);
+
+        const uniform_ivec2_binding getUniformIVec2Binding(const std::string& uniformName, const GLint x, const GLint y);
+
+        const uniform_ivec3_binding getUniformIVec3Binding(const std::string& uniformName, const GLint x, const GLint y, const GLint z);
+
+        const uniform_ivec4_binding getUniformIVec4Binding(const std::string& uniformName, const GLint x, const GLint y, const GLint z, const GLint w);
+
+        const uniform_ivec2_array_binding getUniformIVec2ArrayBinding(const std::string& uniformName, const GLint * values, const GLsizei count);
+
+        const uniform_ivec3_array_binding getUniformIVec3ArrayBinding(const std::string& uniformName, const GLint * values, const GLsizei count);
+
+        const uniform_ivec4_array_binding getUniformIVec4ArrayBinding(const std::string& uniformName, const GLint * values, const GLsizei count);
+
+        const uniform_mat2_binding getUniformMat2Binding(const std::string& uniformName, const GLfloat * values, const GLsizei count = 1);
+
+        const uniform_mat3_binding getUniformMat3Binding(const std::string& uniformName, const GLfloat * values, const GLsizei count = 1);
+
+        const uniform_mat4_binding getUniformMat4Binding(const std::string& uniformName, const GLfloat * values, const GLsizei count = 1);
     };
 }
 

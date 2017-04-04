@@ -13,24 +13,41 @@
 
 #include <iostream>
 #include <fstream>
+#include <memory>
+#include <vector>
 
 #include <GL/glew.h>
 #include <SDL2/SDL.h>
 
 #include "gloop/application.hpp"
+#include "gloop/buffer.hpp"
 #include "gloop/context.hpp"
+#include "gloop/draw_calls.hpp"
+#include "gloop/model.hpp"
+#include "gloop/program.hpp"
 #include "gloop/shader.hpp"
 #include "gloop/tools.hpp"
-#include "gloop/program.hpp"
-#include "gloop/vertex_attributes.hpp"
-#include "gloop/buffer.hpp"
 #include "gloop/vertex_array.hpp"
+#include "gloop/vertex_attributes.hpp"
 
-struct context : gloop::context {
-    gloop::program program; 
-    gloop::uniform_binding color;
+struct model {
+    gloop::program * program;
+    gloop::vertex_array * vertexArray;
+    std::shared_ptr<gloop::draw::draw_call> drawCall;
+    std::shared_ptr<gloop::uniform_binding> uniforms;
+    
+    inline void render() const {
+        program->use();
+        vertexArray->bind();
+        uniforms->apply();
+        drawCall->draw();
+    }
+} model;
+
+struct my_context : gloop::context {
+    gloop::program program;     
     gloop::vertex_array vao;
-    gloop::vertex_attributes attribs;
+    gloop::vertex_attributes attribs;    
 } glContext;
 
 int main(int argc, char** argv) {
@@ -48,14 +65,14 @@ int main(int argc, char** argv) {
 
     app.setGLContext(&glContext);
 
-    app.setMainLoop([](const gloop::application * app, gloop::context * ctx) {
+    app.setMainLoop([](const gloop::application * app, gloop::context * ctx) {                       
         if (ctx == nullptr) {
             throw "Context is null!";
         }
 
-        context * glCtx = reinterpret_cast<context *> (ctx);
+        auto glCtx = reinterpret_cast<my_context *> (ctx);
 
-        if (!glCtx->program) {
+        if (!glCtx->program) {            
             gloop::shader shaders[] {
                 gloop::shader::makeVertexShader("basic.vert"),
                 gloop::shader::makeFragmentShader("basic.frag")
@@ -64,7 +81,12 @@ int main(int argc, char** argv) {
             glCtx->attribs.setLocation("LVertexPos2D", 0);
             glCtx->program.setVertexAttributes(glCtx->attribs);
             glCtx->program.linkShaders(shaders, 2);
-            glCtx->color = glCtx->program.bindUniform("fColor");
+            
+            auto setColor = new gloop::uniform_vec4_binding;
+            
+            *setColor = glCtx->program.getUniformVec4Binding("fColor", 0.0F, 0.0F, 1.0F, 1.0F);
+            
+            model.uniforms = std::shared_ptr<gloop::uniform_binding>(setColor);
         }
 
         if (!glCtx->vao) {
@@ -86,16 +108,17 @@ int main(int argc, char** argv) {
             glCtx->vao.addBinding(binding);                        
             glCtx->vao.setIndexBuffer(ibo);
         }
+        
+        if (!model.vertexArray) {
+            model.program = &(glCtx->program);
+            model.vertexArray = &(glCtx->vao);
+            model.drawCall = std::shared_ptr<gloop::draw::draw_call> (new gloop::draw::elements(gloop::draw::mode::TRIANGLE_FAN, 4));
+        }
 
         gloop::tools::assertGLError();
 
         glCtx->currentClear();        
-
-        glCtx->program.use();        
-        glCtx->vao.bind();
-        
-        glCtx->color.pushVec4(1.0f, 0.0f, 0.0f, 1.0f);
-        glDrawElements(GL_TRIANGLE_FAN, 4, GL_UNSIGNED_INT, nullptr);
+        model.render();
     });
 
     try {

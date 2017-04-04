@@ -37,6 +37,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/gloop/application.o \
 	${OBJECTDIR}/gloop/buffer.o \
+	${OBJECTDIR}/gloop/draw_calls.o \
 	${OBJECTDIR}/gloop/exception.o \
 	${OBJECTDIR}/gloop/program.o \
 	${OBJECTDIR}/gloop/program_uniform_binding.o \
@@ -81,6 +82,11 @@ ${OBJECTDIR}/gloop/buffer.o: gloop/buffer.cpp
 	${MKDIR} -p ${OBJECTDIR}/gloop
 	${RM} "$@.d"
 	$(COMPILE.cc) -g `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/buffer.o gloop/buffer.cpp
+
+${OBJECTDIR}/gloop/draw_calls.o: gloop/draw_calls.cpp
+	${MKDIR} -p ${OBJECTDIR}/gloop
+	${RM} "$@.d"
+	$(COMPILE.cc) -g `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/draw_calls.o gloop/draw_calls.cpp
 
 ${OBJECTDIR}/gloop/exception.o: gloop/exception.cpp
 	${MKDIR} -p ${OBJECTDIR}/gloop
