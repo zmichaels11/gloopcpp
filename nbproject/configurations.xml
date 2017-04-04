@@ -27,6 +27,8 @@
         <itemPath>gloop/buffer.cpp</itemPath>
         <itemPath>gloop/exception.cpp</itemPath>
         <itemPath>gloop/program.cpp</itemPath>
+        <itemPath>gloop/program_uniform_binding.cpp</itemPath>
+        <itemPath>gloop/program_uniform_block_binding.cpp</itemPath>
         <itemPath>gloop/shader.cpp</itemPath>
         <itemPath>gloop/tools.cpp</itemPath>
         <itemPath>gloop/vertex_array.cpp</itemPath>
@@ -88,6 +90,13 @@
       <item path="gloop/program.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/program.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/program_uniform_binding.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="gloop/program_uniform_block_binding.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
       </item>
       <item path="gloop/shader.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -158,6 +167,13 @@
       <item path="gloop/program.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/program.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/program_uniform_binding.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="gloop/program_uniform_block_binding.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
       </item>
       <item path="gloop/shader.cpp" ex="false" tool="1" flavor2="0">
       </item>

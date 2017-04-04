@@ -89,7 +89,7 @@ void gloop::program::linkShaders(shader * shaders, const std::size_t count) {
         this->_id = std::shared_ptr<GLuint>(new GLuint, [ = ](GLuint * id){
             if (id != nullptr) {
                 glDeleteProgram(*id);
-                delete id;
+                        delete id;
             }
         });
 
@@ -118,4 +118,66 @@ void gloop::program::setVertexAttributes(const vertex_attributes attribs) {
     }
 
     this->_attribs = attribs;
+}
+
+const gloop::uniform_binding gloop::program::getUniform(const std::string& uniformName) const {
+    auto it = this->_uniforms.find(uniformName);
+    
+    if (it != this->_uniforms.end()) {
+        return it->second;
+    } else {
+        return gloop::uniform_binding();
+    }
+}
+
+const gloop::uniform_binding gloop::program::bindUniform(const std::string& uniformName) {
+    {
+        auto it = this->_uniforms.find(uniformName);
+        
+        if (it != this->_uniforms.end()) {
+            return it->second;
+        }
+    }
+        
+    GLint glLoc = glGetUniformLocation(this->getId(), uniformName.c_str());
+    
+    if (glLoc == -1) {
+        throw new gloop::invalid_uniform_name_exception("Could not find uniform name: " + uniformName);
+    }
+    
+    gloop::uniform_binding out(this->_id, glLoc);
+    
+    this->_uniforms[uniformName] = out;
+    
+    return out;
+}
+
+const gloop::uniform_block_binding gloop::program::getUniformBlock(const std::string& uniformName) const {
+    auto it = this->_uniformBlocks.find(uniformName);
+    
+    if (it != this->_uniformBlocks.end()) {
+        return it->second;
+    } else {
+        return gloop::uniform_block_binding();
+    }
+}
+
+const gloop::uniform_block_binding gloop::program::bindUniformBlock(const std::string& uniformName) {
+    auto out = this->getUniformBlock(uniformName);
+    
+    if (out) {
+        return out;
+    }
+    
+    GLuint glIndex = glGetUniformBlockIndex(this->getId(), uniformName.c_str());
+    
+    if (glIndex == GL_INVALID_INDEX) {
+        throw gloop::invalid_uniform_name_exception("Could not find uniform block name: " + uniformName);
+    }
+    
+    out = gloop::uniform_block_binding(this->_id, glIndex);
+    
+    this->_uniformBlocks[uniformName] = out;
+    
+    return out;
 }

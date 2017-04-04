@@ -6,80 +6,59 @@
 
 #include "buffer.hpp"
 
-#include <iostream>
-
 #include <GL/glew.h>
 
 #include "exception.hpp"
 #include "tools.hpp"
 
-namespace {        
-    static GLenum storageHintToGLenum(const gloop::buffer_storage_hint hint) {
-        switch (hint) {
-            case gloop::buffer_storage_hint::DYNAMIC_COPY:
-                return GL_DYNAMIC_COPY;
-            case gloop::buffer_storage_hint::DYNAMIC_DRAW:
-                return GL_DYNAMIC_DRAW;
-            case gloop::buffer_storage_hint::DYNAMIC_READ:
-                return GL_DYNAMIC_READ;
-            case gloop::buffer_storage_hint::STATIC_COPY:
-                return GL_STATIC_COPY;
-            case gloop::buffer_storage_hint::STATIC_DRAW:
-                return GL_STATIC_DRAW;
-            case gloop::buffer_storage_hint::STATIC_READ:
-                return GL_STATIC_READ;
-            case gloop::buffer_storage_hint::STREAM_COPY:
-                return GL_STREAM_COPY;
-            case gloop::buffer_storage_hint::STREAM_DRAW:
-                return GL_STREAM_DRAW;
-            case gloop::buffer_storage_hint::STREAM_READ:
-                return GL_STREAM_READ;
-            default:
-                throw gloop::invalid_enum_exception("Unsupported buffer storage hint!");
-        }
-    }
-    
-    static GLenum bufferTargetToGLenum(const gloop::buffer_target target) {
-        switch (target) {
-            case gloop::buffer_target::ARRAY:
-                return GL_ARRAY_BUFFER;
-            case gloop::buffer_target::ATOMIC_COUNTER:
-                return GL_ATOMIC_COUNTER_BUFFER;
-            case gloop::buffer_target::COPY_READ:
-                return GL_COPY_READ_BUFFER;
-            case gloop::buffer_target::COPY_WRITE:
-                return GL_COPY_WRITE_BUFFER;
-            case gloop::buffer_target::DISPATCH_INDIRECT:
-                return GL_DISPATCH_INDIRECT_BUFFER;
-            case gloop::buffer_target::DRAW_INDIRECT:
-                return GL_DRAW_INDIRECT_BUFFER;
-            case gloop::buffer_target::ELEMENT_ARRAY:
-                return GL_ELEMENT_ARRAY_BUFFER;
-            case gloop::buffer_target::PIXEL_PACK:
-                return GL_PIXEL_PACK_BUFFER;
-            case gloop::buffer_target::PIXEL_UNPACK:
-                return GL_PIXEL_UNPACK_BUFFER;
-            case gloop::buffer_target::QUERY:
-                return GL_QUERY_BUFFER;
-            case gloop::buffer_target::SHADER_STORAGE:
-                return GL_SHADER_STORAGE_BUFFER;
-            case gloop::buffer_target::TEXTURE:
-                return GL_TEXTURE_BUFFER;
-            case gloop::buffer_target::TRANSFORM_FEEDBACK:
-                return GL_TRANSFORM_FEEDBACK_BUFFER;
-            case gloop::buffer_target::UNIFORM:
-                return GL_UNIFORM_BUFFER;
-            default:
-                throw gloop::invalid_enum_exception("Unsupported buffer target!");
-        }
-    }
-}
-
 void gloop::buffer::reallocate() const {
     if (this->isInitialized()) {
         glBindBuffer(GL_ARRAY_BUFFER, *(this->_id));
-        glBufferData(GL_ARRAY_BUFFER, this->_size, nullptr, storageHintToGLenum(this->_storageHint));
+        glBufferData(GL_ARRAY_BUFFER, this->_size, nullptr, static_cast<GLenum> (this->_storageHint));
     }
+}
+
+bool gloop::buffer::isImmutable() const {
+    return this->_isImmutable;
+}
+
+gloop::buffer_access_hint gloop::buffer::getAccessHints() const {
+    return this->_accessHints;
+}
+
+gloop::buffer_storage_hint gloop::buffer::getStorageHint() const {
+    return this->_storageHint;
+}
+
+void gloop::buffer::allocateImmutable(
+        const GLsizeiptr size,
+        const buffer_access_hint access) {
+
+    allocateImmutable(size, nullptr, access);
+}
+
+void gloop::buffer::allocateImmutable(
+        const GLsizeiptr size,
+        const GLvoid* data,
+        const buffer_access_hint access) {
+
+    GLuint glId = 0;
+
+    glGenBuffers(1, &glId);
+    glBindBuffer(GL_ARRAY_BUFFER, glId);
+    glBufferStorage(GL_ARRAY_BUFFER, size, data, static_cast<GLbitfield> (access));
+
+    this->_id = std::shared_ptr<GLuint>(new GLuint, [ = ] (GLuint * id){
+        if (id != nullptr) {
+            glDeleteBuffers(1, id);
+            delete id;
+        }
+    });
+    
+    *(this->_id) = glId;
+    this->_size = size;
+    this->_isImmutable = true;
+    this->_accessHints = access;
 }
 
 void gloop::buffer::allocate(
@@ -98,19 +77,19 @@ void gloop::buffer::allocate(
 
     glGenBuffers(1, &glId);
     glBindBuffer(GL_ARRAY_BUFFER, glId);
-    glBufferData(GL_ARRAY_BUFFER, size, data, storageHintToGLenum(storageHint));    
+    glBufferData(GL_ARRAY_BUFFER, size, data, static_cast<GLenum> (storageHint));        
 
     this->_id = std::shared_ptr<GLuint>(new GLuint, [ = ] (GLuint * id){
         if (id != nullptr) {
-            std::cout << "Deleting buffer: " << *id << std::endl;
-            glDeleteBuffers(1, id);                        
-            delete id;
+            glDeleteBuffers(1, id);
+                    delete id;
         }
     });
 
     *(this->_id) = glId;
     this->_size = size;
     this->_storageHint = storageHint;
+    this->_isImmutable = false;
 }
 
 bool gloop::buffer::isInitialized() const {
@@ -153,7 +132,13 @@ void gloop::buffer::getData(const GLintptr offset, const GLsizeiptr size, GLvoid
 }
 
 void * gloop::buffer::map(GLintptr offset, GLsizeiptr length, buffer_access_hint accessHints) {
-    return nullptr;
+    if (this->isInitialized()) {
+        glBindBuffer(GL_ARRAY_BUFFER, *_id);
+
+        return glMapBufferRange(GL_ARRAY_BUFFER, offset, length, static_cast<GLbitfield> (accessHints));
+    } else {
+        return nullptr;
+    }
 }
 
 void gloop::buffer::unmap() const {
@@ -165,6 +150,18 @@ void gloop::buffer::unmap() const {
 
 void gloop::buffer::bind(const gloop::buffer_target target) const {
     if (this->isInitialized()) {
-        glBindBuffer(bufferTargetToGLenum(target), *(this->_id));
+        glBindBuffer(static_cast<GLenum> (target), *(this->_id));
+    }
+}
+
+void gloop::buffer::blockBind(const buffer_target target, const GLuint binding, const GLintptr offset, GLintptr size) const {
+    if (this->isInitialized()) {
+        glBindBufferRange(static_cast<GLenum> (target), binding, *_id, offset, size);
+    }
+}
+
+void gloop::buffer::blockBind(const buffer_target target, const GLuint binding) const {
+    if (this->isInitialized()) {
+        glBindBufferBase(static_cast<GLenum> (target), binding, *_id);
     }
 }

@@ -26,7 +26,8 @@
 #include "gloop/vertex_array.hpp"
 
 struct Context {
-    gloop::program program;
+    gloop::program program; 
+    gloop::uniform_binding color;
     gloop::vertex_array vao;
     gloop::vertex_attributes attribs;
 } glContext;
@@ -61,8 +62,9 @@ int main(int argc, char** argv) {
             };
 
             glCtx->attribs.setLocation("LVertexPos2D", 0);
-                    glCtx->program.setVertexAttributes(glCtx->attribs);
-                    glCtx->program.linkShaders(shaders, 2);
+            glCtx->program.setVertexAttributes(glCtx->attribs);
+            glCtx->program.linkShaders(shaders, 2);
+            glCtx->color = glCtx->program.bindUniform("fColor");
         }
 
         if (!glCtx->vao) {
@@ -75,6 +77,8 @@ int main(int argc, char** argv) {
                  0.5f, -0.5f,
                  0.5f, 0.5f,
                 -0.5f, 0.5f});
+                
+            gloop::tools::assertGLError("buffer allocate");
                 
             auto attrib = glCtx->attribs["LVertexPos2D"];
             auto binding = attrib.bindBuffer(vbo, gloop::vertex_attribute_type::VEC2);
@@ -89,6 +93,8 @@ int main(int argc, char** argv) {
 
         glCtx->program.use();        
         glCtx->vao.bind();
+        
+        glCtx->color.pushVec4(1.0f, 0.0f, 0.0f, 1.0f);
         glDrawElements(GL_TRIANGLE_FAN, 4, GL_UNSIGNED_INT, nullptr);
     });
 
