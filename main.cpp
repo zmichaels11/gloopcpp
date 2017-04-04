@@ -48,7 +48,6 @@ int main(int argc, char** argv) {
 
     app.setGLContext(&glContext);
 
-
     app.setMainLoop([](const gloop::application * app, gloop::context * ctx) {
         if (ctx == nullptr) {
             throw "Context is null!";

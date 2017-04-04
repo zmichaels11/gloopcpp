@@ -28,6 +28,7 @@
                    displayName="Source Files"
                    projectFiles="true">
       <logicalFolder name="f1" displayName="gloop" projectFiles="true">
+        <itemPath>gloop/application.cpp</itemPath>
         <itemPath>gloop/buffer.cpp</itemPath>
         <itemPath>gloop/exception.cpp</itemPath>
         <itemPath>gloop/program.cpp</itemPath>
@@ -38,7 +39,6 @@
         <itemPath>gloop/vertex_array.cpp</itemPath>
         <itemPath>gloop/vertex_attributes.cpp</itemPath>
       </logicalFolder>
-      <itemPath>gloop/application.cpp</itemPath>
       <itemPath>basic.frag</itemPath>
       <itemPath>basic.vert</itemPath>
       <itemPath>main.cpp</itemPath>

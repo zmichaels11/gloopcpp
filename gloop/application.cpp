@@ -86,7 +86,8 @@ void gloop::application::start() {
     this->_surface = SDL_GetWindowSurface(_window);
     
     if (this->_context != nullptr) {
-        *_context = gloop::context(_width, _height);
+        _context->currentScissor = _context->currentScissor.withSize(_width, _height);
+        _context->currentViewport = _context->currentViewport.withSize(_width, _height);
     }
     
     bool quit = false;
