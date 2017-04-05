@@ -11,24 +11,17 @@
 
 #include <GL/glew.h>
 
-#include "exception.hpp"
+#include "shader_compile_exception.hpp"
 #include "tools.hpp"
+#include "unsupported_shader_type_exception.hpp"
 
 namespace {                
     static GLenum checkVertexShaderSupported() {                
-        if (GLEW_VERSION_2_0 || GLEW_ARB_vertex_program) {
-            return GL_VERTEX_SHADER;          
-        } else {
-            throw gloop::unsupported_shader_type_exception("Vertex shaders are not supported!");
-        }        
+        return GL_VERTEX_SHADER;                  
     }
     
     static GLenum checkFragmentShaderSupported() {
-        if (GLEW_VERSION_2_0 || GLEW_ARB_fragment_program) {
-            return GL_FRAGMENT_SHADER;
-        } else {
-            throw gloop::unsupported_shader_type_exception("Fragment shaders are not supported!");
-        }
+        return GL_FRAGMENT_SHADER;        
     }
     
     static GLenum checkGeometryShaderSupported() {

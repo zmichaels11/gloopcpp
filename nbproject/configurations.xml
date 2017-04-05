@@ -12,15 +12,23 @@
         <itemPath>gloop/context.hpp</itemPath>
         <itemPath>gloop/depth_range.hpp</itemPath>
         <itemPath>gloop/draw_calls.hpp</itemPath>
+        <itemPath>gloop/error.hpp</itemPath>
         <itemPath>gloop/exception.hpp</itemPath>
+        <itemPath>gloop/invalid_enum_exception.hpp</itemPath>
+        <itemPath>gloop/invalid_framebuffer_operation_exception.hpp</itemPath>
+        <itemPath>gloop/invalid_operation_exception.hpp</itemPath>
+        <itemPath>gloop/invalid_value_exception.hpp</itemPath>
+        <itemPath>gloop/out_of_memory_error.hpp</itemPath>
         <itemPath>gloop/program.hpp</itemPath>
         <itemPath>gloop/scissor.hpp</itemPath>
         <itemPath>gloop/shader.hpp</itemPath>
+        <itemPath>gloop/shader_compile_exception.hpp</itemPath>
         <itemPath>gloop/sized_type.hpp</itemPath>
         <itemPath>gloop/texture2D.hpp</itemPath>
         <itemPath>gloop/texture_parameters.hpp</itemPath>
         <itemPath>gloop/tools.hpp</itemPath>
         <itemPath>gloop/type.hpp</itemPath>
+        <itemPath>gloop/unsupported_shader_type_exception.hpp</itemPath>
         <itemPath>gloop/vertex_array.hpp</itemPath>
         <itemPath>gloop/vertex_attribute_binding.hpp</itemPath>
         <itemPath>gloop/vertex_attribute_type.hpp</itemPath>
@@ -43,6 +51,7 @@
         <itemPath>gloop/application.cpp</itemPath>
         <itemPath>gloop/buffer.cpp</itemPath>
         <itemPath>gloop/draw_calls.cpp</itemPath>
+        <itemPath>gloop/error.cpp</itemPath>
         <itemPath>gloop/exception.cpp</itemPath>
         <itemPath>gloop/program.cpp</itemPath>
         <itemPath>gloop/program_uniform_binding.cpp</itemPath>
@@ -112,9 +121,29 @@
       </item>
       <item path="gloop/draw_calls.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/error.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="gloop/error.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/exception.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/exception.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/invalid_enum_exception.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/invalid_framebuffer_operation_exception.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/invalid_operation_exception.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/invalid_value_exception.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/out_of_memory_error.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/program.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -132,6 +161,8 @@
       <item path="gloop/shader.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/shader.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/shader_compile_exception.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/sized_type.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -151,6 +182,11 @@
       <item path="gloop/tools.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/type.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/unsupported_shader_type_exception.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="gloop/vertex_array.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -222,9 +258,29 @@
       </item>
       <item path="gloop/draw_calls.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/error.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="gloop/error.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/exception.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/exception.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/invalid_enum_exception.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/invalid_framebuffer_operation_exception.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/invalid_operation_exception.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/invalid_value_exception.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/out_of_memory_error.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/program.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -242,6 +298,8 @@
       <item path="gloop/shader.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/shader.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/shader_compile_exception.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/sized_type.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -261,6 +319,11 @@
       <item path="gloop/tools.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/type.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/unsupported_shader_type_exception.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="gloop/vertex_array.cpp" ex="false" tool="1" flavor2="0">
       </item>

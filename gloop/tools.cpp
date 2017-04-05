@@ -10,7 +10,14 @@
 #include <istream>
 #include <sstream>
 
+#include <GL/glew.h>
+
 #include "exception.hpp"
+#include "invalid_enum_exception.hpp"
+#include "invalid_framebuffer_operation_exception.hpp"
+#include "invalid_operation_exception.hpp"
+#include "invalid_value_exception.hpp"
+#include "out_of_memory_error.hpp"
 
 std::string gloop::tools::readAll(const std::istream& in) {
     if (in) {
@@ -53,7 +60,7 @@ void gloop::tools::assertGLError() {
         case GL_INVALID_FRAMEBUFFER_OPERATION:
             throw gloop::invalid_framebuffer_operation_exception();
         case GL_OUT_OF_MEMORY:
-            throw gloop::out_of_memory_exception();
+            throw gloop::out_of_memory_error();
         case GL_NO_ERROR:
             // nothing to report
             break;
@@ -78,7 +85,7 @@ void gloop::tools::assertGLError(std::string customMsg) {
         case GL_INVALID_FRAMEBUFFER_OPERATION:
             throw gloop::invalid_framebuffer_operation_exception(customMsg);
         case GL_OUT_OF_MEMORY:
-            throw gloop::out_of_memory_exception(customMsg);
+            throw gloop::out_of_memory_error(customMsg);
         default:
             throw gloop::exception(customMsg);
     }

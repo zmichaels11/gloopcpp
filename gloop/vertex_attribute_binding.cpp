@@ -8,7 +8,7 @@
 
 #include "buffer.hpp"
 
-#include "exception.hpp"
+#include "invalid_enum_exception.hpp"
 
 namespace gloop {
     namespace {

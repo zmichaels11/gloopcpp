@@ -32,17 +32,7 @@ namespace gloop {
         TESSELLATION_CONTROL,
         COMPUTE
     };
-    
-    class shader_compile_exception : public exception {    
-    public:
-        shader_compile_exception(std::string msg) : exception(msg) {}
-    };
-    
-    class unsupported_shader_type_exception : public invalid_enum_exception {
-    public:
-        unsupported_shader_type_exception(std::string msg) : invalid_enum_exception(msg) {}
-    };
-
+        
     class shader {
     private:
         std::shared_ptr<GLuint> _id;

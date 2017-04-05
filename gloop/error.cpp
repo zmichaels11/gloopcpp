@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 
-#include "exception.hpp"
+#include "error.hpp"
 
 namespace gloop {
-    const char * exception::what() const throw() {
+    const char * error::what() const throw() {
         return _msg.c_str();
-    }        
+    }
 }

@@ -5,35 +5,34 @@
  */
 
 /* 
- * File:   exception.hpp
+ * File:   error.hpp
  * Author: zmichaels
  *
- * Created on April 3, 2017, 8:24 AM
+ * Created on April 5, 2017, 10:23 AM
  */
 
-#ifndef EXCEPTION_HPP
-#define EXCEPTION_HPP
+#ifndef ERROR_HPP
+#define ERROR_HPP
 
 #include <exception>
 #include <string>
 
 namespace gloop {
-
-    class exception : public std::exception {
+    class error : public std::exception {
     private:
         const std::string _msg;
 
     public:
 
-        exception(std::string msg) : _msg(msg) {
+        error(std::string msg) : _msg(msg) {
         }
 
-        exception() : _msg("An OpenGL exception occurred! The offending operation was ignored.") {
+        error() : _msg("An OpenGL error occurred! The GLContext is now invalid.") {
         }
-
+        
         virtual const char * what() const throw ();
-    };      
+    };
 }
 
-#endif /* EXCEPTION_HPP */
+#endif /* ERROR_HPP */
 

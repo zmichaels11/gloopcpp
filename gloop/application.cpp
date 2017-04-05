@@ -87,7 +87,7 @@ void gloop::application::start() {
     
     if (this->_context != nullptr) {
         _context->currentScissor = _context->currentScissor.withSize(_width, _height);
-        _context->currentViewport = _context->currentViewport.withSize(_width, _height);
+        _context->currentViewport = _context->currentViewport.withSize({_width, _height});
     }
     
     bool quit = false;
