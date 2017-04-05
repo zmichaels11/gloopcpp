@@ -12,12 +12,8 @@
 
 #include <GL/glew.h>
 
-#include "exception.hpp"
-#include "invalid_enum_exception.hpp"
-#include "invalid_framebuffer_operation_exception.hpp"
-#include "invalid_operation_exception.hpp"
-#include "invalid_value_exception.hpp"
-#include "out_of_memory_error.hpp"
+#include "exceptions.hpp"
+#include "errors.hpp"
 
 namespace gloop {
     std::string tools::readAll(const std::istream& in) {
@@ -53,20 +49,20 @@ namespace gloop {
 
         switch (err) {
             case GL_INVALID_ENUM:
-                throw gloop::invalid_enum_exception();
+                throw gloop::exception::invalid_enum_exception();
             case GL_INVALID_VALUE:
-                throw gloop::invalid_value_exception();
+                throw gloop::exception::invalid_value_exception();
             case GL_INVALID_OPERATION:
-                throw gloop::invalid_operation_exception();
+                throw gloop::exception::invalid_operation_exception();
             case GL_INVALID_FRAMEBUFFER_OPERATION:
-                throw gloop::invalid_framebuffer_operation_exception();
+                throw gloop::exception::invalid_framebuffer_operation_exception();
             case GL_OUT_OF_MEMORY:
-                throw gloop::out_of_memory_error();
+                throw gloop::error::out_of_memory_error();
             case GL_NO_ERROR:
                 // nothing to report
                 break;
             default:
-                throw gloop::exception("Unknown error: " + err);
+                throw gloop::exception::base_exception("Unknown error: " + err);
         }
     }
 
@@ -78,17 +74,17 @@ namespace gloop {
                 // nothing to report
                 break;
             case GL_INVALID_ENUM:
-                throw gloop::invalid_enum_exception(customMsg);
+                throw gloop::exception::invalid_enum_exception(customMsg);
             case GL_INVALID_VALUE:
-                throw gloop::invalid_value_exception(customMsg);
+                throw gloop::exception::invalid_value_exception(customMsg);
             case GL_INVALID_OPERATION:
-                throw gloop::invalid_operation_exception(customMsg);
+                throw gloop::exception::invalid_operation_exception(customMsg);
             case GL_INVALID_FRAMEBUFFER_OPERATION:
-                throw gloop::invalid_framebuffer_operation_exception(customMsg);
+                throw gloop::exception::invalid_framebuffer_operation_exception(customMsg);
             case GL_OUT_OF_MEMORY:
-                throw gloop::out_of_memory_error(customMsg);
+                throw gloop::error::out_of_memory_error(customMsg);
             default:
-                throw gloop::exception(customMsg);
+                throw gloop::exception::base_exception(customMsg);
         }
     }
 }

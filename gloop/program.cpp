@@ -12,8 +12,8 @@
 
 #include <GL/glew.h>
 
-#include "invalid_uniform_name_exception.hpp"
-#include "program_link_exception.hpp"
+#include "exception/invalid_uniform_name_exception.hpp"
+#include "exception/program_link_exception.hpp"
 
 #include "shader.hpp"
 #include "vertex_attributes.hpp"
@@ -50,7 +50,7 @@ namespace gloop {
         if (this->isInitialized()) {
             glUseProgram(this->getId());
         } else {
-            throw gloop::program_link_exception("Program is not linked!");
+            throw gloop::exception::program_link_exception("Program is not linked!");
         }
     }
 
@@ -89,7 +89,7 @@ namespace gloop {
             std::string infoLog = getProgramLog(glId);
 
             glDeleteProgram(glId);
-            throw gloop::program_link_exception(infoLog);
+            throw gloop::exception::program_link_exception(infoLog);
         } else {
             this->_id = std::shared_ptr<GLuint>(new GLuint, [ = ](GLuint * id){
                 if (id != nullptr) {
@@ -119,7 +119,7 @@ namespace gloop {
 
     void program::setVertexAttributes(const vertex_attributes attribs) {
         if (this->isInitialized()) {
-            throw gloop::program_link_exception("Cannot set vertex attributes if program is already linked!");
+            throw gloop::exception::program_link_exception("Cannot set vertex attributes if program is already linked!");
         }
 
         this->_attribs = attribs;
@@ -145,7 +145,7 @@ namespace gloop {
         GLuint glIndex = glGetUniformBlockIndex(this->getId(), uniformName.c_str());
 
         if (glIndex == GL_INVALID_INDEX) {
-            throw gloop::invalid_uniform_name_exception("Could not find uniform block name: " + uniformName);
+            throw gloop::exception::invalid_uniform_name_exception("Could not find uniform block name: " + uniformName);
         }
 
         out = gloop::uniform_block_binding(*_id, glIndex);

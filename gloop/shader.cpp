@@ -11,10 +11,10 @@
 
 #include <GL/glew.h>
 
-#include "shader_compile_exception.hpp"
+#include "exception/shader_compile_exception.hpp"
 #include "shader_type.hpp"
 #include "tools.hpp"
-#include "unsupported_shader_type_exception.hpp"
+#include "exception/unsupported_shader_type_exception.hpp"
 
 namespace {
 
@@ -96,7 +96,7 @@ namespace gloop {
 
             glDeleteShader(glId);
 
-            throw shader_compile_exception(infoLog);
+            throw exception::shader_compile_exception(infoLog);
         }
     }
 

@@ -8,7 +8,7 @@
 
 #include "buffer.hpp"
 
-#include "invalid_enum_exception.hpp"
+#include "exception/invalid_enum_exception.hpp"
 
 namespace gloop {
     namespace {
@@ -45,7 +45,7 @@ namespace gloop {
                 case gloop::vertex_attribute_type::VEC4:
                     return { 4, GL_FLOAT};
                 default:
-                    throw gloop::invalid_enum_exception("Unsupported vertex attribute type!");
+                    throw gloop::exception::invalid_enum_exception("Unsupported vertex attribute type!");
             }
         }
     }

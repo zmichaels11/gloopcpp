@@ -8,7 +8,6 @@
 
 #include <GL/glew.h>
 
-#include "exception.hpp"
 #include "tools.hpp"
 
 void gloop::buffer::reallocate() const {

@@ -5,8 +5,6 @@
  */
 
 #include "vertex_attributes.hpp"
-#include "vertex_array.hpp"
-#include "exception.hpp"
 
 #include <iostream>
 #include <string>
@@ -15,6 +13,7 @@
 #include <GL/glew.h>
 
 #include "buffer.hpp"
+#include "vertex_array.hpp"
 #include "vertex_attribute_binding.hpp"
 #include "vertex_attribute_type.hpp"
 

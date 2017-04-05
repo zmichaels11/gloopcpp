@@ -21,8 +21,6 @@
 
 #include <GL/glew.h>
 
-#include "invalid_uniform_name_exception.hpp"
-#include "program_link_exception.hpp"
 #include "shader.hpp"
 #include "uniforms.hpp"
 #include "vertex_attributes.hpp"

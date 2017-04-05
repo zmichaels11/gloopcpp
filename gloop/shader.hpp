@@ -19,7 +19,6 @@
 
 #include <GL/glew.h>
 
-#include "exception.hpp"
 #include "shader_type.hpp"
 
 namespace gloop {        

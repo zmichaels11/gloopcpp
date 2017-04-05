@@ -10,6 +10,8 @@
 
 #include <GL/glew.h>
 
+#include "exception/invalid_uniform_name_exception.hpp"
+
 GLuint gloop::program::getUniform(const std::string& uniformName) {
     auto it = this->_uniforms.find(uniformName);
 
@@ -19,7 +21,7 @@ GLuint gloop::program::getUniform(const std::string& uniformName) {
         GLint loc = glGetUniformLocation(*_id, uniformName.c_str());
 
         if (loc == -1) {
-            throw gloop::invalid_uniform_name_exception("Could not find uniform with name: " + uniformName);
+            throw gloop::exception::invalid_uniform_name_exception("Could not find uniform with name: " + uniformName);
         } else {
             this->_uniforms[uniformName] = loc;
 

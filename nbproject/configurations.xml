@@ -16,6 +16,21 @@
           <itemPath>gloop/draw/mode.hpp</itemPath>
           <itemPath>gloop/draw/range_elements.hpp</itemPath>
         </logicalFolder>
+        <logicalFolder name="f4" displayName="error" projectFiles="true">
+          <itemPath>gloop/error/base_error.hpp</itemPath>
+          <itemPath>gloop/error/out_of_memory_error.hpp</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f3" displayName="exception" projectFiles="true">
+          <itemPath>gloop/exception/base_exception.hpp</itemPath>
+          <itemPath>gloop/exception/invalid_enum_exception.hpp</itemPath>
+          <itemPath>gloop/exception/invalid_framebuffer_operation_exception.hpp</itemPath>
+          <itemPath>gloop/exception/invalid_operation_exception.hpp</itemPath>
+          <itemPath>gloop/exception/invalid_uniform_name_exception.hpp</itemPath>
+          <itemPath>gloop/exception/invalid_value_exception.hpp</itemPath>
+          <itemPath>gloop/exception/program_link_exception.hpp</itemPath>
+          <itemPath>gloop/exception/shader_compile_exception.hpp</itemPath>
+          <itemPath>gloop/exception/unsupported_shader_type_exception.hpp</itemPath>
+        </logicalFolder>
         <logicalFolder name="f1" displayName="uniform" projectFiles="true">
           <itemPath>gloop/uniform/uniform_binding.hpp</itemPath>
           <itemPath>gloop/uniform/uniform_block_binding.hpp</itemPath>
@@ -46,19 +61,11 @@
         <itemPath>gloop/context.hpp</itemPath>
         <itemPath>gloop/depth_range.hpp</itemPath>
         <itemPath>gloop/draw_calls.hpp</itemPath>
-        <itemPath>gloop/error.hpp</itemPath>
-        <itemPath>gloop/exception.hpp</itemPath>
-        <itemPath>gloop/invalid_enum_exception.hpp</itemPath>
-        <itemPath>gloop/invalid_framebuffer_operation_exception.hpp</itemPath>
-        <itemPath>gloop/invalid_operation_exception.hpp</itemPath>
-        <itemPath>gloop/invalid_uniform_name_exception.hpp</itemPath>
-        <itemPath>gloop/invalid_value_exception.hpp</itemPath>
-        <itemPath>gloop/out_of_memory_error.hpp</itemPath>
+        <itemPath>gloop/errors.hpp</itemPath>
+        <itemPath>gloop/exceptions.hpp</itemPath>
         <itemPath>gloop/program.hpp</itemPath>
-        <itemPath>gloop/program_link_exception.hpp</itemPath>
         <itemPath>gloop/scissor.hpp</itemPath>
         <itemPath>gloop/shader.hpp</itemPath>
-        <itemPath>gloop/shader_compile_exception.hpp</itemPath>
         <itemPath>gloop/shader_type.hpp</itemPath>
         <itemPath>gloop/sized_type.hpp</itemPath>
         <itemPath>gloop/texture2D.hpp</itemPath>
@@ -66,13 +73,13 @@
         <itemPath>gloop/tools.hpp</itemPath>
         <itemPath>gloop/type.hpp</itemPath>
         <itemPath>gloop/uniforms.hpp</itemPath>
-        <itemPath>gloop/unsupported_shader_type_exception.hpp</itemPath>
         <itemPath>gloop/vertex_array.hpp</itemPath>
         <itemPath>gloop/vertex_attribute_binding.hpp</itemPath>
         <itemPath>gloop/vertex_attribute_type.hpp</itemPath>
         <itemPath>gloop/vertex_attributes.hpp</itemPath>
         <itemPath>gloop/viewport.hpp</itemPath>
       </logicalFolder>
+      <itemPath>gloop/exception/uniform_name_not_found_exception.hpp</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -93,10 +100,10 @@
           <itemPath>gloop/uniform/uniform_bindings.cpp</itemPath>
         </logicalFolder>
         <itemPath>gloop/application.cpp</itemPath>
+        <itemPath>gloop/error/base_error.cpp</itemPath>
+        <itemPath>gloop/exception/base_exception.cpp</itemPath>
         <itemPath>gloop/buffer.cpp</itemPath>
         <itemPath>gloop/draw_calls.cpp</itemPath>
-        <itemPath>gloop/error.cpp</itemPath>
-        <itemPath>gloop/exception.cpp</itemPath>
         <itemPath>gloop/program.cpp</itemPath>
         <itemPath>gloop/program_uniform_binding.cpp</itemPath>
         <itemPath>gloop/shader.cpp</itemPath>
@@ -186,40 +193,71 @@
       </item>
       <item path="gloop/draw_calls.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="gloop/error.cpp" ex="false" tool="1" flavor2="0">
+      <item path="gloop/error/base_error.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="gloop/error.hpp" ex="false" tool="3" flavor2="0">
+      <item path="gloop/error/base_error.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="gloop/exception.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="gloop/exception.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="gloop/invalid_enum_exception.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="gloop/invalid_framebuffer_operation_exception.hpp"
+      <item path="gloop/error/out_of_memory_error.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="gloop/invalid_operation_exception.hpp"
+      <item path="gloop/errors.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/exception/base_exception.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="gloop/exception/base_exception.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/exception/invalid_enum_exception.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="gloop/invalid_uniform_name_exception.hpp"
+      <item path="gloop/exception/invalid_framebuffer_operation_exception.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="gloop/invalid_value_exception.hpp" ex="false" tool="3" flavor2="0">
+      <item path="gloop/exception/invalid_operation_exception.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
-      <item path="gloop/out_of_memory_error.hpp" ex="false" tool="3" flavor2="0">
+      <item path="gloop/exception/invalid_uniform_name_exception.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/exception/invalid_value_exception.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/exception/program_link_exception.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/exception/shader_compile_exception.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/exception/uniform_name_not_found_exception.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/exception/unsupported_shader_type_exception.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/exceptions.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/program.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/program.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="gloop/program_link_exception.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/program_uniform_binding.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -228,8 +266,6 @@
       <item path="gloop/shader.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/shader.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="gloop/shader_compile_exception.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/shader_type.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -364,11 +400,6 @@
             flavor2="0">
       </item>
       <item path="gloop/uniforms.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="gloop/unsupported_shader_type_exception.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
       </item>
       <item path="gloop/vertex_array.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -461,40 +492,71 @@
       </item>
       <item path="gloop/draw_calls.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="gloop/error.cpp" ex="false" tool="1" flavor2="0">
+      <item path="gloop/error/base_error.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="gloop/error.hpp" ex="false" tool="3" flavor2="0">
+      <item path="gloop/error/base_error.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="gloop/exception.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="gloop/exception.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="gloop/invalid_enum_exception.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="gloop/invalid_framebuffer_operation_exception.hpp"
+      <item path="gloop/error/out_of_memory_error.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="gloop/invalid_operation_exception.hpp"
+      <item path="gloop/errors.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/exception/base_exception.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="gloop/exception/base_exception.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/exception/invalid_enum_exception.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="gloop/invalid_uniform_name_exception.hpp"
+      <item path="gloop/exception/invalid_framebuffer_operation_exception.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="gloop/invalid_value_exception.hpp" ex="false" tool="3" flavor2="0">
+      <item path="gloop/exception/invalid_operation_exception.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
-      <item path="gloop/out_of_memory_error.hpp" ex="false" tool="3" flavor2="0">
+      <item path="gloop/exception/invalid_uniform_name_exception.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/exception/invalid_value_exception.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/exception/program_link_exception.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/exception/shader_compile_exception.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/exception/uniform_name_not_found_exception.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/exception/unsupported_shader_type_exception.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/exceptions.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/program.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/program.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="gloop/program_link_exception.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/program_uniform_binding.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -503,8 +565,6 @@
       <item path="gloop/shader.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/shader.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="gloop/shader_compile_exception.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/shader_type.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -639,11 +699,6 @@
             flavor2="0">
       </item>
       <item path="gloop/uniforms.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="gloop/unsupported_shader_type_exception.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
       </item>
       <item path="gloop/vertex_array.cpp" ex="false" tool="1" flavor2="0">
       </item>
