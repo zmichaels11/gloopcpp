@@ -19,32 +19,9 @@
 namespace gloop {
 
     class scissor {
-    private:
-        GLint _x;
-        GLint _y;
-        GLsizei _width;
-        GLsizei _height;
-        bool _enable;
-
     public:
 
-        scissor(const bool enable, const GLint x, const GLint y, const GLsizei width, const GLsizei height) :
-        _enable(enable), _x(x), _y(y), _width(width), _height(height) {
-        }
-        
-        inline scissor withEnable(const bool enable) const {
-            return scissor(enable, _x, _y, _width, _height);
-        }
-        
-        inline scissor withOffset(const GLint x, const GLint y) const {
-            return scissor(_enable, x, y, _width, _height);
-        }
-        
-        inline scissor withSize(const GLsizei width, GLsizei height) const {
-            return scissor(_enable, _x, _y, width, height);
-        }
-
-        struct point {
+        struct offset {
             GLint x;
             GLint y;
         };
@@ -52,41 +29,38 @@ namespace gloop {
         struct size {
             GLsizei width;
             GLsizei height;
-        };
+        };        
+    private:
+        
+        bool _enable;
+        offset _offset;
+        size _size;
 
-        inline point getOffset() const {
-            return {_x, _y};
+    public:
+
+        scissor(
+                const bool enable,
+                const offset offset,
+                const size size) :
+        _enable(enable),
+        _offset(offset),
+        _size(size) {
         }
+
+        scissor withEnable(const bool enable) const;
         
-        inline size getSize() const {
-            return {_width, _height};
-        }
+        scissor withOffset(const offset offset) const;
+
+        scissor withSize(const size size) const;
         
-        inline GLint getX() const {
-            return _x;
-        }
+        const offset& getOffset() const;
         
-        inline GLint getY() const {
-            return _y;
-        }
+        const size& getSize() const;
         
-        inline GLsizei getWidth() const {
-            return _width;
-        }
-        
-        inline GLsizei getHeight() const {
-            return _height;
-        }
-        
-        inline void apply() const {
-            if (this->_enable) {
-                glEnable(GL_SCISSOR_TEST);
-                glScissor(_x, _y, _width, _height);
-            } else {
-                glDisable(GL_SCISSOR_TEST);
-            }
-        }
-        
+        bool isEnabled() const;
+
+        void apply() const;
+
         inline void operator()() const {
             this->apply();
         }

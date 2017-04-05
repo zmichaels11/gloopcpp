@@ -29,7 +29,7 @@ namespace gloop {
         clear currentClear;
         
         context(const GLsizei width = 0, const GLsizei height = 0)
-                : currentScissor(false, 0, 0, width, height), currentViewport({0, 0}, {width, height}) {}
+                : currentScissor(false, {0, 0}, {width, height}), currentViewport({0, 0}, {width, height}) {}
     };
 }
 

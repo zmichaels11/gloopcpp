@@ -45,6 +45,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/gloop/program_uniform_block_binding.o \
 	${OBJECTDIR}/gloop/shader.o \
 	${OBJECTDIR}/gloop/state_objects/depth_range.o \
+	${OBJECTDIR}/gloop/state_objects/scissor.o \
 	${OBJECTDIR}/gloop/state_objects/viewport.o \
 	${OBJECTDIR}/gloop/tools.o \
 	${OBJECTDIR}/gloop/vertex_array.o \
@@ -126,6 +127,11 @@ ${OBJECTDIR}/gloop/state_objects/depth_range.o: gloop/state_objects/depth_range.
 	${MKDIR} -p ${OBJECTDIR}/gloop/state_objects
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/state_objects/depth_range.o gloop/state_objects/depth_range.cpp
+
+${OBJECTDIR}/gloop/state_objects/scissor.o: gloop/state_objects/scissor.cpp
+	${MKDIR} -p ${OBJECTDIR}/gloop/state_objects
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/state_objects/scissor.o gloop/state_objects/scissor.cpp
 
 ${OBJECTDIR}/gloop/state_objects/viewport.o: gloop/state_objects/viewport.cpp
 	${MKDIR} -p ${OBJECTDIR}/gloop/state_objects

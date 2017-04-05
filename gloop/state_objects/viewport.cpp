@@ -8,6 +8,8 @@
 
 #include <GL/glew.h>
 
+#include "../depth_range.hpp"
+
 namespace gloop {
     void viewport::apply() const {
         glViewport(_offset.x, _offset.y, _size.width, _size.height);
@@ -24,5 +26,17 @@ namespace gloop {
     
     viewport viewport::withDepthRange(const depth_range depthRange) const {
         return viewport(_offset, _size, depthRange);
+    }
+    
+    const viewport::offset& viewport::getOffset() const {
+        return _offset;
+    }
+    
+    const viewport::size& viewport::getSize() const {
+        return _size;
+    }
+    
+    const depth_range& viewport::getDepthRange() const {
+        return _depthRange;
     }
 }
