@@ -23,6 +23,7 @@
         <itemPath>gloop/scissor.hpp</itemPath>
         <itemPath>gloop/shader.hpp</itemPath>
         <itemPath>gloop/shader_compile_exception.hpp</itemPath>
+        <itemPath>gloop/shader_type.hpp</itemPath>
         <itemPath>gloop/sized_type.hpp</itemPath>
         <itemPath>gloop/texture2D.hpp</itemPath>
         <itemPath>gloop/texture_parameters.hpp</itemPath>
@@ -164,6 +165,8 @@
       </item>
       <item path="gloop/shader_compile_exception.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/shader_type.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/sized_type.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/state_objects/depth_range.cpp"
@@ -300,6 +303,8 @@
       <item path="gloop/shader.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/shader_compile_exception.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/shader_type.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/sized_type.hpp" ex="false" tool="3" flavor2="0">
       </item>

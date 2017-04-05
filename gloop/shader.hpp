@@ -20,29 +20,21 @@
 #include <GL/glew.h>
 
 #include "exception.hpp"
+#include "shader_type.hpp"
 
-namespace gloop {
-
-    enum class shader_type {
-        UNKNOWN,
-        VERTEX,
-        FRAGMENT,
-        GEOMETRY,
-        TESSELLATION_EVALUATION,
-        TESSELLATION_CONTROL,
-        COMPUTE
-    };
-        
+namespace gloop {        
     class shader {
     private:
         std::shared_ptr<GLuint> _id;
-        const std::string _src;
-        const shader_type _type;
+        std::string _src;
+        shader_type _type;
 
         void init();
     public:
 
-        shader(const shader_type type = shader_type::UNKNOWN, std::string src = "") :
+        shader(
+                shader_type type = shader_type::UNKNOWN, 
+                std::string src = "") :
         _type(type), _src(src), _id(nullptr) {
         }
 
@@ -52,7 +44,7 @@ namespace gloop {
         
         shader_type getType() const;
         
-        const std::string getSource() const;
+        const std::string& getSource() const;
         
         bool isInitialized() const;
         
@@ -60,17 +52,17 @@ namespace gloop {
         
         operator GLuint();
         
-        static shader makeVertexShader(const std::string srcOrFileName);
+        static shader makeVertexShader(const std::string& srcOrFileName);
         
-        static shader makeFragmentShader(const std::string srcOrFileName);
+        static shader makeFragmentShader(const std::string& srcOrFileName);
         
-        static shader makeGeometryShader(const std::string srcOrFileName);
+        static shader makeGeometryShader(const std::string& srcOrFileName);
         
-        static shader makeTessellationControlShader(const std::string srcOrFileName);
+        static shader makeTessellationControlShader(const std::string& srcOrFileName);
         
-        static shader makeTessellationEvaluationShader(const std::string srcOrFileName);
+        static shader makeTessellationEvaluationShader(const std::string& srcOrFileName);
         
-        static shader makeComputeShader(const std::string srcOrFileName);
+        static shader makeComputeShader(const std::string& srcOrFileName);
     };
 }
 

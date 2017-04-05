@@ -12,101 +12,51 @@
 #include <GL/glew.h>
 
 #include "shader_compile_exception.hpp"
+#include "shader_type.hpp"
 #include "tools.hpp"
 #include "unsupported_shader_type_exception.hpp"
 
-namespace {                
-    static GLenum checkVertexShaderSupported() {                
-        return GL_VERTEX_SHADER;                  
-    }
-    
-    static GLenum checkFragmentShaderSupported() {
-        return GL_FRAGMENT_SHADER;        
-    }
-    
-    static GLenum checkGeometryShaderSupported() {
-        if (GLEW_VERSION_3_2 || GLEW_ARB_geometry_shader4) {
-            return GL_GEOMETRY_SHADER;
-        } else {
-            throw gloop::unsupported_shader_type_exception("Geometry shaders are not supported!");
-        }
-    }
-    
-    static GLenum checkTessellationControlShaderSupported() {
-        if (GLEW_VERSION_4_0 || GLEW_ARB_tessellation_shader) {
-            return GL_TESS_CONTROL_SHADER;
-        } else {
-            throw gloop::unsupported_shader_type_exception("Tessellation shaders are not supported!");
-        }
-    }
-    
-    static GLenum checkTessellationEvaluationShaderSupported() {
-        if (GLEW_VERSION_4_0 || GLEW_ARB_tessellation_shader) {
-            return GL_TESS_EVALUATION_SHADER;
-        } else {
-            throw gloop::unsupported_shader_type_exception("Tessellation shaders are not supported!");
-        }
-    }
-    
-    static GLenum checkComputeShaderSupported() {
-        if (GLEW_VERSION_4_3 || GLEW_ARB_compute_shader) {
-            return GL_COMPUTE_SHADER;
-        } else {
-            throw gloop::unsupported_shader_type_exception("Compute shaders are not supported!");
-        }
-    }        
-    
-    static GLenum checkShaderSupported(gloop::shader_type type) {
-        switch (type) {
-            case gloop::shader_type::VERTEX:
-                return checkVertexShaderSupported();
-            case gloop::shader_type::FRAGMENT:
-                return checkFragmentShaderSupported();
-            case gloop::shader_type::GEOMETRY:
-                return checkGeometryShaderSupported();
-            case gloop::shader_type::TESSELLATION_CONTROL:
-                return checkTessellationControlShaderSupported();
-            case gloop::shader_type::TESSELLATION_EVALUATION:
-                return checkTessellationEvaluationShaderSupported();
-            case gloop::shader_type::COMPUTE:
-                return checkComputeShaderSupported();
-            default:
-                throw gloop::unsupported_shader_type_exception("Unknown shader type!");
-        }
-    }
-    
-    static std::string getShaderLog(GLuint shader) {
+namespace {
+
+    static std::string getShaderLog(const GLuint shader) {
         GLint logLength = 0;
         GLint maxLength = 0;
-        
+
         glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &maxLength);
-                
-        GLchar * infoLog = new GLchar[maxLength];                
-        
+
+        GLchar * infoLog = new GLchar[maxLength];
+
         glGetShaderInfoLog(shader, maxLength, &logLength, infoLog);
-        
+
         std::string out;
-        
+
         if (logLength > 0) {
             out = std::string(reinterpret_cast<char *> (infoLog));
         } else {
             out = "No shader log!";
         }
-        
+
         delete[] infoLog;
-        
+
         return out;
     }
-    
-    static bool hasSuffix(const std::string& str, const std::string& suffix) {
+
+    static bool hasSuffix(
+            const std::string& str,
+            const std::string& suffix) {
+
         return str.size() >= suffix.size() && str.compare(str.size() - suffix.size(), suffix.size(), suffix) == 0;
     }
-    
-    static gloop::shader readFromSrcOrFileName(const gloop::shader_type type, const std::string& suffix, const std::string& srcOrFile) {                
+
+    static gloop::shader readFromSrcOrFileName(
+            const gloop::shader_type type,
+            const std::string& suffix,
+            const std::string& srcOrFile) {
+
         if (hasSuffix(srcOrFile, suffix) || hasSuffix(srcOrFile, ".glsl")) {
             std::ifstream in(srcOrFile, std::ios::in | std::ios::binary);
             std::string src = gloop::tools::readAll(in);
-            
+
             return gloop::shader(type, src);
         } else {
             return gloop::shader(type, srcOrFile);
@@ -114,95 +64,98 @@ namespace {
     }
 }
 
-void gloop::shader::init() {
-    const GLenum glType = checkShaderSupported(this->_type);    
-    const GLuint glId = glCreateShader(glType);
-    
-    {
-        const char * cstr = this->_src.c_str();
-        
-        glShaderSource(glId, 1, &cstr, nullptr);
+namespace gloop {
+
+    void shader::init() {
+        auto glType = static_cast<GLenum> (_type);
+        auto glId = glCreateShader(glType);
+
+        {
+            auto cstr = this->_src.c_str();
+
+            glShaderSource(glId, 1, &cstr, nullptr);
+        }
+
+        glCompileShader(glId);
+
+        GLint isCompiled = GL_FALSE;
+
+        glGetShaderiv(glId, GL_COMPILE_STATUS, &isCompiled);
+
+        if (isCompiled) {
+            this->_id = std::shared_ptr<GLuint>(new GLuint, [ = ](GLuint * id){
+                if (id != nullptr) {
+                    glDeleteShader(*id);
+                            delete id;
+                }
+            });
+
+            *(this->_id) = glId;
+        } else {
+            std::string infoLog = getShaderLog(glId);
+
+            glDeleteShader(glId);
+
+            throw shader_compile_exception(infoLog);
+        }
     }
-    
-    glCompileShader(glId);
-    
-    GLint isCompiled = GL_FALSE;
-    
-    glGetShaderiv(glId, GL_COMPILE_STATUS, &isCompiled);
-    
-    if (isCompiled) {
-        this->_id = std::shared_ptr<GLuint>(new GLuint, [=](GLuint * id) {
-            if (id != nullptr) {
-                glDeleteShader(*id);            
-                delete id;
-            }
-        });
-        
-        *(this->_id) = glId;
-    } else {
-        std::string infoLog = getShaderLog(glId);
-        
-        glDeleteShader(glId);
-        
-        throw shader_compile_exception(infoLog);
+
+    GLuint shader::getId() {
+        if (!this->isInitialized()) {
+            this->init();
+        }
+
+        return *(this->_id);
     }
-}
 
-GLuint gloop::shader::getId() {
-    if (!this->isInitialized()) {
-        this->init();
+    void shader::free() {
+        if (this->isInitialized()) {
+            glDeleteShader(*(this->_id));
+            this->_id.reset();
+        }
     }
-    
-    return *(this->_id);
-}
 
-void gloop::shader::free() {
-    if (this->isInitialized()) {        
-        glDeleteShader(*(this->_id));
-        this->_id.reset();
+    shader_type shader::getType() const {
+        return this->_type;
     }
-}
 
-gloop::shader_type gloop::shader::getType() const {
-    return this->_type;
-}
+    const std::string& shader::getSource() const {
+        return this->_src;
+    }
 
-const std::string gloop::shader::getSource() const {
-    return this->_src;
-}
+    bool shader::isInitialized() const {
+        return this->_id.get() != nullptr;
+    }
 
-bool gloop::shader::isInitialized() const {    
-    return this->_id.get() != nullptr;
-}
+    shader::operator bool() {
+        return this->getId() != 0;
+    }
 
-gloop::shader::operator bool() {
-    return this->getId() != 0;
-}
+    shader::operator GLuint() {
+        return this->getId();
+    }
 
-gloop::shader::operator GLuint() {
-    return this->getId();
-}
+    shader shader::makeVertexShader(const std::string& srcOrFileName) {
+        return readFromSrcOrFileName(shader_type::VERTEX, ".vert", srcOrFileName);
+    }
 
-gloop::shader gloop::shader::makeVertexShader(const std::string srcOrFileName) {
-    return readFromSrcOrFileName(gloop::shader_type::VERTEX, ".vert", srcOrFileName);
-}
+    shader shader::makeFragmentShader(const std::string& srcOrFileName) {
+        return readFromSrcOrFileName(shader_type::FRAGMENT, ".frag", srcOrFileName);
+    }
 
-gloop::shader gloop::shader::makeFragmentShader(const std::string srcOrFileName) {
-    return readFromSrcOrFileName(gloop::shader_type::FRAGMENT, ".frag", srcOrFileName);
-}
+    shader shader::makeGeometryShader(const std::string& srcOrFileName) {
+        return readFromSrcOrFileName(shader_type::GEOMETRY, ".geom", srcOrFileName);
+    }
 
-gloop::shader gloop::shader::makeGeometryShader(const std::string srcOrFileName) {
-    return readFromSrcOrFileName(gloop::shader_type::GEOMETRY, ".geom", srcOrFileName);
-}
+    shader shader::makeComputeShader(const std::string& srcOrFileName) {
+        return readFromSrcOrFileName(shader_type::COMPUTE, ".comp", srcOrFileName);
+    }
 
-gloop::shader gloop::shader::makeComputeShader(const std::string srcOrFileName) {
-    return readFromSrcOrFileName(gloop::shader_type::COMPUTE, ".comp", srcOrFileName);
-}
+    shader shader::makeTessellationControlShader(const std::string& srcOrFileName) {
+        return readFromSrcOrFileName(shader_type::TESSELLATION_CONTROL, ".tesc", srcOrFileName);
+    }
 
-gloop::shader gloop::shader::makeTessellationControlShader(const std::string srcOrFileName) {
-    return readFromSrcOrFileName(gloop::shader_type::TESSELLATION_CONTROL, ".tesc", srcOrFileName);
-}
-
-gloop::shader gloop::shader::makeTessellationEvaluationShader(const std::string srcOrFileName) {
-    return readFromSrcOrFileName(gloop::shader_type::TESSELLATION_EVALUATION, ".tese", srcOrFileName);
+    shader shader::makeTessellationEvaluationShader(const std::string& srcOrFileName) {
+        return readFromSrcOrFileName(shader_type::TESSELLATION_EVALUATION, ".tese", srcOrFileName);
+    }
 }
