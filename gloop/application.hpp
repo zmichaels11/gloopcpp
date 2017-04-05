@@ -39,7 +39,7 @@ namespace gloop {
         const int _width;
         const int _height;
         const std::string _title;
-        std::function<void(const application *, gloop::context *) > _mainLoop;
+        std::function<void(const application *, context *) > _mainLoop;
         SDL_Window * _window;
         SDL_Surface * _surface;
         SDL_GLContext _glContext;
@@ -57,23 +57,19 @@ namespace gloop {
 
         ~application();
 
-        void setGLContext(gloop::context * ctx);
+        void setGLContext(context * ctx);
 
-        const gloop::context * getGLContext() const;
+        const context * getGLContext() const;
 
         int getWidth() const;
 
         int getHeight() const;
 
-        std::string getTitle() const;
-
-        SDL_Window * const getWindow() const;
-
-        SDL_Surface * const getSurface() const;
+        std::string getTitle() const;       
 
         bool isInitialized() const;
 
-        void setMainLoop(const std::function<void(const application *, gloop::context *) > callback);
+        void setMainLoop(const std::function<void(const application *, context *) > callback);
 
         void setGLHints(const context_hints hints);
 

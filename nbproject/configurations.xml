@@ -91,6 +91,12 @@
       <logicalFolder name="f1" displayName="gloop" projectFiles="true">
         <logicalFolder name="f3" displayName="draw" projectFiles="true">
         </logicalFolder>
+        <logicalFolder name="f4" displayName="error" projectFiles="true">
+          <itemPath>gloop/error/base_error.cpp</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f5" displayName="exception" projectFiles="true">
+          <itemPath>gloop/exception/base_exception.cpp</itemPath>
+        </logicalFolder>
         <logicalFolder name="f1" displayName="state_objects" projectFiles="true">
           <itemPath>gloop/state_objects/depth_range.cpp</itemPath>
           <itemPath>gloop/state_objects/scissor.cpp</itemPath>
@@ -100,8 +106,6 @@
           <itemPath>gloop/uniform/uniform_bindings.cpp</itemPath>
         </logicalFolder>
         <itemPath>gloop/application.cpp</itemPath>
-        <itemPath>gloop/error/base_error.cpp</itemPath>
-        <itemPath>gloop/exception/base_exception.cpp</itemPath>
         <itemPath>gloop/buffer.cpp</itemPath>
         <itemPath>gloop/draw_calls.cpp</itemPath>
         <itemPath>gloop/program.cpp</itemPath>

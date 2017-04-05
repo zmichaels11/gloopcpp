@@ -8,26 +8,29 @@
 
 #include <GL/glew.h>
 
-void gloop::draw::elements::draw() const {
-    glDrawElements(static_cast<GLenum> (drawMode), count, static_cast<GLenum> (indexType), indices);
-}
+namespace gloop {
 
-void gloop::draw::arrays::draw() const {
-    glDrawArrays(static_cast<GLenum> (drawMode), first, count);
-}
+    void draw::elements::draw() const {
+        glDrawElements(static_cast<GLenum> (drawMode), count, static_cast<GLenum> (indexType), indices);
+    }
 
-void gloop::draw::elements_instanced::draw() const {
-    glDrawElementsInstanced(static_cast<GLenum> (drawMode), count, static_cast<GLenum> (indexType), indices, primitiveCount);
-}
+    void draw::arrays::draw() const {
+        glDrawArrays(static_cast<GLenum> (drawMode), first, count);
+    }
 
-void gloop::draw::arrays_instanced::draw() const {
-    glDrawArraysInstanced(static_cast<GLenum> (drawMode), first, count, primitiveCount);
-}
+    void draw::elements_instanced::draw() const {
+        glDrawElementsInstanced(static_cast<GLenum> (drawMode), count, static_cast<GLenum> (indexType), indices, primitiveCount);
+    }
 
-void gloop::draw::elements_base_vertex::draw() const {
-    glDrawElementsBaseVertex(static_cast<GLenum> (drawMode), count, static_cast<GLenum> (indexType), indices, baseVertex);
-}
+    void draw::arrays_instanced::draw() const {
+        glDrawArraysInstanced(static_cast<GLenum> (drawMode), first, count, primitiveCount);
+    }
 
-void gloop::draw::range_elements::draw() const {
-    glDrawRangeElements(static_cast<GLenum> (drawMode), start, end, count, static_cast<GLenum> (indexType), indices);
+    void draw::elements_base_vertex::draw() const {
+        glDrawElementsBaseVertex(static_cast<GLenum> (drawMode), count, static_cast<GLenum> (indexType), indices, baseVertex);
+    }
+
+    void draw::range_elements::draw() const {
+        glDrawRangeElements(static_cast<GLenum> (drawMode), start, end, count, static_cast<GLenum> (indexType), indices);
+    }
 }
