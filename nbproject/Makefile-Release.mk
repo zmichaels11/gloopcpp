@@ -42,12 +42,13 @@ OBJECTFILES= \
 	${OBJECTDIR}/gloop/exception.o \
 	${OBJECTDIR}/gloop/program.o \
 	${OBJECTDIR}/gloop/program_uniform_binding.o \
-	${OBJECTDIR}/gloop/program_uniform_block_binding.o \
 	${OBJECTDIR}/gloop/shader.o \
 	${OBJECTDIR}/gloop/state_objects/depth_range.o \
 	${OBJECTDIR}/gloop/state_objects/scissor.o \
 	${OBJECTDIR}/gloop/state_objects/viewport.o \
 	${OBJECTDIR}/gloop/tools.o \
+	${OBJECTDIR}/gloop/uniform/uniform_bindings.o \
+	${OBJECTDIR}/gloop/uniform/uniform_block_binding.o \
 	${OBJECTDIR}/gloop/vertex_array.o \
 	${OBJECTDIR}/gloop/vertex_attribute_binding.o \
 	${OBJECTDIR}/gloop/vertex_attributes.o \
@@ -113,11 +114,6 @@ ${OBJECTDIR}/gloop/program_uniform_binding.o: gloop/program_uniform_binding.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/program_uniform_binding.o gloop/program_uniform_binding.cpp
 
-${OBJECTDIR}/gloop/program_uniform_block_binding.o: gloop/program_uniform_block_binding.cpp
-	${MKDIR} -p ${OBJECTDIR}/gloop
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/program_uniform_block_binding.o gloop/program_uniform_block_binding.cpp
-
 ${OBJECTDIR}/gloop/shader.o: gloop/shader.cpp
 	${MKDIR} -p ${OBJECTDIR}/gloop
 	${RM} "$@.d"
@@ -142,6 +138,16 @@ ${OBJECTDIR}/gloop/tools.o: gloop/tools.cpp
 	${MKDIR} -p ${OBJECTDIR}/gloop
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/tools.o gloop/tools.cpp
+
+${OBJECTDIR}/gloop/uniform/uniform_bindings.o: gloop/uniform/uniform_bindings.cpp
+	${MKDIR} -p ${OBJECTDIR}/gloop/uniform
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/uniform/uniform_bindings.o gloop/uniform/uniform_bindings.cpp
+
+${OBJECTDIR}/gloop/uniform/uniform_block_binding.o: gloop/uniform/uniform_block_binding.cpp
+	${MKDIR} -p ${OBJECTDIR}/gloop/uniform
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/uniform/uniform_block_binding.o gloop/uniform/uniform_block_binding.cpp
 
 ${OBJECTDIR}/gloop/vertex_array.o: gloop/vertex_array.cpp
 	${MKDIR} -p ${OBJECTDIR}/gloop

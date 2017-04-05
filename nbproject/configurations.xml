@@ -5,6 +5,31 @@
                    displayName="Header Files"
                    projectFiles="true">
       <logicalFolder name="f1" displayName="gloop" projectFiles="true">
+        <logicalFolder name="f2" displayName="draw" projectFiles="true">
+        </logicalFolder>
+        <logicalFolder name="f1" displayName="uniform" projectFiles="true">
+          <itemPath>gloop/uniform/uniform_binding.hpp</itemPath>
+          <itemPath>gloop/uniform/uniform_block_binding.hpp</itemPath>
+          <itemPath>gloop/uniform/uniform_float_array_binding.hpp</itemPath>
+          <itemPath>gloop/uniform/uniform_float_binding.hpp</itemPath>
+          <itemPath>gloop/uniform/uniform_int_array_binding.hpp</itemPath>
+          <itemPath>gloop/uniform/uniform_int_binding.hpp</itemPath>
+          <itemPath>gloop/uniform/uniform_ivec2_array_binding.hpp</itemPath>
+          <itemPath>gloop/uniform/uniform_ivec2_binding.hpp</itemPath>
+          <itemPath>gloop/uniform/uniform_ivec3_array_binding.hpp</itemPath>
+          <itemPath>gloop/uniform/uniform_ivec3_binding.hpp</itemPath>
+          <itemPath>gloop/uniform/uniform_ivec4_array_binding.hpp</itemPath>
+          <itemPath>gloop/uniform/uniform_ivec4_binding.hpp</itemPath>
+          <itemPath>gloop/uniform/uniform_mat2_binding.hpp</itemPath>
+          <itemPath>gloop/uniform/uniform_mat3_binding.h</itemPath>
+          <itemPath>gloop/uniform/uniform_mat4_binding.hpp</itemPath>
+          <itemPath>gloop/uniform/uniform_vec2_array_binding.hpp</itemPath>
+          <itemPath>gloop/uniform/uniform_vec2_binding.hpp</itemPath>
+          <itemPath>gloop/uniform/uniform_vec3_array_binding.hpp</itemPath>
+          <itemPath>gloop/uniform/uniform_vec3_binding.hpp</itemPath>
+          <itemPath>gloop/uniform/uniform_vec4_array_binding.hpp</itemPath>
+          <itemPath>gloop/uniform/uniform_vec4_binding.hpp</itemPath>
+        </logicalFolder>
         <itemPath>gloop/application.hpp</itemPath>
         <itemPath>gloop/blend.hpp</itemPath>
         <itemPath>gloop/buffer.hpp</itemPath>
@@ -31,6 +56,7 @@
         <itemPath>gloop/texture_parameters.hpp</itemPath>
         <itemPath>gloop/tools.hpp</itemPath>
         <itemPath>gloop/type.hpp</itemPath>
+        <itemPath>gloop/uniforms.hpp</itemPath>
         <itemPath>gloop/unsupported_shader_type_exception.hpp</itemPath>
         <itemPath>gloop/vertex_array.hpp</itemPath>
         <itemPath>gloop/vertex_attribute_binding.hpp</itemPath>
@@ -52,6 +78,9 @@
           <itemPath>gloop/state_objects/scissor.cpp</itemPath>
           <itemPath>gloop/state_objects/viewport.cpp</itemPath>
         </logicalFolder>
+        <logicalFolder name="f2" displayName="uniform" projectFiles="true">
+          <itemPath>gloop/uniform/uniform_bindings.cpp</itemPath>
+        </logicalFolder>
         <itemPath>gloop/application.cpp</itemPath>
         <itemPath>gloop/buffer.cpp</itemPath>
         <itemPath>gloop/draw_calls.cpp</itemPath>
@@ -59,9 +88,9 @@
         <itemPath>gloop/exception.cpp</itemPath>
         <itemPath>gloop/program.cpp</itemPath>
         <itemPath>gloop/program_uniform_binding.cpp</itemPath>
-        <itemPath>gloop/program_uniform_block_binding.cpp</itemPath>
         <itemPath>gloop/shader.cpp</itemPath>
         <itemPath>gloop/tools.cpp</itemPath>
+        <itemPath>gloop/uniform/uniform_block_binding.cpp</itemPath>
         <itemPath>gloop/vertex_array.cpp</itemPath>
         <itemPath>gloop/vertex_attribute_binding.cpp</itemPath>
         <itemPath>gloop/vertex_attributes.cpp</itemPath>
@@ -162,11 +191,6 @@
       </item>
       <item path="gloop/program_uniform_binding.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="gloop/program_uniform_block_binding.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
       <item path="gloop/scissor.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/shader.cpp" ex="false" tool="1" flavor2="0">
@@ -197,6 +221,117 @@
       <item path="gloop/tools.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/type.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_binding.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_bindings.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_block_binding.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_block_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_float_array_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_float_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_int_array_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_int_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_ivec2_array_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_ivec2_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_ivec3_array_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_ivec3_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_ivec4_array_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_ivec4_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_mat2_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_mat3_binding.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_mat4_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_vec2_array_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_vec2_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_vec3_array_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_vec3_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_vec4_array_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_vec4_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniforms.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/unsupported_shader_type_exception.hpp"
             ex="false"
@@ -310,11 +445,6 @@
       </item>
       <item path="gloop/program_uniform_binding.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="gloop/program_uniform_block_binding.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
       <item path="gloop/scissor.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/shader.cpp" ex="false" tool="1" flavor2="0">
@@ -345,6 +475,117 @@
       <item path="gloop/tools.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/type.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_binding.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_bindings.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_block_binding.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_block_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_float_array_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_float_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_int_array_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_int_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_ivec2_array_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_ivec2_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_ivec3_array_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_ivec3_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_ivec4_array_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_ivec4_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_mat2_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_mat3_binding.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_mat4_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_vec2_array_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_vec2_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_vec3_array_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_vec3_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_vec4_array_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_vec4_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniforms.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/unsupported_shader_type_exception.hpp"
             ex="false"
