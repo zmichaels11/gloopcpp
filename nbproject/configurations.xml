@@ -6,6 +6,15 @@
                    projectFiles="true">
       <logicalFolder name="f1" displayName="gloop" projectFiles="true">
         <logicalFolder name="f2" displayName="draw" projectFiles="true">
+          <itemPath>gloop/draw/arrays.hpp</itemPath>
+          <itemPath>gloop/draw/arrays_instanced.hpp</itemPath>
+          <itemPath>gloop/draw/call.hpp</itemPath>
+          <itemPath>gloop/draw/elements.hpp</itemPath>
+          <itemPath>gloop/draw/elements_base_vertex.hpp</itemPath>
+          <itemPath>gloop/draw/elements_instanced.hpp</itemPath>
+          <itemPath>gloop/draw/index_type.hpp</itemPath>
+          <itemPath>gloop/draw/mode.hpp</itemPath>
+          <itemPath>gloop/draw/range_elements.hpp</itemPath>
         </logicalFolder>
         <logicalFolder name="f1" displayName="uniform" projectFiles="true">
           <itemPath>gloop/uniform/uniform_binding.hpp</itemPath>
@@ -73,6 +82,8 @@
                    displayName="Source Files"
                    projectFiles="true">
       <logicalFolder name="f1" displayName="gloop" projectFiles="true">
+        <logicalFolder name="f3" displayName="draw" projectFiles="true">
+        </logicalFolder>
         <logicalFolder name="f1" displayName="state_objects" projectFiles="true">
           <itemPath>gloop/state_objects/depth_range.cpp</itemPath>
           <itemPath>gloop/state_objects/scissor.cpp</itemPath>
@@ -149,6 +160,27 @@
       <item path="gloop/context.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/depth_range.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/draw/arrays.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/draw/arrays_instanced.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/draw/call.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/draw/elements.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/draw/elements_base_vertex.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/draw/elements_instanced.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/draw/index_type.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/draw/mode.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/draw/range_elements.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/draw_calls.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -403,6 +435,27 @@
       <item path="gloop/context.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/depth_range.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/draw/arrays.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/draw/arrays_instanced.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/draw/call.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/draw/elements.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/draw/elements_base_vertex.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/draw/elements_instanced.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/draw/index_type.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/draw/mode.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/draw/range_elements.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/draw_calls.cpp" ex="false" tool="1" flavor2="0">
       </item>

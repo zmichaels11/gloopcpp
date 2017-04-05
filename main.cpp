@@ -111,7 +111,15 @@ int main(int argc, char** argv) {
         if (!model.vertexArray) {
             model.program = &(glCtx->program);
             model.vertexArray = &(glCtx->vao);
-            model.drawCall = std::shared_ptr<gloop::draw::draw_call> (new gloop::draw::elements(gloop::draw::mode::TRIANGLE_FAN, 4));
+                        
+            auto drawCall = new gloop::draw::elements;
+                        
+            drawCall->drawMode = gloop::draw::mode::TRIANGLE_FAN;
+            drawCall->count = 4;
+            drawCall->indexType = gloop::draw::index_type::UNSIGNED_INT;
+            drawCall->indices = nullptr;
+            
+            model.drawCall = std::shared_ptr<gloop::draw::draw_call> (drawCall);                        
         }
 
         gloop::tools::assertGLError();
