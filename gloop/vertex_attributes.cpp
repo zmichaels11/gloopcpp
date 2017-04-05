@@ -52,45 +52,6 @@ void gloop::vertex_attributes::disableAttributes() const {
     }
 }
 
-namespace {
-
-    struct SizedType {
-        GLint size;
-        GLenum type;
-    };
-
-    static SizedType vertexAttributeTypeSize(const gloop::vertex_attribute_type type) {
-        switch (type) {
-            case gloop::vertex_attribute_type::FLOAT:
-                return { 1, GL_FLOAT};
-            case gloop::vertex_attribute_type::INT:
-                return { 1, GL_INT};
-            case gloop::vertex_attribute_type::UINT:
-                return { 1, GL_UNSIGNED_INT};
-            case gloop::vertex_attribute_type::IVEC2:
-                return { 2, GL_INT};
-            case gloop::vertex_attribute_type::IVEC3:
-                return { 3, GL_INT};
-            case gloop::vertex_attribute_type::IVEC4:
-                return { 4, GL_INT};
-            case gloop::vertex_attribute_type::UVEC2:
-                return { 2, GL_UNSIGNED_INT};
-            case gloop::vertex_attribute_type::UVEC3:
-                return { 3, GL_UNSIGNED_INT};
-            case gloop::vertex_attribute_type::UVEC4:
-                return { 4, GL_UNSIGNED_INT};
-            case gloop::vertex_attribute_type::VEC2:
-                return { 2, GL_FLOAT};
-            case gloop::vertex_attribute_type::VEC3:
-                return { 3, GL_FLOAT};
-            case gloop::vertex_attribute_type::VEC4:
-                return { 4, GL_FLOAT};
-            default:
-                throw gloop::invalid_enum_exception("Unsupported vertex attribute type!");
-        }
-    }
-}
-
 gloop::vertex_attribute_binding gloop::vertex_attribute::bindBuffer(
         const gloop::buffer& buffer, 
         const gloop::vertex_attribute_type type, 
@@ -118,44 +79,4 @@ GLint gloop::vertex_attribute::getId() const {
 
 gloop::vertex_attribute::operator GLint() const {
     return this->_id;
-}
-
-GLuint gloop::vertex_attribute_binding::getAttributeId() const {
-    return this->_id;
-}
-
-const gloop::buffer& gloop::vertex_attribute_binding::getBuffer() const {
-    return this->_buffer;
-}
-
-gloop::vertex_attribute_type gloop::vertex_attribute_binding::getType() const {
-    return this->_type;
-}
-
-GLsizei gloop::vertex_attribute_binding::getStride() const {
-    return this->_stride;
-}
-
-const void * gloop::vertex_attribute_binding::getPointer() const {
-    return this->_ptr;
-}
-
-GLuint gloop::vertex_attribute_binding::getDivisor() const {
-    return this->_divisor;
-}
-
-void gloop::vertex_attribute_binding::operator()() const {
-    const auto sizedType = vertexAttributeTypeSize(this->_type);
-    
-    this->_buffer.bind(gloop::buffer_target::ARRAY);
-
-    if (this->_divisor > 0) {
-        glVertexAttribDivisor(this->_id, this->_divisor);
-    }
-
-    if (sizedType.type == GL_FLOAT) {
-        glVertexAttribPointer(this->_id, sizedType.size, sizedType.type, GL_FALSE, this->_stride, this->_ptr);
-    } else {
-        glVertexAttribIPointer(this->_id, sizedType.size, sizedType.type, this->_stride, this->_ptr);
-    }
 }

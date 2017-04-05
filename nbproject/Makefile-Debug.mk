@@ -47,6 +47,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/gloop/state_objects/viewport.o \
 	${OBJECTDIR}/gloop/tools.o \
 	${OBJECTDIR}/gloop/vertex_array.o \
+	${OBJECTDIR}/gloop/vertex_attribute_binding.o \
 	${OBJECTDIR}/gloop/vertex_attributes.o \
 	${OBJECTDIR}/main.o
 
@@ -134,6 +135,11 @@ ${OBJECTDIR}/gloop/vertex_array.o: gloop/vertex_array.cpp
 	${MKDIR} -p ${OBJECTDIR}/gloop
 	${RM} "$@.d"
 	$(COMPILE.cc) -g `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/vertex_array.o gloop/vertex_array.cpp
+
+${OBJECTDIR}/gloop/vertex_attribute_binding.o: gloop/vertex_attribute_binding.cpp
+	${MKDIR} -p ${OBJECTDIR}/gloop
+	${RM} "$@.d"
+	$(COMPILE.cc) -g `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/vertex_attribute_binding.o gloop/vertex_attribute_binding.cpp
 
 ${OBJECTDIR}/gloop/vertex_attributes.o: gloop/vertex_attributes.cpp
 	${MKDIR} -p ${OBJECTDIR}/gloop
