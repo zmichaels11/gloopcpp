@@ -16,19 +16,13 @@
 
 #include <GL/glew.h>
 
+#include "depth_range.hpp"
+
 namespace gloop {
 
     class viewport {
-    private:
-        GLint _x;
-        GLint _y;
-        GLsizei _width;
-        GLsizei _height;
-        GLfloat _nearVal;
-        GLfloat _farVal;
     public:
-
-        struct point {
+        struct offset {
             GLint x;
             GLint y;
         };
@@ -37,76 +31,34 @@ namespace gloop {
             GLsizei width;
             GLsizei height;
         };
-
-        struct range {
-            GLfloat near;
-            GLfloat far;
-        };
-
+        
+    private:
+        offset _offset;
+        size _size;
+        depth_range _depthRange;
+        
+    public:        
         viewport(
-                const GLint x, const GLint y,
-                const GLsizei width, const GLsizei height,
-                const GLfloat nearVal = 0.0F, const GLfloat farVal = 0.0F) :
-        _x(x), _y(y),
-        _width(width), _height(height),
-        _nearVal(nearVal), _farVal(farVal) {
-        }
+                const offset offset = {0, 0},
+                const size sz = {0, 0},
+                const depth_range depthRange= {0.0, 1.0}) :
         
-        inline viewport withOffset(const GLint x, const GLint y) const {
-            return viewport(x, y, _width, _height, _nearVal, _farVal);
-        }
+                _offset(offset), _size(sz), _depthRange(depthRange) {
+        }                
         
-        inline viewport withSize(const GLsizei width, const GLsizei height) const {
-            return viewport(_x, _y, width, height, _nearVal, _farVal);
-        }
+        viewport withOffset(const offset offset) const;                
         
-        inline viewport withDepthRange(const GLfloat nearVal, const GLfloat farVal) const {
-            return viewport(_x, _y, _width, _height, nearVal, farVal);
-        }
+        viewport withSize(const size sz) const;                
+        
+        viewport withDepthRange(const depth_range depthRange) const;
 
-        inline point getOffset() const {
-            return {_x, _y};
-        }
+        const offset& getOffset() const;
 
-        inline size getSize() const {
-            return {_width, _height};
-        }
+        const size& getSize() const;
 
-        inline range getDepthRange() const {
-            return {_nearVal, _farVal};
-        }
+        const depth_range& getDepthRange() const;        
 
-        inline GLint getX() const {
-            return _x;
-        }
-
-        inline GLint getY() const {
-            return _y;
-        }
-
-        inline GLsizei getWidth() const {
-            return _width;
-        }
-
-        inline GLsizei getHeight() const {
-            return _height;
-        }
-
-        inline GLfloat getNearClip() const {
-            return _nearVal;
-        }
-
-        inline GLfloat getFarClip() const {
-            return _farVal;
-        }
-
-        inline void apply() const {
-            glViewport(_x, _y, _width, _height);
-            
-            if (_nearVal != 0.0F || _farVal != 0.0F) {
-                glDepthRange(_nearVal, _farVal);
-            }
-        }
+        void apply() const;
 
         inline void operator()() const {
             apply();

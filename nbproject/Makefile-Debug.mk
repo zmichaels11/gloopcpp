@@ -43,6 +43,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/gloop/program_uniform_binding.o \
 	${OBJECTDIR}/gloop/program_uniform_block_binding.o \
 	${OBJECTDIR}/gloop/shader.o \
+	${OBJECTDIR}/gloop/state_objects/depth_range.o \
+	${OBJECTDIR}/gloop/state_objects/viewport.o \
 	${OBJECTDIR}/gloop/tools.o \
 	${OBJECTDIR}/gloop/vertex_array.o \
 	${OBJECTDIR}/gloop/vertex_attributes.o \
@@ -112,6 +114,16 @@ ${OBJECTDIR}/gloop/shader.o: gloop/shader.cpp
 	${MKDIR} -p ${OBJECTDIR}/gloop
 	${RM} "$@.d"
 	$(COMPILE.cc) -g `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/shader.o gloop/shader.cpp
+
+${OBJECTDIR}/gloop/state_objects/depth_range.o: gloop/state_objects/depth_range.cpp
+	${MKDIR} -p ${OBJECTDIR}/gloop/state_objects
+	${RM} "$@.d"
+	$(COMPILE.cc) -g `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/state_objects/depth_range.o gloop/state_objects/depth_range.cpp
+
+${OBJECTDIR}/gloop/state_objects/viewport.o: gloop/state_objects/viewport.cpp
+	${MKDIR} -p ${OBJECTDIR}/gloop/state_objects
+	${RM} "$@.d"
+	$(COMPILE.cc) -g `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/state_objects/viewport.o gloop/state_objects/viewport.cpp
 
 ${OBJECTDIR}/gloop/tools.o: gloop/tools.cpp
 	${MKDIR} -p ${OBJECTDIR}/gloop

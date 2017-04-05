@@ -23,7 +23,6 @@
 #include "gloop/buffer.hpp"
 #include "gloop/context.hpp"
 #include "gloop/draw_calls.hpp"
-#include "gloop/model.hpp"
 #include "gloop/program.hpp"
 #include "gloop/shader.hpp"
 #include "gloop/tools.hpp"

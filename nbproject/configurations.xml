@@ -10,9 +10,9 @@
         <itemPath>gloop/buffer.hpp</itemPath>
         <itemPath>gloop/clear.hpp</itemPath>
         <itemPath>gloop/context.hpp</itemPath>
+        <itemPath>gloop/depth_range.hpp</itemPath>
         <itemPath>gloop/draw_calls.hpp</itemPath>
         <itemPath>gloop/exception.hpp</itemPath>
-        <itemPath>gloop/model.hpp</itemPath>
         <itemPath>gloop/program.hpp</itemPath>
         <itemPath>gloop/scissor.hpp</itemPath>
         <itemPath>gloop/shader.hpp</itemPath>
@@ -32,6 +32,10 @@
                    displayName="Source Files"
                    projectFiles="true">
       <logicalFolder name="f1" displayName="gloop" projectFiles="true">
+        <logicalFolder name="f1" displayName="state_objects" projectFiles="true">
+          <itemPath>gloop/state_objects/depth_range.cpp</itemPath>
+          <itemPath>gloop/state_objects/viewport.cpp</itemPath>
+        </logicalFolder>
         <itemPath>gloop/application.cpp</itemPath>
         <itemPath>gloop/buffer.cpp</itemPath>
         <itemPath>gloop/draw_calls.cpp</itemPath>
@@ -97,6 +101,8 @@
       </item>
       <item path="gloop/context.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/depth_range.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/draw_calls.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/draw_calls.hpp" ex="false" tool="3" flavor2="0">
@@ -104,8 +110,6 @@
       <item path="gloop/exception.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/exception.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="gloop/model.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/program.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -123,6 +127,13 @@
       <item path="gloop/shader.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/shader.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/state_objects/depth_range.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="gloop/state_objects/viewport.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/texture2D.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -190,6 +201,8 @@
       </item>
       <item path="gloop/context.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/depth_range.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/draw_calls.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/draw_calls.hpp" ex="false" tool="3" flavor2="0">
@@ -197,8 +210,6 @@
       <item path="gloop/exception.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/exception.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="gloop/model.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/program.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -216,6 +227,13 @@
       <item path="gloop/shader.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/shader.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/state_objects/depth_range.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="gloop/state_objects/viewport.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/texture2D.hpp" ex="false" tool="3" flavor2="0">
       </item>
