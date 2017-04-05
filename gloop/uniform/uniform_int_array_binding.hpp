@@ -4,15 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
- * File:   uniform_int_array_binding.hpp
- * Author: zmichaels
- *
- * Created on April 5, 2017, 11:05 AM
- */
-
-#ifndef UNIFORM_INT_ARRAY_BINDING_HPP
-#define UNIFORM_INT_ARRAY_BINDING_HPP
+#pragma once
 
 #include "uniform_binding.hpp"
 
@@ -34,6 +26,3 @@ namespace gloop {
         virtual void apply() const;
     };
 }
-
-#endif /* UNIFORM_INT_ARRAY_BINDING_HPP */
-

@@ -4,15 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
- * File:   range_elements.hpp
- * Author: zmichaels
- *
- * Created on April 5, 2017, 11:43 AM
- */
-
-#ifndef RANGE_ELEMENTS_HPP
-#define RANGE_ELEMENTS_HPP
+#pragma once
 
 #include <GL/glew.h>
 
@@ -45,6 +37,3 @@ namespace gloop {
         };
     }
 }
-
-#endif /* RANGE_ELEMENTS_HPP */
-

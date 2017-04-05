@@ -4,15 +4,8 @@
  * and open the template in the editor.
  */
 
-/* 
- * File:   clear.hpp
- * Author: zmichaels
- *
- * Created on April 4, 2017, 10:54 AM
- */
 
-#ifndef CLEAR_HPP
-#define CLEAR_HPP
+#pragma once
 
 #include <GL/glew.h>
 
@@ -145,6 +138,3 @@ namespace gloop {
         }
     };
 }
-
-#endif /* CLEAR_HPP */
-

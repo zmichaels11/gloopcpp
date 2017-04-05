@@ -4,15 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
- * File:   texture_parameters.hpp
- * Author: zmichaels
- *
- * Created on April 4, 2017, 11:33 AM
- */
-
-#ifndef TEXTURE_PARAMETERS_HPP
-#define TEXTURE_PARAMETERS_HPP
+#pragma once
 
 #include <GL/glew.h>
 
@@ -84,6 +76,3 @@ namespace gloop {
     public:
     };
 }
-
-#endif /* TEXTURE_PARAMETERS_HPP */
-

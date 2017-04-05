@@ -4,15 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
- * File:   glshader.hpp
- * Author: zmichaels
- *
- * Created on April 3, 2017, 8:18 AM
- */
-
-#ifndef GLSHADER_HPP
-#define GLSHADER_HPP
+#pragma once
 
 #include <string>
 #include <memory>
@@ -64,6 +56,3 @@ namespace gloop {
         static shader makeComputeShader(const std::string& srcOrFileName);
     };
 }
-
-#endif /* GLSHADER_HPP */
-

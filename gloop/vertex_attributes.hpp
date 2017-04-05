@@ -4,15 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
- * File:   vertex_attributes.hpp
- * Author: zmichaels
- *
- * Created on April 3, 2017, 11:21 AM
- */
-
-#ifndef VERTEX_ATTRIBUTES_HPP
-#define VERTEX_ATTRIBUTES_HPP
+#pragma once
 
 #include <string>
 #include <map>
@@ -68,6 +60,3 @@ namespace gloop {
         const vertex_attribute operator[](const std::string& name) const;
     };
 }
-
-#endif /* VERTEX_ATTRIBUTES_HPP */
-

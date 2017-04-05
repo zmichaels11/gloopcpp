@@ -4,15 +4,8 @@
  * and open the template in the editor.
  */
 
-/* 
- * File:   buffer.hpp
- * Author: zmichaels
- *
- * Created on April 3, 2017, 12:50 PM
- */
 
-#ifndef BUFFER_HPP
-#define BUFFER_HPP
+#pragma once
 
 #include <memory>
 #include <vector>
@@ -205,6 +198,3 @@ namespace gloop {
         void blockBind(const buffer_target target, const GLuint binding) const;
     };
 }
-
-#endif /* BUFFER_HPP */
-

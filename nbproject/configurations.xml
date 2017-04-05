@@ -29,6 +29,7 @@
           <itemPath>gloop/exception/invalid_value_exception.hpp</itemPath>
           <itemPath>gloop/exception/program_link_exception.hpp</itemPath>
           <itemPath>gloop/exception/shader_compile_exception.hpp</itemPath>
+          <itemPath>gloop/exception/uniform_name_not_found_exception.hpp</itemPath>
           <itemPath>gloop/exception/unsupported_shader_type_exception.hpp</itemPath>
         </logicalFolder>
         <logicalFolder name="f1" displayName="uniform" projectFiles="true">
@@ -45,7 +46,7 @@
           <itemPath>gloop/uniform/uniform_ivec4_array_binding.hpp</itemPath>
           <itemPath>gloop/uniform/uniform_ivec4_binding.hpp</itemPath>
           <itemPath>gloop/uniform/uniform_mat2_binding.hpp</itemPath>
-          <itemPath>gloop/uniform/uniform_mat3_binding.h</itemPath>
+          <itemPath>gloop/uniform/uniform_mat3_binding.hpp</itemPath>
           <itemPath>gloop/uniform/uniform_mat4_binding.hpp</itemPath>
           <itemPath>gloop/uniform/uniform_vec2_array_binding.hpp</itemPath>
           <itemPath>gloop/uniform/uniform_vec2_binding.hpp</itemPath>
@@ -79,7 +80,6 @@
         <itemPath>gloop/vertex_attributes.hpp</itemPath>
         <itemPath>gloop/viewport.hpp</itemPath>
       </logicalFolder>
-      <itemPath>gloop/exception/uniform_name_not_found_exception.hpp</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -359,7 +359,7 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="gloop/uniform/uniform_mat3_binding.h"
+      <item path="gloop/uniform/uniform_mat3_binding.hpp"
             ex="false"
             tool="3"
             flavor2="0">
@@ -658,7 +658,7 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="gloop/uniform/uniform_mat3_binding.h"
+      <item path="gloop/uniform/uniform_mat3_binding.hpp"
             ex="false"
             tool="3"
             flavor2="0">

@@ -4,15 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
- * File:   arrays_instanced.hpp
- * Author: zmichaels
- *
- * Created on April 5, 2017, 11:41 AM
- */
-
-#ifndef ARRAYS_INSTANCED_HPP
-#define ARRAYS_INSTANCED_HPP
+#pragma once
 
 #include <GL/glew.h>
 
@@ -32,6 +24,3 @@ namespace gloop {
         };
     }
 }
-
-#endif /* ARRAYS_INSTANCED_HPP */
-

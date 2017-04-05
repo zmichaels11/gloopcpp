@@ -4,15 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
- * File:   mode.hpp
- * Author: zmichaels
- *
- * Created on April 5, 2017, 11:37 AM
- */
-
-#ifndef MODE_HPP
-#define MODE_HPP
+#pragma once
 
 #include <GL/glew.h>
 
@@ -35,6 +27,3 @@ namespace gloop {
         };
     }
 }
-
-#endif /* MODE_HPP */
-

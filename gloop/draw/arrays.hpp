@@ -4,15 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
- * File:   arrays.hpp
- * Author: zmichaels
- *
- * Created on April 5, 2017, 11:36 AM
- */
-
-#ifndef ARRAYS_HPP
-#define ARRAYS_HPP
+#pragma once
 
 #include <GL/glew.h>
 
@@ -30,6 +22,3 @@ namespace gloop {
         };
     }
 }
-
-#endif /* ARRAYS_HPP */
-

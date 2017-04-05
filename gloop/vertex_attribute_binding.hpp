@@ -4,15 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
- * File:   vertex_attribute_binding.hpp
- * Author: zmichaels
- *
- * Created on April 5, 2017, 10:14 AM
- */
-
-#ifndef VERTEX_ATTRIBUTE_BINDING_HPP
-#define VERTEX_ATTRIBUTE_BINDING_HPP
+#pragma once
 
 #include <GL/glew.h>
 
@@ -62,6 +54,3 @@ namespace gloop {
         }
     };
 }
-
-#endif /* VERTEX_ATTRIBUTE_BINDING_HPP */
-

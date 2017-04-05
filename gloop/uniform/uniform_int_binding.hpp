@@ -4,15 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
- * File:   uniform_int_binding.hpp
- * Author: zmichaels
- *
- * Created on April 5, 2017, 11:03 AM
- */
-
-#ifndef UNIFORM_INT_BINDING_HPP
-#define UNIFORM_INT_BINDING_HPP
+#pragma once
 
 #include "uniform_binding.hpp"
 
@@ -33,6 +25,3 @@ namespace gloop {
         virtual void apply() const;
     };
 }
-
-#endif /* UNIFORM_INT_BINDING_HPP */
-

@@ -4,15 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
- * File:   shader_type.hpp
- * Author: zmichaels
- *
- * Created on April 5, 2017, 10:37 AM
- */
-
-#ifndef SHADER_TYPE_HPP
-#define SHADER_TYPE_HPP
+#pragma once
 
 #include <GL/glew.h>
 
@@ -27,6 +19,3 @@ namespace gloop {
         COMPUTE = GL_COMPUTE_SHADER
     };
 }
-
-#endif /* SHADER_TYPE_HPP */
-

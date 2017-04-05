@@ -4,15 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
- * File:   index_type.hpp
- * Author: zmichaels
- *
- * Created on April 5, 2017, 11:38 AM
- */
-
-#ifndef INDEX_TYPE_HPP
-#define INDEX_TYPE_HPP
+#pragma once
 
 #include <GL/glew.h>
 
@@ -25,6 +17,3 @@ namespace gloop {
         };
     }
 }
-
-#endif /* INDEX_TYPE_HPP */
-

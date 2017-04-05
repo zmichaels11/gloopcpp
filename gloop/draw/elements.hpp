@@ -4,15 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
- * File:   elements.hpp
- * Author: zmichaels
- *
- * Created on April 5, 2017, 11:39 AM
- */
-
-#ifndef ELEMENTS_HPP
-#define ELEMENTS_HPP
+#pragma once
 
 #include <GL/glew.h>
 
@@ -32,6 +24,3 @@ namespace gloop {
         };
     }
 }
-
-#endif /* ELEMENTS_HPP */
-

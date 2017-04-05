@@ -4,15 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
- * File:   uniform_ivec3_binding.hpp
- * Author: zmichaels
- *
- * Created on April 5, 2017, 11:10 AM
- */
-
-#ifndef UNIFORM_IVEC3_BINDING_HPP
-#define UNIFORM_IVEC3_BINDING_HPP
+#pragma once
 
 #include <GL/glew.h>
 
@@ -35,6 +27,3 @@ namespace gloop {
         virtual void apply() const;
     };
 }
-
-#endif /* UNIFORM_IVEC3_BINDING_HPP */
-

@@ -4,15 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
- * File:   call.hpp
- * Author: zmichaels
- *
- * Created on April 5, 2017, 11:35 AM
- */
-
-#ifndef CALL_HPP
-#define CALL_HPP
+#pragma once
 
 namespace gloop {
     namespace draw {
@@ -25,6 +17,3 @@ namespace gloop {
         };
     }
 }
-
-#endif /* CALL_HPP */
-

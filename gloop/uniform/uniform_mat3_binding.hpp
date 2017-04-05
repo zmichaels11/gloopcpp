@@ -4,15 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
- * File:   uniform_mat3_binding.h
- * Author: zmichaels
- *
- * Created on April 5, 2017, 11:13 AM
- */
-
-#ifndef UNIFORM_MAT3_BINDING_H
-#define UNIFORM_MAT3_BINDING_H
+#pragma once
 
 #include <GL/glew.h>
 
@@ -34,6 +26,3 @@ namespace gloop {
         virtual void apply() const;
     };
 }
-
-#endif /* UNIFORM_MAT3_BINDING_H */
-

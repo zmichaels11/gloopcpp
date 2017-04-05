@@ -4,15 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
- * File:   sized_type.hpp
- * Author: zmichaels
- *
- * Created on April 5, 2017, 10:05 AM
- */
-
-#ifndef SIZED_TYPE_HPP
-#define SIZED_TYPE_HPP
+#pragma once
 
 #include "type.hpp"
 
@@ -22,6 +14,3 @@ namespace gloop {
         GLint size;
     };
 }
-
-#endif /* SIZED_TYPE_HPP */
-

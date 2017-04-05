@@ -4,15 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
- * File:   context.hpp
- * Author: zmichaels
- *
- * Created on April 4, 2017, 10:40 AM
- */
-
-#ifndef CONTEXT_HPP
-#define CONTEXT_HPP
+#pragma once
 
 #include <GL/glew.h>
 
@@ -32,6 +24,3 @@ namespace gloop {
                 : currentScissor(false, {0, 0}, {width, height}), currentViewport({0, 0}, {width, height}) {}
     };
 }
-
-#endif /* CONTEXT_HPP */
-

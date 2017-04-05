@@ -4,15 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
- * File:   elements_base_vertex.hpp
- * Author: zmichaels
- *
- * Created on April 5, 2017, 11:42 AM
- */
-
-#ifndef ELEMENTS_BASE_VERTEX_HPP
-#define ELEMENTS_BASE_VERTEX_HPP
+#pragma once
 
 #include <GL/glew.h>
 
@@ -33,6 +25,3 @@ namespace gloop {
         };
     }
 }
-
-#endif /* ELEMENTS_BASE_VERTEX_HPP */
-

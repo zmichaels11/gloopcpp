@@ -4,15 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
- * File:   type.hpp
- * Author: zmichaels
- *
- * Created on April 5, 2017, 10:05 AM
- */
-
-#ifndef TYPE_HPP
-#define TYPE_HPP
+#pragma once
 
 #include <GL/glew.h>
 
@@ -28,6 +20,3 @@ namespace gloop {
         DOUBLE = GL_DOUBLE
     };
 }
-
-#endif /* TYPE_HPP */
-

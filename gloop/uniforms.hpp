@@ -4,15 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
- * File:   uniforms.hpp
- * Author: zmichaels
- *
- * Created on April 5, 2017, 11:16 AM
- */
-
-#ifndef UNIFORMS_HPP
-#define UNIFORMS_HPP
+#pragma once
 
 #include "uniform/uniform_binding.hpp"
 
@@ -41,6 +33,3 @@
 #include "uniform/uniform_ivec4_array_binding.hpp"
 
 #include "uniform/uniform_block_binding.hpp"
-
-#endif /* UNIFORMS_HPP */
-

@@ -4,15 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
- * File:   uniform_mat4_binding.hpp
- * Author: zmichaels
- *
- * Created on April 5, 2017, 11:14 AM
- */
-
-#ifndef UNIFORM_MAT4_BINDING_HPP
-#define UNIFORM_MAT4_BINDING_HPP
+#pragma once
 
 #include <GL/glew.h>
 
@@ -34,6 +26,3 @@ namespace gloop {
         virtual void apply() const;
     };
 }
-
-#endif /* UNIFORM_MAT4_BINDING_HPP */
-

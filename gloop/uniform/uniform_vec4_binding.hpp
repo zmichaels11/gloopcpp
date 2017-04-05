@@ -4,15 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
- * File:   uniform_vec4_binding.hpp
- * Author: zmichaels
- *
- * Created on April 5, 2017, 11:07 AM
- */
-
-#ifndef UNIFORM_VEC4_BINDING_HPP
-#define UNIFORM_VEC4_BINDING_HPP
+#pragma once
 
 #include <GL/glew.h>
 
@@ -36,6 +28,3 @@ namespace gloop {
         virtual void apply() const;
     };
 }
-
-#endif /* UNIFORM_VEC4_BINDING_HPP */
-

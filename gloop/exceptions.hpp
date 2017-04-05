@@ -14,4 +14,5 @@
 #include "exception/invalid_value_exception.hpp"
 #include "exception/program_link_exception.hpp"
 #include "exception/shader_compile_exception.hpp"
+#include "exception/uniform_name_not_found_exception.hpp"
 #include "exception/unsupported_shader_type_exception.hpp"

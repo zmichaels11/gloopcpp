@@ -4,15 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
- * File:   uniform_binding.hpp
- * Author: zmichaels
- *
- * Created on April 5, 2017, 11:01 AM
- */
-
-#ifndef UNIFORM_BINDING_HPP
-#define UNIFORM_BINDING_HPP
+#pragma once
 
 namespace gloop {    
     struct uniform_binding {
@@ -23,6 +15,3 @@ namespace gloop {
         }
     };
 }
-
-#endif /* UNIFORM_BINDING_HPP */
-

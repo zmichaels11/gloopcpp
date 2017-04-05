@@ -4,15 +4,8 @@
  * and open the template in the editor.
  */
 
-/* 
- * File:   Application.hpp
- * Author: zmichaels
- *
- * Created on March 20, 2017, 10:21 AM
- */
 
-#ifndef APPLICATION_HPP
-#define APPLICATION_HPP
+#pragma once
 
 #include <functional>
 #include <string>
@@ -91,7 +84,3 @@ namespace gloop {
         const context_hints getGLHints() const;
     };
 }
-
-
-#endif /* APPLICATION_HPP */
-

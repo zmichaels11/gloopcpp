@@ -11,8 +11,7 @@
  * Created on April 3, 2017, 2:40 PM
  */
 
-#ifndef VERTEX_ARRAY_HPP
-#define VERTEX_ARRAY_HPP
+#pragma once
 
 #include <memory>
 #include <vector>
@@ -56,6 +55,3 @@ namespace gloop {
         bool isInitialized() const;
     };
 }
-
-#endif /* VERTEX_ARRAY_HPP */
-

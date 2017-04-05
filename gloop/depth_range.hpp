@@ -4,15 +4,8 @@
  * and open the template in the editor.
  */
 
-/* 
- * File:   depth_range.hpp
- * Author: zmichaels
- *
- * Created on April 5, 2017, 9:56 AM
- */
 
-#ifndef DEPTH_RANGE_HPP
-#define DEPTH_RANGE_HPP
+#pragma once
 
 #include <GL/glew.h>
 
@@ -28,6 +21,3 @@ namespace gloop {
         }
     };
 }
-
-#endif /* DEPTH_RANGE_HPP */
-

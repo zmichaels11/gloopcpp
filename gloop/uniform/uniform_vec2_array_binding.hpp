@@ -4,15 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
- * File:   uniform_vec2_array_binding.hpp
- * Author: zmichaels
- *
- * Created on April 5, 2017, 11:06 AM
- */
-
-#ifndef UNIFORM_VEC2_ARRAY_BINDING_HPP
-#define UNIFORM_VEC2_ARRAY_BINDING_HPP
+#pragma once
 
 #include <GL/glew.h>
 
@@ -34,6 +26,3 @@ namespace gloop {
         virtual void apply() const;
     };
 }
-
-#endif /* UNIFORM_VEC2_ARRAY_BINDING_HPP */
-

@@ -4,15 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
- * File:   viewport.hpp
- * Author: zmichaels
- *
- * Created on April 4, 2017, 9:42 AM
- */
-
-#ifndef VIEWPORT_HPP
-#define VIEWPORT_HPP
+#pragma once
 
 #include <GL/glew.h>
 
@@ -65,6 +57,3 @@ namespace gloop {
         }
     };
 }
-
-#endif /* VIEWPORT_HPP */
-

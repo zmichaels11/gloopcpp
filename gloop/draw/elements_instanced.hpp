@@ -4,15 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
- * File:   elements_instanced.hpp
- * Author: zmichaels
- *
- * Created on April 5, 2017, 11:40 AM
- */
-
-#ifndef ELEMENTS_INSTANCED_HPP
-#define ELEMENTS_INSTANCED_HPP
+#pragma once
 
 #include <GL/glew.h>
 
@@ -33,6 +25,3 @@ namespace gloop {
         };
     }
 }
-
-#endif /* ELEMENTS_INSTANCED_HPP */
-

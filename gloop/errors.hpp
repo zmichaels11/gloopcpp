@@ -4,13 +4,6 @@
  * and open the template in the editor.
  */
 
-/* 
- * File:   errors.hpp
- * Author: zmichaels
- *
- * Created on April 5, 2017, 1:42 PM
- */
-
 #pragma once
 
 #include "error/base_error.hpp"

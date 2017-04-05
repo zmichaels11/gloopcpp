@@ -4,15 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
- * File:   uniform_block_binding.hpp
- * Author: zmichaels
- *
- * Created on April 5, 2017, 11:15 AM
- */
-
-#ifndef UNIFORM_BLOCK_BINDING_HPP
-#define UNIFORM_BLOCK_BINDING_HPP
+#pragma once
 
 #include <GL/glew.h>
 
@@ -36,6 +28,3 @@ namespace gloop {
         operator bool() const;
     };
 }
-
-#endif /* UNIFORM_BLOCK_BINDING_HPP */
-

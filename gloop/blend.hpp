@@ -4,15 +4,8 @@
  * and open the template in the editor.
  */
 
-/* 
- * File:   blend.hpp
- * Author: zmichaels
- *
- * Created on April 4, 2017, 10:23 AM
- */
 
-#ifndef BLEND_HPP
-#define BLEND_HPP
+#pragma once
 
 #include <GL/glew.h>
 
@@ -135,6 +128,3 @@ namespace gloop {
         }
     };
 }
-
-#endif /* BLEND_HPP */
-

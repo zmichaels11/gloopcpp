@@ -4,15 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
- * File:   tools.hpp
- * Author: zmichaels
- *
- * Created on April 3, 2017, 9:56 AM
- */
-
-#ifndef TOOLS_HPP
-#define TOOLS_HPP
+#pragma once
 
 #include <string>
 #include <istream>
@@ -29,6 +21,3 @@ namespace gloop {
         void assertGLError();
     }
 }
-
-#endif /* TOOLS_HPP */
-

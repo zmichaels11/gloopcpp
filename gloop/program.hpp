@@ -4,15 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
- * File:   program.hpp
- * Author: zmichaels
- *
- * Created on April 3, 2017, 10:53 AM
- */
-
-#ifndef PROGRAM_HPP
-#define PROGRAM_HPP
+#pragma once
 
 #include <cstddef>
 #include <map>
@@ -99,6 +91,3 @@ namespace gloop {
         const uniform_mat4_binding getUniformMat4Binding(const std::string& uniformName, const GLfloat * values, const GLsizei count = 1);
     };
 }
-
-#endif /* PROGRAM_HPP */
-

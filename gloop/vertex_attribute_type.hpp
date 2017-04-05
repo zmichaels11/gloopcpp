@@ -4,15 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
- * File:   vertex_attribute_type.hpp
- * Author: zmichaels
- *
- * Created on April 5, 2017, 10:04 AM
- */
-
-#ifndef VERTEX_ATTRIBUTE_TYPE_HPP
-#define VERTEX_ATTRIBUTE_TYPE_HPP
+#pragma once
 
 namespace gloop {
     enum class vertex_attribute_type {
@@ -30,7 +22,3 @@ namespace gloop {
         UVEC4
     };
 }
-
-
-#endif /* VERTEX_ATTRIBUTE_TYPE_HPP */
-

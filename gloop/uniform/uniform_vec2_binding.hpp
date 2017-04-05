@@ -3,16 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-/* 
- * File:   uniform_vec2_binding.hpp
- * Author: zmichaels
- *
- * Created on April 5, 2017, 11:04 AM
- */
-
-#ifndef UNIFORM_VEC2_BINDING_HPP
-#define UNIFORM_VEC2_BINDING_HPP
+#pragma once
 
 #include "uniform_binding.hpp"
 
@@ -34,6 +25,3 @@ namespace gloop {
         virtual void apply() const;
     };
 }
-
-#endif /* UNIFORM_VEC2_BINDING_HPP */
-

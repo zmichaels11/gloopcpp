@@ -4,15 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
- * File:   scissor.hpp
- * Author: zmichaels
- *
- * Created on April 4, 2017, 10:16 AM
- */
-
-#ifndef SCISSOR_HPP
-#define SCISSOR_HPP
+#pragma once
 
 #include <GL/glew.h>
 
@@ -66,6 +58,3 @@ namespace gloop {
         }
     };
 }
-
-#endif /* SCISSOR_HPP */
-
