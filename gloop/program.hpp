@@ -21,25 +21,12 @@
 
 #include <GL/glew.h>
 
-#include "exception.hpp"
+#include "invalid_uniform_name_exception.hpp"
+#include "program_link_exception.hpp"
 #include "shader.hpp"
 #include "vertex_attributes.hpp"
 
 namespace gloop {
-
-    class program_link_exception : public exception {
-    public:
-
-        program_link_exception(std::string msg) : exception(msg) {
-        }
-    };
-
-    class invalid_uniform_name_exception : public exception {
-    public:
-
-        invalid_uniform_name_exception(std::string msg) : exception(msg) {
-        }
-    };
 
     struct uniform_binding {
         virtual void apply() const = 0;

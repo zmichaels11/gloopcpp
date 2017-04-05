@@ -17,9 +17,11 @@
         <itemPath>gloop/invalid_enum_exception.hpp</itemPath>
         <itemPath>gloop/invalid_framebuffer_operation_exception.hpp</itemPath>
         <itemPath>gloop/invalid_operation_exception.hpp</itemPath>
+        <itemPath>gloop/invalid_uniform_name_exception.hpp</itemPath>
         <itemPath>gloop/invalid_value_exception.hpp</itemPath>
         <itemPath>gloop/out_of_memory_error.hpp</itemPath>
         <itemPath>gloop/program.hpp</itemPath>
+        <itemPath>gloop/program_link_exception.hpp</itemPath>
         <itemPath>gloop/scissor.hpp</itemPath>
         <itemPath>gloop/shader.hpp</itemPath>
         <itemPath>gloop/shader_compile_exception.hpp</itemPath>
@@ -143,6 +145,11 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="gloop/invalid_uniform_name_exception.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="gloop/invalid_value_exception.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/out_of_memory_error.hpp" ex="false" tool="3" flavor2="0">
@@ -150,6 +157,8 @@
       <item path="gloop/program.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/program.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/program_link_exception.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/program_uniform_binding.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -284,6 +293,11 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="gloop/invalid_uniform_name_exception.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="gloop/invalid_value_exception.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/out_of_memory_error.hpp" ex="false" tool="3" flavor2="0">
@@ -291,6 +305,8 @@
       <item path="gloop/program.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/program.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/program_link_exception.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/program_uniform_binding.cpp" ex="false" tool="1" flavor2="0">
       </item>
