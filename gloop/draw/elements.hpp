@@ -26,8 +26,8 @@ namespace gloop {
             mode drawMode;
             GLsizei count;
             index_type indexType;
-            const GLvoid * indices;            
-
+            const GLvoid * indices;                        
+            
             virtual void draw() const;
         };
     }

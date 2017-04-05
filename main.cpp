@@ -12,12 +12,9 @@
  */
 
 #include <iostream>
-#include <fstream>
 #include <memory>
-#include <vector>
 
 #include <GL/glew.h>
-#include <SDL2/SDL.h>
 
 #include "gloop/application.hpp"
 #include "gloop/buffer.hpp"
@@ -26,6 +23,7 @@
 #include "gloop/program.hpp"
 #include "gloop/shader.hpp"
 #include "gloop/tools.hpp"
+#include "gloop/uniforms.hpp"
 #include "gloop/vertex_array.hpp"
 #include "gloop/vertex_attributes.hpp"
 
@@ -38,8 +36,8 @@ struct model {
     inline void render() const {
         program->use();
         vertexArray->bind();
-        uniforms->apply();
-        drawCall->draw();
+        (*uniforms)();
+        (*drawCall)();
     }
 } model;
 
@@ -112,14 +110,14 @@ int main(int argc, char** argv) {
             model.program = &(glCtx->program);
             model.vertexArray = &(glCtx->vao);
                         
-            auto drawCall = new gloop::draw::elements;
-                        
-            drawCall->drawMode = gloop::draw::mode::TRIANGLE_FAN;
-            drawCall->count = 4;
-            drawCall->indexType = gloop::draw::index_type::UNSIGNED_INT;
-            drawCall->indices = nullptr;
+            gloop::draw::elements drawCall;
             
-            model.drawCall = std::shared_ptr<gloop::draw::draw_call> (drawCall);                        
+            drawCall.drawMode = gloop::draw::mode::TRIANGLE_FAN;
+            drawCall.count = 4;
+            drawCall.indexType = gloop::draw::index_type::UNSIGNED_INT;
+            drawCall.indices = nullptr;
+            
+            model.drawCall = std::make_shared<gloop::draw::elements>(drawCall);
         }
 
         gloop::tools::assertGLError();

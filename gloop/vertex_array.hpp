@@ -20,6 +20,7 @@
 #include <GL/glew.h>
 
 #include "buffer.hpp"
+#include "vertex_attribute_binding.hpp"
 #include "vertex_attributes.hpp"
 
 namespace gloop {
