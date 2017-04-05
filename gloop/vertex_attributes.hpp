@@ -24,10 +24,6 @@
 #include "vertex_attribute_binding.hpp"
 
 namespace gloop {
-    // for older opengl
-
-    
-
     class vertex_attribute {
     private:
         const GLint _id;
