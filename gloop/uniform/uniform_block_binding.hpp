@@ -9,22 +9,24 @@
 #include <GL/glew.h>
 
 namespace gloop {
+    namespace uniform {
 
-    class uniform_block_binding {
-    private:
-        GLuint _pId;
-        GLuint _blockIndex;
+        class uniform_block_binding {
+        private:
+            GLuint _pId;
+            GLuint _blockIndex;
 
-    public:
+        public:
+            uniform_block_binding(
+                    const GLuint pId = 0,
+                    const GLuint blockId = 0) :
+            _pId(pId), _blockIndex(blockId) {}
+            
+            void pushUniformBinding(const GLuint uniformBlockBinding) const;
 
-        uniform_block_binding(const GLuint pId = 0, const GLuint blockIndex = 0) :
-        _pId(pId), _blockIndex(blockIndex) {
-        }
+            bool isValid() const;
 
-        void pushUniformBinding(const GLuint uniformBlockBinding) const;
-
-        bool isValid() const;
-
-        operator bool() const;
-    };
+            operator bool() const;
+        };
+    }
 }

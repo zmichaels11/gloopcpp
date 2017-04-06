@@ -31,7 +31,7 @@ struct model {
     gloop::program * program;
     gloop::vertex_array * vertexArray;
     std::shared_ptr<gloop::draw::draw_call> drawCall;
-    std::shared_ptr<gloop::uniform_binding> uniforms;
+    std::shared_ptr<gloop::uniform::uniform_binding> uniforms;
     
     inline void render() const {
         program->use();
@@ -79,11 +79,11 @@ int main(int argc, char** argv) {
             glCtx->program.setVertexAttributes(glCtx->attribs);
             glCtx->program.linkShaders(shaders, 2);
             
-            auto setColor = new gloop::uniform_vec4_binding;
+            gloop::uniform::uniform_vec4_binding setColor;
             
-            *setColor = glCtx->program.getUniformVec4Binding("fColor", 0.0F, 0.0F, 1.0F, 1.0F);
+            setColor = glCtx->program.getUniformVec4Binding("fColor", 0.0F, 0.0F, 1.0F, 1.0F);
             
-            model.uniforms = std::shared_ptr<gloop::uniform_binding>(setColor);
+            model.uniforms = std::make_shared<gloop::uniform::uniform_vec4_binding>(setColor);
         }
 
         if (!glCtx->vao) {

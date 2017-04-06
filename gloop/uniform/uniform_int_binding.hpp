@@ -11,17 +11,14 @@
 #include <GL/glew.h>
 
 namespace gloop {
-    struct uniform_int_binding : uniform_binding {
-        GLuint pId;
-        GLuint loc;
-        GLint value;
+    namespace uniform {
 
-        uniform_int_binding(
-                const GLuint pId = 0, const GLuint loc = 0,
-                const GLint value = 0) :
-        pId(pId), loc(loc), value(value) {
-        }
+        struct uniform_int_binding : uniform_binding {
+            GLuint pId;
+            GLuint loc;
+            GLint value;            
 
-        virtual void apply() const;
-    };
+            virtual void apply() const;
+        };
+    }
 }

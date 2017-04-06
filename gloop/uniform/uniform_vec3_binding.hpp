@@ -12,19 +12,19 @@
 #include "uniform_binding.hpp"
 
 namespace gloop {
-    struct uniform_vec3_binding : uniform_binding {
-        GLuint pId;
-        GLuint loc;
-        GLfloat x;
-        GLfloat y;
-        GLfloat z;
+    namespace uniform {
 
-        uniform_vec3_binding(
-                const GLuint pId = 0, const GLuint loc = 0,
-                const GLfloat x = 0.0F, const GLfloat y = 0.0F, const GLfloat z = 0.0F) :
-        pId(pId), loc(loc), x(x), y(y), z(z) {
-        }
+        struct uniform_vec3_binding : uniform_binding {
+            GLuint pId;
+            GLuint loc;
 
-        virtual void apply() const;
-    };
+            struct vec3 {
+                GLfloat x;
+                GLfloat y;
+                GLfloat z;
+            } value;
+
+            virtual void apply() const;
+        };
+    }
 }

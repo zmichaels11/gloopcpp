@@ -11,19 +11,15 @@
 #include <GL/glew.h>
 
 namespace gloop {
-    struct uniform_float_array_binding : uniform_binding {
-        GLuint pId;
-        GLuint loc;
-        GLsizei count;
-        const GLfloat * values;
+    namespace uniform {
 
-        uniform_float_array_binding(
-                const GLuint pId = 0, const GLuint loc = 0,
-                const GLfloat * values = nullptr,
-                const GLsizei count = 1) :
-        pId(pId), loc(loc), count(count), values(values) {
-        }
+        struct uniform_float_array_binding : uniform_binding {
+            GLuint pId;
+            GLuint loc;
+            GLsizei count;
+            const GLfloat * values;            
 
-        virtual void apply() const;
-    };
+            virtual void apply() const;
+        };
+    }
 }

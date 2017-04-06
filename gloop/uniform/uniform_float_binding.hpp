@@ -11,19 +11,14 @@
 #include <GL/glew.h>
 
 namespace gloop {
+    namespace uniform {
 
-    struct uniform_float_binding : uniform_binding {
-        GLuint pId;
-        GLuint loc;
-        GLfloat value;
+        struct uniform_float_binding : uniform_binding {
+            GLuint pId;
+            GLuint loc;
+            GLfloat value;            
 
-        uniform_float_binding(
-                const GLuint pId = 0,
-                const GLuint loc = 0,
-                const GLfloat value = 0.0F) :
-        pId(pId), loc(loc), value(value) {
-        }
-
-        virtual void apply() const;
-    };
+            virtual void apply() const;
+        };
+    }
 }

@@ -11,18 +11,15 @@
 #include "uniform_binding.hpp"
 
 namespace gloop {
-    struct uniform_ivec4_array_binding : uniform_binding {
-        GLuint pId;
-        GLuint loc;
-        GLsizei count;
-        const GLint * values;
+    namespace uniform {
 
-        uniform_ivec4_array_binding(
-                const GLuint pId = 0, const GLuint loc = 0,
-                const GLint * values = nullptr, const GLsizei count = 1) :
-        pId(pId), loc(loc), count(count), values(values) {
-        }
+        struct uniform_ivec4_array_binding : uniform_binding {
+            GLuint pId;
+            GLuint loc;
+            GLsizei count;
+            const GLint * values;            
 
-        virtual void apply() const;
-    };
+            virtual void apply() const;
+        };
+    }
 }

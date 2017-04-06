@@ -125,17 +125,17 @@ namespace gloop {
         this->_attribs = attribs;
     }
 
-    const uniform_block_binding gloop::program::getUniformBlock(const std::string& uniformName) const {
+    const uniform::uniform_block_binding gloop::program::getUniformBlock(const std::string& uniformName) const {
         auto it = this->_uniformBlocks.find(uniformName);
 
         if (it != this->_uniformBlocks.end()) {
             return it->second;
         } else {
-            return gloop::uniform_block_binding();
+            return gloop::uniform::uniform_block_binding();
         }
     }
 
-    const uniform_block_binding gloop::program::bindUniformBlock(const std::string& uniformName) {
+    const uniform::uniform_block_binding gloop::program::bindUniformBlock(const std::string& uniformName) {
         auto out = this->getUniformBlock(uniformName);
 
         if (out) {
@@ -147,8 +147,8 @@ namespace gloop {
         if (glIndex == GL_INVALID_INDEX) {
             throw gloop::exception::invalid_uniform_name_exception("Could not find uniform block name: " + uniformName);
         }
-
-        out = gloop::uniform_block_binding(*_id, glIndex);
+        
+        out = gloop::uniform::uniform_block_binding(*_id, glIndex);
 
         this->_uniformBlocks[uniformName] = out;
 

@@ -6,12 +6,14 @@
 
 #pragma once
 
-namespace gloop {    
-    struct uniform_binding {
-        virtual void apply() const = 0;
+namespace gloop {
+    namespace uniform {
+        struct uniform_binding {
+            virtual void apply() const = 0;
 
-        inline virtual void operator()() {
-            apply();
-        }
-    };
+            inline virtual void operator()() {
+                apply();
+            }
+        };
+    }
 }

@@ -11,20 +11,20 @@
 #include "uniform_binding.hpp"
 
 namespace gloop {
-    struct uniform_vec4_binding : uniform_binding {
-        GLuint pId;
-        GLuint loc;
-        GLfloat x;
-        GLfloat y;
-        GLfloat z;
-        GLfloat w;
+    namespace uniform {
 
-        uniform_vec4_binding(
-                const GLuint pId = 0, const GLuint loc = 0,
-                const GLfloat x = 0.0F, const GLfloat y = 0.0F, const GLfloat z = 0.0F, const GLfloat w = 0.0F) :
-        pId(pId), loc(loc), x(x), y(y), z(z), w(w) {            
-        }
+        struct uniform_vec4_binding : uniform_binding {
+            GLuint pId;
+            GLuint loc;
 
-        virtual void apply() const;
-    };
+            struct vec4 {
+                GLfloat x;
+                GLfloat y;
+                GLfloat z;
+                GLfloat w;
+            } value;
+
+            virtual void apply() const;
+        };
+    }
 }

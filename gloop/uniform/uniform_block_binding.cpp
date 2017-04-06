@@ -9,18 +9,20 @@
 #include "uniform_block_binding.hpp"
 
 namespace gloop {
+    namespace uniform {
 
-    void uniform_block_binding::pushUniformBinding(const GLuint uniformBlockBinding) const {
-        if (this->isValid()) {
-            glUniformBlockBinding(_pId, this->_blockIndex, uniformBlockBinding);
+        void uniform_block_binding::pushUniformBinding(const GLuint uniformBlockBinding) const {
+            if (this->isValid()) {
+                glUniformBlockBinding(_pId, this->_blockIndex, uniformBlockBinding);
+            }
         }
-    }
 
-    bool uniform_block_binding::isValid() const {
-        return (_pId != 0);
-    }
+        bool uniform_block_binding::isValid() const {
+            return (_pId != 0);
+        }
 
-    uniform_block_binding::operator bool() const {
-        return this->isValid();
+        uniform_block_binding::operator bool() const {
+            return this->isValid();
+        }
     }
 }

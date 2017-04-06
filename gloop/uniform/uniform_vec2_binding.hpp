@@ -10,18 +10,18 @@
 #include <GL/glew.h>
 
 namespace gloop {
-    struct uniform_vec2_binding : uniform_binding {
-        GLuint pId;
-        GLuint loc;
-        GLfloat x;
-        GLfloat y;
+    namespace uniform {
 
-        uniform_vec2_binding(
-                const GLuint pId = 0, const GLuint loc = 0,
-                const GLfloat x = 0.0F, const GLfloat y = 0.0F) :
-        pId(pId), loc(loc), x(x), y(y) {
-        }
+        struct uniform_vec2_binding : uniform_binding {
+            GLuint pId;
+            GLuint loc;
 
-        virtual void apply() const;
-    };
+            struct vec2 {
+                GLfloat x;
+                GLfloat y;
+            } value;
+
+            virtual void apply() const;
+        };
+    }
 }
