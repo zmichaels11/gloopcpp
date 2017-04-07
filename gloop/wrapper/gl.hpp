@@ -16,6 +16,6 @@
 namespace gloop {
     namespace wrapper {
         constexpr gloop::enum_t TRUE = 1;
-        constexpr gloop::enum_t FALSE = 0;
+        constexpr gloop::enum_t FALSE = 0;        
     }
 }

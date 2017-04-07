@@ -17,9 +17,11 @@
 
 namespace gloop {
     namespace wrapper {
-        constexpr gloop::enum_t SHADER_INFO_LOG = 0x8B84;
+        constexpr gloop::enum_t INFO_LOG_LENGTH = 0x8B84;        
         constexpr gloop::enum_t COMPILE_STATUS = 0x8B81;
-        
+        constexpr gloop::enum_t LINK_STATUS = 0x8B82;
+        constexpr gloop::enum_t INVALID_INDEX = 0xFFFFFFFF;
+
         void getShaderiv(
                 gloop::uint_t shader,
                 gloop::enum_t pname,
@@ -38,9 +40,34 @@ namespace gloop {
                 gloop::sizei_t count,
                 const gloop::char_t * const * src,
                 const gloop::int_t * length);
-        
+
         void compileShader(gloop::uint_t shader);
-        
+
         void deleteShader(gloop::uint_t shader);
+
+        void getProgramiv(
+                gloop::uint_t program,
+                gloop::enum_t pname,
+                gloop::int_t * param);
+
+        void getProgramInfoLog(
+                gloop::uint_t program,
+                gloop::sizei_t bufSize,
+                gloop::sizei_t * length,
+                gloop::char_t * infoLog);
+     
+        void useProgram(gloop::uint_t program);
+        
+        gloop::uint_t createProgram();
+        
+        void attachShader(gloop::uint_t program, gloop::uint_t shader);
+        
+        void linkProgram(gloop::uint_t program);
+        
+        void detachShader(gloop::uint_t program, gloop::uint_t shader);         
+        
+        void deleteProgram(gloop::uint_t program);
+        
+        gloop::uint_t getUniformBlockIndex(gloop::uint_t program, const gloop::char_t * uniformName);
     }
 }

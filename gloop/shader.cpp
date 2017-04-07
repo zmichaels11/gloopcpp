@@ -23,7 +23,7 @@ namespace {
         gloop::int_t logLength = 0;
         gloop::int_t maxLength = 0;
 
-        gloop::wrapper::getShaderiv(shader, gloop::wrapper::SHADER_INFO_LOG, &maxLength);
+        gloop::wrapper::getShaderiv(shader, gloop::wrapper::INFO_LOG_LENGTH, &maxLength);
 
         auto infoLog = new gloop::char_t[maxLength];
 

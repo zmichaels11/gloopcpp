@@ -9,25 +9,24 @@
 #include <cstddef>
 #include <string>
 
-#include <GL/glew.h>
-
 #include "exception/invalid_uniform_name_exception.hpp"
 #include "exception/program_link_exception.hpp"
-
 #include "shader.hpp"
+#include "wrapper/shaders_and_programs.hpp"
 #include "vertex_attributes.hpp"
+#include "wrapper/gl.hpp"
 
 namespace {
 
     static std::string getProgramLog(GLuint program) {
-        GLint logLength = 0;
-        GLint maxLength = 0;
+        gloop::int_t logLength = 0;
+        gloop::int_t maxLength = 0;
 
-        glGetProgramiv(program, GL_INFO_LOG_LENGTH, &maxLength);
+        gloop::wrapper::getProgramiv(program, gloop::wrapper::INFO_LOG_LENGTH, &maxLength);        
 
-        GLchar * infoLog = new GLchar[maxLength];
+        auto infoLog = new gloop::char_t[maxLength];
 
-        glGetProgramInfoLog(program, maxLength, &logLength, infoLog);
+        gloop::wrapper::getProgramInfoLog(program, maxLength, &logLength, infoLog);
 
         std::string out;
 
@@ -51,7 +50,7 @@ namespace gloop {
 
     void program::use() const {
         if (this->isInitialized()) {
-            glUseProgram(this->getId());
+            gloop::wrapper::useProgram(getId());
         } else {
             throw gloop::exception::program_link_exception("Program is not linked!");
         }
@@ -70,37 +69,37 @@ namespace gloop {
     }
 
     void program::linkShaders(shader * shaders, const std::size_t count) {
-        auto glId = glCreateProgram();
+        auto glId = gloop::wrapper::createProgram();
 
         this->_attribs.bindAttributes(glId);
 
         for (auto it = shaders; it != shaders + count; it++) {
-            glAttachShader(glId, it->getId());
+            gloop::wrapper::attachShader(glId, it->getId());
         }
 
-        glLinkProgram(glId);
+        gloop::wrapper::linkProgram(glId);
 
         for (auto it = shaders; it != shaders + count; it++) {
-            glDetachShader(glId, it->getId());
+            gloop::wrapper::detachShader(glId, it->getId());
         }
 
-        GLint isLinked = GL_FALSE;
+        gloop::int_t isLinked = gloop::wrapper::FALSE;
 
-        glGetProgramiv(glId, GL_LINK_STATUS, &isLinked);
+        gloop::wrapper::getProgramiv(glId, gloop::wrapper::LINK_STATUS, &isLinked);
 
-        if (isLinked == GL_FALSE) {
-            std::string infoLog = getProgramLog(glId);
-
-            glDeleteProgram(glId);
-            throw gloop::exception::program_link_exception(infoLog);
-        } else {
+        if (isLinked) {
             this->_id = glId;
+        } else {
+            auto infoLog = getProgramLog(glId);
+            
+            gloop::wrapper::deleteProgram(glId);
+            throw gloop::exception::program_link_exception(infoLog);
         }
     }
 
     void program::free() {
         if (this->isInitialized()) {
-            glDeleteProgram(this->_id);
+            gloop::wrapper::deleteProgram(this->_id);
             this->_id = 0;
         }
     }
@@ -135,9 +134,9 @@ namespace gloop {
         }
 
         auto glId = this->getId();
-        GLuint glIndex = glGetUniformBlockIndex(glId, uniformName.c_str());
+        gloop::uint_t glIndex = gloop::wrapper::getUniformBlockIndex(glId, uniformName.c_str());
 
-        if (glIndex == GL_INVALID_INDEX) {
+        if (glIndex == gloop::wrapper::INVALID_INDEX) {
             throw gloop::exception::invalid_uniform_name_exception("Could not find uniform block name: " + uniformName);
         }
         
