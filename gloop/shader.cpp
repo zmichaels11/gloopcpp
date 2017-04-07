@@ -9,25 +9,25 @@
 #include <string>
 #include <fstream>
 
-#include <GL/glew.h>
-
 #include "enums/shader_type.hpp"
 #include "exception/shader_compile_exception.hpp"
 #include "exception/unsupported_shader_type_exception.hpp"
 #include "glint.hpp"
 #include "tools.hpp"
+#include "wrapper/gl.hpp"
+#include "wrapper/shaders_and_programs.hpp"
 
 namespace {
 
     static std::string getShaderLog(const gloop::uint_t shader) {
-        GLint logLength = 0;
-        GLint maxLength = 0;
+        gloop::int_t logLength = 0;
+        gloop::int_t maxLength = 0;
 
-        glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &maxLength);
+        gloop::wrapper::getShaderiv(shader, gloop::wrapper::SHADER_INFO_LOG, &maxLength);
 
-        GLchar * infoLog = new GLchar[maxLength];
+        auto infoLog = new gloop::char_t[maxLength];
 
-        glGetShaderInfoLog(shader, maxLength, &logLength, infoLog);
+        gloop::wrapper::getShaderInfoLog(shader, maxLength, &logLength, infoLog);
 
         std::string out;
 
@@ -71,33 +71,33 @@ namespace gloop {
     }
 
     void shader::init() {
-        auto glType = static_cast<GLenum> (_type);
-        auto glId = glCreateShader(glType);
+        auto glType = static_cast<gloop::enum_t> (_type);
+        auto glId = gloop::wrapper::createShader(glType);
 
         {
             auto cstr = this->_src.c_str();
 
-            glShaderSource(glId, 1, &cstr, nullptr);
+            gloop::wrapper::shaderSource(glId, 1, &cstr, nullptr);
         }
 
-        glCompileShader(glId);
+        gloop::wrapper::compileShader(glId);
 
-        GLint isCompiled = GL_FALSE;
+        gloop::int_t isCompiled = gloop::wrapper::FALSE;
 
-        glGetShaderiv(glId, GL_COMPILE_STATUS, &isCompiled);
+        gloop::wrapper::getShaderiv(glId, gloop::wrapper::COMPILE_STATUS, &isCompiled);
 
         if (isCompiled) {
             this->_id = glId;
         } else {
             std::string infoLog = getShaderLog(glId);
 
-            glDeleteShader(glId);
+            gloop::wrapper::deleteShader(glId);
 
             throw exception::shader_compile_exception(infoLog);
         }
     }
 
-    GLuint shader::getId() {
+    gloop::uint_t shader::getId() {
         if (!this->isInitialized()) {
             this->init();
         }
@@ -107,7 +107,7 @@ namespace gloop {
 
     void shader::free() {
         if (this->isInitialized()) {
-            glDeleteShader(_id);
+            gloop::wrapper::deleteShader(_id);
             this->_id = 0;
         }
     }

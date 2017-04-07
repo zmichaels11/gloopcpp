@@ -6,31 +6,47 @@
 
 #include "draw_calls.hpp"
 
-#include <GL/glew.h>
+#include "glwrapper.hpp"
 
 namespace gloop {
 
     void draw::elements::draw() const {
-        glDrawElements(static_cast<GLenum> (drawMode), count, static_cast<GLenum> (indexType), indices);
+        wrapper::drawElements(
+                static_cast<gloop::enum_t> (drawMode),
+                count,
+                static_cast<gloop::enum_t> (indexType),
+                indices);
     }
 
     void draw::arrays::draw() const {
-        glDrawArrays(static_cast<GLenum> (drawMode), first, count);
+        wrapper::drawArrays(
+                static_cast<gloop::enum_t> (drawMode),
+                first,
+                count);
     }
 
     void draw::elements_instanced::draw() const {
-        glDrawElementsInstanced(static_cast<GLenum> (drawMode), count, static_cast<GLenum> (indexType), indices, primitiveCount);
+        wrapper::drawElementsInstanced(
+                static_cast<gloop::enum_t> (drawMode),
+                count,
+                static_cast<gloop::enum_t> (indexType),
+                indices,
+                primitiveCount);
     }
 
     void draw::arrays_instanced::draw() const {
-        glDrawArraysInstanced(static_cast<GLenum> (drawMode), first, count, primitiveCount);
+        wrapper::drawArraysInstanced(
+                static_cast<gloop::enum_t> (drawMode),
+                first,
+                count,
+                primitiveCount);
     }
 
     void draw::elements_base_vertex::draw() const {
-        glDrawElementsBaseVertex(static_cast<GLenum> (drawMode), count, static_cast<GLenum> (indexType), indices, baseVertex);
+        throw "unsupported operation";
     }
 
     void draw::range_elements::draw() const {
-        glDrawRangeElements(static_cast<GLenum> (drawMode), start, end, count, static_cast<GLenum> (indexType), indices);
+        throw "unsupported operation";
     }
 }

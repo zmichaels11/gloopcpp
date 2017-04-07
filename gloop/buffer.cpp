@@ -6,12 +6,12 @@
 
 #include "buffer.hpp"
 
-#include <GL/glew.h>
 
 #include "enums/buffer_target.hpp"
 #include "enums/buffer_storage_hint.hpp"
 #include "glint.hpp"
 #include "tools.hpp"
+#include "wrapper/buffer_objects.hpp"
 
 namespace gloop {
 
@@ -21,8 +21,7 @@ namespace gloop {
 
     void buffer::reallocate() const {
         if (this->isInitialized()) {
-            glBindBuffer(GL_ARRAY_BUFFER, _id);
-            glBufferData(GL_ARRAY_BUFFER, this->_size, nullptr, static_cast<GLenum> (this->_storageHint));
+            gloop::wrapper::namedBufferData(_id, _size, nullptr, static_cast<gloop::enum_t> (_storageHint));
         }
     }
 
@@ -50,11 +49,10 @@ namespace gloop {
             const void* data,
             const bitfields::buffer_immutable_storage_hint access) {
 
-        GLuint glId = 0;
+        gloop::uint_t glId = 0;
 
-        glGenBuffers(1, &glId);
-        glBindBuffer(GL_ARRAY_BUFFER, glId);
-        glBufferStorage(GL_ARRAY_BUFFER, size, data, static_cast<GLbitfield> (access));
+        gloop::wrapper::createBuffers(1, &glId);
+        gloop::wrapper::namedBufferStorage(glId, size, data, static_cast<gloop::bitfield_t> (access));
 
         this->_id = glId;
         this->_size = size;
@@ -75,11 +73,10 @@ namespace gloop {
             const void * data,
             const enums::buffer_storage_hint storageHint) {
 
-        GLuint glId = 0;
+        gloop::uint_t glId = 0;
 
-        glGenBuffers(1, &glId);
-        glBindBuffer(GL_ARRAY_BUFFER, glId);
-        glBufferData(GL_ARRAY_BUFFER, size, data, static_cast<GLenum> (storageHint));
+        gloop::wrapper::createBuffers(1, &glId);
+        gloop::wrapper::namedBufferData(glId, size, data, static_cast<gloop::enum_t> (storageHint));
 
         this->_id = glId;
         this->_size = size;
@@ -106,7 +103,7 @@ namespace gloop {
 
     void buffer::free() {
         if (this->isInitialized()) {
-            glDeleteBuffers(1, &_id);
+            gloop::wrapper::deleteBuffers(1, &_id);
             this->_id = 0;
         }
     }
@@ -116,8 +113,7 @@ namespace gloop {
             const gloop::sizeiptr_t size,
             const void * data) {
 
-        glBindBuffer(GL_ARRAY_BUFFER, _id);
-        glBufferSubData(GL_ARRAY_BUFFER, offset, size, data);
+        gloop::wrapper::namedBufferSubData(_id, offset, size, data);
     }
 
     void buffer::getData(
@@ -126,8 +122,7 @@ namespace gloop {
             void * data) const {
 
         if (this->isInitialized()) {
-            glBindBuffer(GL_ARRAY_BUFFER, _id);
-            glGetBufferSubData(GL_ARRAY_BUFFER, offset, size, data);
+            gloop::wrapper::getNamedBufferSubData(_id, offset, size, data);
         }
     }
 
@@ -137,9 +132,11 @@ namespace gloop {
             const bitfields::buffer_access_hint accessHints) {
 
         if (this->isInitialized()) {
-            glBindBuffer(GL_ARRAY_BUFFER, _id);
-
-            return glMapBufferRange(GL_ARRAY_BUFFER, offset, length, static_cast<GLbitfield> (accessHints));
+            return gloop::wrapper::mapNamedBufferRange(
+                    _id,
+                    offset,
+                    length,
+                    static_cast<gloop::bitfield_t> (accessHints));
         } else {
             return nullptr;
         }
@@ -147,14 +144,13 @@ namespace gloop {
 
     void buffer::unmap() const {
         if (this->isInitialized()) {
-            glBindBuffer(GL_ARRAY_BUFFER, _id);
-            glUnmapBuffer(GL_ARRAY_BUFFER);
+            gloop::wrapper::unmapNamedBuffer(_id);
         }
     }
 
     void buffer::bind(const enums::buffer_target target) const {
         if (this->isInitialized()) {
-            glBindBuffer(static_cast<GLenum> (target), _id);
+            gloop::wrapper::bindBuffer(static_cast<gloop::enum_t> (target), _id);
         }
     }
 
@@ -165,16 +161,23 @@ namespace gloop {
             const gloop::intptr_t size) const {
 
         if (this->isInitialized()) {
-            glBindBufferRange(static_cast<GLenum> (target), binding, _id, offset, size);
+            gloop::wrapper::bindBufferRange(
+                    static_cast<gloop::enum_t> (target),
+                    binding,
+                    _id,
+                    offset,
+                    size);
         }
     }
 
     void buffer::blockBind(
             const enums::buffer_target target,
             const gloop::uint_t binding) const {
-        
+
         if (this->isInitialized()) {
-            glBindBufferBase(static_cast<GLenum> (target), binding, _id);
+            gloop::wrapper::bindBufferBase(
+                    static_cast<gloop::enum_t> (target),
+                    _id);
         }
     }
 }
