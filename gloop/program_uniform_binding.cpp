@@ -20,7 +20,7 @@ namespace gloop {
         if (it != this->_uniforms.end()) {
             return it->second;
         } else {
-            GLint loc = glGetUniformLocation(*_id, uniformName.c_str());
+            GLint loc = glGetUniformLocation(getId(), uniformName.c_str());
 
             if (loc == -1) {
                 throw gloop::exception::invalid_uniform_name_exception("Could not find uniform with name: " + uniformName);
@@ -38,7 +38,7 @@ namespace gloop {
 
         uniform::uniform_float_binding out;
 
-        out.pId = *_id;
+        out.pId = getId();
         out.loc = getUniform(uniformName);
         out.value = x;
 
@@ -51,7 +51,7 @@ namespace gloop {
 
         uniform::uniform_int_binding out;
 
-        out.pId = *_id;
+        out.pId = getId();
         out.loc = getUniform(uniformName);
         out.value = x;
         
@@ -64,7 +64,7 @@ namespace gloop {
 
         uniform::uniform_vec2_binding out;
 
-        out.pId = *_id;
+        out.pId = getId();
         out.loc = getUniform(uniformName);
         out.value = {x, y};
 
@@ -77,7 +77,7 @@ namespace gloop {
 
         uniform::uniform_vec3_binding out;
 
-        out.pId = *_id;
+        out.pId = getId();
         out.loc = getUniform(uniformName);
         out.value = {x, y, z};
         
@@ -90,7 +90,7 @@ namespace gloop {
 
         uniform::uniform_vec4_binding out;
 
-        out.pId = *_id;
+        out.pId = getId();
         out.loc = getUniform(uniformName);
         out.value = {x, y, z, w};
 
@@ -103,7 +103,7 @@ namespace gloop {
 
         uniform::uniform_ivec2_binding out;
         
-        out.pId = *_id;
+        out.pId = getId();
         out.loc = getUniform(uniformName);
         out.value = {x, y};
         
@@ -116,7 +116,7 @@ namespace gloop {
 
         uniform::uniform_ivec3_binding out;
         
-        out.pId = *_id;
+        out.pId = getId();
         out.loc = getUniform(uniformName);
         out.value = {x, y, z};
         
@@ -129,7 +129,7 @@ namespace gloop {
 
         uniform::uniform_ivec4_binding out;
         
-        out.pId = *_id;
+        out.pId = getId();
         out.loc = getUniform(uniformName);
         out.value = {x, y, z, w};
         
@@ -143,7 +143,7 @@ namespace gloop {
 
         uniform::uniform_mat2_binding out;
         
-        out.pId = *_id;
+        out.pId = getId();
         out.loc = getUniform(uniformName);
         out.count = count;
         out.values = values;
@@ -158,7 +158,7 @@ namespace gloop {
 
         uniform::uniform_mat3_binding out;
         
-        out.pId = *_id;
+        out.pId = getId();
         out.loc = getUniform(uniformName);
         out.count = count;
         out.values = values;
@@ -173,7 +173,7 @@ namespace gloop {
 
         uniform::uniform_mat4_binding out;
         
-        out.pId = *_id;
+        out.pId = getId();
         out.loc = getUniform(uniformName);
         out.count = count;
         out.values = values;
@@ -188,7 +188,7 @@ namespace gloop {
 
         uniform::uniform_float_array_binding out;
         
-        out.pId = *_id;
+        out.pId = getId();
         out.loc = getUniform(uniformName);
         out.count = count;
         out.values = values;
@@ -203,7 +203,7 @@ namespace gloop {
 
         uniform::uniform_int_array_binding out;
         
-        out.pId = *_id;
+        out.pId = getId();
         out.loc = getUniform(uniformName);
         out.count = count;
         out.values = values;
@@ -218,7 +218,7 @@ namespace gloop {
 
         uniform::uniform_vec2_array_binding out;
         
-        out.pId = *_id;
+        out.pId = getId();
         out.loc = getUniform(uniformName);
         out.count = count;
         out.values = values;
@@ -233,7 +233,7 @@ namespace gloop {
 
         uniform::uniform_vec3_array_binding out;
         
-        out.pId = *_id;
+        out.pId = getId();
         out.loc = getUniform(uniformName);
         out.count = count;
         out.values = values;
@@ -248,7 +248,7 @@ namespace gloop {
 
         uniform::uniform_vec4_array_binding out;
         
-        out.pId = *_id;
+        out.pId = getId();
         out.loc = getUniform(uniformName);
         out.count = count;
         out.values = values;
@@ -263,7 +263,7 @@ namespace gloop {
 
         uniform::uniform_ivec2_array_binding out;
         
-        out.pId = *_id;
+        out.pId = getId();
         out.loc = getUniform(uniformName);
         out.count = count;
         out.values = values;
@@ -278,7 +278,7 @@ namespace gloop {
 
         uniform::uniform_ivec3_array_binding out;
         
-        out.pId = *_id;
+        out.pId = getId();
         out.loc = getUniform(uniformName);
         out.count = count;
         out.values = values;
@@ -293,7 +293,7 @@ namespace gloop {
 
         uniform::uniform_ivec4_array_binding out;
         
-        out.pId = *_id;
+        out.pId = getId();
         out.loc = getUniform(uniformName);
         out.count = count;
         out.values = values;

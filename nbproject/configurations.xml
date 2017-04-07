@@ -5,6 +5,10 @@
                    displayName="Header Files"
                    projectFiles="true">
       <logicalFolder name="f1" displayName="gloop" projectFiles="true">
+        <logicalFolder name="f6" displayName="bitfields" projectFiles="true">
+          <itemPath>gloop/bitfields/buffer_access_hint.hpp</itemPath>
+          <itemPath>gloop/bitfields/buffer_immutable_storage_hint.hpp</itemPath>
+        </logicalFolder>
         <logicalFolder name="f2" displayName="draw" projectFiles="true">
           <itemPath>gloop/draw/arrays.hpp</itemPath>
           <itemPath>gloop/draw/arrays_instanced.hpp</itemPath>
@@ -15,6 +19,10 @@
           <itemPath>gloop/draw/index_type.hpp</itemPath>
           <itemPath>gloop/draw/mode.hpp</itemPath>
           <itemPath>gloop/draw/range_elements.hpp</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f5" displayName="enum" projectFiles="true">
+          <itemPath>gloop/enum/buffer_storage_hint.hpp</itemPath>
+          <itemPath>gloop/enum/buffer_target.hpp</itemPath>
         </logicalFolder>
         <logicalFolder name="f4" displayName="error" projectFiles="true">
           <itemPath>gloop/error/base_error.hpp</itemPath>
@@ -64,6 +72,7 @@
         <itemPath>gloop/draw_calls.hpp</itemPath>
         <itemPath>gloop/errors.hpp</itemPath>
         <itemPath>gloop/exceptions.hpp</itemPath>
+        <itemPath>gloop/glint.hpp</itemPath>
         <itemPath>gloop/program.hpp</itemPath>
         <itemPath>gloop/scissor.hpp</itemPath>
         <itemPath>gloop/shader.hpp</itemPath>
@@ -89,6 +98,10 @@
                    displayName="Source Files"
                    projectFiles="true">
       <logicalFolder name="f1" displayName="gloop" projectFiles="true">
+        <logicalFolder name="f7" displayName="bitfields" projectFiles="true">
+          <itemPath>gloop/bitfields/buffer_access_hint.cpp</itemPath>
+          <itemPath>gloop/bitfields/buffer_immutable_storage_hint.cpp</itemPath>
+        </logicalFolder>
         <logicalFolder name="f3" displayName="draw" projectFiles="true">
         </logicalFolder>
         <logicalFolder name="f4" displayName="error" projectFiles="true">
@@ -160,6 +173,26 @@
       </item>
       <item path="gloop/application.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/bitfields/buffer_access_hint.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="gloop/bitfields/buffer_access_hint.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/bitfields/buffer_immutable_storage_hint.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="gloop/bitfields/buffer_immutable_storage_hint.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="gloop/blend.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/buffer.cpp" ex="false" tool="1" flavor2="0">
@@ -196,6 +229,10 @@
       <item path="gloop/draw_calls.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/draw_calls.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/enum/buffer_storage_hint.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/enum/buffer_target.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/error/base_error.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -258,6 +295,8 @@
             flavor2="0">
       </item>
       <item path="gloop/exceptions.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/glint.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/program.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -459,6 +498,26 @@
       </item>
       <item path="gloop/application.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/bitfields/buffer_access_hint.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="gloop/bitfields/buffer_access_hint.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/bitfields/buffer_immutable_storage_hint.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="gloop/bitfields/buffer_immutable_storage_hint.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="gloop/blend.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/buffer.cpp" ex="false" tool="1" flavor2="0">
@@ -495,6 +554,10 @@
       <item path="gloop/draw_calls.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/draw_calls.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/enum/buffer_storage_hint.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/enum/buffer_target.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/error/base_error.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -557,6 +620,8 @@
             flavor2="0">
       </item>
       <item path="gloop/exceptions.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/glint.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/program.cpp" ex="false" tool="1" flavor2="0">
       </item>

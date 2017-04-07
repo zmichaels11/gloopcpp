@@ -11,6 +11,7 @@
 
 #include <GL/glew.h>
 
+#include "enums/buffer_target.hpp"
 #include "tools.hpp"
 
 namespace gloop {
@@ -31,7 +32,7 @@ void gloop::vertex_array::init() {
     glBindVertexArray(glId);    
 
     if (this->_indexBuffer) {
-        this->_indexBuffer->bind(gloop::buffer_target::ELEMENT_ARRAY);
+        this->_indexBuffer->bind(gloop::enums::buffer_target::ELEMENT_ARRAY);
     }
 
     for (auto it = this->_bindings.begin(); it != this->_bindings.end(); it++) {

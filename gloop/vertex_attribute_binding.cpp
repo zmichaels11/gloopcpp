@@ -9,6 +9,7 @@
 #include "buffer.hpp"
 
 #include "exception/invalid_enum_exception.hpp"
+#include "enums/buffer_target.hpp"
 
 namespace gloop {
     namespace {
@@ -77,7 +78,7 @@ namespace gloop {
     void vertex_attribute_binding::apply() const {
         const auto sizedType = vertexAttributeTypeSize(_type);
         
-        _buffer->bind(gloop::buffer_target::ARRAY);
+        _buffer->bind(gloop::enums::buffer_target::ARRAY);
         
         if (_divisor) {
             glVertexAttribDivisor(_id, _divisor);

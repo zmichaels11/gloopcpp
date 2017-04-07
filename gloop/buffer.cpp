@@ -8,6 +8,8 @@
 
 #include <GL/glew.h>
 
+#include "enums/buffer_target.hpp"
+#include "enums/buffer_storage_hint.hpp"
 #include "tools.hpp"
 
 namespace gloop {
@@ -27,17 +29,17 @@ namespace gloop {
         return this->_isImmutable;
     }
 
-    buffer_access_hint buffer::getAccessHints() const {
-        return this->_accessHints;
+    bitfields::buffer_immutable_storage_hint buffer::getImmutableStorageHints() const {
+        return this->_immutableStorageHints;
     }
 
-    buffer_storage_hint buffer::getStorageHint() const {
+    enums::buffer_storage_hint buffer::getStorageHint() const {
         return this->_storageHint;
     }
 
     void buffer::allocateImmutable(
             const GLsizeiptr size,
-            const buffer_access_hint access) {
+            const bitfields::buffer_immutable_storage_hint access) {
 
         allocateImmutable(size, nullptr, access);
     }
@@ -45,7 +47,7 @@ namespace gloop {
     void buffer::allocateImmutable(
             const GLsizeiptr size,
             const GLvoid* data,
-            const buffer_access_hint access) {
+            const bitfields::buffer_immutable_storage_hint access) {
 
         GLuint glId = 0;
 
@@ -56,12 +58,13 @@ namespace gloop {
         this->_id = glId;
         this->_size = size;
         this->_isImmutable = true;
-        this->_accessHints = access;
+        this->_immutableStorageHints = access;
+        this->_storageHint = static_cast<enums::buffer_storage_hint> (0);
     }
 
     void buffer::allocate(
             const GLsizeiptr size,
-            const buffer_storage_hint storageHint) {
+            const enums::buffer_storage_hint storageHint) {
 
         allocate(size, nullptr, storageHint);
     }
@@ -69,7 +72,7 @@ namespace gloop {
     void buffer::allocate(
             const GLsizeiptr size,
             const GLvoid * data,
-            const buffer_storage_hint storageHint) {
+            const enums::buffer_storage_hint storageHint) {
 
         GLuint glId = 0;
 
@@ -80,6 +83,7 @@ namespace gloop {
         this->_id = glId;
         this->_size = size;
         this->_storageHint = storageHint;
+        this->_immutableStorageHints = static_cast<bitfields::buffer_immutable_storage_hint> (0);
         this->_isImmutable = false;
     }
 
@@ -122,7 +126,7 @@ namespace gloop {
         }
     }
 
-    void * buffer::map(GLintptr offset, GLsizeiptr length, buffer_access_hint accessHints) {
+    void * buffer::map(GLintptr offset, GLsizeiptr length, bitfields::buffer_access_hint accessHints) {
         if (this->isInitialized()) {
             glBindBuffer(GL_ARRAY_BUFFER, _id);
 
@@ -139,19 +143,19 @@ namespace gloop {
         }
     }
 
-    void buffer::bind(const gloop::buffer_target target) const {
+    void buffer::bind(const enums::buffer_target target) const {
         if (this->isInitialized()) {
             glBindBuffer(static_cast<GLenum> (target), _id);
         }
     }
 
-    void buffer::blockBind(const buffer_target target, const GLuint binding, const GLintptr offset, GLintptr size) const {
+    void buffer::blockBind(const enums::buffer_target target, const GLuint binding, const GLintptr offset, GLintptr size) const {
         if (this->isInitialized()) {
             glBindBufferRange(static_cast<GLenum> (target), binding, _id, offset, size);
         }
     }
 
-    void buffer::blockBind(const buffer_target target, const GLuint binding) const {
+    void buffer::blockBind(const enums::buffer_target target, const GLuint binding) const {
         if (this->isInitialized()) {
             glBindBufferBase(static_cast<GLenum> (target), binding, _id);
         }

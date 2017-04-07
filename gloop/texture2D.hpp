@@ -9,14 +9,12 @@
 #ifndef TEXTURE2D_HPP
 #define TEXTURE2D_HPP
 
-#include <memory>
-
 #include <GL/glew.h>
 
 namespace gloop {
     class texture2D {
     private:
-        std::shared_ptr<GLuint> _id;
+        GLuint _id;
         GLuint _width;
         GLuint _height;
         GLuint _mipmaps;

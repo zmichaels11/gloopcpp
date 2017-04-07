@@ -8,7 +8,6 @@
 
 #include <cstddef>
 #include <map>
-#include <memory>
 #include <string>
 
 #include <GL/glew.h>
@@ -21,7 +20,7 @@ namespace gloop {
 
     class program {
     private:
-        std::shared_ptr<GLuint> _id;
+        GLuint _id;
         vertex_attributes _attribs;
         std::map<std::string, GLuint> _uniforms;
         std::map<std::string, uniform::uniform_block_binding> _uniformBlocks;
@@ -29,8 +28,14 @@ namespace gloop {
 
     public:
 
-        program() : _id(nullptr) {
+        program() : _id(0) {
         }
+        
+        program(program&) = delete;
+        
+        program(program&&) = default;
+        
+        ~program();
 
         void setVertexAttributes(const vertex_attributes attribs);
 

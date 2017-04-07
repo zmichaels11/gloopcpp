@@ -7,7 +7,6 @@
 #include "program.hpp"
 
 #include <cstddef>
-#include <memory>
 #include <string>
 
 #include <GL/glew.h>
@@ -45,6 +44,10 @@ namespace {
 }
 
 namespace gloop {
+    
+    program::~program() {
+        free();
+    }
 
     void program::use() const {
         if (this->isInitialized()) {
@@ -56,14 +59,14 @@ namespace gloop {
 
     GLuint program::getId() const {
         if (this->isInitialized()) {
-            return *(this->_id);
+            return this->_id;
         } else {
             return 0;
         }
     }
 
     bool program::isInitialized() const {
-        return (this->_id.get() != nullptr);
+        return _id != 0;
     }
 
     void program::linkShaders(shader * shaders, const std::size_t count) {
@@ -91,21 +94,14 @@ namespace gloop {
             glDeleteProgram(glId);
             throw gloop::exception::program_link_exception(infoLog);
         } else {
-            this->_id = std::shared_ptr<GLuint>(new GLuint, [ = ](GLuint * id){
-                if (id != nullptr) {
-                    glDeleteProgram(*id);
-                            delete id;
-                }
-            });
-
-            *(this->_id) = glId;
+            this->_id = glId;
         }
     }
 
     void program::free() {
         if (this->isInitialized()) {
-            glDeleteProgram(*(this->_id));
-            this->_id.reset();
+            glDeleteProgram(this->_id);
+            this->_id = 0;
         }
     }
 
@@ -142,13 +138,14 @@ namespace gloop {
             return out;
         }
 
-        GLuint glIndex = glGetUniformBlockIndex(this->getId(), uniformName.c_str());
+        auto glId = this->getId();
+        GLuint glIndex = glGetUniformBlockIndex(glId, uniformName.c_str());
 
         if (glIndex == GL_INVALID_INDEX) {
             throw gloop::exception::invalid_uniform_name_exception("Could not find uniform block name: " + uniformName);
         }
         
-        out = gloop::uniform::uniform_block_binding(*_id, glIndex);
+        out = gloop::uniform::uniform_block_binding(glId, glIndex);
 
         this->_uniformBlocks[uniformName] = out;
 

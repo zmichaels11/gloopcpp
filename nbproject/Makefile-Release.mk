@@ -36,6 +36,8 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/gloop/application.o \
+	${OBJECTDIR}/gloop/bitfields/buffer_access_hint.o \
+	${OBJECTDIR}/gloop/bitfields/buffer_immutable_storage_hint.o \
 	${OBJECTDIR}/gloop/buffer.o \
 	${OBJECTDIR}/gloop/draw_calls.o \
 	${OBJECTDIR}/gloop/error/base_error.o \
@@ -83,6 +85,16 @@ ${OBJECTDIR}/gloop/application.o: gloop/application.cpp
 	${MKDIR} -p ${OBJECTDIR}/gloop
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/application.o gloop/application.cpp
+
+${OBJECTDIR}/gloop/bitfields/buffer_access_hint.o: gloop/bitfields/buffer_access_hint.cpp
+	${MKDIR} -p ${OBJECTDIR}/gloop/bitfields
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/bitfields/buffer_access_hint.o gloop/bitfields/buffer_access_hint.cpp
+
+${OBJECTDIR}/gloop/bitfields/buffer_immutable_storage_hint.o: gloop/bitfields/buffer_immutable_storage_hint.cpp
+	${MKDIR} -p ${OBJECTDIR}/gloop/bitfields
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/bitfields/buffer_immutable_storage_hint.o gloop/bitfields/buffer_immutable_storage_hint.cpp
 
 ${OBJECTDIR}/gloop/buffer.o: gloop/buffer.cpp
 	${MKDIR} -p ${OBJECTDIR}/gloop
