@@ -6,18 +6,18 @@
 
 #pragma once
 
+#include "../glint.hpp"
 #include "uniform_binding.hpp"
 
-#include <GL/glew.h>
 
 namespace gloop {
     namespace uniform {
 
         struct uniform_float_array_binding : uniform_binding {
-            GLuint pId;
-            GLuint loc;
-            GLsizei count;
-            const GLfloat * values;            
+            gloop::uint_t pId;
+            gloop::uint_t loc;
+            gloop::sizei_t count;
+            const gloop::float_t * values;            
 
             virtual void apply() const;
         };

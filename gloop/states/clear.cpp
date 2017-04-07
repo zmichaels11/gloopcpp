@@ -6,6 +6,8 @@
 
 #include "clear.hpp"
 
+#include <GL/glew.h>
+
 #include "../bitfields/clear_mask.hpp"
 #include "../glint.hpp"
 

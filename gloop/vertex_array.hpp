@@ -15,50 +15,50 @@
 
 #include <vector>
 
-#include <GL/glew.h>
-
 #include "buffer.hpp"
+#include "glint.hpp"
 #include "vertex_attribute_binding.hpp"
 #include "vertex_attributes.hpp"
 
 namespace gloop {
+
     class vertex_array {
     private:
-        GLuint _id;
+        gloop::uint_t _id;
         std::vector<vertex_attribute_binding> _bindings;
         const buffer * _indexBuffer;
-        
+
         void init();
-        
+
     public:
-        vertex_array() : _id(0), _indexBuffer(nullptr) {}
-        
+
+        vertex_array() : _id(0), _indexBuffer(nullptr) {
+        }
+
         vertex_array(vertex_array&& other) = default;
-        
+
         vertex_array(vertex_array&) = delete;
-        
+
         ~vertex_array();
-        
-        vertex_array& operator<<(const vertex_attribute_binding& binding);        
-        
-        operator GLuint();
-        
+
+        vertex_array& operator<<(const vertex_attribute_binding& binding);
+
         operator bool() const;
-        
-        GLuint getId();
-        
+
+        gloop::uint_t getId();
+
         void addBinding(const vertex_attribute_binding& binding);
-        
+
         void setIndexBuffer(const buffer * buffer);
-        
+
         const buffer * getIndexBuffer() const;
-        
+
         const std::vector<vertex_attribute_binding> getBindings() const;
-        
+
         void free();
-        
+
         void bind();
-        
+
         bool isInitialized() const;
     };
 }

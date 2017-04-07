@@ -9,25 +9,21 @@
 #include <string>
 #include <map>
 
-#include <GL/glew.h>
-
 #include "buffer.hpp"
-
+#include "glint.hpp"
 #include "vertex_attribute_binding.hpp"
 
 namespace gloop {
     class vertex_attribute {
     private:
-        const GLint _id;
+        const gloop::uint_t _id;
 
     public:
 
-        vertex_attribute(GLint id) : _id(id) {
+        vertex_attribute(gloop::uint_t id) : _id(id) {
         };
 
-        GLint getId() const;
-
-        operator GLint() const;
+        gloop::uint_t getId() const;        
 
         vertex_attribute_binding bindBuffer(
                 const buffer * bufId, 

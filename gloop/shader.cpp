@@ -12,13 +12,14 @@
 #include <GL/glew.h>
 
 #include "exception/shader_compile_exception.hpp"
+#include "exception/unsupported_shader_type_exception.hpp"
+#include "glint.hpp"
 #include "shader_type.hpp"
 #include "tools.hpp"
-#include "exception/unsupported_shader_type_exception.hpp"
 
 namespace {
 
-    static std::string getShaderLog(const GLuint shader) {
+    static std::string getShaderLog(const gloop::uint_t shader) {
         GLint logLength = 0;
         GLint maxLength = 0;
 
@@ -125,11 +126,7 @@ namespace gloop {
 
     shader::operator bool() {
         return this->getId() != 0;
-    }
-
-    shader::operator GLuint() {
-        return this->getId();
-    }
+    }    
 
     shader shader::makeVertexShader(const std::string& srcOrFileName) {
         return readFromSrcOrFileName(shader_type::VERTEX, ".vert", srcOrFileName);

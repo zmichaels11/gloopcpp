@@ -8,14 +8,13 @@
 
 #include <string>
 
-#include <GL/glew.h>
-
+#include "glint.hpp"
 #include "shader_type.hpp"
 
 namespace gloop {        
     class shader {
     private:
-        GLuint _id;
+        gloop::uint_t _id;
         std::string _src;
         shader_type _type;
 
@@ -34,7 +33,7 @@ namespace gloop {
         
         ~shader();
 
-        GLuint getId();
+        gloop::uint_t getId();
         
         void free();
         
@@ -44,9 +43,7 @@ namespace gloop {
         
         bool isInitialized() const;
         
-        operator bool();
-        
-        operator GLuint();
+        operator bool();        
         
         static shader makeVertexShader(const std::string& srcOrFileName);
         

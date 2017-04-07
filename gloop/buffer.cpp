@@ -100,10 +100,6 @@ namespace gloop {
         }
     }
 
-    buffer::operator GLuint() {
-        return this->getId();
-    }
-
     buffer::operator bool() const {
         return this->isInitialized();
     }

@@ -76,11 +76,7 @@ namespace gloop {
         glEnableVertexAttribArray(this->_id);
     }
 
-    GLint vertex_attribute::getId() const {
-        return this->_id;
-    }
-
-    vertex_attribute::operator GLint() const {
+    gloop::uint_t vertex_attribute::getId() const {
         return this->_id;
     }
 }

@@ -6,16 +6,16 @@
 
 #pragma once
 
-#include <GL/glew.h>
+#include "glint.hpp"
 
 namespace gloop {
-    enum class shader_type : GLenum {
+    enum class shader_type : gloop::enum_t {
         UNKNOWN = 0,
-        VERTEX = GL_VERTEX_SHADER,
-        FRAGMENT = GL_FRAGMENT_SHADER,
-        GEOMETRY = GL_GEOMETRY_SHADER,
-        TESSELLATION_EVALUATION = GL_TESS_EVALUATION_SHADER,
-        TESSELLATION_CONTROL = GL_TESS_CONTROL_SHADER,
-        COMPUTE = GL_COMPUTE_SHADER
+        VERTEX = 0x8B31,
+        FRAGMENT = 0x8B30,
+        GEOMETRY = 0x8DD9,
+        TESSELLATION_EVALUATION = 0x8E87,
+        TESSELLATION_CONTROL = 0x8E88,
+        COMPUTE = 0x91B9
     };
 }

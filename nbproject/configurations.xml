@@ -81,11 +81,7 @@
         <itemPath>gloop/program.hpp</itemPath>
         <itemPath>gloop/shader.hpp</itemPath>
         <itemPath>gloop/shader_type.hpp</itemPath>
-        <itemPath>gloop/sized_type.hpp</itemPath>
-        <itemPath>gloop/texture2D.hpp</itemPath>
-        <itemPath>gloop/texture_parameters.hpp</itemPath>
         <itemPath>gloop/tools.hpp</itemPath>
-        <itemPath>gloop/type.hpp</itemPath>
         <itemPath>gloop/uniforms.hpp</itemPath>
         <itemPath>gloop/vertex_array.hpp</itemPath>
         <itemPath>gloop/vertex_attribute_binding.hpp</itemPath>
@@ -314,8 +310,6 @@
       </item>
       <item path="gloop/shader_type.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="gloop/sized_type.hpp" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="gloop/states/blend.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/states/blend.hpp" ex="false" tool="3" flavor2="0">
@@ -336,15 +330,9 @@
       </item>
       <item path="gloop/states/viewport.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="gloop/texture2D.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="gloop/texture_parameters.hpp" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="gloop/tools.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/tools.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="gloop/type.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/uniform/uniform_binding.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -644,8 +632,6 @@
       </item>
       <item path="gloop/shader_type.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="gloop/sized_type.hpp" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="gloop/states/blend.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/states/blend.hpp" ex="false" tool="3" flavor2="0">
@@ -666,15 +652,9 @@
       </item>
       <item path="gloop/states/viewport.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="gloop/texture2D.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="gloop/texture_parameters.hpp" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="gloop/tools.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/tools.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="gloop/type.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/uniform/uniform_binding.hpp" ex="false" tool="3" flavor2="0">
       </item>

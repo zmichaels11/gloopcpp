@@ -5,6 +5,7 @@
  */
 
 #include "../uniforms.hpp"
+#include <GL/glew.h>
 
 namespace gloop {
     namespace uniform {
@@ -91,17 +92,17 @@ namespace gloop {
 
         void uniform_mat2_binding::apply() const {
             glUseProgram(pId);
-            glUniformMatrix2fv(loc, count, GL_FALSE, values);
+            glUniformMatrix2fv(loc, count, 0, values);
         }
 
         void uniform_mat3_binding::apply() const {
             glUseProgram(pId);
-            glUniformMatrix3fv(loc, count, GL_FALSE, values);
+            glUniformMatrix3fv(loc, count, 0, values);
         }
 
         void uniform_mat4_binding::apply() const {
             glUseProgram(pId);
-            glUniformMatrix4fv(loc, count, GL_FALSE, values);
+            glUniformMatrix4fv(loc, count, 0, values);
         }
     }
 }

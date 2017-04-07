@@ -6,22 +6,21 @@
 
 #pragma once
 
-#include <GL/glew.h>
-
+#include "../glint.hpp"
 #include "uniform_binding.hpp"
 
 namespace gloop {
     namespace uniform {
 
         struct uniform_vec4_binding : uniform_binding {
-            GLuint pId;
-            GLuint loc;
+            gloop::uint_t pId;
+            gloop::uint_t loc;
 
             struct vec4 {
-                GLfloat x;
-                GLfloat y;
-                GLfloat z;
-                GLfloat w;
+                gloop::float_t x;
+                gloop::float_t y;
+                gloop::float_t z;
+                gloop::float_t w;
             } value;
 
             virtual void apply() const;

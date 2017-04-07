@@ -15,93 +15,91 @@
 #include "tools.hpp"
 
 namespace gloop {
+
     vertex_array::~vertex_array() {
         free();
-    }        
-}
-
-void gloop::vertex_array::init() {
-    // dont bother initializing if there are no bindings and no element buffer
-    if (this->_bindings.size() == 0 && !this->_indexBuffer) {
-        return;
     }
 
-    GLuint glId = 0;
+    void vertex_array::init() {
+        // dont bother initializing if there are no bindings and no element buffer
+        if (this->_bindings.size() == 0 && !this->_indexBuffer) {
+            return;
+        }
 
-    glGenVertexArrays(1, &glId);
-    glBindVertexArray(glId);    
+        GLuint glId = 0;
 
-    if (this->_indexBuffer) {
-        this->_indexBuffer->bind(gloop::enums::buffer_target::ELEMENT_ARRAY);
+        glGenVertexArrays(1, &glId);
+        glBindVertexArray(glId);
+
+        if (this->_indexBuffer) {
+            this->_indexBuffer->bind(gloop::enums::buffer_target::ELEMENT_ARRAY);
+        }
+
+        for (auto it = this->_bindings.begin(); it != this->_bindings.end(); it++) {
+            vertex_attribute_binding binding = *it;
+
+            glEnableVertexAttribArray(binding.getAttributeId());
+            binding();
+        }
+
+        glBindVertexArray(0);
+
+        this->_id = glId;
     }
 
-    for (auto it = this->_bindings.begin(); it != this->_bindings.end(); it++) {
-        vertex_attribute_binding binding = *it;
-
-        glEnableVertexAttribArray(binding.getAttributeId());
-        binding();
+    vertex_array::operator bool() const {
+        return this->isInitialized();
     }
 
-    glBindVertexArray(0);
+    gloop::uint_t vertex_array::getId() {
+        // initialize the vertex_array if it needs to be initialized
+        if (!this->isInitialized()) {
+            this->init();
+        }
 
-    this->_id = glId;
-}
-
-gloop::vertex_array::operator GLuint() {
-    return this->getId();
-}
-
-gloop::vertex_array::operator bool() const {
-    return this->isInitialized();
-}
-
-GLuint gloop::vertex_array::getId() {
-    // initialize the vertex_array if it needs to be initialized
-    if (!this->isInitialized()) {
-        this->init();
+        // check again if its initialized
+        if (this->isInitialized()) {
+            return _id;
+        } else {
+            return 0;
+        }
     }
 
-    // check again if its initialized
-    if (this->isInitialized()) {
-        return _id;
-    } else {
-        return 0;
+    void vertex_array::addBinding(const vertex_attribute_binding& binding) {
+        this->_bindings.push_back(binding);
     }
-}
 
-void gloop::vertex_array::addBinding(const vertex_attribute_binding& binding) {
-    this->_bindings.push_back(binding);
-}
-
-gloop::vertex_array& gloop::vertex_array::operator<<(const vertex_attribute_binding& binding) {
-    this->addBinding(binding);
-    return *this;
-}
-
-const std::vector<gloop::vertex_attribute_binding> gloop::vertex_array::getBindings() const {
-    return this->_bindings;
-}
-
-void gloop::vertex_array::free() {
-    if (this->isInitialized()) {
-        glDeleteVertexArrays(1, &_id);
-        this->_id = 0;
+    vertex_array& vertex_array::operator<<(const vertex_attribute_binding& binding) {
+        this->addBinding(binding);
+        return *this;
     }
-}
 
-void gloop::vertex_array::bind() {
-    // this will bind vertex array 0 if the vertex array has no attached buffers
-    glBindVertexArray(this->getId());
-}
+    const std::vector<vertex_attribute_binding> vertex_array::getBindings() const {
+        return this->_bindings;
+    }
 
-bool gloop::vertex_array::isInitialized() const {
-    return _id != 0;
-}
+    void vertex_array::free() {
+        if (this->isInitialized()) {
+            glDeleteVertexArrays(1, &_id);
+            this->_id = 0;
+        }
+    }
 
-void gloop::vertex_array::setIndexBuffer(const buffer * buffer) {
-    this->_indexBuffer = buffer;
-}
+    void vertex_array::bind() {
+        // this will bind vertex array 0 if the vertex array has no attached buffers
+        glBindVertexArray(this->getId());
+    }
 
-const gloop::buffer * gloop::vertex_array::getIndexBuffer() const {
-    return this->_indexBuffer;
+    bool vertex_array::isInitialized() const {
+        return _id != 0;
+    }
+
+    void vertex_array::setIndexBuffer(const buffer * buffer) {
+        this->_indexBuffer = buffer;
+    }
+
+    const buffer * vertex_array::getIndexBuffer() const {
+        return this->_indexBuffer;
+
+    }
 }

@@ -57,7 +57,7 @@ namespace gloop {
         }
     }
 
-    GLuint program::getId() const {
+    gloop::uint_t program::getId() const {
         if (this->isInitialized()) {
             return this->_id;
         } else {
@@ -74,14 +74,14 @@ namespace gloop {
 
         this->_attribs.bindAttributes(glId);
 
-        for (std::size_t i = 0; i < count; i++) {
-            glAttachShader(glId, shaders[i]);
+        for (auto it = shaders; it != shaders + count; it++) {
+            glAttachShader(glId, it->getId());
         }
 
         glLinkProgram(glId);
 
-        for (std::size_t i = 0; i < count; i++) {
-            glDetachShader(glId, shaders[i]);
+        for (auto it = shaders; it != shaders + count; it++) {
+            glDetachShader(glId, it->getId());
         }
 
         GLint isLinked = GL_FALSE;
@@ -107,10 +107,6 @@ namespace gloop {
 
     program::operator bool() const {
         return this->isInitialized();
-    }
-
-    program::operator GLuint() const {
-        return this->getId();
     }
 
     void program::setVertexAttributes(const vertex_attributes attribs) {

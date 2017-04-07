@@ -5,20 +5,19 @@
  */
 #pragma once
 
+#include "../glint.hpp"
 #include "uniform_binding.hpp"
-
-#include <GL/glew.h>
 
 namespace gloop {
     namespace uniform {
 
         struct uniform_vec2_binding : uniform_binding {
-            GLuint pId;
-            GLuint loc;
+            gloop::uint_t pId;
+            gloop::uint_t loc;
 
             struct vec2 {
-                GLfloat x;
-                GLfloat y;
+                gloop::float_t x;
+                gloop::float_t y;
             } value;
 
             virtual void apply() const;

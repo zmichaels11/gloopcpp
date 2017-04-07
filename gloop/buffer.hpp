@@ -103,9 +103,7 @@ namespace gloop {
 
         bool isInitialized() const;
 
-        gloop::uint_t getId() const;
-
-        operator GLuint();
+        gloop::uint_t getId() const;        
 
         operator bool() const;
 

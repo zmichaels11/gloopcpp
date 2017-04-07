@@ -7,11 +7,12 @@
 #include <GL/glew.h>
 
 #include "uniform_block_binding.hpp"
+#include "../glint.hpp"
 
 namespace gloop {
     namespace uniform {
 
-        void uniform_block_binding::pushUniformBinding(const GLuint uniformBlockBinding) const {
+        void uniform_block_binding::pushUniformBinding(const gloop::uint_t uniformBlockBinding) const {
             if (this->isValid()) {
                 glUniformBlockBinding(_pId, this->_blockIndex, uniformBlockBinding);
             }
