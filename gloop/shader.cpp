@@ -11,10 +11,10 @@
 
 #include <GL/glew.h>
 
+#include "enums/shader_type.hpp"
 #include "exception/shader_compile_exception.hpp"
 #include "exception/unsupported_shader_type_exception.hpp"
 #include "glint.hpp"
-#include "shader_type.hpp"
 #include "tools.hpp"
 
 namespace {
@@ -50,7 +50,7 @@ namespace {
     }
 
     static gloop::shader readFromSrcOrFileName(
-            const gloop::shader_type type,
+            const gloop::enums::shader_type type,
             const std::string& suffix,
             const std::string& srcOrFile) {
 
@@ -112,7 +112,7 @@ namespace gloop {
         }
     }
 
-    shader_type shader::getType() const {
+    enums::shader_type shader::getType() const {
         return this->_type;
     }
 
@@ -129,26 +129,26 @@ namespace gloop {
     }    
 
     shader shader::makeVertexShader(const std::string& srcOrFileName) {
-        return readFromSrcOrFileName(shader_type::VERTEX, ".vert", srcOrFileName);
+        return readFromSrcOrFileName(enums::shader_type::VERTEX, ".vert", srcOrFileName);
     }
 
     shader shader::makeFragmentShader(const std::string& srcOrFileName) {
-        return readFromSrcOrFileName(shader_type::FRAGMENT, ".frag", srcOrFileName);
+        return readFromSrcOrFileName(enums::shader_type::FRAGMENT, ".frag", srcOrFileName);
     }
 
     shader shader::makeGeometryShader(const std::string& srcOrFileName) {
-        return readFromSrcOrFileName(shader_type::GEOMETRY, ".geom", srcOrFileName);
+        return readFromSrcOrFileName(enums::shader_type::GEOMETRY, ".geom", srcOrFileName);
     }
 
     shader shader::makeComputeShader(const std::string& srcOrFileName) {
-        return readFromSrcOrFileName(shader_type::COMPUTE, ".comp", srcOrFileName);
+        return readFromSrcOrFileName(enums::shader_type::COMPUTE, ".comp", srcOrFileName);
     }
 
     shader shader::makeTessellationControlShader(const std::string& srcOrFileName) {
-        return readFromSrcOrFileName(shader_type::TESSELLATION_CONTROL, ".tesc", srcOrFileName);
+        return readFromSrcOrFileName(enums::shader_type::TESSELLATION_CONTROL, ".tesc", srcOrFileName);
     }
 
     shader shader::makeTessellationEvaluationShader(const std::string& srcOrFileName) {
-        return readFromSrcOrFileName(shader_type::TESSELLATION_EVALUATION, ".tese", srcOrFileName);
+        return readFromSrcOrFileName(enums::shader_type::TESSELLATION_EVALUATION, ".tese", srcOrFileName);
     }
 }
