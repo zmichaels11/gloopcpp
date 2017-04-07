@@ -14,12 +14,17 @@ namespace gloop {
     namespace states {
 
         class clear {
+        public:
+            struct color {
+                gloop::float_t red;
+                gloop::float_t green;
+                gloop::float_t blue;
+                gloop::float_t alpha;
+            };
+            
         private:
             bitfields::clear_mask _mask;
-            gloop::float_t _red;
-            gloop::float_t _green;
-            gloop::float_t _blue;
-            gloop::float_t _alpha;
+            color _color;
             gloop::double_t _depth;
             gloop::int_t _stencil;
 
@@ -27,21 +32,23 @@ namespace gloop {
 
             clear() :
             _mask(bitfields::clear_mask::COLOR),
-            _red(0.0F), _green(0.0F), _blue(0.0F), _alpha(0.0F),
+            _color({0.0F, 0.0F, 0.0F, 0.0F}),
             _depth(1.0F), _stencil(0) {
             }
 
             clear(
                     const bitfields::clear_mask mask,
-                    const gloop::float_t red, const gloop::float_t green, const gloop::float_t blue, const gloop::float_t alpha,
+                    const color color,
                     const gloop::double_t depth, const gloop::int_t stencil) :
             _mask(mask),
-            _red(red), _green(green), _blue(blue), _alpha(alpha),
+            _color(color),
             _depth(depth), _stencil(stencil) {
             }
 
             clear withMask(const bitfields::clear_mask mask) const;
 
+            clear withColor(const color color) const;
+            
             clear withColor(
                 const gloop::float_t red,
                 const gloop::float_t green,
@@ -52,13 +59,7 @@ namespace gloop {
 
             clear withStencil(const gloop::int_t stencil) const;
 
-            gloop::float_t getClearRed() const;
-
-            gloop::float_t getClearGreen() const;
-
-            gloop::float_t getClearBlue() const;
-
-            gloop::float_t getClearAlpha() const;
+            const color& getClearColor() const;
 
             gloop::double_t getClearDepth() const;
 

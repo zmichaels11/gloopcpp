@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include <GL/glew.h>
+#include "glint.hpp"
 
 #include "states/blend.hpp"
 #include "states/clear.hpp"
@@ -14,13 +14,24 @@
 #include "states/viewport.hpp"
 
 namespace gloop {
-    struct context {        
+
+    struct context {
         states::blend currentBlend;
-        scissor currentScissor;
-        viewport currentViewport;
+        states::scissor currentScissor;
+        states::viewport currentViewport;
         states::clear currentClear;
-        
-        context(const GLsizei width = 0, const GLsizei height = 0)
-                : currentScissor(false, {0, 0}, {width, height}), currentViewport({0, 0}, {width, height}) {}
+
+        context(
+                const gloop::sizei_t width = 0,
+                const gloop::sizei_t height = 0) :
+        currentScissor(false,{0, 0}, 
+        {
+            width, height
+        }),
+        currentViewport({0, 0},
+        {
+width, height
+        }) {
+        }
     };
 }
