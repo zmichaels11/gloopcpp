@@ -21,12 +21,12 @@ namespace gloop {
     namespace bitfields {
 
         enum class buffer_immutable_storage_hint : gloop::bitfield_t {
-            READ = GL_MAP_READ_BIT,
-            WRITE = GL_MAP_WRITE_BIT,
-            DYNAMIC_STORAGE = GL_DYNAMIC_STORAGE_BIT,
-            CLIENT_STORAGE = GL_CLIENT_STORAGE_BIT,
-            MAP_COHERENT = GL_MAP_COHERENT_BIT,
-            MAP_PERSISTENT = GL_MAP_PERSISTENT_BIT
+            READ = 0x0001,
+            WRITE = 0x0002,
+            DYNAMIC_STORAGE = 0x0100,
+            CLIENT_STORAGE = 0x0200,
+            MAP_COHERENT = 0x00000080,
+            MAP_PERSISTENT = 0x00000040
         };
 
         buffer_immutable_storage_hint operator~(buffer_immutable_storage_hint lhs);

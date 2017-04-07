@@ -21,9 +21,9 @@ namespace gloop {
     namespace bitfields {
 
         enum class clear_mask : gloop::bitfield_t {
-            COLOR = GL_COLOR_BUFFER_BIT,
-            DEPTH = GL_DEPTH_BUFFER_BIT,
-            STENCIL = GL_STENCIL_BUFFER_BIT
+            COLOR = 0x00004000,
+            DEPTH = 0x00000100,
+            STENCIL = 0x00000400
         };
         
         clear_mask operator~(clear_mask);

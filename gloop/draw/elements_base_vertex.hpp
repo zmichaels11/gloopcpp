@@ -6,8 +6,7 @@
 
 #pragma once
 
-#include <GL/glew.h>
-
+#include "../glint.hpp"
 #include "call.hpp"
 #include "index_type.hpp"
 #include "mode.hpp"
@@ -16,10 +15,10 @@ namespace gloop {
     namespace draw {
         struct elements_base_vertex : draw_call {
             mode drawMode;
-            GLsizei count;
+            gloop::sizei_t count;
             index_type indexType;
-            const GLvoid * indices;
-            GLint baseVertex;            
+            const void * indices;
+            gloop::int_t baseVertex;            
 
             virtual void draw() const;
         };

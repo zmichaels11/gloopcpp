@@ -6,24 +6,24 @@
 
 #pragma once
 
-#include <GL/glew.h>
+#include "../glint.hpp"
 
 namespace gloop {
     namespace draw {
 
-        enum class mode : GLenum {
-            POINTS = GL_POINTS,
-            LINE_STRIP = GL_LINE_STRIP,
-            LINE_LOOP = GL_LINE_LOOP,
-            LINES = GL_LINES,
-            LINE_STRIP_ADJACENCY = GL_LINE_STRIP_ADJACENCY,
-            LINES_ADJACENCY = GL_LINES_ADJACENCY,
-            TRIANGLE_STRIP = GL_TRIANGLE_STRIP,
-            TRIANGLE_FAN = GL_TRIANGLE_FAN,
-            TRIANGLES = GL_TRIANGLES,
-            TRIANGLE_STRIP_ADJACENCY = GL_TRIANGLE_STRIP_ADJACENCY,
-            TRIANGLES_ADJACENCY = GL_TRIANGLES_ADJACENCY,
-            PATCHES = GL_PATCHES
+        enum class mode : gloop::enum_t {
+            POINTS = 0x0000,
+            LINE_STRIP = 0x0003,
+            LINE_LOOP = 0x0002,
+            LINES = 0x0001,
+            LINE_STRIP_ADJACENCY = 0x000B,
+            LINES_ADJACENCY = 0x000A,
+            TRIANGLE_STRIP = 0x0005,
+            TRIANGLE_FAN = 0x0006,
+            TRIANGLES = 0x0004,
+            TRIANGLE_STRIP_ADJACENCY = 0x000D,
+            TRIANGLES_ADJACENCY = 0x000C,
+            PATCHES = 0x000E
         };
     }
 }

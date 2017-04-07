@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include <GL/glew.h>
+#include "../glint.hpp"
 
 #include "call.hpp"
 #include "mode.hpp"
@@ -16,9 +16,9 @@ namespace gloop {
 
         struct arrays_instanced : draw_call {
             mode drawMode;
-            GLint first;
-            GLsizei count;
-            GLsizei primitiveCount;
+            gloop::int_t first;
+            gloop::sizei_t count;
+            gloop::sizei_t primitiveCount;
 
             virtual void draw() const;
         };

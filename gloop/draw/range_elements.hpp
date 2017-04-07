@@ -6,8 +6,7 @@
 
 #pragma once
 
-#include <GL/glew.h>
-
+#include "../glint.hpp"
 #include "call.hpp"
 #include "index_type.hpp"
 #include "mode.hpp"
@@ -17,21 +16,11 @@ namespace gloop {
 
         struct range_elements {
             mode drawMode;
-            GLuint start;
-            GLuint end;
-            GLsizei count;
+            gloop::uint_t start;
+            gloop::uint_t end;
+            gloop::sizei_t count;
             index_type indexType;
-            const GLvoid * indices;
-
-            range_elements(
-                    const mode mode = mode::POINTS,
-                    const GLuint start = 0,
-                    const GLuint end = 0,
-                    const GLsizei count = 0,
-                    const index_type type = index_type::UNSIGNED_INT,
-                    const GLvoid * indices = nullptr) :
-            drawMode(mode), start(start), end(end), indexType(type), indices(indices) {
-            }
+            const void * indices;            
 
             virtual void draw() const;
         };

@@ -13,22 +13,20 @@
 
 #pragma once
 
-#include <GL/glew.h>
-
 #include "../glint.hpp"
 
 namespace gloop {
     namespace bitfields {
 
         enum class buffer_access_hint : gloop::bitfield_t {
-            READ = GL_MAP_READ_BIT,
-            WRITE = GL_MAP_WRITE_BIT,
-            PERSISTENT = GL_MAP_PERSISTENT_BIT,
-            COHERENT = GL_MAP_COHERENT_BIT,
-            INVALIDATE_BUFFER = GL_MAP_INVALIDATE_BUFFER_BIT,
-            INVALIDATE_RANGE = GL_MAP_INVALIDATE_RANGE_BIT,
-            FLUSH_EXPLICIT = GL_MAP_FLUSH_EXPLICIT_BIT,
-            UNSYNCHRONIZED = GL_MAP_UNSYNCHRONIZED_BIT
+            READ = 0x0001,
+            WRITE = 0x0002,
+            PERSISTENT = 0x00000040,
+            COHERENT = 0x00000080,
+            INVALIDATE_BUFFER = 0x0008,
+            INVALIDATE_RANGE = 0x0004,
+            FLUSH_EXPLICIT = 0x0010,
+            UNSYNCHRONIZED = 0x0020
         };
 
         buffer_access_hint operator|(buffer_access_hint, buffer_access_hint);
