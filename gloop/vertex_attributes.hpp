@@ -10,6 +10,7 @@
 #include <map>
 
 #include "buffer.hpp"
+#include "enums/vertex_attribute_type.hpp"
 #include "glint.hpp"
 #include "vertex_attribute_binding.hpp"
 
@@ -27,7 +28,7 @@ namespace gloop {
 
         vertex_attribute_binding bindBuffer(
                 const buffer * bufId, 
-                const vertex_attribute_type, 
+                const enums::vertex_attribute_type, 
                 const GLsizei stride = 0, const void * ptr = nullptr, 
                 const GLuint divisor = 0) const;
 

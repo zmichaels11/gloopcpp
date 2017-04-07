@@ -13,9 +13,9 @@
 #include <GL/glew.h>
 
 #include "buffer.hpp"
+#include "enums/vertex_attribute_type.hpp"
 #include "vertex_array.hpp"
 #include "vertex_attribute_binding.hpp"
-#include "vertex_attribute_type.hpp"
 
 namespace gloop {
 
@@ -57,7 +57,7 @@ namespace gloop {
 
     vertex_attribute_binding vertex_attribute::bindBuffer(
             const buffer * buffer,
-            const vertex_attribute_type type,
+            const enums::vertex_attribute_type type,
             const GLsizei stride, const void* ptr,
             const GLuint divisor) const {
 

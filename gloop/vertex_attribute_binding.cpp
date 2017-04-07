@@ -8,8 +8,8 @@
 
 #include "buffer.hpp"
 
-#include "exception/invalid_enum_exception.hpp"
 #include "enums/buffer_target.hpp"
+#include "exception/invalid_enum_exception.hpp"
 
 namespace gloop {
     namespace {
@@ -19,31 +19,31 @@ namespace gloop {
             GLenum type;
         };
 
-        static SizedType vertexAttributeTypeSize(const gloop::vertex_attribute_type type) {
+        static SizedType vertexAttributeTypeSize(const gloop::enums::vertex_attribute_type type) {
             switch (type) {
-                case gloop::vertex_attribute_type::FLOAT:
+                case gloop::enums::vertex_attribute_type::FLOAT:
                     return { 1, GL_FLOAT};
-                case gloop::vertex_attribute_type::INT:
+                case gloop::enums::vertex_attribute_type::INT:
                     return { 1, GL_INT};
-                case gloop::vertex_attribute_type::UINT:
+                case gloop::enums::vertex_attribute_type::UINT:
                     return { 1, GL_UNSIGNED_INT};
-                case gloop::vertex_attribute_type::IVEC2:
+                case gloop::enums::vertex_attribute_type::IVEC2:
                     return { 2, GL_INT};
-                case gloop::vertex_attribute_type::IVEC3:
+                case gloop::enums::vertex_attribute_type::IVEC3:
                     return { 3, GL_INT};
-                case gloop::vertex_attribute_type::IVEC4:
+                case gloop::enums::vertex_attribute_type::IVEC4:
                     return { 4, GL_INT};
-                case gloop::vertex_attribute_type::UVEC2:
+                case gloop::enums::vertex_attribute_type::UVEC2:
                     return { 2, GL_UNSIGNED_INT};
-                case gloop::vertex_attribute_type::UVEC3:
+                case gloop::enums::vertex_attribute_type::UVEC3:
                     return { 3, GL_UNSIGNED_INT};
-                case gloop::vertex_attribute_type::UVEC4:
+                case gloop::enums::vertex_attribute_type::UVEC4:
                     return { 4, GL_UNSIGNED_INT};
-                case gloop::vertex_attribute_type::VEC2:
+                case gloop::enums::vertex_attribute_type::VEC2:
                     return { 2, GL_FLOAT};
-                case gloop::vertex_attribute_type::VEC3:
+                case gloop::enums::vertex_attribute_type::VEC3:
                     return { 3, GL_FLOAT};
-                case gloop::vertex_attribute_type::VEC4:
+                case gloop::enums::vertex_attribute_type::VEC4:
                     return { 4, GL_FLOAT};
                 default:
                     throw gloop::exception::invalid_enum_exception("Unsupported vertex attribute type!");
@@ -59,7 +59,7 @@ namespace gloop {
         return _buffer;
     }
     
-    vertex_attribute_type vertex_attribute_binding::getType() const {
+    enums::vertex_attribute_type vertex_attribute_binding::getType() const {
         return _type;
     }
     

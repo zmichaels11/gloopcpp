@@ -7,15 +7,15 @@
 #pragma once
 
 #include "buffer.hpp"
+#include "enums/vertex_attribute_type.hpp"
 #include "glint.hpp"
-#include "vertex_attribute_type.hpp"
 
 namespace gloop {
     class vertex_attribute_binding {
     private:
         const gloop::uint_t _id;
         const buffer * _buffer;
-        const vertex_attribute_type _type;
+        const enums::vertex_attribute_type _type;
         const gloop::sizei_t _stride;
         const void * _ptr;
         const gloop::uint_t _divisor;
@@ -24,7 +24,7 @@ namespace gloop {
 
         vertex_attribute_binding(
                 const gloop::uint_t id, const buffer * buffer,
-                const vertex_attribute_type type,
+                const enums::vertex_attribute_type type,
                 const gloop::sizei_t stride = 0, const void * ptr = nullptr,
                 const gloop::uint_t divisor = 0) :
 
@@ -38,7 +38,7 @@ namespace gloop {
         
         const buffer * getBuffer() const;
         
-        vertex_attribute_type getType() const;
+        enums::vertex_attribute_type getType() const;
         
         gloop::sizei_t getStride() const;
         

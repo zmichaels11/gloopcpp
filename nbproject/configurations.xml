@@ -25,6 +25,7 @@
           <itemPath>gloop/enums/blend_eq.hpp</itemPath>
           <itemPath>gloop/enums/blend_func.hpp</itemPath>
           <itemPath>gloop/enums/shader_type.hpp</itemPath>
+          <itemPath>gloop/enums/vertex_attribute_type.hpp</itemPath>
         </logicalFolder>
         <logicalFolder name="f4" displayName="error" projectFiles="true">
           <itemPath>gloop/error/base_error.hpp</itemPath>
@@ -85,7 +86,6 @@
         <itemPath>gloop/uniforms.hpp</itemPath>
         <itemPath>gloop/vertex_array.hpp</itemPath>
         <itemPath>gloop/vertex_attribute_binding.hpp</itemPath>
-        <itemPath>gloop/vertex_attribute_type.hpp</itemPath>
         <itemPath>gloop/vertex_attributes.hpp</itemPath>
       </logicalFolder>
     </logicalFolder>
@@ -236,6 +236,11 @@
       </item>
       <item path="gloop/enums/shader_type.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/enums/vertex_attribute_type.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="gloop/error/base_error.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/error/base_error.hpp" ex="false" tool="3" flavor2="0">
@@ -452,8 +457,6 @@
       <item path="gloop/vertex_attribute_binding.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/vertex_attribute_binding.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="gloop/vertex_attribute_type.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/vertex_attributes.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -558,6 +561,11 @@
       </item>
       <item path="gloop/enums/shader_type.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/enums/vertex_attribute_type.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="gloop/error/base_error.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/error/base_error.hpp" ex="false" tool="3" flavor2="0">
@@ -774,8 +782,6 @@
       <item path="gloop/vertex_attribute_binding.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/vertex_attribute_binding.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="gloop/vertex_attribute_type.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/vertex_attributes.cpp" ex="false" tool="1" flavor2="0">
       </item>

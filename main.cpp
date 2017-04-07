@@ -100,7 +100,7 @@ int main(int argc, char** argv) {
             gloop::tools::assertGLError("buffer allocate");                        
                 
             auto attrib = glCtx->attribs["LVertexPos2D"];
-            auto binding = attrib.bindBuffer(&(glCtx->vbo), gloop::vertex_attribute_type::VEC2);
+            auto binding = attrib.bindBuffer(&(glCtx->vbo), gloop::enums::vertex_attribute_type::VEC2);
             
             glCtx->vao.addBinding(binding);                        
             glCtx->vao.setIndexBuffer(&(glCtx->ibo));
