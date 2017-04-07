@@ -11,8 +11,7 @@
 #include <array>
 #include <cstddef>
 
-#include <GL/glew.h>
-
+#include "glint.hpp"
 #include "bitfields/buffer_access_hint.hpp"
 #include "bitfields/buffer_immutable_storage_hint.hpp"
 #include "enums/buffer_target.hpp"
@@ -22,8 +21,8 @@ namespace gloop {
 
     class buffer {
     private:
-        GLuint _id;
-        GLsizeiptr _size;
+        gloop::uint_t _id;
+        gloop::sizeiptr_t _size;
         enums::buffer_storage_hint _storageHint;
         bitfields::buffer_immutable_storage_hint _immutableStorageHints;
         bool _isImmutable;
@@ -51,16 +50,16 @@ namespace gloop {
         bool isImmutable() const;
 
         void allocate(
-                const GLsizeiptr size,
+                const gloop::sizeiptr_t size,
                 const enums::buffer_storage_hint storageHint = enums::buffer_storage_hint::STATIC_DRAW);
 
         void allocateImmutable(
-                const GLsizeiptr size,
+                const gloop::sizeiptr_t size,
                 const bitfields::buffer_immutable_storage_hint access = bitfields::buffer_immutable_storage_hint::READ | bitfields::buffer_immutable_storage_hint::WRITE);
 
         void allocateImmutable(
-                const GLsizeiptr size,
-                const GLvoid * data,
+                const gloop::sizeiptr_t size,
+                const void * data,
                 const bitfields::buffer_immutable_storage_hint access = bitfields::buffer_immutable_storage_hint::READ);
 
         template<class T>
@@ -80,8 +79,8 @@ namespace gloop {
         }
 
         void allocate(
-                const GLsizeiptr size,
-                const GLvoid * data,
+                const gloop::sizeiptr_t size,
+                const void * data,
                 const enums::buffer_storage_hint storageHint = enums::buffer_storage_hint::STATIC_DRAW);
 
         template<class T>
@@ -104,7 +103,7 @@ namespace gloop {
 
         bool isInitialized() const;
 
-        GLuint getId() const;
+        gloop::uint_t getId() const;
 
         operator GLuint();
 
@@ -112,28 +111,49 @@ namespace gloop {
 
         void free();
 
-        void setData(const GLintptr offset, const GLsizeiptr size, const GLvoid * data);
+        void setData(
+                const gloop::intptr_t offset,
+                const gloop::sizeiptr_t size,
+                const void * data);
 
         template<class T>
-        void setData(const GLintptr offset, const std::vector<T>& data) {
+        void setData(
+                const gloop::intptr_t offset,
+                const std::vector<T>& data) {
+
             setData(offset, sizeof (T) * data.size(), &data[0]);
         }
 
         template<class T, std::size_t N>
-        void setData(const GLintptr offset, const std::array<T, N>& data) {
+        void setData(
+                const gloop::intptr_t offset,
+                const std::array<T, N>& data) {
+
             setData(offset, sizeof (data), data.data());
         }
 
-        void getData(const GLintptr offset, const GLsizeiptr size, GLvoid * data) const;
+        void getData(
+                const gloop::intptr_t offset,
+                const gloop::sizeiptr_t size,
+                void * data) const;
 
-        void * map(GLintptr offset, GLsizeiptr length, bitfields::buffer_access_hint accessHints);
+        void * map(
+                const gloop::intptr_t offset,
+                const gloop::sizeiptr_t length,
+                const bitfields::buffer_access_hint accessHints);
 
         void unmap() const;
 
         void bind(const enums::buffer_target target) const;
 
-        void blockBind(const enums::buffer_target target, const GLuint binding, const GLintptr offset, GLintptr size) const;
+        void blockBind(
+                const enums::buffer_target target,
+                const gloop::uint_t binding,
+                const gloop::intptr_t offset,
+                const gloop::intptr_t size) const;
 
-        void blockBind(const enums::buffer_target target, const GLuint binding) const;
+        void blockBind(
+                const enums::buffer_target target,
+                const gloop::uint_t binding) const;
     };
 }
