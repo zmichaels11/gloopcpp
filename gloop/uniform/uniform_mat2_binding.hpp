@@ -16,7 +16,13 @@ namespace gloop {
             gloop::uint_t pId;
             gloop::uint_t loc;
             gloop::sizei_t count;
-            const gloop::float_t * values;            
+            
+            const struct mat2 {
+                struct vec2 {
+                    gloop::float_t x;
+                    gloop::float_t y;
+                } row[2];
+            } * values;
 
             virtual void apply() const;
         };

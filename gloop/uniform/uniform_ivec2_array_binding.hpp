@@ -17,7 +17,11 @@ namespace gloop {
             gloop::uint_t pId;
             gloop::uint_t loc;
             gloop::sizei_t count;
-            const gloop::int_t * values;            
+            
+            const struct ivec2 {
+                gloop::int_t x;
+                gloop::int_t y;
+            } * values;            
 
             virtual void apply() const;
         };

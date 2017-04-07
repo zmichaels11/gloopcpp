@@ -37,7 +37,7 @@ namespace gloop {
 
         void uniform_ivec2_array_binding::apply() const {
             glUseProgram(pId);
-            glUniform2iv(loc, count, values);
+            glUniform2iv(loc, count, reinterpret_cast<const GLint *> (values));
         }
 
         void uniform_ivec3_binding::apply() const {
@@ -47,7 +47,7 @@ namespace gloop {
 
         void uniform_ivec3_array_binding::apply() const {
             glUseProgram(pId);
-            glUniform3iv(loc, count, values);
+            glUniform3iv(loc, count, reinterpret_cast<const GLint *> (values));
         }
 
         void uniform_ivec4_binding::apply() const {
@@ -57,7 +57,7 @@ namespace gloop {
 
         void uniform_ivec4_array_binding::apply() const {
             glUseProgram(pId);
-            glUniform4iv(loc, count, values);
+            glUniform4iv(loc, count, reinterpret_cast<const GLint *> (values));
         }
 
         void uniform_vec2_binding::apply() const {
@@ -67,7 +67,7 @@ namespace gloop {
 
         void uniform_vec2_array_binding::apply() const {
             glUseProgram(pId);
-            glUniform2fv(loc, count, values);
+            glUniform2fv(loc, count, reinterpret_cast<const GLfloat *> (values));
         }
 
         void uniform_vec3_binding::apply() const {
@@ -77,7 +77,7 @@ namespace gloop {
 
         void uniform_vec3_array_binding::apply() const {
             glUseProgram(pId);
-            glUniform3fv(loc, count, values);
+            glUniform3fv(loc, count, reinterpret_cast<const GLfloat *> (values));
         }
 
         void uniform_vec4_binding::apply() const {
@@ -87,22 +87,22 @@ namespace gloop {
 
         void uniform_vec4_array_binding::apply() const {
             glUseProgram(pId);
-            glUniform4fv(loc, count, values);
+            glUniform4fv(loc, count, reinterpret_cast<const GLfloat *> (values));
         }
 
         void uniform_mat2_binding::apply() const {
             glUseProgram(pId);
-            glUniformMatrix2fv(loc, count, 0, values);
+            glUniformMatrix2fv(loc, count, 0, reinterpret_cast<const GLfloat *> (values));
         }
 
         void uniform_mat3_binding::apply() const {
             glUseProgram(pId);
-            glUniformMatrix3fv(loc, count, 0, values);
+            glUniformMatrix3fv(loc, count, 0, reinterpret_cast<const GLfloat *> (values));
         }
 
         void uniform_mat4_binding::apply() const {
             glUseProgram(pId);
-            glUniformMatrix4fv(loc, count, 0, values);
+            glUniformMatrix4fv(loc, count, 0, reinterpret_cast<const GLfloat *> (values));
         }
     }
 }

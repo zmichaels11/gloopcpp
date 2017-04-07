@@ -159,7 +159,7 @@ namespace gloop {
         out.pId = getId();
         out.loc = getUniform(uniformName);
         out.count = count;
-        out.values = values;
+        out.values = reinterpret_cast<decltype(out.values)> (values);
 
         return out;
     }
@@ -174,7 +174,7 @@ namespace gloop {
         out.pId = getId();
         out.loc = getUniform(uniformName);
         out.count = count;
-        out.values = values;
+        out.values = reinterpret_cast<decltype(out.values)> (values);
 
         return out;
     }
@@ -189,7 +189,7 @@ namespace gloop {
         out.pId = getId();
         out.loc = getUniform(uniformName);
         out.count = count;
-        out.values = values;
+        out.values = reinterpret_cast<decltype(out.values)> (values);
 
         return out;
     }
@@ -234,7 +234,7 @@ namespace gloop {
         out.pId = getId();
         out.loc = getUniform(uniformName);
         out.count = count;
-        out.values = values;
+        out.values = reinterpret_cast<decltype(out.values)> (values);
 
         return out;
     }
@@ -249,7 +249,7 @@ namespace gloop {
         out.pId = getId();
         out.loc = getUniform(uniformName);
         out.count = count;
-        out.values = values;
+        out.values = reinterpret_cast<decltype(out.values)> (values);
 
         return out;
     }
@@ -264,7 +264,7 @@ namespace gloop {
         out.pId = getId();
         out.loc = getUniform(uniformName);
         out.count = count;
-        out.values = values;
+        out.values = reinterpret_cast<decltype(out.values)> (values);
 
         return out;
     }
@@ -279,7 +279,7 @@ namespace gloop {
         out.pId = getId();
         out.loc = getUniform(uniformName);
         out.count = count;
-        out.values = values;
+        out.values = reinterpret_cast<decltype(out.values)> (values);
 
         return out;
     }
@@ -294,7 +294,7 @@ namespace gloop {
         out.pId = getId();
         out.loc = getUniform(uniformName);
         out.count = count;
-        out.values = values;
+        out.values = reinterpret_cast<decltype(out.values)> (values);
 
         return out;
     }
@@ -309,7 +309,7 @@ namespace gloop {
         out.pId = getId();
         out.loc = getUniform(uniformName);
         out.count = count;
-        out.values = values;
+        out.values = reinterpret_cast<decltype(out.values)> (values);
 
         return out;
     }
