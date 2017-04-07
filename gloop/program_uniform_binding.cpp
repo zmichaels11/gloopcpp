@@ -8,10 +8,9 @@
 
 #include <iostream>
 
-#include <GL/glew.h>
-
 #include "exception/invalid_uniform_name_exception.hpp"
 #include "glint.hpp"
+#include "wrapper/shaders_and_programs.hpp"
 
 namespace gloop {
 
@@ -21,7 +20,7 @@ namespace gloop {
         if (it != this->_uniforms.end()) {
             return it->second;
         } else {
-            auto loc = glGetUniformLocation(getId(), uniformName.c_str());
+            auto loc = gloop::wrapper::getUniformLocation(getId(), uniformName.c_str());
 
             if (loc == -1) {
                 throw gloop::exception::invalid_uniform_name_exception("Could not find uniform with name: " + uniformName);

@@ -69,5 +69,7 @@ namespace gloop {
         void deleteProgram(gloop::uint_t program);
         
         gloop::uint_t getUniformBlockIndex(gloop::uint_t program, const gloop::char_t * uniformName);
+        
+        gloop::int_t getUniformLocation(gloop::uint_t program, const gloop::char_t * uniformName);
     }
 }

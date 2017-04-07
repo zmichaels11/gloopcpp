@@ -59,6 +59,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/gloop/vertex_attributes.o \
 	${OBJECTDIR}/gloop/wrapper/glew_buffer_objects.o \
 	${OBJECTDIR}/gloop/wrapper/glew_drawing_commands.o \
+	${OBJECTDIR}/gloop/wrapper/glew_gl.o \
 	${OBJECTDIR}/gloop/wrapper/glew_shaders_and_programs.o \
 	${OBJECTDIR}/main.o
 
@@ -206,6 +207,11 @@ ${OBJECTDIR}/gloop/wrapper/glew_drawing_commands.o: gloop/wrapper/glew_drawing_c
 	${MKDIR} -p ${OBJECTDIR}/gloop/wrapper
 	${RM} "$@.d"
 	$(COMPILE.cc) -g `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/wrapper/glew_drawing_commands.o gloop/wrapper/glew_drawing_commands.cpp
+
+${OBJECTDIR}/gloop/wrapper/glew_gl.o: gloop/wrapper/glew_gl.cpp
+	${MKDIR} -p ${OBJECTDIR}/gloop/wrapper
+	${RM} "$@.d"
+	$(COMPILE.cc) -g `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/wrapper/glew_gl.o gloop/wrapper/glew_gl.cpp
 
 ${OBJECTDIR}/gloop/wrapper/glew_shaders_and_programs.o: gloop/wrapper/glew_shaders_and_programs.cpp
 	${MKDIR} -p ${OBJECTDIR}/gloop/wrapper

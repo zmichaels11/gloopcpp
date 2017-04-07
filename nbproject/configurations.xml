@@ -132,6 +132,7 @@
           <logicalFolder name="f1" displayName="glew" projectFiles="true">
             <itemPath>gloop/wrapper/glew_buffer_objects.cpp</itemPath>
             <itemPath>gloop/wrapper/glew_drawing_commands.cpp</itemPath>
+            <itemPath>gloop/wrapper/glew_gl.cpp</itemPath>
             <itemPath>gloop/wrapper/glew_shaders_and_programs.cpp</itemPath>
           </logicalFolder>
         </logicalFolder>
@@ -495,6 +496,8 @@
             tool="1"
             flavor2="0">
       </item>
+      <item path="gloop/wrapper/glew_gl.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="gloop/wrapper/glew_shaders_and_programs.cpp"
             ex="false"
             tool="1"
@@ -848,6 +851,8 @@
             ex="false"
             tool="1"
             flavor2="0">
+      </item>
+      <item path="gloop/wrapper/glew_gl.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/wrapper/glew_shaders_and_programs.cpp"
             ex="false"

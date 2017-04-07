@@ -95,6 +95,10 @@ namespace gloop {
         gloop::uint_t getUniformBlockIndex(gloop::uint_t program, const gloop::char_t * uniformName) {
             return glGetUniformBlockIndex(program, uniformName);
         }
+        
+        gloop::int_t getUniformLocation(gloop::uint_t program, const gloop::char_t * uniformName) {
+            return glGetUniformLocation(program, uniformName);
+        }
     }
 }
 

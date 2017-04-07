@@ -10,10 +10,9 @@
 #include <sstream>
 #include <string>
 
-#include <GL/glew.h>
-
 #include "exceptions.hpp"
 #include "errors.hpp"
+#include "wrapper/gl.hpp"
 
 namespace gloop {
     std::string tools::readAll(const std::istream& in) {
@@ -45,20 +44,20 @@ namespace gloop {
     }
 
     void tools::assertGLError() {
-        auto err = glGetError();
+        auto err = gloop::wrapper::getError();
 
         switch (err) {
-            case GL_INVALID_ENUM:
+            case gloop::wrapper::INVALID_ENUM:
                 throw gloop::exception::invalid_enum_exception();
-            case GL_INVALID_VALUE:
+            case gloop::wrapper::INVALID_VALUE:
                 throw gloop::exception::invalid_value_exception();
-            case GL_INVALID_OPERATION:
+            case gloop::wrapper::INVALID_OPERATION:
                 throw gloop::exception::invalid_operation_exception();
-            case GL_INVALID_FRAMEBUFFER_OPERATION:
+            case gloop::wrapper::INVALID_FRAMEBUFFER_OPERATION:
                 throw gloop::exception::invalid_framebuffer_operation_exception();
-            case GL_OUT_OF_MEMORY:
+            case gloop::wrapper::OUT_OF_MEMORY:
                 throw gloop::error::out_of_memory_error();
-            case GL_NO_ERROR:
+            case gloop::wrapper::NO_ERROR:
                 // nothing to report
                 break;
             default:
@@ -67,21 +66,21 @@ namespace gloop {
     }
 
     void tools::assertGLError(std::string customMsg) {
-        auto err = glGetError();
+        auto err = gloop::wrapper::getError();
 
         switch (err) {
-            case GL_NO_ERROR:
+            case gloop::wrapper::NO_ERROR:
                 // nothing to report
                 break;
-            case GL_INVALID_ENUM:
+            case gloop::wrapper::INVALID_ENUM:
                 throw gloop::exception::invalid_enum_exception(customMsg);
-            case GL_INVALID_VALUE:
+            case gloop::wrapper::INVALID_VALUE:
                 throw gloop::exception::invalid_value_exception(customMsg);
-            case GL_INVALID_OPERATION:
+            case gloop::wrapper::INVALID_OPERATION:
                 throw gloop::exception::invalid_operation_exception(customMsg);
-            case GL_INVALID_FRAMEBUFFER_OPERATION:
+            case gloop::wrapper::INVALID_FRAMEBUFFER_OPERATION:
                 throw gloop::exception::invalid_framebuffer_operation_exception(customMsg);
-            case GL_OUT_OF_MEMORY:
+            case gloop::wrapper::OUT_OF_MEMORY:
                 throw gloop::error::out_of_memory_error(customMsg);
             default:
                 throw gloop::exception::base_exception(customMsg);
