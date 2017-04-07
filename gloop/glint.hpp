@@ -40,6 +40,7 @@ namespace gloop {
 #endif
     
     typedef float float_t;
+    typedef double double_t;
     typedef int8_t byte_t;
     typedef float_t clampf_t;
     typedef int32_t fixed_t;

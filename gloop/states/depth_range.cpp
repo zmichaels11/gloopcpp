@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-#include "../depth_range.hpp"
+#include "depth_range.hpp"
 
 #include <GL/glew.h>
 

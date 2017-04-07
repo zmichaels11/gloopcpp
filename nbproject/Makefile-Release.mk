@@ -38,6 +38,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/gloop/application.o \
 	${OBJECTDIR}/gloop/bitfields/buffer_access_hint.o \
 	${OBJECTDIR}/gloop/bitfields/buffer_immutable_storage_hint.o \
+	${OBJECTDIR}/gloop/bitfields/clear_mask.o \
 	${OBJECTDIR}/gloop/buffer.o \
 	${OBJECTDIR}/gloop/draw_calls.o \
 	${OBJECTDIR}/gloop/error/base_error.o \
@@ -45,9 +46,11 @@ OBJECTFILES= \
 	${OBJECTDIR}/gloop/program.o \
 	${OBJECTDIR}/gloop/program_uniform_binding.o \
 	${OBJECTDIR}/gloop/shader.o \
-	${OBJECTDIR}/gloop/state_objects/depth_range.o \
-	${OBJECTDIR}/gloop/state_objects/scissor.o \
-	${OBJECTDIR}/gloop/state_objects/viewport.o \
+	${OBJECTDIR}/gloop/states/blend.o \
+	${OBJECTDIR}/gloop/states/clear.o \
+	${OBJECTDIR}/gloop/states/depth_range.o \
+	${OBJECTDIR}/gloop/states/scissor.o \
+	${OBJECTDIR}/gloop/states/viewport.o \
 	${OBJECTDIR}/gloop/tools.o \
 	${OBJECTDIR}/gloop/uniform/uniform_bindings.o \
 	${OBJECTDIR}/gloop/uniform/uniform_block_binding.o \
@@ -96,6 +99,11 @@ ${OBJECTDIR}/gloop/bitfields/buffer_immutable_storage_hint.o: gloop/bitfields/bu
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/bitfields/buffer_immutable_storage_hint.o gloop/bitfields/buffer_immutable_storage_hint.cpp
 
+${OBJECTDIR}/gloop/bitfields/clear_mask.o: gloop/bitfields/clear_mask.cpp
+	${MKDIR} -p ${OBJECTDIR}/gloop/bitfields
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/bitfields/clear_mask.o gloop/bitfields/clear_mask.cpp
+
 ${OBJECTDIR}/gloop/buffer.o: gloop/buffer.cpp
 	${MKDIR} -p ${OBJECTDIR}/gloop
 	${RM} "$@.d"
@@ -131,20 +139,30 @@ ${OBJECTDIR}/gloop/shader.o: gloop/shader.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/shader.o gloop/shader.cpp
 
-${OBJECTDIR}/gloop/state_objects/depth_range.o: gloop/state_objects/depth_range.cpp
-	${MKDIR} -p ${OBJECTDIR}/gloop/state_objects
+${OBJECTDIR}/gloop/states/blend.o: gloop/states/blend.cpp
+	${MKDIR} -p ${OBJECTDIR}/gloop/states
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/state_objects/depth_range.o gloop/state_objects/depth_range.cpp
+	$(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/states/blend.o gloop/states/blend.cpp
 
-${OBJECTDIR}/gloop/state_objects/scissor.o: gloop/state_objects/scissor.cpp
-	${MKDIR} -p ${OBJECTDIR}/gloop/state_objects
+${OBJECTDIR}/gloop/states/clear.o: gloop/states/clear.cpp
+	${MKDIR} -p ${OBJECTDIR}/gloop/states
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/state_objects/scissor.o gloop/state_objects/scissor.cpp
+	$(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/states/clear.o gloop/states/clear.cpp
 
-${OBJECTDIR}/gloop/state_objects/viewport.o: gloop/state_objects/viewport.cpp
-	${MKDIR} -p ${OBJECTDIR}/gloop/state_objects
+${OBJECTDIR}/gloop/states/depth_range.o: gloop/states/depth_range.cpp
+	${MKDIR} -p ${OBJECTDIR}/gloop/states
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/state_objects/viewport.o gloop/state_objects/viewport.cpp
+	$(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/states/depth_range.o gloop/states/depth_range.cpp
+
+${OBJECTDIR}/gloop/states/scissor.o: gloop/states/scissor.cpp
+	${MKDIR} -p ${OBJECTDIR}/gloop/states
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/states/scissor.o gloop/states/scissor.cpp
+
+${OBJECTDIR}/gloop/states/viewport.o: gloop/states/viewport.cpp
+	${MKDIR} -p ${OBJECTDIR}/gloop/states
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/states/viewport.o gloop/states/viewport.cpp
 
 ${OBJECTDIR}/gloop/tools.o: gloop/tools.cpp
 	${MKDIR} -p ${OBJECTDIR}/gloop

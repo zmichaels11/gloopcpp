@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-#include "../scissor.hpp"
+#include "scissor.hpp"
 
 #include <GL/glew.h>
 

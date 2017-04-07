@@ -8,6 +8,7 @@
         <logicalFolder name="f6" displayName="bitfields" projectFiles="true">
           <itemPath>gloop/bitfields/buffer_access_hint.hpp</itemPath>
           <itemPath>gloop/bitfields/buffer_immutable_storage_hint.hpp</itemPath>
+          <itemPath>gloop/bitfields/clear_mask.hpp</itemPath>
         </logicalFolder>
         <logicalFolder name="f2" displayName="draw" projectFiles="true">
           <itemPath>gloop/draw/arrays.hpp</itemPath>
@@ -20,9 +21,9 @@
           <itemPath>gloop/draw/mode.hpp</itemPath>
           <itemPath>gloop/draw/range_elements.hpp</itemPath>
         </logicalFolder>
-        <logicalFolder name="f5" displayName="enum" projectFiles="true">
-          <itemPath>gloop/enum/buffer_storage_hint.hpp</itemPath>
-          <itemPath>gloop/enum/buffer_target.hpp</itemPath>
+        <logicalFolder name="f5" displayName="enums" projectFiles="true">
+          <itemPath>gloop/enums/blend_eq.hpp</itemPath>
+          <itemPath>gloop/enums/blend_func.hpp</itemPath>
         </logicalFolder>
         <logicalFolder name="f4" displayName="error" projectFiles="true">
           <itemPath>gloop/error/base_error.hpp</itemPath>
@@ -39,6 +40,13 @@
           <itemPath>gloop/exception/shader_compile_exception.hpp</itemPath>
           <itemPath>gloop/exception/uniform_name_not_found_exception.hpp</itemPath>
           <itemPath>gloop/exception/unsupported_shader_type_exception.hpp</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f7" displayName="states" projectFiles="true">
+          <itemPath>gloop/states/blend.hpp</itemPath>
+          <itemPath>gloop/states/clear.hpp</itemPath>
+          <itemPath>gloop/states/depth_range.hpp</itemPath>
+          <itemPath>gloop/states/scissor.hpp</itemPath>
+          <itemPath>gloop/states/viewport.hpp</itemPath>
         </logicalFolder>
         <logicalFolder name="f1" displayName="uniform" projectFiles="true">
           <itemPath>gloop/uniform/uniform_binding.hpp</itemPath>
@@ -64,17 +72,13 @@
           <itemPath>gloop/uniform/uniform_vec4_binding.hpp</itemPath>
         </logicalFolder>
         <itemPath>gloop/application.hpp</itemPath>
-        <itemPath>gloop/blend.hpp</itemPath>
         <itemPath>gloop/buffer.hpp</itemPath>
-        <itemPath>gloop/clear.hpp</itemPath>
         <itemPath>gloop/context.hpp</itemPath>
-        <itemPath>gloop/depth_range.hpp</itemPath>
         <itemPath>gloop/draw_calls.hpp</itemPath>
         <itemPath>gloop/errors.hpp</itemPath>
         <itemPath>gloop/exceptions.hpp</itemPath>
         <itemPath>gloop/glint.hpp</itemPath>
         <itemPath>gloop/program.hpp</itemPath>
-        <itemPath>gloop/scissor.hpp</itemPath>
         <itemPath>gloop/shader.hpp</itemPath>
         <itemPath>gloop/shader_type.hpp</itemPath>
         <itemPath>gloop/sized_type.hpp</itemPath>
@@ -87,7 +91,6 @@
         <itemPath>gloop/vertex_attribute_binding.hpp</itemPath>
         <itemPath>gloop/vertex_attribute_type.hpp</itemPath>
         <itemPath>gloop/vertex_attributes.hpp</itemPath>
-        <itemPath>gloop/viewport.hpp</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -101,6 +104,7 @@
         <logicalFolder name="f7" displayName="bitfields" projectFiles="true">
           <itemPath>gloop/bitfields/buffer_access_hint.cpp</itemPath>
           <itemPath>gloop/bitfields/buffer_immutable_storage_hint.cpp</itemPath>
+          <itemPath>gloop/bitfields/clear_mask.cpp</itemPath>
         </logicalFolder>
         <logicalFolder name="f3" displayName="draw" projectFiles="true">
         </logicalFolder>
@@ -110,10 +114,12 @@
         <logicalFolder name="f5" displayName="exception" projectFiles="true">
           <itemPath>gloop/exception/base_exception.cpp</itemPath>
         </logicalFolder>
-        <logicalFolder name="f1" displayName="state_objects" projectFiles="true">
-          <itemPath>gloop/state_objects/depth_range.cpp</itemPath>
-          <itemPath>gloop/state_objects/scissor.cpp</itemPath>
-          <itemPath>gloop/state_objects/viewport.cpp</itemPath>
+        <logicalFolder name="f1" displayName="states" projectFiles="true">
+          <itemPath>gloop/states/blend.cpp</itemPath>
+          <itemPath>gloop/states/clear.cpp</itemPath>
+          <itemPath>gloop/states/depth_range.cpp</itemPath>
+          <itemPath>gloop/states/scissor.cpp</itemPath>
+          <itemPath>gloop/states/viewport.cpp</itemPath>
         </logicalFolder>
         <logicalFolder name="f2" displayName="uniform" projectFiles="true">
           <itemPath>gloop/uniform/uniform_bindings.cpp</itemPath>
@@ -193,17 +199,15 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="gloop/blend.hpp" ex="false" tool="3" flavor2="0">
+      <item path="gloop/bitfields/clear_mask.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="gloop/bitfields/clear_mask.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/buffer.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/buffer.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="gloop/clear.hpp" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="gloop/context.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="gloop/depth_range.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/draw/arrays.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -230,9 +234,9 @@
       </item>
       <item path="gloop/draw_calls.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="gloop/enum/buffer_storage_hint.hpp" ex="false" tool="3" flavor2="0">
+      <item path="gloop/enums/blend_eq.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="gloop/enum/buffer_target.hpp" ex="false" tool="3" flavor2="0">
+      <item path="gloop/enums/blend_func.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/error/base_error.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -304,8 +308,6 @@
       </item>
       <item path="gloop/program_uniform_binding.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="gloop/scissor.hpp" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="gloop/shader.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/shader.hpp" ex="false" tool="3" flavor2="0">
@@ -314,14 +316,25 @@
       </item>
       <item path="gloop/sized_type.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="gloop/state_objects/depth_range.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
+      <item path="gloop/states/blend.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="gloop/state_objects/scissor.cpp" ex="false" tool="1" flavor2="0">
+      <item path="gloop/states/blend.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="gloop/state_objects/viewport.cpp" ex="false" tool="1" flavor2="0">
+      <item path="gloop/states/clear.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="gloop/states/clear.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/states/depth_range.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="gloop/states/depth_range.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/states/scissor.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="gloop/states/scissor.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/states/viewport.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="gloop/states/viewport.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/texture2D.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -457,8 +470,6 @@
       <item path="gloop/vertex_attributes.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/vertex_attributes.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="gloop/viewport.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -518,17 +529,15 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="gloop/blend.hpp" ex="false" tool="3" flavor2="0">
+      <item path="gloop/bitfields/clear_mask.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="gloop/bitfields/clear_mask.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/buffer.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/buffer.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="gloop/clear.hpp" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="gloop/context.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="gloop/depth_range.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/draw/arrays.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -555,9 +564,9 @@
       </item>
       <item path="gloop/draw_calls.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="gloop/enum/buffer_storage_hint.hpp" ex="false" tool="3" flavor2="0">
+      <item path="gloop/enums/blend_eq.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="gloop/enum/buffer_target.hpp" ex="false" tool="3" flavor2="0">
+      <item path="gloop/enums/blend_func.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/error/base_error.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -629,8 +638,6 @@
       </item>
       <item path="gloop/program_uniform_binding.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="gloop/scissor.hpp" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="gloop/shader.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/shader.hpp" ex="false" tool="3" flavor2="0">
@@ -639,14 +646,25 @@
       </item>
       <item path="gloop/sized_type.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="gloop/state_objects/depth_range.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
+      <item path="gloop/states/blend.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="gloop/state_objects/scissor.cpp" ex="false" tool="1" flavor2="0">
+      <item path="gloop/states/blend.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="gloop/state_objects/viewport.cpp" ex="false" tool="1" flavor2="0">
+      <item path="gloop/states/clear.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="gloop/states/clear.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/states/depth_range.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="gloop/states/depth_range.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/states/scissor.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="gloop/states/scissor.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/states/viewport.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="gloop/states/viewport.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/texture2D.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -782,8 +800,6 @@
       <item path="gloop/vertex_attributes.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/vertex_attributes.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="gloop/viewport.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>

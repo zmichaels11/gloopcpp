@@ -4,11 +4,11 @@
  * and open the template in the editor.
  */
 
-#include "../viewport.hpp"
+#include "viewport.hpp"
 
 #include <GL/glew.h>
 
-#include "../depth_range.hpp"
+#include "depth_range.hpp"
 
 namespace gloop {
     void viewport::apply() const {

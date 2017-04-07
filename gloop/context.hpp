@@ -8,17 +8,17 @@
 
 #include <GL/glew.h>
 
-#include "blend.hpp"
-#include "clear.hpp"
-#include "scissor.hpp"
-#include "viewport.hpp"
+#include "states/blend.hpp"
+#include "states/clear.hpp"
+#include "states/scissor.hpp"
+#include "states/viewport.hpp"
 
 namespace gloop {
     struct context {        
-        blend currentBlend;
+        states::blend currentBlend;
         scissor currentScissor;
         viewport currentViewport;
-        clear currentClear;
+        states::clear currentClear;
         
         context(const GLsizei width = 0, const GLsizei height = 0)
                 : currentScissor(false, {0, 0}, {width, height}), currentViewport({0, 0}, {width, height}) {}
