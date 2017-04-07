@@ -78,6 +78,7 @@
           <itemPath>gloop/wrapper/drawing_commands.hpp</itemPath>
           <itemPath>gloop/wrapper/gl.hpp</itemPath>
           <itemPath>gloop/wrapper/shaders_and_programs.hpp</itemPath>
+          <itemPath>gloop/wrapper/vertex_arrays.hpp</itemPath>
         </logicalFolder>
         <itemPath>gloop/application.hpp</itemPath>
         <itemPath>gloop/buffer.hpp</itemPath>
@@ -134,6 +135,7 @@
             <itemPath>gloop/wrapper/glew_drawing_commands.cpp</itemPath>
             <itemPath>gloop/wrapper/glew_gl.cpp</itemPath>
             <itemPath>gloop/wrapper/glew_shaders_and_programs.cpp</itemPath>
+            <itemPath>gloop/wrapper/glew_vertex_arrays.cpp</itemPath>
           </logicalFolder>
         </logicalFolder>
         <itemPath>gloop/application.cpp</itemPath>
@@ -503,10 +505,17 @@
             tool="1"
             flavor2="0">
       </item>
+      <item path="gloop/wrapper/glew_vertex_arrays.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
       <item path="gloop/wrapper/shaders_and_programs.hpp"
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="gloop/wrapper/vertex_arrays.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -859,10 +868,17 @@
             tool="1"
             flavor2="0">
       </item>
+      <item path="gloop/wrapper/glew_vertex_arrays.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
       <item path="gloop/wrapper/shaders_and_programs.hpp"
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="gloop/wrapper/vertex_arrays.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>

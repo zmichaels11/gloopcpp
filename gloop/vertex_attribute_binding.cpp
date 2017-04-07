@@ -10,48 +10,51 @@
 
 #include "enums/buffer_target.hpp"
 #include "exception/invalid_enum_exception.hpp"
+#include "glint.hpp"
+#include "wrapper/gl.hpp"
+#include "wrapper/vertex_arrays.hpp"
 
 namespace gloop {
     namespace {
 
         struct SizedType {
-            GLint size;
-            GLenum type;
+            gloop::int_t size;
+            gloop::enum_t type;
         };
 
         static SizedType vertexAttributeTypeSize(const gloop::enums::vertex_attribute_type type) {
             switch (type) {
                 case gloop::enums::vertex_attribute_type::FLOAT:
-                    return { 1, GL_FLOAT};
+                    return { 1, gloop::wrapper::FLOAT};
                 case gloop::enums::vertex_attribute_type::INT:
-                    return { 1, GL_INT};
+                    return { 1, gloop::wrapper::INT};
                 case gloop::enums::vertex_attribute_type::UINT:
-                    return { 1, GL_UNSIGNED_INT};
+                    return { 1, gloop::wrapper::UNSIGNED_INT};
                 case gloop::enums::vertex_attribute_type::IVEC2:
-                    return { 2, GL_INT};
+                    return { 2, gloop::wrapper::INT};
                 case gloop::enums::vertex_attribute_type::IVEC3:
-                    return { 3, GL_INT};
+                    return { 3, gloop::wrapper::INT};
                 case gloop::enums::vertex_attribute_type::IVEC4:
-                    return { 4, GL_INT};
+                    return { 4, gloop::wrapper::INT};
                 case gloop::enums::vertex_attribute_type::UVEC2:
-                    return { 2, GL_UNSIGNED_INT};
+                    return { 2, gloop::wrapper::UNSIGNED_INT};
                 case gloop::enums::vertex_attribute_type::UVEC3:
-                    return { 3, GL_UNSIGNED_INT};
+                    return { 3, gloop::wrapper::UNSIGNED_INT};
                 case gloop::enums::vertex_attribute_type::UVEC4:
-                    return { 4, GL_UNSIGNED_INT};
+                    return { 4, gloop::wrapper::UNSIGNED_INT};
                 case gloop::enums::vertex_attribute_type::VEC2:
-                    return { 2, GL_FLOAT};
+                    return { 2, gloop::wrapper::FLOAT};
                 case gloop::enums::vertex_attribute_type::VEC3:
-                    return { 3, GL_FLOAT};
+                    return { 3, gloop::wrapper::FLOAT};
                 case gloop::enums::vertex_attribute_type::VEC4:
-                    return { 4, GL_FLOAT};
+                    return { 4, gloop::wrapper::FLOAT};
                 default:
                     throw gloop::exception::invalid_enum_exception("Unsupported vertex attribute type!");
             }
         }
     }
     
-    GLuint vertex_attribute_binding::getAttributeId() const {
+    gloop::uint_t vertex_attribute_binding::getAttributeId() const {
         return _id;
     }
     
@@ -63,7 +66,7 @@ namespace gloop {
         return _type;
     }
     
-    GLsizei vertex_attribute_binding::getStride() const {
+    gloop::sizei_t vertex_attribute_binding::getStride() const {
         return _stride;
     }
     
@@ -71,7 +74,7 @@ namespace gloop {
         return _ptr;
     }
     
-    GLuint vertex_attribute_binding::getDivisor() const {
+    gloop::uint_t vertex_attribute_binding::getDivisor() const {
         return _divisor;
     }
     
@@ -81,13 +84,13 @@ namespace gloop {
         _buffer->bind(gloop::enums::buffer_target::ARRAY);
         
         if (_divisor) {
-            glVertexAttribDivisor(_id, _divisor);
+            gloop::wrapper::vertexAttribDivisor(_id, _divisor);
         }
         
-        if (sizedType.type == GL_FLOAT) {
-            glVertexAttribPointer(_id, sizedType.size, sizedType.type, GL_FALSE, _stride, _ptr);
+        if (sizedType.type == gloop::wrapper::FLOAT) {
+            gloop::wrapper::vertexAttribPointer(_id, sizedType.size, sizedType.type, gloop::wrapper::FALSE, _stride, _ptr);
         } else {
-            glVertexAttribIPointer(_id, sizedType.size, sizedType.type, _stride, _ptr);
+            gloop::wrapper::vertexAttribIPointer(_id, sizedType.size, sizedType.type, _stride, _ptr);
         }
     }
 }

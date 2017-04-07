@@ -10,20 +10,20 @@
 #include <string>
 #include <map>
 
-#include <GL/glew.h>
-
 #include "buffer.hpp"
 #include "enums/vertex_attribute_type.hpp"
 #include "vertex_array.hpp"
 #include "vertex_attribute_binding.hpp"
+#include "wrapper/shaders_and_programs.hpp"
+#include "wrapper/vertex_arrays.hpp"
 
 namespace gloop {
 
-    void vertex_attributes::setLocation(std::string name, GLint index) {
+    void vertex_attributes::setLocation(std::string name, gloop::int_t index) {
         this->_nameMap[name] = index;
     }
 
-    GLint vertex_attributes::getLocation(const std::string& name) const {
+    gloop::int_t vertex_attributes::getLocation(const std::string& name) const {
         const auto it = this->_nameMap.find(name);
 
         if (it == this->_nameMap.end()) {
@@ -39,27 +39,27 @@ namespace gloop {
 
     void vertex_attributes::bindAttributes(GLuint program) const {
         for (auto it = this->_nameMap.begin(); it != this->_nameMap.end(); it++) {
-            glBindAttribLocation(program, it->second, it->first.c_str());
+            gloop::wrapper::bindAttribLocation(program, it->second, it->first.c_str());
         }
     }
 
     void vertex_attributes::enableAttributes() const {
         for (auto it = this->_nameMap.begin(); it != this->_nameMap.end(); it++) {
-            glEnableVertexAttribArray(it->second);
+            gloop::wrapper::enableVertexAttribArray(it->second);
         }
     }
 
     void vertex_attributes::disableAttributes() const {
         for (auto it = this->_nameMap.begin(); it != this->_nameMap.end(); it++) {
-            glDisableVertexAttribArray(it->second);
+            gloop::wrapper::disableVertexAttribArray(it->second);
         }
     }
 
     vertex_attribute_binding vertex_attribute::bindBuffer(
             const buffer * buffer,
             const enums::vertex_attribute_type type,
-            const GLsizei stride, const void* ptr,
-            const GLuint divisor) const {
+            const gloop::sizei_t stride, const void* ptr,
+            const gloop::uint_t divisor) const {
 
         return vertex_attribute_binding(this->_id, buffer, type, stride, ptr, divisor);
     }
@@ -69,11 +69,11 @@ namespace gloop {
     }
 
     void vertex_attribute::disable() const {
-        glDisableVertexAttribArray(this->_id);
+        gloop::wrapper::disableVertexAttribArray(_id);
     }
 
     void vertex_attribute::enable() const {
-        glEnableVertexAttribArray(this->_id);
+        gloop::wrapper::enableVertexAttribArray(_id);
     }
 
     gloop::uint_t vertex_attribute::getId() const {

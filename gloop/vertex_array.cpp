@@ -9,10 +9,9 @@
 #include <memory>
 #include <vector>
 
-#include <GL/glew.h>
-
 #include "enums/buffer_target.hpp"
 #include "tools.hpp"
+#include "wrapper/vertex_arrays.hpp"
 
 namespace gloop {
 
@@ -26,10 +25,10 @@ namespace gloop {
             return;
         }
 
-        GLuint glId = 0;
+        gloop::uint_t glId = 0;
 
-        glGenVertexArrays(1, &glId);
-        glBindVertexArray(glId);
+        gloop::wrapper::createVertexArrays(1, &glId);
+        gloop::wrapper::bindVertexArray(glId);
 
         if (this->_indexBuffer) {
             this->_indexBuffer->bind(gloop::enums::buffer_target::ELEMENT_ARRAY);
@@ -38,11 +37,11 @@ namespace gloop {
         for (auto it = this->_bindings.begin(); it != this->_bindings.end(); it++) {
             vertex_attribute_binding binding = *it;
 
-            glEnableVertexAttribArray(binding.getAttributeId());
+            gloop::wrapper::enableVertexAttribArray(binding.getAttributeId());
             binding();
         }
 
-        glBindVertexArray(0);
+        gloop::wrapper::bindVertexArray(0);
 
         this->_id = glId;
     }
@@ -80,14 +79,14 @@ namespace gloop {
 
     void vertex_array::free() {
         if (this->isInitialized()) {
-            glDeleteVertexArrays(1, &_id);
+            gloop::wrapper::deleteVertexArrays(1, &_id);
             this->_id = 0;
         }
     }
 
     void vertex_array::bind() {
         // this will bind vertex array 0 if the vertex array has no attached buffers
-        glBindVertexArray(this->getId());
+        gloop::wrapper::bindVertexArray(getId());
     }
 
     bool vertex_array::isInitialized() const {

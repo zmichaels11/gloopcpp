@@ -17,7 +17,7 @@
 
 namespace gloop {
     namespace wrapper {
-        constexpr gloop::enum_t INFO_LOG_LENGTH = 0x8B84;        
+        constexpr gloop::enum_t INFO_LOG_LENGTH = 0x8B84;
         constexpr gloop::enum_t COMPILE_STATUS = 0x8B81;
         constexpr gloop::enum_t LINK_STATUS = 0x8B82;
         constexpr gloop::enum_t INVALID_INDEX = 0xFFFFFFFF;
@@ -55,21 +55,35 @@ namespace gloop {
                 gloop::sizei_t bufSize,
                 gloop::sizei_t * length,
                 gloop::char_t * infoLog);
-     
+
         void useProgram(gloop::uint_t program);
-        
+
         gloop::uint_t createProgram();
-        
+
         void attachShader(gloop::uint_t program, gloop::uint_t shader);
-        
+
         void linkProgram(gloop::uint_t program);
-        
-        void detachShader(gloop::uint_t program, gloop::uint_t shader);         
-        
+
+        void detachShader(gloop::uint_t program, gloop::uint_t shader);
+
         void deleteProgram(gloop::uint_t program);
-        
-        gloop::uint_t getUniformBlockIndex(gloop::uint_t program, const gloop::char_t * uniformName);
-        
-        gloop::int_t getUniformLocation(gloop::uint_t program, const gloop::char_t * uniformName);
+
+        gloop::uint_t getUniformBlockIndex(
+                gloop::uint_t program,
+                const gloop::char_t * uniformName);
+
+        gloop::int_t getUniformLocation(
+                gloop::uint_t program,
+                const gloop::char_t * uniformName);
+
+        void uniformBlockBinding(
+                gloop::uint_t program,
+                gloop::uint_t uniformBlockIndex,
+                gloop::uint_t uniformBlockBinding);
+
+        void bindAttribLocation(
+                gloop::uint_t program,
+                gloop::uint_t index,
+                const gloop::char_t * name);
     }
 }

@@ -13,11 +13,12 @@
 
 namespace gloop {
     namespace wrapper {
+
         void getShaderiv(
                 gloop::uint_t shader,
                 gloop::enum_t pname,
                 gloop::int_t * param) {
-            
+
             glGetShaderiv(shader, pname, param);
         }
 
@@ -26,7 +27,7 @@ namespace gloop {
                 gloop::sizei_t bufSize,
                 gloop::sizei_t * length,
                 gloop::char_t * infoLog) {
-            
+
             glGetShaderInfoLog(shader, bufSize, length, infoLog);
         }
 
@@ -39,23 +40,23 @@ namespace gloop {
                 gloop::sizei_t count,
                 const gloop::char_t * const * src,
                 const gloop::int_t * length) {
-            
+
             glShaderSource(shader, count, src, length);
         }
-        
+
         void compileShader(gloop::uint_t shader) {
             glCompileShader(shader);
         }
-        
+
         void deleteShader(gloop::uint_t shader) {
             glDeleteShader(shader);
         }
-        
+
         void getProgramiv(
                 gloop::uint_t program,
                 gloop::enum_t pname,
                 gloop::int_t * param) {
-            
+
             glGetProgramiv(program, pname, param);
         }
 
@@ -64,40 +65,56 @@ namespace gloop {
                 gloop::sizei_t bufSize,
                 gloop::sizei_t * length,
                 gloop::char_t * infoLog) {
-            
+
             glGetProgramInfoLog(program, bufSize, length, infoLog);
         }
-     
+
         void useProgram(gloop::uint_t program) {
             glUseProgram(program);
         }
-        
+
         gloop::uint_t createProgram() {
             return glCreateProgram();
         }
-        
+
         void attachShader(gloop::uint_t program, gloop::uint_t shader) {
             glAttachShader(program, shader);
         }
-        
+
         void linkProgram(gloop::uint_t program) {
             glLinkProgram(program);
         }
-        
+
         void detachShader(gloop::uint_t program, gloop::uint_t shader) {
             glDetachShader(program, shader);
         }
-        
+
         void deleteProgram(gloop::uint_t program) {
             glDeleteProgram(program);
         }
-        
+
         gloop::uint_t getUniformBlockIndex(gloop::uint_t program, const gloop::char_t * uniformName) {
             return glGetUniformBlockIndex(program, uniformName);
         }
-        
+
         gloop::int_t getUniformLocation(gloop::uint_t program, const gloop::char_t * uniformName) {
             return glGetUniformLocation(program, uniformName);
+        }
+
+        void uniformBlockBinding(
+                gloop::uint_t program,
+                gloop::uint_t uniformBlockIndex,
+                gloop::uint_t uniformBlockBinding) {
+
+            glUniformBlockBinding(program, uniformBlockIndex, uniformBlockBinding);
+        }
+
+        void bindAttribLocation(
+                gloop::uint_t program,
+                gloop::uint_t index,
+                const gloop::char_t * name) {
+
+            glBindAttribLocation(program, index, name);
         }
     }
 }

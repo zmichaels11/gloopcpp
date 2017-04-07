@@ -4,17 +4,16 @@
  * and open the template in the editor.
  */
 
-#include <GL/glew.h>
-
-#include "uniform_block_binding.hpp"
 #include "../glint.hpp"
+#include "../wrapper/shaders_and_programs.hpp"
+#include "uniform_block_binding.hpp"
 
 namespace gloop {
     namespace uniform {
 
         void uniform_block_binding::pushUniformBinding(const gloop::uint_t uniformBlockBinding) const {
             if (this->isValid()) {
-                glUniformBlockBinding(_pId, this->_blockIndex, uniformBlockBinding);
+                gloop::wrapper::uniformBlockBinding(_pId, _blockIndex, uniformBlockBinding);
             }
         }
 

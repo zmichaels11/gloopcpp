@@ -25,6 +25,11 @@ namespace gloop {
         constexpr gloop::enum_t INVALID_OPERATION = 0x0502;
         constexpr gloop::enum_t OUT_OF_MEMORY = 0x0505;
         constexpr gloop::enum_t INVALID_FRAMEBUFFER_OPERATION = 0x0506;
+        constexpr gloop::enum_t FLOAT = 0x1406;
+        constexpr gloop::enum_t INT = 0x1404;
+        constexpr gloop::enum_t UNSIGNED_INT =0x1405;
+        
+        
         
         gloop::enum_t getError();
     }
