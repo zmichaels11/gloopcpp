@@ -12,9 +12,13 @@
 
 namespace gloop {
 
+    buffer::~buffer() {
+        free();
+    }
+    
     void buffer::reallocate() const {
         if (this->isInitialized()) {
-            glBindBuffer(GL_ARRAY_BUFFER, *(this->_id));
+            glBindBuffer(GL_ARRAY_BUFFER, _id);
             glBufferData(GL_ARRAY_BUFFER, this->_size, nullptr, static_cast<GLenum> (this->_storageHint));
         }
     }
@@ -49,14 +53,7 @@ namespace gloop {
         glBindBuffer(GL_ARRAY_BUFFER, glId);
         glBufferStorage(GL_ARRAY_BUFFER, size, data, static_cast<GLbitfield> (access));
 
-        this->_id = std::shared_ptr<GLuint>(new GLuint, [ = ] (GLuint * id){
-            if (id != nullptr) {
-                glDeleteBuffers(1, id);
-                        delete id;
-            }
-        });
-
-        *(this->_id) = glId;
+        this->_id = glId;
         this->_size = size;
         this->_isImmutable = true;
         this->_accessHints = access;
@@ -80,26 +77,19 @@ namespace gloop {
         glBindBuffer(GL_ARRAY_BUFFER, glId);
         glBufferData(GL_ARRAY_BUFFER, size, data, static_cast<GLenum> (storageHint));
 
-        this->_id = std::shared_ptr<GLuint>(new GLuint, [ = ] (GLuint * id){
-            if (id != nullptr) {
-                glDeleteBuffers(1, id);
-                        delete id;
-            }
-        });
-
-        *(this->_id) = glId;
+        this->_id = glId;
         this->_size = size;
         this->_storageHint = storageHint;
         this->_isImmutable = false;
     }
 
     bool buffer::isInitialized() const {
-        return (this->_id.get() != nullptr);
+        return _id != 0;
     }
 
     GLuint buffer::getId() const {
         if (this->isInitialized()) {
-            return *(this->_id);
+            return _id;
         } else {
             return 0;
         }
@@ -115,26 +105,26 @@ namespace gloop {
 
     void buffer::free() {
         if (this->isInitialized()) {
-            glDeleteBuffers(1, this->_id.get());
-            this->_id.reset();
+            glDeleteBuffers(1, &_id);
+            this->_id = 0;
         }
     }
 
     void buffer::setData(const GLintptr offset, const GLsizeiptr size, const GLvoid* data) {
-        glBindBuffer(GL_ARRAY_BUFFER, *(this->_id));
+        glBindBuffer(GL_ARRAY_BUFFER, _id);
         glBufferSubData(GL_ARRAY_BUFFER, offset, size, data);
     }
 
     void buffer::getData(const GLintptr offset, const GLsizeiptr size, GLvoid* data) const {
         if (this->isInitialized()) {
-            glBindBuffer(GL_ARRAY_BUFFER, *(this->_id));
+            glBindBuffer(GL_ARRAY_BUFFER, _id);
             glGetBufferSubData(GL_ARRAY_BUFFER, offset, size, data);
         }
     }
 
     void * buffer::map(GLintptr offset, GLsizeiptr length, buffer_access_hint accessHints) {
         if (this->isInitialized()) {
-            glBindBuffer(GL_ARRAY_BUFFER, *_id);
+            glBindBuffer(GL_ARRAY_BUFFER, _id);
 
             return glMapBufferRange(GL_ARRAY_BUFFER, offset, length, static_cast<GLbitfield> (accessHints));
         } else {
@@ -144,26 +134,26 @@ namespace gloop {
 
     void buffer::unmap() const {
         if (this->isInitialized()) {
-            glBindBuffer(GL_ARRAY_BUFFER, *(this->_id));
+            glBindBuffer(GL_ARRAY_BUFFER, _id);
             glUnmapBuffer(GL_ARRAY_BUFFER);
         }
     }
 
     void buffer::bind(const gloop::buffer_target target) const {
         if (this->isInitialized()) {
-            glBindBuffer(static_cast<GLenum> (target), *(this->_id));
+            glBindBuffer(static_cast<GLenum> (target), _id);
         }
     }
 
     void buffer::blockBind(const buffer_target target, const GLuint binding, const GLintptr offset, GLintptr size) const {
         if (this->isInitialized()) {
-            glBindBufferRange(static_cast<GLenum> (target), binding, *_id, offset, size);
+            glBindBufferRange(static_cast<GLenum> (target), binding, _id, offset, size);
         }
     }
 
     void buffer::blockBind(const buffer_target target, const GLuint binding) const {
         if (this->isInitialized()) {
-            glBindBufferBase(static_cast<GLenum> (target), binding, *_id);
+            glBindBufferBase(static_cast<GLenum> (target), binding, _id);
         }
     }
 }

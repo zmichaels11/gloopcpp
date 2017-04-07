@@ -13,7 +13,6 @@
 
 #pragma once
 
-#include <memory>
 #include <vector>
 
 #include <GL/glew.h>
@@ -25,13 +24,21 @@
 namespace gloop {
     class vertex_array {
     private:
-        std::shared_ptr<GLuint> _id;
+        GLuint _id;
         std::vector<vertex_attribute_binding> _bindings;
-        buffer _indexBuffer;
+        const buffer * _indexBuffer;
         
         void init();
         
     public:
+        vertex_array() : _id(0), _indexBuffer(nullptr) {}
+        
+        vertex_array(vertex_array&& other) = default;
+        
+        vertex_array(vertex_array&) = delete;
+        
+        ~vertex_array();
+        
         vertex_array& operator<<(const vertex_attribute_binding& binding);        
         
         operator GLuint();
@@ -42,9 +49,9 @@ namespace gloop {
         
         void addBinding(const vertex_attribute_binding& binding);
         
-        void setIndexBuffer(const buffer& buffer);
+        void setIndexBuffer(const buffer * buffer);
         
-        const buffer& getIndexBuffer() const;
+        const buffer * getIndexBuffer() const;
         
         const std::vector<vertex_attribute_binding> getBindings() const;
         

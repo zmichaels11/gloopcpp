@@ -30,7 +30,7 @@ namespace gloop {
         operator GLint() const;
 
         vertex_attribute_binding bindBuffer(
-                const buffer& bufId, 
+                const buffer * bufId, 
                 const vertex_attribute_type, 
                 const GLsizei stride = 0, const void * ptr = nullptr, 
                 const GLuint divisor = 0) const;

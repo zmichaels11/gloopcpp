@@ -7,7 +7,6 @@
 
 #pragma once
 
-#include <memory>
 #include <vector>
 #include <array>
 #include <cstddef>
@@ -98,13 +97,27 @@ namespace gloop {
 
     class buffer {
     private:
-        std::shared_ptr<GLuint> _id;
+        GLuint _id;
         GLsizeiptr _size;
         buffer_storage_hint _storageHint;
         buffer_access_hint _accessHints;
         bool _isImmutable;
 
     public:
+
+        buffer() :
+        _id(0),
+        _size(0),
+        _storageHint(static_cast<buffer_storage_hint> (0)),
+        _accessHints(static_cast<buffer_access_hint> (0)), _isImmutable(false) {
+        }
+        
+        buffer(buffer&) = delete;
+        
+        buffer(buffer&&) = default;
+        
+        ~buffer();
+
         buffer_storage_hint getStorageHint() const;
 
         buffer_access_hint getAccessHints() const;
@@ -137,7 +150,7 @@ namespace gloop {
                 const std::array<T, N>& data,
                 const buffer_access_hint accessHints = buffer_access_hint::READ) {
 
-            allocateImmutable(sizeof(data), data.data(), accessHints);
+            allocateImmutable(sizeof (data), data.data(), accessHints);
         }
 
         void allocate(

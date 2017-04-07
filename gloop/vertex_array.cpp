@@ -13,6 +13,12 @@
 
 #include "tools.hpp"
 
+namespace gloop {
+    vertex_array::~vertex_array() {
+        free();
+    }        
+}
+
 void gloop::vertex_array::init() {
     // dont bother initializing if there are no bindings and no element buffer
     if (this->_bindings.size() == 0 && !this->_indexBuffer) {
@@ -25,7 +31,7 @@ void gloop::vertex_array::init() {
     glBindVertexArray(glId);    
 
     if (this->_indexBuffer) {
-        this->_indexBuffer.bind(gloop::buffer_target::ELEMENT_ARRAY);
+        this->_indexBuffer->bind(gloop::buffer_target::ELEMENT_ARRAY);
     }
 
     for (auto it = this->_bindings.begin(); it != this->_bindings.end(); it++) {
@@ -37,14 +43,7 @@ void gloop::vertex_array::init() {
 
     glBindVertexArray(0);
 
-    this->_id = std::shared_ptr<GLuint>(new GLuint, [ = ](GLuint * id){
-        if (id != nullptr) {
-            glDeleteVertexArrays(1, id);
-                    delete id;
-        }
-    });
-    
-    *(this->_id) = glId;
+    this->_id = glId;
 }
 
 gloop::vertex_array::operator GLuint() {
@@ -63,7 +62,7 @@ GLuint gloop::vertex_array::getId() {
 
     // check again if its initialized
     if (this->isInitialized()) {
-        return *(this->_id);
+        return _id;
     } else {
         return 0;
     }
@@ -84,8 +83,8 @@ const std::vector<gloop::vertex_attribute_binding> gloop::vertex_array::getBindi
 
 void gloop::vertex_array::free() {
     if (this->isInitialized()) {
-        glDeleteVertexArrays(1, this->_id.get());
-        this->_id.reset();
+        glDeleteVertexArrays(1, &_id);
+        this->_id = 0;
     }
 }
 
@@ -95,13 +94,13 @@ void gloop::vertex_array::bind() {
 }
 
 bool gloop::vertex_array::isInitialized() const {
-    return (this->_id.get() != nullptr);
+    return _id != 0;
 }
 
-void gloop::vertex_array::setIndexBuffer(const buffer& buffer) {
+void gloop::vertex_array::setIndexBuffer(const buffer * buffer) {
     this->_indexBuffer = buffer;
 }
 
-const gloop::buffer& gloop::vertex_array::getIndexBuffer() const {
+const gloop::buffer * gloop::vertex_array::getIndexBuffer() const {
     return this->_indexBuffer;
 }

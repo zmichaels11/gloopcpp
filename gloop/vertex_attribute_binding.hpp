@@ -15,7 +15,7 @@ namespace gloop {
     class vertex_attribute_binding {
     private:
         const GLuint _id;
-        const buffer _buffer;
+        const buffer * _buffer;
         const vertex_attribute_type _type;
         const GLsizei _stride;
         const void * _ptr;
@@ -24,7 +24,7 @@ namespace gloop {
     public:
 
         vertex_attribute_binding(
-                const GLuint id, const buffer& buffer,
+                const GLuint id, const buffer * buffer,
                 const vertex_attribute_type type,
                 const GLsizei stride = 0, const void * ptr = nullptr,
                 const GLuint divisor = 0) :
@@ -37,7 +37,7 @@ namespace gloop {
         
         GLuint getAttributeId() const;
         
-        const buffer& getBuffer() const;
+        const buffer * getBuffer() const;
         
         vertex_attribute_type getType() const;
         

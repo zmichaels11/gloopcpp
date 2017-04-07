@@ -65,6 +65,9 @@ namespace {
 }
 
 namespace gloop {
+    shader::~shader() {
+        free();
+    }
 
     void shader::init() {
         auto glType = static_cast<GLenum> (_type);
@@ -83,14 +86,7 @@ namespace gloop {
         glGetShaderiv(glId, GL_COMPILE_STATUS, &isCompiled);
 
         if (isCompiled) {
-            this->_id = std::shared_ptr<GLuint>(new GLuint, [ = ](GLuint * id){
-                if (id != nullptr) {
-                    glDeleteShader(*id);
-                            delete id;
-                }
-            });
-
-            *(this->_id) = glId;
+            this->_id = glId;
         } else {
             std::string infoLog = getShaderLog(glId);
 
@@ -105,13 +101,13 @@ namespace gloop {
             this->init();
         }
 
-        return *(this->_id);
+        return this->_id;
     }
 
     void shader::free() {
         if (this->isInitialized()) {
-            glDeleteShader(*(this->_id));
-            this->_id.reset();
+            glDeleteShader(_id);
+            this->_id = 0;
         }
     }
 
@@ -124,7 +120,7 @@ namespace gloop {
     }
 
     bool shader::isInitialized() const {
-        return this->_id.get() != nullptr;
+        return this->_id != 0;
     }
 
     shader::operator bool() {

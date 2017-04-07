@@ -54,7 +54,7 @@ namespace gloop {
         return _id;
     }
     
-    const buffer& vertex_attribute_binding::getBuffer() const {
+    const buffer * vertex_attribute_binding::getBuffer() const {
         return _buffer;
     }
     
@@ -77,7 +77,7 @@ namespace gloop {
     void vertex_attribute_binding::apply() const {
         const auto sizedType = vertexAttributeTypeSize(_type);
         
-        _buffer.bind(gloop::buffer_target::ARRAY);
+        _buffer->bind(gloop::buffer_target::ARRAY);
         
         if (_divisor) {
             glVertexAttribDivisor(_id, _divisor);

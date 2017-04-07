@@ -7,7 +7,6 @@
 #pragma once
 
 #include <string>
-#include <memory>
 
 #include <GL/glew.h>
 
@@ -16,7 +15,7 @@
 namespace gloop {        
     class shader {
     private:
-        std::shared_ptr<GLuint> _id;
+        GLuint _id;
         std::string _src;
         shader_type _type;
 
@@ -26,8 +25,14 @@ namespace gloop {
         shader(
                 shader_type type = shader_type::UNKNOWN, 
                 std::string src = "") :
-        _type(type), _src(src), _id(nullptr) {
+        _type(type), _src(src), _id(0) {
         }
+        
+        shader(shader&) = delete;
+        
+        shader(shader&&) = default;
+        
+        ~shader();
 
         GLuint getId();
         

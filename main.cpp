@@ -13,6 +13,7 @@
 
 #include <iostream>
 #include <memory>
+#include <utility>
 
 #include <GL/glew.h>
 
@@ -44,7 +45,9 @@ struct model {
 struct my_context : gloop::context {
     gloop::program program;     
     gloop::vertex_array vao;
-    gloop::vertex_attributes attribs;    
+    gloop::vertex_attributes attribs;
+    gloop::buffer vbo;
+    gloop::buffer ibo;
 } glContext;
 
 int main(int argc, char** argv) {
@@ -86,24 +89,21 @@ int main(int argc, char** argv) {
             model.uniforms = std::make_shared<gloop::uniform::uniform_vec4_binding>(setColor);
         }
 
-        if (!glCtx->vao) {
-            gloop::buffer ibo;
-            ibo.allocate(std::array<GLuint, 4> {0, 1, 2, 3});
-            
-            gloop::buffer vbo;
-            vbo.allocate(std::array<GLfloat, 8> { 
+        if (!glCtx->vao) {            
+            glCtx->ibo.allocate(std::array<GLuint, 4> {0, 1, 2, 3});                        
+            glCtx->vbo.allocate(std::array<GLfloat, 8> { 
                 -0.5f, -0.5f,
                  0.5f, -0.5f,
                  0.5f, 0.5f,
                 -0.5f, 0.5f});
                 
-            gloop::tools::assertGLError("buffer allocate");
+            gloop::tools::assertGLError("buffer allocate");                        
                 
             auto attrib = glCtx->attribs["LVertexPos2D"];
-            auto binding = attrib.bindBuffer(vbo, gloop::vertex_attribute_type::VEC2);
+            auto binding = attrib.bindBuffer(&(glCtx->vbo), gloop::vertex_attribute_type::VEC2);
             
             glCtx->vao.addBinding(binding);                        
-            glCtx->vao.setIndexBuffer(ibo);
+            glCtx->vao.setIndexBuffer(&(glCtx->ibo));
         }
         
         if (!model.vertexArray) {

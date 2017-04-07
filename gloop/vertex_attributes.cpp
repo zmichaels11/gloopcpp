@@ -56,7 +56,7 @@ namespace gloop {
     }
 
     vertex_attribute_binding vertex_attribute::bindBuffer(
-            const buffer& buffer,
+            const buffer * buffer,
             const vertex_attribute_type type,
             const GLsizei stride, const void* ptr,
             const GLuint divisor) const {
