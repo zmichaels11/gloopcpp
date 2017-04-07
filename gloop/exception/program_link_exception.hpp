@@ -6,9 +6,9 @@
 
 #pragma once
 
-#include "base_exception.hpp"
-
 #include <string>
+
+#include "base_exception.hpp"
 
 namespace gloop {
     namespace exception {

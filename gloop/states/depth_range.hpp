@@ -7,12 +7,12 @@
 
 #pragma once
 
-#include <GL/glew.h>
+#include "../glint.hpp"
 
 namespace gloop {
     struct depth_range {
-        GLdouble near;
-        GLdouble far;
+        gloop::double_t near;
+        gloop::double_t far;
         
         void apply() const;
         

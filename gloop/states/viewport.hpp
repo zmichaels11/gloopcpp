@@ -6,8 +6,7 @@
 
 #pragma once
 
-#include <GL/glew.h>
-
+#include "../glint.hpp"
 #include "depth_range.hpp"
 
 namespace gloop {
@@ -17,13 +16,13 @@ namespace gloop {
         public:
 
             struct offset {
-                GLint x;
-                GLint y;
+                gloop::int_t x;
+                gloop::int_t y;
             };
 
             struct size {
-                GLsizei width;
-                GLsizei height;
+                gloop::sizei_t width;
+                gloop::sizei_t height;
             };
 
         private:
@@ -33,10 +32,16 @@ namespace gloop {
 
         public:
 
+            viewport() :
+            _offset({0, 0}),
+            _size({0, 0}),
+            _depthRange({0.0, 1.0}) {
+            }
+
             viewport(
-                    const offset offset = {0, 0},
-            const size sz = {0, 0},
-            const depth_range depthRange = {0.0, 1.0}) :
+                    const offset offset,
+                    const size sz,
+                    const depth_range depthRange = {0.0, 1.0}) :
 
             _offset(offset), _size(sz), _depthRange(depthRange) {
             }

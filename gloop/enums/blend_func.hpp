@@ -13,27 +13,25 @@
 
 #pragma once
 
-#include <GL/glew.h>
-
 #include "../glint.hpp"
 
 namespace gloop {
     namespace enums {
         enum class blend_func : gloop::enum_t {
-        ZERO = GL_ZERO,
-        ONE = GL_ONE,
-        SRC_COLOR = GL_SRC_COLOR,
-        ONE_MINUS_SRC_COLOR = GL_ONE_MINUS_SRC_COLOR,
-        DST_COLOR = GL_DST_COLOR,
-        ONE_MINUS_DST_COLOR = GL_ONE_MINUS_DST_COLOR,
-        SRC_ALPHA = GL_SRC_ALPHA,
-        ONE_MINUS_SRC_ALPHA = GL_ONE_MINUS_SRC_ALPHA,
-        DST_ALPHA = GL_DST_ALPHA,
-        ONE_MINUS_DST_ALPHA = GL_ONE_MINUS_DST_ALPHA,
-        CONSTANT_COLOR = GL_CONSTANT_COLOR,
-        ONE_MINUS_CONSTANT_COLOR = GL_ONE_MINUS_CONSTANT_COLOR,
-        CONSTANT_ALPHA = GL_CONSTANT_ALPHA,
-        ONE_MINUS_CONSTANT_ALPHA = GL_ONE_MINUS_CONSTANT_ALPHA
+        ZERO = 0,
+        ONE = 1,
+        SRC_COLOR = 0x0300,
+        ONE_MINUS_SRC_COLOR = 0x0301,
+        DST_COLOR = 0x0306,
+        ONE_MINUS_DST_COLOR = 0x0307,
+        SRC_ALPHA = 0x0302,
+        ONE_MINUS_SRC_ALPHA = 0x0303,
+        DST_ALPHA = 0x0304,
+        ONE_MINUS_DST_ALPHA = 0x0305,
+        CONSTANT_COLOR = 0x8001,
+        ONE_MINUS_CONSTANT_COLOR = 0x8002,
+        CONSTANT_ALPHA = 0x8003,
+        ONE_MINUS_CONSTANT_ALPHA = 0x8004
     };
     }
 }

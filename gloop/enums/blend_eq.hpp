@@ -13,19 +13,17 @@
 
 #pragma once
 
-#include <GL/glew.h>
-
 #include "../glint.hpp"
 
 namespace gloop {
     namespace enums {
 
         enum class blend_eq : gloop::enum_t {
-            ADD = GL_FUNC_ADD,
-            SUBTRACT = GL_FUNC_SUBTRACT,
-            REVERSE_SUBTRACT = GL_FUNC_REVERSE_SUBTRACT,
-            MIN = GL_MIN,
-            MAX = GL_MAX
+            ADD = 0x8006,
+            SUBTRACT = 0x800A,
+            REVERSE_SUBTRACT = 0x800B,
+            MIN = 0x8007,
+            MAX = 0x8008
         };
     }
 }
