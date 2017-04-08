@@ -16,6 +16,12 @@ namespace gloop {
         gloop::enum_t getError() {
             return glGetError();
         }
+        
+        void init() {
+            if (glewInit() != GLEW_OK) {
+                throw "GLEW could not be initialized!";
+            }
+        }
     }
 }
 #endif

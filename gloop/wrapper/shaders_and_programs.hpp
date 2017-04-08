@@ -85,5 +85,107 @@ namespace gloop {
                 gloop::uint_t program,
                 gloop::uint_t index,
                 const gloop::char_t * name);
+
+        void uniform1f(
+                gloop::uint_t loc,
+                gloop::float_t value);
+
+        void uniform2f(
+                gloop::uint_t loc,
+                gloop::float_t x,
+                gloop::float_t y);
+
+        void uniform3f(
+                gloop::uint_t loc,
+                gloop::float_t x,
+                gloop::float_t y,
+                gloop::float_t z);
+
+        void uniform4f(
+                gloop::uint_t loc,
+                gloop::float_t x,
+                gloop::float_t y,
+                gloop::float_t z,
+                gloop::float_t w);
+
+        void uniform1i(
+                gloop::uint_t loc,
+                gloop::int_t value);
+
+        void uniform2i(
+                gloop::uint_t loc,
+                gloop::int_t x,
+                gloop::int_t y);
+
+        void uniform3i(
+                gloop::uint_t loc,
+                gloop::int_t x,
+                gloop::int_t y,
+                gloop::int_t z);
+
+        void uniform4i(
+                gloop::uint_t loc,
+                gloop::int_t x,
+                gloop::int_t y,
+                gloop::int_t z,
+                gloop::int_t w);
+
+        void uniform1fv(
+                gloop::uint_t loc,
+                gloop::sizei_t count,
+                const gloop::float_t * values);
+
+        void uniform2fv(
+                gloop::uint_t loc,
+                gloop::sizei_t count,
+                const gloop::float_t * values);
+
+        void uniform3fv(
+                gloop::uint_t loc,
+                gloop::sizei_t count,
+                const gloop::float_t * values);
+
+        void uniform4fv(
+                gloop::uint_t loc,
+                gloop::sizei_t count,
+                const gloop::float_t * values);
+
+        void uniform1iv(
+                gloop::uint_t loc,
+                gloop::sizei_t count,
+                const gloop::int_t * values);
+
+        void uniform2iv(
+                gloop::uint_t loc,
+                gloop::sizei_t count,
+                const gloop::int_t * values);
+
+        void uniform3iv(
+                gloop::uint_t loc,
+                gloop::sizei_t count,
+                const gloop::int_t * values);
+
+        void uniform4iv(
+                gloop::uint_t loc,
+                gloop::sizei_t count,
+                const gloop::int_t * values);
+
+        void uniformMatrix2fv(
+                gloop::uint_t loc,
+                gloop::sizei_t count,
+                gloop::boolean_t transpose,
+                const gloop::float_t * values);
+        
+        void uniformMatrix3fv(
+                gloop::uint_t loc,
+                gloop::sizei_t count,
+                gloop::boolean_t transpose,
+                const gloop::float_t * values);
+        
+        void uniformMatrix4fv(
+                gloop::uint_t loc,
+                gloop::sizei_t count,
+                gloop::boolean_t transpose,
+                const gloop::float_t * values);
     }
 }

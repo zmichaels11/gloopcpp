@@ -6,10 +6,9 @@
 
 #include "clear.hpp"
 
-#include <GL/glew.h>
-
 #include "../bitfields/clear_mask.hpp"
 #include "../glint.hpp"
+#include "../wrapper/states.hpp"
 
 namespace gloop {
     namespace {
@@ -71,18 +70,18 @@ namespace gloop {
 
         void clear::apply() const {
             if (maskHasColor(_mask)) {
-                glClearColor(_color.red, _color.green, _color.blue, _color.alpha);
+                gloop::wrapper::clearColor(_color.red, _color.green, _color.blue, _color.alpha);
             }
 
             if (maskHasDepth(_mask)) {
-                glClearDepth(_depth);
+                gloop::wrapper::clearDepth(_depth);
             }
 
             if (maskHasStencil(_mask)) {
-                glClearStencil(_stencil);
+                gloop::wrapper::clearStencil(_stencil);
             }
 
-            glClear(static_cast<gloop::bitfield_t> (_mask));
+            gloop::wrapper::clear(static_cast<gloop::bitfield_t> (_mask));            
         }
     }
 }

@@ -6,10 +6,10 @@
 
 #include "depth_range.hpp"
 
-#include <GL/glew.h>
+#include "../wrapper/states.hpp"
 
 namespace gloop {
     void depth_range::apply() const {
-        glDepthRange(near, far);
+        gloop::wrapper::depthRange(near, far);
     }
 }

@@ -15,8 +15,6 @@
 #include <memory>
 #include <utility>
 
-#include <GL/glew.h>
-
 #include "gloop/application.hpp"
 #include "gloop/buffer.hpp"
 #include "gloop/context.hpp"
@@ -90,8 +88,8 @@ int main(int argc, char** argv) {
         }
 
         if (!glCtx->vao) {            
-            glCtx->ibo.allocate(std::array<GLuint, 4> {0, 1, 2, 3});                        
-            glCtx->vbo.allocate(std::array<GLfloat, 8> { 
+            glCtx->ibo.allocate(std::array<gloop::uint_t, 4> {0, 1, 2, 3});                        
+            glCtx->vbo.allocate(std::array<gloop::float_t, 8> { 
                 -0.5f, -0.5f,
                  0.5f, -0.5f,
                  0.5f, 0.5f,

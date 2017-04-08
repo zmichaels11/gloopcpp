@@ -6,10 +6,9 @@
 
 #include "blend.hpp"
 
-#include <GL/glew.h>
-
 #include "../enums/blend_eq.hpp"
 #include "../enums/blend_func.hpp"
+#include "../wrapper/states.hpp"
 
 namespace gloop {
     namespace states {
@@ -61,22 +60,25 @@ namespace gloop {
         enums::blend_eq blend::getAlphaEq() const {
             return _eqAlpha;
         }
-        
+
         bool blend::isEnabled() const {
             return _enabled;
         }
-        
+
         void blend::apply() const {
             if (_enabled) {
-                    glEnable(GL_BLEND);
-                    glBlendFuncSeparate(
-                            static_cast<GLenum> (_srcRGB), static_cast<GLenum> (_dstRGB),
-                            static_cast<GLenum> (_srcAlpha), static_cast<GLenum> (_dstAlpha));
+                gloop::wrapper::enable(gloop::wrapper::BLEND);
 
-                    glBlendEquationSeparate(static_cast<GLenum> (_eqRGB), static_cast<GLenum> (_eqAlpha));
-                } else {
-                    glDisable(GL_BLEND);
-                }
+                gloop::wrapper::blendFuncSeparate(
+                        static_cast<gloop::enum_t> (_srcRGB), static_cast<gloop::enum_t> (_dstRGB),
+                        static_cast<gloop::enum_t> (_srcAlpha), static_cast<gloop::enum_t> (_dstAlpha));
+
+                gloop::wrapper::blendEquationSeparate(
+                        static_cast<gloop::enum_t> (_eqRGB),
+                        static_cast<gloop::enum_t> (_eqAlpha));
+            } else {
+                gloop::wrapper::disable(gloop::wrapper::BLEND);
+            }
         }
     }
 }

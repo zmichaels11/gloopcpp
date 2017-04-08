@@ -6,7 +6,7 @@
 
 #include "scissor.hpp"
 
-#include <GL/glew.h>
+#include "../wrapper/states.hpp"
 
 namespace gloop {
     namespace states {
@@ -37,10 +37,10 @@ namespace gloop {
 
         void scissor::apply() const {
             if (_enable) {
-                glEnable(GL_SCISSOR_TEST);
-                glScissor(_offset.x, _offset.y, _size.width, _size.height);
+                gloop::wrapper::enable(gloop::wrapper::SCISSOR);
+                gloop::wrapper::scissor(_offset.x, _offset.y, _size.width, _size.height);
             } else {
-                glDisable(GL_SCISSOR_TEST);
+                gloop::wrapper::disable(gloop::wrapper::SCISSOR);
             }
         }
     }

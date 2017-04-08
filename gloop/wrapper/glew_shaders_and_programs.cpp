@@ -116,6 +116,165 @@ namespace gloop {
 
             glBindAttribLocation(program, index, name);
         }
+        
+        void uniform1f(
+                gloop::uint_t loc,
+                gloop::float_t value) {
+            
+            glUniform1f(loc, value);
+        }
+
+        void uniform2f(
+                gloop::uint_t loc,
+                gloop::float_t x,
+                gloop::float_t y) {
+            
+            glUniform2f(loc, x, y);
+        }
+
+        void uniform3f(
+                gloop::uint_t loc,
+                gloop::float_t x,
+                gloop::float_t y,
+                gloop::float_t z) {
+            
+            glUniform3f(loc, x, y, z);
+        }
+
+        void uniform4f(
+                gloop::uint_t loc,
+                gloop::float_t x,
+                gloop::float_t y,
+                gloop::float_t z,
+                gloop::float_t w) {
+            
+            glUniform4f(loc, x, y, z, w);
+        }
+
+        void uniform1i(
+                gloop::uint_t loc,
+                gloop::int_t value) {
+            
+            glUniform1i(loc, value);
+        }
+
+        void uniform2i(
+                gloop::uint_t loc,
+                gloop::int_t x,
+                gloop::int_t y) {
+            
+            glUniform2i(loc, x, y);
+        }
+
+        void uniform3i(
+                gloop::uint_t loc,
+                gloop::int_t x,
+                gloop::int_t y,
+                gloop::int_t z) {
+            
+            glUniform3i(loc, x, y, z);
+        }
+
+        void uniform4i(
+                gloop::uint_t loc,
+                gloop::int_t x,
+                gloop::int_t y,
+                gloop::int_t z,
+                gloop::int_t w) {
+            
+            glUniform4i(loc, x, y, z, w);
+        }
+
+        void uniform1fv(
+                gloop::uint_t loc,
+                gloop::sizei_t count,
+                const gloop::float_t * values) {
+            
+            glUniform1fv(loc, count, values);
+        }
+
+        void uniform2fv(
+                gloop::uint_t loc,
+                gloop::sizei_t count,
+                const gloop::float_t * values) {
+            
+            glUniform2fv(loc, count, values);
+        }
+
+        void uniform3fv(
+                gloop::uint_t loc,
+                gloop::sizei_t count,
+                const gloop::float_t * values) {
+            
+            glUniform3fv(loc, count, values);
+        }
+
+        void uniform4fv(
+                gloop::uint_t loc,
+                gloop::sizei_t count,
+                const gloop::float_t * values) {
+            
+            glUniform4fv(loc, count, values);
+        }
+
+        void uniform1iv(
+                gloop::uint_t loc,
+                gloop::sizei_t count,
+                const gloop::int_t * values) {
+            
+            glUniform1iv(loc, count, values);
+        }
+
+        void uniform2iv(
+                gloop::uint_t loc,
+                gloop::sizei_t count,
+                const gloop::int_t * values) {
+            
+            glUniform2iv(loc, count, values);
+        }
+
+        void uniform3iv(
+                gloop::uint_t loc,
+                gloop::sizei_t count,
+                const gloop::int_t * values) {
+            
+            glUniform3iv(loc, count, values);
+        }
+
+        void uniform4iv(
+                gloop::uint_t loc,
+                gloop::sizei_t count,
+                const gloop::int_t * values) {
+            
+            glUniform4iv(loc, count, values);
+        }
+
+        void uniformMatrix2fv(
+                gloop::uint_t loc,
+                gloop::sizei_t count,
+                gloop::boolean_t transpose,
+                const gloop::float_t * values) {
+            
+            glUniformMatrix2fv(loc, count, transpose, values);
+        }
+        
+        void uniformMatrix3fv(
+                gloop::uint_t loc,
+                gloop::sizei_t count,
+                gloop::boolean_t transpose,
+                const gloop::float_t * values) {
+            
+            glUniformMatrix3fv(loc, count, transpose, values);
+        }
+        
+        void uniformMatrix4fv(
+                gloop::uint_t loc,
+                gloop::sizei_t count,
+                gloop::boolean_t transpose,
+                const gloop::float_t * values) {
+            
+            glUniformMatrix4fv(loc, count, transpose, values);
+        }
     }
 }
 

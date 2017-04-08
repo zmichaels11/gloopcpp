@@ -9,10 +9,10 @@
 #include <iostream>
 #include <functional>
 
-#include <GL/glew.h>
 #include <SDL2/SDL.h>
 
 #include "context.hpp"
+#include "wrapper/gl.hpp"
 
 namespace gloop {
 
@@ -73,9 +73,7 @@ namespace gloop {
             throw "OpenGL context could not be created!";
         }
 
-        if (glewInit() != GLEW_OK) {
-            throw "glew could not be initialized!";
-        }
+        gloop::wrapper::init();
 
         if (this->_hints.swapInterval) {
             if (SDL_GL_SetSwapInterval(this->_hints.swapInterval) < 0) {

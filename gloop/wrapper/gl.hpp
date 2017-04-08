@@ -29,8 +29,9 @@ namespace gloop {
         constexpr gloop::enum_t INT = 0x1404;
         constexpr gloop::enum_t UNSIGNED_INT =0x1405;
         
-        
-        
+                
         gloop::enum_t getError();
+        
+        void init();
     }
 }
