@@ -6,22 +6,30 @@
 CND_BASEDIR=`pwd`
 CND_BUILDDIR=build
 CND_DISTDIR=dist
-# Debug configuration
-CND_PLATFORM_Debug=GNU-Linux
-CND_ARTIFACT_DIR_Debug=dist/Debug/GNU-Linux
-CND_ARTIFACT_NAME_Debug=camstreamtest
-CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux/camstreamtest
-CND_PACKAGE_DIR_Debug=dist/Debug/GNU-Linux/package
-CND_PACKAGE_NAME_Debug=camstreamtest.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux/package/camstreamtest.tar
-# Release configuration
-CND_PLATFORM_Release=GNU-Linux
-CND_ARTIFACT_DIR_Release=dist/Release/GNU-Linux
-CND_ARTIFACT_NAME_Release=camstreamtest
-CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux/camstreamtest
-CND_PACKAGE_DIR_Release=dist/Release/GNU-Linux/package
-CND_PACKAGE_NAME_Release=camstreamtest.tar
-CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux/package/camstreamtest.tar
+# GLEW_Debug configuration
+CND_PLATFORM_GLEW_Debug=GNU-Linux
+CND_ARTIFACT_DIR_GLEW_Debug=dist/GLEW_Debug/GNU-Linux
+CND_ARTIFACT_NAME_GLEW_Debug=camstreamtest
+CND_ARTIFACT_PATH_GLEW_Debug=dist/GLEW_Debug/GNU-Linux/camstreamtest
+CND_PACKAGE_DIR_GLEW_Debug=dist/GLEW_Debug/GNU-Linux/package
+CND_PACKAGE_NAME_GLEW_Debug=camstreamtest.tar
+CND_PACKAGE_PATH_GLEW_Debug=dist/GLEW_Debug/GNU-Linux/package/camstreamtest.tar
+# GLEW_Release configuration
+CND_PLATFORM_GLEW_Release=GNU-Linux
+CND_ARTIFACT_DIR_GLEW_Release=dist/GLEW_Release/GNU-Linux
+CND_ARTIFACT_NAME_GLEW_Release=camstreamtest
+CND_ARTIFACT_PATH_GLEW_Release=dist/GLEW_Release/GNU-Linux/camstreamtest
+CND_PACKAGE_DIR_GLEW_Release=dist/GLEW_Release/GNU-Linux/package
+CND_PACKAGE_NAME_GLEW_Release=camstreamtest.tar
+CND_PACKAGE_PATH_GLEW_Release=dist/GLEW_Release/GNU-Linux/package/camstreamtest.tar
+# GLES2_Debug configuration
+CND_PLATFORM_GLES2_Debug=GNU-Linux
+CND_ARTIFACT_DIR_GLES2_Debug=dist/GLES2_Debug/GNU-Linux
+CND_ARTIFACT_NAME_GLES2_Debug=camstreamtest
+CND_ARTIFACT_PATH_GLES2_Debug=dist/GLES2_Debug/GNU-Linux/camstreamtest
+CND_PACKAGE_DIR_GLES2_Debug=dist/GLES2_Debug/GNU-Linux/package
+CND_PACKAGE_NAME_GLES2_Debug=camstreamtest.tar
+CND_PACKAGE_PATH_GLES2_Debug=dist/GLES2_Debug/GNU-Linux/package/camstreamtest.tar
 #
 # include compiler specific variables
 #

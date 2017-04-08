@@ -12,11 +12,15 @@
             <sourceRootList/>
             <confList>
                 <confElem>
-                    <name>Debug</name>
+                    <name>GLEW_Debug</name>
                     <type>1</type>
                 </confElem>
                 <confElem>
-                    <name>Release</name>
+                    <name>GLEW_Release</name>
+                    <type>1</type>
+                </confElem>
+                <confElem>
+                    <name>GLES2_Debug</name>
                     <type>1</type>
                 </confElem>
             </confList>

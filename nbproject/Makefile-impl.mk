@@ -27,11 +27,11 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 PROJECTNAME=CamStreamTest
 
 # Active Configuration
-DEFAULTCONF=Debug
+DEFAULTCONF=GLEW_Debug
 CONF=${DEFAULTCONF}
 
 # All Configurations
-ALLCONFS=Debug Release 
+ALLCONFS=GLEW_Debug GLEW_Release GLES2_Debug 
 
 
 # build

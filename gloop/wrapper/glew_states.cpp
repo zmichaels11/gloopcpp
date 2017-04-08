@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+#define GLEW 1
 #if GL == GLEW
 #include "states.hpp"
 

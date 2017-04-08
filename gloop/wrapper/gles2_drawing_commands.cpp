@@ -3,17 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-#define GLEW 1
-#if GL == GLEW
+#define GLES2 1
+#if GL == GLES2
 #include "drawing_commands.hpp"
 
-#include <GL/glew.h>
+#include <SDL2/SDL_opengles2.h>
+#include <SDL2/SDL_opengles2_gl2ext.h>
 
 #include "../glint.hpp"
 
+extern PFNGLDRAWARRAYSINSTANCEDANGLEPROC glDrawArraysInstancedANGLE;
+extern PFNGLDRAWELEMENTSINSTANCEDANGLEPROC glDrawElementsInstancedANGLE;
+extern PFNGLVERTEXATTRIBDIVISORANGLEPROC glVertexAttribDivisorANGLE;
+
 namespace gloop {
     namespace wrapper {
-
         void drawArrays(
                 gloop::enum_t mode,
                 gloop::int_t first,
@@ -37,7 +41,7 @@ namespace gloop {
                 gloop::sizei_t count,
                 gloop::sizei_t instanceCount) {
 
-            glDrawArraysInstanced(mode, first, count, instanceCount);
+            glDrawArraysInstancedANGLE(mode, first, count, instanceCount);
         }
 
         void drawElementsInstanced(
@@ -47,7 +51,7 @@ namespace gloop {
                 const void * indices,
                 gloop::sizei_t instanceCount) {
 
-            glDrawElementsInstanced(mode, count, type, indices, instanceCount);
+            glDrawElementsInstancedANGLE(mode, count, type, indices, instanceCount);
         }
     }
 }
