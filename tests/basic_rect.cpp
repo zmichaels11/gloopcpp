@@ -49,7 +49,7 @@ struct my_context : gloop::context {
 } glContext;
 
 int main(int argc, char** argv) {
-    gloop::application app(640, 480, "SDL Tutorial");
+    gloop::application app(640, 480, "basic_rect");
 
     {
         gloop::context_hints hints;
@@ -73,8 +73,8 @@ int main(int argc, char** argv) {
 
         if (!glCtx->program) {            
             gloop::shader shaders[] {
-                gloop::shader::makeVertexShader("basic.vert"),
-                gloop::shader::makeFragmentShader("basic.frag")
+                gloop::shader::makeVertexShader("tests/basic.vert"),
+                gloop::shader::makeFragmentShader("tests/basic.frag")
             };
 
             glCtx->attribs.setLocation("LVertexPos2D", 0);
@@ -131,6 +131,5 @@ int main(int argc, char** argv) {
         std::cerr << err << std::endl;
     }
 
-    return 0;
+    return EXIT_SUCCESS;
 }
-

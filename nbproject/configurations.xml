@@ -91,6 +91,7 @@
         <itemPath>gloop/glwrapper.hpp</itemPath>
         <itemPath>gloop/program.hpp</itemPath>
         <itemPath>gloop/shader.hpp</itemPath>
+        <itemPath>gloop/texture2D.hpp</itemPath>
         <itemPath>gloop/tools.hpp</itemPath>
         <itemPath>gloop/uniforms.hpp</itemPath>
         <itemPath>gloop/vertex_array.hpp</itemPath>
@@ -156,14 +157,19 @@
         <itemPath>gloop/vertex_attribute_binding.cpp</itemPath>
         <itemPath>gloop/vertex_attributes.cpp</itemPath>
       </logicalFolder>
-      <itemPath>basic.frag</itemPath>
-      <itemPath>basic.vert</itemPath>
-      <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
                    projectFiles="false"
                    kind="TEST_LOGICAL_FOLDER">
+      <logicalFolder name="f1"
+                     displayName="basic_rect"
+                     projectFiles="true"
+                     kind="TEST">
+        <itemPath>tests/basic.frag</itemPath>
+        <itemPath>tests/basic.vert</itemPath>
+        <itemPath>tests/basic_rect.cpp</itemPath>
+      </logicalFolder>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -192,10 +198,21 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
-      <item path="basic.frag" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="basic.vert" ex="false" tool="3" flavor2="0">
-      </item>
+      <folder path="TestFiles/f1">
+        <cTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </cTool>
+        <ccTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f1</output>
+        </linkerTool>
+      </folder>
       <item path="gloop/application.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/application.hpp" ex="false" tool="3" flavor2="0">
@@ -361,6 +378,8 @@
       <item path="gloop/states/viewport.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/states/viewport.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/texture2D.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/tools.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -540,7 +559,11 @@
       </item>
       <item path="gloop/wrapper/vertex_arrays.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      <item path="tests/basic.frag" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/basic.vert" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/basic_rect.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
     <conf name="GLEW_Release" type="1">
@@ -571,10 +594,21 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
-      <item path="basic.frag" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="basic.vert" ex="false" tool="3" flavor2="0">
-      </item>
+      <folder path="TestFiles/f1">
+        <cTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </cTool>
+        <ccTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f1</output>
+        </linkerTool>
+      </folder>
       <item path="gloop/application.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/application.hpp" ex="false" tool="3" flavor2="0">
@@ -740,6 +774,8 @@
       <item path="gloop/states/viewport.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/states/viewport.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/texture2D.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/tools.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -919,7 +955,11 @@
       </item>
       <item path="gloop/wrapper/vertex_arrays.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      <item path="tests/basic.frag" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/basic.vert" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/basic_rect.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
     <conf name="GLES2_Debug" type="1">
@@ -940,10 +980,21 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
-      <item path="basic.frag" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="basic.vert" ex="false" tool="3" flavor2="0">
-      </item>
+      <folder path="TestFiles/f1">
+        <cTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </cTool>
+        <ccTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f1</output>
+        </linkerTool>
+      </folder>
       <item path="gloop/application.cpp" ex="false" tool="1" flavor2="11">
       </item>
       <item path="gloop/application.hpp" ex="false" tool="3" flavor2="0">
@@ -1112,6 +1163,8 @@
       <item path="gloop/states/viewport.cpp" ex="false" tool="1" flavor2="11">
       </item>
       <item path="gloop/states/viewport.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/texture2D.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/tools.cpp" ex="false" tool="1" flavor2="11">
       </item>
@@ -1297,7 +1350,11 @@
       </item>
       <item path="gloop/wrapper/vertex_arrays.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="main.cpp" ex="false" tool="1" flavor2="11">
+      <item path="tests/basic.frag" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/basic.vert" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/basic_rect.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
   </confs>

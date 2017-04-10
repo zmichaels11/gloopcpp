@@ -16,6 +16,6 @@ namespace gloop {
         
         void assertGLError(std::string customMsg);
         
-        void assertGLError();
+        void assertGLError();                
     }
 }
