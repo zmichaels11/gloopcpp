@@ -76,8 +76,16 @@ namespace gloop {
         gloop::wrapper::init();
 
         if (this->_hints.swapInterval) {
-            if (SDL_GL_SetSwapInterval(this->_hints.swapInterval) < 0) {
+            if (SDL_GL_SetSwapInterval(this->_hints.swapInterval) != 0) {
                 std::cerr << "WARN: unable to set swap interval! SDL_Error: "
+                        << SDL_GetError()
+                        << std::endl;
+            }
+        }
+        
+        if (this->_hints.doubleBuffer) {
+            if (SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1) != 0) {
+                std::cerr << "WARN: unable to enable doublebuffer! SDL_Error: "
                         << SDL_GetError()
                         << std::endl;
             }
@@ -107,7 +115,6 @@ namespace gloop {
             }
 
             SDL_GL_SwapWindow(this->_window);
-            //SDL_UpdateWindowSurface(this->_window);
         }
     }
 

@@ -57,6 +57,7 @@ int main(int argc, char** argv) {
         hints.version.major = 3;
         hints.version.minor = 1;
         hints.swapInterval = 1;
+        hints.doubleBuffer = true;
 
         app.setGLHints(hints);
     }

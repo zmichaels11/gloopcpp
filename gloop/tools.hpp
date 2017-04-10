@@ -7,14 +7,12 @@
 #pragma once
 
 #include <string>
-#include <istream>
-#include <fstream>
+
+#include <SDL2/SDL_rwops.h>
 
 namespace gloop {
-    namespace tools {
-        std::string readAll(const std::istream& in);
-
-        std::string readAll(std::ifstream& in);
+    namespace tools {        
+        std::string readAll(SDL_RWops * file);
         
         void assertGLError(std::string customMsg);
         

@@ -32,6 +32,7 @@ namespace gloop {
 
         context_profile profile;
         int swapInterval;
+        bool doubleBuffer;
     };
 
     class application {

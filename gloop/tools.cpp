@@ -6,40 +6,41 @@
 
 #include "tools.hpp"
 
-#include <istream>
-#include <sstream>
+#include <memory>
 #include <string>
+
+#include <SDL2/SDL_rwops.h>
 
 #include "exceptions.hpp"
 #include "errors.hpp"
 #include "wrapper/gl.hpp"
 
 namespace gloop {
-    std::string tools::readAll(const std::istream& in) {
-        if (in) {
-            std::ostringstream contents;
 
-            contents << in.rdbuf();
-            contents << std::endl;
-
-            return contents.str();
-        } else {
-            throw "Unable to read contents of stream!";
+    std::string tools::readAll(SDL_RWops * file) {
+        if (file == nullptr) {
+            throw "Unable to read from file!";
         }
-    }
 
-    std::string tools::readAll(std::ifstream& in) {
-        if (in) {
-            std::ostringstream contents;
+        auto fileSize = SDL_RWsize(file);
+        auto res = std::make_unique<char[]>(fileSize);
 
-            contents << in.rdbuf();
-            contents << std::endl;
+        Sint64 totalBytesRead = 0;
+        Sint64 bytesRead = 1;
+        auto buffer = res.get();
 
-            in.close();
+        while (totalBytesRead < fileSize && bytesRead != 0) {
+            bytesRead = SDL_RWread(file, buffer, 1, (fileSize - totalBytesRead));
+            totalBytesRead += bytesRead;
+            buffer += bytesRead;
+        }
 
-            return contents.str();
+        SDL_RWclose(file);
+
+        if (totalBytesRead != fileSize) {
+            throw "Unable to read entire file!";
         } else {
-            throw "Unable to read contents of file input stream!";
+            return std::string(res.get(), fileSize);
         }
     }
 

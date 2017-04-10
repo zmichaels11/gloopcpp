@@ -7,7 +7,8 @@
 #include "shader.hpp"
 
 #include <string>
-#include <fstream>
+
+#include <SDL2/SDL_rwops.h>
 
 #include "enums/shader_type.hpp"
 #include "exception/shader_compile_exception.hpp"
@@ -55,8 +56,8 @@ namespace {
             const std::string& srcOrFile) {
 
         if (hasSuffix(srcOrFile, suffix) || hasSuffix(srcOrFile, ".glsl")) {
-            std::ifstream in(srcOrFile, std::ios::in | std::ios::binary);
-            std::string src = gloop::tools::readAll(in);
+            auto file = SDL_RWFromFile(srcOrFile.c_str(), "rb");
+            auto src = gloop::tools::readAll(file);
 
             return gloop::shader(type, src);
         } else {
