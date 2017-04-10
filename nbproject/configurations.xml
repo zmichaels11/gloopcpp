@@ -174,20 +174,15 @@
         <itemPath>gloop/vertex_attribute_binding.cpp</itemPath>
         <itemPath>gloop/vertex_attributes.cpp</itemPath>
       </logicalFolder>
-      <itemPath>dummy_main.cpp</itemPath>
+      <logicalFolder name="f2" displayName="tests" projectFiles="true">
+        <itemPath>simple_rect.cpp</itemPath>
+        <itemPath>test_runner.cpp</itemPath>
+      </logicalFolder>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
                    projectFiles="false"
                    kind="TEST_LOGICAL_FOLDER">
-      <logicalFolder name="f1"
-                     displayName="basic_rect"
-                     projectFiles="true"
-                     kind="TEST">
-        <itemPath>tests/basic.frag</itemPath>
-        <itemPath>tests/basic.vert</itemPath>
-        <itemPath>tests/basic_rect.cpp</itemPath>
-      </logicalFolder>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -210,29 +205,13 @@
           <commandLine>-DGL=GLEW</commandLine>
         </ccTool>
         <linkerTool>
+          <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/gloopcpp_test</output>
           <linkerLibItems>
             <linkerOptionItem>`pkg-config --libs sdl2`</linkerOptionItem>
             <linkerOptionItem>`pkg-config --libs glew`</linkerOptionItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>
-      <item path="dummy_main.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <folder path="TestFiles/f1">
-        <cTool>
-          <incDir>
-            <pElem>.</pElem>
-          </incDir>
-        </cTool>
-        <ccTool>
-          <incDir>
-            <pElem>.</pElem>
-          </incDir>
-        </ccTool>
-        <linkerTool>
-          <output>${TESTDIR}/TestFiles/f1</output>
-        </linkerTool>
-      </folder>
       <item path="gloop/application.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/application.hpp" ex="false" tool="3" flavor2="0">
@@ -637,11 +616,9 @@
       </item>
       <item path="gloop/wrapper/vertex_arrays.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="tests/basic.frag" ex="false" tool="3" flavor2="0">
+      <item path="simple_rect.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="tests/basic.vert" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="tests/basic_rect.cpp" ex="false" tool="1" flavor2="0">
+      <item path="test_runner.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
     <conf name="GLEW_Release" type="1">
@@ -666,29 +643,13 @@
           <developmentMode>5</developmentMode>
         </asmTool>
         <linkerTool>
+          <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/gloopcpp_test</output>
           <linkerLibItems>
             <linkerOptionItem>`pkg-config --libs sdl2`</linkerOptionItem>
             <linkerOptionItem>`pkg-config --libs glew`</linkerOptionItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>
-      <item path="dummy_main.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <folder path="TestFiles/f1">
-        <cTool>
-          <incDir>
-            <pElem>.</pElem>
-          </incDir>
-        </cTool>
-        <ccTool>
-          <incDir>
-            <pElem>.</pElem>
-          </incDir>
-        </ccTool>
-        <linkerTool>
-          <output>${TESTDIR}/TestFiles/f1</output>
-        </linkerTool>
-      </folder>
       <item path="gloop/application.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/application.hpp" ex="false" tool="3" flavor2="0">
@@ -1093,11 +1054,9 @@
       </item>
       <item path="gloop/wrapper/vertex_arrays.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="tests/basic.frag" ex="false" tool="3" flavor2="0">
+      <item path="simple_rect.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="tests/basic.vert" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="tests/basic_rect.cpp" ex="false" tool="1" flavor2="0">
+      <item path="test_runner.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
     <conf name="GLES2_Debug" type="1">
@@ -1112,29 +1071,13 @@
           <commandLine>-DGL=GLES2</commandLine>
         </ccTool>
         <linkerTool>
+          <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/gloopcpp_test</output>
           <linkerLibItems>
             <linkerOptionItem>`pkg-config --libs sdl2`</linkerOptionItem>
             <linkerOptionItem>`pkg-config --libs glesv2`</linkerOptionItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>
-      <item path="dummy_main.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <folder path="TestFiles/f1">
-        <cTool>
-          <incDir>
-            <pElem>.</pElem>
-          </incDir>
-        </cTool>
-        <ccTool>
-          <incDir>
-            <pElem>.</pElem>
-          </incDir>
-        </ccTool>
-        <linkerTool>
-          <output>${TESTDIR}/TestFiles/f1</output>
-        </linkerTool>
-      </folder>
       <item path="gloop/application.cpp" ex="false" tool="1" flavor2="11">
       </item>
       <item path="gloop/application.hpp" ex="false" tool="3" flavor2="0">
@@ -1548,11 +1491,9 @@
       </item>
       <item path="gloop/wrapper/vertex_arrays.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="tests/basic.frag" ex="false" tool="3" flavor2="0">
+      <item path="simple_rect.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="tests/basic.vert" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="tests/basic_rect.cpp" ex="false" tool="1" flavor2="0">
+      <item path="test_runner.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
     <conf name="WEBGL_Debug" type="1">
@@ -1568,7 +1509,7 @@
           <commandLine>-DGL=GLES2 -s USE_SDL=2</commandLine>
         </ccTool>
         <linkerTool>
-          <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/gloop_cpp.html</output>
+          <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/gloopcpp_test.html</output>
           <commandlineTool>em++</commandlineTool>
           <linkerLibItems>
             <linkerOptionItem>`pkg-config --libs glesv2`</linkerOptionItem>
@@ -1576,23 +1517,6 @@
           <commandLine>-s USE_SDL=2 --preload-file tests/basic.frag --preload-file tests/basic.vert</commandLine>
         </linkerTool>
       </compileType>
-      <item path="dummy_main.cpp" ex="false" tool="1" flavor2="11">
-      </item>
-      <folder path="TestFiles/f1">
-        <cTool>
-          <incDir>
-            <pElem>.</pElem>
-          </incDir>
-        </cTool>
-        <ccTool>
-          <incDir>
-            <pElem>.</pElem>
-          </incDir>
-        </ccTool>
-        <linkerTool>
-          <output>${TESTDIR}/TestFiles/f1</output>
-        </linkerTool>
-      </folder>
       <item path="gloop/application.cpp" ex="false" tool="1" flavor2="11">
       </item>
       <item path="gloop/application.hpp" ex="false" tool="3" flavor2="0">
@@ -2006,11 +1930,9 @@
       </item>
       <item path="gloop/wrapper/vertex_arrays.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="tests/basic.frag" ex="false" tool="3" flavor2="0">
+      <item path="simple_rect.cpp" ex="false" tool="1" flavor2="11">
       </item>
-      <item path="tests/basic.vert" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="tests/basic_rect.cpp" ex="false" tool="1" flavor2="0">
+      <item path="test_runner.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
   </confs>

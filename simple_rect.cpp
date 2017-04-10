@@ -57,7 +57,7 @@ struct my_context : gloop::context {
     gloop::buffer ibo;
 } glContext;
 
-int main(int argc, char** argv) {
+int simple_rect(int argc, char** argv) {
     gloop::application app(640, 480, "basic_rect");
 
     {
@@ -109,9 +109,7 @@ int main(int argc, char** argv) {
             
             setColor = glCtx->program.getUniformVec4Binding("fColor", 0.0F, 0.0F, 1.0F, 1.0F);
             
-            model.uniforms = std::make_shared<gloop::uniform::uniform_vec4_binding>(setColor);
-            
-            std::cout << "Init program!" << std::endl;
+            model.uniforms = std::make_shared<gloop::uniform::uniform_vec4_binding>(setColor);                        
         }
 
         if (!glCtx->vao) {            
@@ -125,17 +123,13 @@ int main(int argc, char** argv) {
                     -0.5f, -0.5f,
                      0.5f, -0.5f,
                      0.5f, 0.5f,
-                    -0.5f, 0.5f});
-                
-            gloop::tools::assertGLError("buffer allocate");                        
+                    -0.5f, 0.5f});                           
                 
             auto attrib = glCtx->attribs["LVertexPos2D"];
             auto binding = attrib.bindBuffer(&(glCtx->vbo), gloop::enums::vertex_attribute_type::VEC2);
             
             glCtx->vao.addBinding(binding);                        
-            glCtx->vao.setIndexBuffer(&(glCtx->ibo));
-            
-            std::cout << "Init vertex array object!" << std::endl;
+            glCtx->vao.setIndexBuffer(&(glCtx->ibo));                        
         }
         
         if (!model.vertexArray) {
@@ -149,9 +143,7 @@ int main(int argc, char** argv) {
             drawCall.indexType = gloop::draw::index_type::UNSIGNED_INT;
             drawCall.indices = nullptr;
             
-            model.drawCall = std::make_shared<gloop::draw::elements>(drawCall);
-            
-            std::cout << "Init model!" << std::endl;
+            model.drawCall = std::make_shared<gloop::draw::elements>(drawCall);                        
             
             glCtx->currentClear = glCtx->currentClear.withColor(0.5F, 0.6F, 0.5F, 1.0F);
         }

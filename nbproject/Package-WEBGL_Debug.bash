@@ -13,8 +13,8 @@ CND_BUILDDIR=build
 CND_DLIB_EXT=so
 NBTMPDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tmp-packaging
 TMPDIRNAME=tmp-packaging
-OUTPUT_PATH=${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/gloop_cpp.html
-OUTPUT_BASENAME=gloop_cpp.html
+OUTPUT_PATH=${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/gloopcpp_test.html
+OUTPUT_BASENAME=gloopcpp_test.html
 PACKAGE_TOP_DIR=camstreamtest/
 
 # Functions
