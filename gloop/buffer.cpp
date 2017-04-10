@@ -6,6 +6,7 @@
 
 #include "buffer.hpp"
 
+#include <iostream>
 
 #include "enums/buffer_target.hpp"
 #include "enums/buffer_storage_hint.hpp"
@@ -21,7 +22,12 @@ namespace gloop {
 
     void buffer::reallocate() const {
         if (this->isInitialized()) {
-            gloop::wrapper::namedBufferData(_id, _size, nullptr, static_cast<gloop::enum_t> (_storageHint));
+            gloop::wrapper::namedBufferData(
+                    static_cast<gloop::enum_t> (_target),
+                    _id,
+                    _size,
+                    nullptr,
+                    static_cast<gloop::enum_t> (_storageHint));
         }
     }
 
@@ -38,13 +44,15 @@ namespace gloop {
     }
 
     void buffer::allocateImmutable(
+            const enums::buffer_target target,
             const gloop::sizeiptr_t size,
             const bitfields::buffer_immutable_storage_hint access) {
 
-        allocateImmutable(size, nullptr, access);
+        allocateImmutable(target, size, nullptr, access);
     }
 
     void buffer::allocateImmutable(
+            const enums::buffer_target target,
             const gloop::sizeiptr_t size,
             const void* data,
             const bitfields::buffer_immutable_storage_hint access) {
@@ -52,8 +60,14 @@ namespace gloop {
         gloop::uint_t glId = 0;
 
         gloop::wrapper::createBuffers(1, &glId);
-        gloop::wrapper::namedBufferStorage(glId, size, data, static_cast<gloop::bitfield_t> (access));
+        gloop::wrapper::namedBufferStorage(
+                static_cast<gloop::enum_t> (target),
+                glId,
+                size,
+                data,
+                static_cast<gloop::bitfield_t> (access));
 
+        this->_target = target;
         this->_id = glId;
         this->_size = size;
         this->_isImmutable = true;
@@ -61,14 +75,16 @@ namespace gloop {
         this->_storageHint = static_cast<enums::buffer_storage_hint> (0);
     }
 
-    void buffer::allocate(
+    void buffer::allocate(            
+            const gloop::enums::buffer_target target,
             const gloop::sizeiptr_t size,
             const enums::buffer_storage_hint storageHint) {
 
-        allocate(size, nullptr, storageHint);
+        allocate(target, size, nullptr, storageHint);
     }
 
     void buffer::allocate(
+            const enums::buffer_target target,
             const gloop::sizeiptr_t size,
             const void * data,
             const enums::buffer_storage_hint storageHint) {
@@ -76,13 +92,23 @@ namespace gloop {
         gloop::uint_t glId = 0;
 
         gloop::wrapper::createBuffers(1, &glId);
-        gloop::wrapper::namedBufferData(glId, size, data, static_cast<gloop::enum_t> (storageHint));
+        gloop::wrapper::namedBufferData(
+                static_cast<gloop::enum_t> (target),
+                glId,
+                size,
+                data,
+                static_cast<gloop::enum_t> (storageHint));
 
+        this->_target = target;
         this->_id = glId;
         this->_size = size;
         this->_storageHint = storageHint;
         this->_immutableStorageHints = static_cast<bitfields::buffer_immutable_storage_hint> (0);
         this->_isImmutable = false;
+    }
+
+    enums::buffer_target buffer::getTargetHint() const {
+        return _target;
     }
 
     bool buffer::isInitialized() const {
@@ -113,7 +139,12 @@ namespace gloop {
             const gloop::sizeiptr_t size,
             const void * data) {
 
-        gloop::wrapper::namedBufferSubData(_id, offset, size, data);
+        gloop::wrapper::namedBufferSubData(
+                static_cast<gloop::enum_t> (_target),
+                _id,
+                offset,
+                size,
+                data);
     }
 
     void buffer::getData(
@@ -122,7 +153,12 @@ namespace gloop {
             void * data) const {
 
         if (this->isInitialized()) {
-            gloop::wrapper::getNamedBufferSubData(_id, offset, size, data);
+            gloop::wrapper::getNamedBufferSubData(
+                    static_cast<gloop::enum_t> (_target),
+                    _id,
+                    offset,
+                    size,
+                    data);
         }
     }
 
@@ -133,6 +169,7 @@ namespace gloop {
 
         if (this->isInitialized()) {
             return gloop::wrapper::mapNamedBufferRange(
+                    static_cast<gloop::enum_t> (_target),
                     _id,
                     offset,
                     length,
@@ -144,7 +181,7 @@ namespace gloop {
 
     void buffer::unmap() const {
         if (this->isInitialized()) {
-            gloop::wrapper::unmapNamedBuffer(_id);
+            gloop::wrapper::unmapNamedBuffer(static_cast<gloop::enum_t> (_target), _id);
         }
     }
 

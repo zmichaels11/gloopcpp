@@ -1,9 +1,9 @@
-#version 140
+#version 100
 
-out vec4 result;
+precision mediump float;
 
 uniform vec4 fColor;
 
 void main() {
-    result = fColor;
+    gl_FragColor = fColor;
 }

@@ -21,6 +21,7 @@ namespace gloop {
 
     class buffer {
     private:
+        enums::buffer_target _target;
         gloop::uint_t _id;
         gloop::sizeiptr_t _size;
         enums::buffer_storage_hint _storageHint;
@@ -30,12 +31,15 @@ namespace gloop {
     public:
 
         buffer() :
+        _target(enums::buffer_target::ARRAY),
         _id(0),
         _size(0),
         _storageHint(static_cast<enums::buffer_storage_hint> (0)),
         _immutableStorageHints(static_cast<bitfields::buffer_immutable_storage_hint> (0)),
         _isImmutable(false) {
-        }
+        }        
+
+        enums::buffer_target getTargetHint() const;
 
         buffer(buffer&) = delete;
 
@@ -50,41 +54,48 @@ namespace gloop {
         bool isImmutable() const;
 
         void allocate(
+                const enums::buffer_target target,
                 const gloop::sizeiptr_t size,
                 const enums::buffer_storage_hint storageHint = enums::buffer_storage_hint::STATIC_DRAW);
 
         void allocateImmutable(
+                const enums::buffer_target target,
                 const gloop::sizeiptr_t size,
                 const bitfields::buffer_immutable_storage_hint access = bitfields::buffer_immutable_storage_hint::READ | bitfields::buffer_immutable_storage_hint::WRITE);
 
         void allocateImmutable(
+                const enums::buffer_target target,
                 const gloop::sizeiptr_t size,
                 const void * data,
                 const bitfields::buffer_immutable_storage_hint access = bitfields::buffer_immutable_storage_hint::READ);
 
         template<class T>
         inline void allocateImmutable(
+                const enums::buffer_target target,
                 const std::vector<T>& data,
                 const bitfields::buffer_immutable_storage_hint accessHints = bitfields::buffer_immutable_storage_hint::READ) {
 
-            allocateImmutable(sizeof (T) * data.size(), data.data(), accessHints);
+            allocateImmutable(target, sizeof (T) * data.size(), data.data(), accessHints);
         }
 
         template<class T, std::size_t N>
         inline void allocateImmutable(
+                const enums::buffer_target target,
                 const std::array<T, N>& data,
                 const bitfields::buffer_immutable_storage_hint accessHints = bitfields::buffer_immutable_storage_hint::READ) {
 
-            allocateImmutable(sizeof (data), data.data(), accessHints);
+            allocateImmutable(target, sizeof (data), data.data(), accessHints);
         }
 
         void allocate(
+                const enums::buffer_target target,
                 const gloop::sizeiptr_t size,
                 const void * data,
                 const enums::buffer_storage_hint storageHint = enums::buffer_storage_hint::STATIC_DRAW);
 
         template<class T>
         inline void allocate(
+                const enums::buffer_target target,
                 const std::vector<T>& data,
                 const enums::buffer_storage_hint storageHint = enums::buffer_storage_hint::STATIC_DRAW) {
 
@@ -93,17 +104,18 @@ namespace gloop {
 
         template<class T, std::size_t N>
         inline void allocate(
+                const enums::buffer_target target,
                 const std::array<T, N>& data,
                 const enums::buffer_storage_hint storageHint = enums::buffer_storage_hint::STATIC_DRAW) {
 
-            allocate(sizeof (data), data.data(), storageHint);
+            allocate(target, sizeof (data), data.data(), storageHint);
         }
 
         void reallocate() const;
 
         bool isInitialized() const;
 
-        gloop::uint_t getId() const;        
+        gloop::uint_t getId() const;
 
         operator bool() const;
 

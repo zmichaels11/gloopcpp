@@ -22,12 +22,14 @@ namespace gloop {
                 gloop::uint_t buffer);
 
         void namedBufferData(
+                gloop::enum_t targetHint,
                 gloop::uint_t buffer,
                 gloop::sizeiptr_t size,
                 const void * data,
                 gloop::enum_t usage);
 
         void namedBufferStorage(
+                gloop::enum_t targetHint,
                 gloop::uint_t buffer,
                 gloop::sizeiptr_t size,
                 const void * data,
@@ -52,21 +54,26 @@ namespace gloop {
                 gloop::intptr_t offset, gloop::sizeiptr_t size);
 
         void namedBufferSubData(
+                gloop::enum_t targetHint,
                 gloop::uint_t buffer,
                 gloop::intptr_t offset, gloop::sizeiptr_t size,
                 const void * data);
 
         void getNamedBufferSubData(
+                gloop::enum_t targetHint,
                 gloop::uint_t buffer,
                 gloop::intptr_t offset,
                 gloop::sizeiptr_t size,
                 void * data);
 
         void * mapNamedBufferRange(
+                gloop::enum_t targetHint,
                 gloop::uint_t buffer,
                 gloop::intptr_t offset, gloop::sizeiptr_t length,
                 gloop::bitfield_t access);
 
-        void unmapNamedBuffer(gloop::uint_t buffer);
+        void unmapNamedBuffer(
+                gloop::enum_t targetHint,
+                gloop::uint_t buffer);
     }
 }

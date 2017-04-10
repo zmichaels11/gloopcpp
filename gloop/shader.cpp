@@ -6,6 +6,7 @@
 
 #include "shader.hpp"
 
+#include <iostream>
 #include <string>
 
 #include <SDL2/SDL_rwops.h>
@@ -58,7 +59,7 @@ namespace {
         if (hasSuffix(srcOrFile, suffix) || hasSuffix(srcOrFile, ".glsl")) {
             auto file = SDL_RWFromFile(srcOrFile.c_str(), "rb");
             auto src = gloop::tools::readAll(file);
-
+            
             return gloop::shader(type, src);
         } else {
             return gloop::shader(type, srcOrFile);
@@ -78,7 +79,7 @@ namespace gloop {
         {
             auto cstr = this->_src.c_str();
 
-            gloop::wrapper::shaderSource(glId, 1, &cstr, nullptr);
+            gloop::wrapper::shaderSource(glId, 1, &cstr, nullptr); 
         }
 
         gloop::wrapper::compileShader(glId);
@@ -88,7 +89,7 @@ namespace gloop {
         gloop::wrapper::getShaderiv(glId, gloop::wrapper::COMPILE_STATUS, &isCompiled);
 
         if (isCompiled) {
-            this->_id = glId;
+            this->_id = glId;                        
         } else {
             std::string infoLog = getShaderLog(glId);
 

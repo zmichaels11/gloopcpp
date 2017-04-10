@@ -22,6 +22,7 @@ namespace gloop {
         }
 
         void namedBufferData(
+                gloop::enum_t target,
                 gloop::uint_t buffer,
                 gloop::sizeiptr_t size,
                 const void * data,
@@ -30,12 +31,13 @@ namespace gloop {
             if (GLEW_ARB_direct_state_access) {
                 glNamedBufferData(buffer, size, data, usage);
             } else {
-                glBindBuffer(GL_ARRAY_BUFFER, buffer);
-                glBufferData(GL_ARRAY_BUFFER, size, data, usage);
+                glBindBuffer(target, buffer);
+                glBufferData(target, size, data, usage);
             }
         }
 
         void namedBufferStorage(
+                gloop::enum_t target,
                 gloop::uint_t buffer,
                 gloop::sizeiptr_t size,
                 const void * data,
@@ -45,15 +47,15 @@ namespace gloop {
                 if (GLEW_ARB_direct_state_access) {
                     glNamedBufferStorage(buffer, size, data, flags);
                 } else {
-                    glBindBuffer(GL_ARRAY_BUFFER, buffer);
-                    glBufferStorage(GL_ARRAY_BUFFER, size, data, flags);
+                    glBindBuffer(target, buffer);
+                    glBufferStorage(target, size, data, flags);
                 }
             } else {
                 throw "ARB_buffer_storage is not supported!";
             }
         }
 
-        void createBuffers(
+        void createBuffers(                
                 gloop::sizei_t n,
                 gloop::uint_t * buffers) {
 
@@ -88,6 +90,7 @@ namespace gloop {
         }
 
         void namedBufferSubData(
+                gloop::enum_t target,   
                 gloop::uint_t buffer,
                 gloop::intptr_t offset,
                 gloop::sizeiptr_t size,
@@ -96,17 +99,13 @@ namespace gloop {
             if (GLEW_ARB_direct_state_access) {
                 glNamedBufferSubData(buffer, offset, size, data);
             } else {
-                glBindBuffer(GL_ARRAY_BUFFER, buffer);
-                glBufferSubData(GL_ARRAY_BUFFER, offset, size, data);
+                glBindBuffer(target, buffer);
+                glBufferSubData(target, offset, size, data);
             }
         }
 
-        void getNamedBufferSubData(
-                gloop::uint_t buffer,
-                gloop::intptr_t offset, gloop::sizeiptr_t size,
-                void * data);
-
         void * mapNamedBufferRange(
+                gloop::enum_t target,
                 gloop::uint_t buffer,
                 gloop::intptr_t offset, gloop::sizeiptr_t length,
                 gloop::bitfield_t access) {
@@ -114,21 +113,31 @@ namespace gloop {
             if (GLEW_ARB_direct_state_access) {
                 return glMapNamedBufferRange(buffer, offset, length, access);
             } else {
-                glBindBuffer(GL_ARRAY_BUFFER, buffer);
-                return glMapBufferRange(buffer, offset, length, access);
+                glBindBuffer(target, buffer);
+                
+                void * out = glMapBufferRange(buffer, offset, length, access);
+                
+                glBindBuffer(target, 0);
+                
+                return out;
             }
         }
 
-        void unmapNamedBuffer(gloop::uint_t buffer) {
+        void unmapNamedBuffer(
+                gloop::enum_t target, 
+                gloop::uint_t buffer) {
+            
             if (GLEW_ARB_direct_state_access) {
                 glUnmapNamedBuffer(buffer);
             } else {
-                glBindBuffer(GL_ARRAY_BUFFER, buffer);
-                glUnmapBuffer(GL_ARRAY_BUFFER);
+                glBindBuffer(target, buffer);
+                glUnmapBuffer(target);
+                glBindBuffer(target, 0);
             }
         }
 
         void getNamedBufferSubData(
+                gloop::enum_t target,
                 gloop::uint_t buffer,
                 gloop::intptr_t offset, gloop::sizeiptr_t size,
                 void * data) {
@@ -136,8 +145,9 @@ namespace gloop {
             if (GLEW_ARB_direct_state_access) {
                 glGetNamedBufferSubData(buffer, offset, size, data);
             } else {
-                glBindBuffer(GL_ARRAY_BUFFER, buffer);
-                glGetBufferSubData(GL_ARRAY_BUFFER, offset, size, data);
+                glBindBuffer(target, buffer);
+                glGetBufferSubData(target, offset, size, data);
+                glBindBuffer(target, 0);
             }
         }
     }

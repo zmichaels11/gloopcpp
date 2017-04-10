@@ -54,8 +54,9 @@ int main(int argc, char** argv) {
     {
         gloop::context_hints hints;
 
-        hints.version.major = 3;
-        hints.version.minor = 1;
+        hints.profile = gloop::context_profile::ES;
+        hints.version.major = 2;
+        hints.version.minor = 0;
         hints.swapInterval = 1;
         hints.doubleBuffer = true;
 
@@ -71,7 +72,24 @@ int main(int argc, char** argv) {
 
         auto glCtx = reinterpret_cast<my_context *> (ctx);
 
-        if (!glCtx->program) {            
+        if (!glCtx->program) {
+            auto vendor = glGetString(GL_VENDOR);
+            auto renderer = glGetString(GL_RENDERER);
+            auto version = glGetString(GL_VERSION);
+            auto extensions = glGetString(GL_EXTENSIONS);
+            
+            std::cout << "Vendor: "
+                    << vendor
+                    << "\n"
+                    << "Renderer: " 
+                    << renderer
+                    << "\n"
+                    << "Version: "
+                    << version
+                    << "\n"
+                    << extensions
+                    << std::endl;
+            
             gloop::shader shaders[] {
                 gloop::shader::makeVertexShader("tests/basic.vert"),
                 gloop::shader::makeFragmentShader("tests/basic.frag")

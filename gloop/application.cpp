@@ -6,8 +6,13 @@
 
 #include "application.hpp"
 
-#include <iostream>
+#include <exception>
 #include <functional>
+#include <iostream>
+
+#ifdef __EMSCRIPTEN__
+#include <emscripten.h>
+#endif
 
 #include <SDL2/SDL.h>
 
@@ -16,6 +21,8 @@
 
 namespace gloop {
 
+    application * application::MAIN_APPLICATION = nullptr;
+    
     void application::setMainLoop(const std::function<void(const application *, context *) > callback) {
         if (this->isInitialized()) {
             throw "Unable to set main loop after application is initialized!";
@@ -46,7 +53,7 @@ namespace gloop {
                 SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
                 break;
             case context_profile::ES:
-                SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_ES);
+                //SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_ES);
                 break;
             case context_profile::COMPATIBILITY:
                 SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_COMPATIBILITY);
@@ -82,7 +89,7 @@ namespace gloop {
                         << std::endl;
             }
         }
-        
+
         if (this->_hints.doubleBuffer) {
             if (SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1) != 0) {
                 std::cerr << "WARN: unable to enable doublebuffer! SDL_Error: "
@@ -96,26 +103,36 @@ namespace gloop {
         if (this->_context != nullptr) {
             _context->currentScissor = _context->currentScissor.withSize({_width, _height});
             _context->currentViewport = _context->currentViewport.withSize({_width, _height});
-        }
+        }        
+        
+        MAIN_APPLICATION = this;
 
-        bool quit = false;
-        while (!quit) {
-            try {
-                this->_mainLoop(this, this->_context);
+#ifdef __EMSCRIPTEN__
+        emscripten_set_main_loop(runLoop, 60, true);
+#else
+        while (true) {
+            runLoop();
+        }
+#endif
+    }
+    
+    void application::runLoop() {
+        try {
+                MAIN_APPLICATION->_mainLoop(MAIN_APPLICATION, MAIN_APPLICATION->_context);
             } catch (const char * err) {
                 std::cerr << err << std::endl;
-                quit = true;
+                std::terminate();
             }
 
             SDL_Event event;
+
             while (SDL_PollEvent(&event) != 0) {
                 if (event.type == SDL_QUIT) {
-                    quit = true;
+                    std::terminate();
                 }
             }
 
-            SDL_GL_SwapWindow(this->_window);
-        }
+            SDL_GL_SwapWindow(MAIN_APPLICATION->_window);
     }
 
     int application::getWidth() const {

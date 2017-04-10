@@ -6,6 +6,7 @@
 
 #include "vertex_array.hpp"
 
+#include <iostream>
 #include <memory>
 #include <vector>
 
@@ -27,21 +28,22 @@ namespace gloop {
 
         gloop::uint_t glId = 0;
 
-        gloop::wrapper::createVertexArrays(1, &glId);
-        gloop::wrapper::bindVertexArray(glId);
+        gloop::wrapper::createVertexArrays(1, &glId);                        
+        gloop::wrapper::bindVertexArray(glId);        
+        
 
-        if (this->_indexBuffer) {
-            this->_indexBuffer->bind(gloop::enums::buffer_target::ELEMENT_ARRAY);
+        if (this->_indexBuffer) {            
+            this->_indexBuffer->bind(gloop::enums::buffer_target::ELEMENT_ARRAY);            
         }
 
         for (auto it = this->_bindings.begin(); it != this->_bindings.end(); it++) {
             vertex_attribute_binding binding = *it;
 
             gloop::wrapper::enableVertexAttribArray(binding.getAttributeId());
-            binding();
+            binding();            
         }
 
-        gloop::wrapper::bindVertexArray(0);
+        gloop::wrapper::bindVertexArray(0);        
 
         this->_id = glId;
     }
@@ -86,7 +88,7 @@ namespace gloop {
 
     void vertex_array::bind() {
         // this will bind vertex array 0 if the vertex array has no attached buffers
-        gloop::wrapper::bindVertexArray(getId());
+        gloop::wrapper::bindVertexArray(getId());        
     }
 
     bool vertex_array::isInitialized() const {

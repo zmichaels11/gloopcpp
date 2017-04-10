@@ -7,6 +7,8 @@
 #if GL == GLES2
 #include "gl.hpp"
 
+#include <iostream>
+
 #include <SDL2/SDL_opengles2.h>
 #include <SDL2/SDL_video.h>
 
@@ -30,8 +32,8 @@ namespace gloop {
             return glGetError();
         }
 
-        void init() {
-            glDrawArraysInstancedANGLE = (PFNGLDRAWARRAYSINSTANCEDANGLEPROC) SDL_GL_GetProcAddress("glDrawArraysInstancedANGLE");
+        void init() {                        
+            glDrawArraysInstancedANGLE = (PFNGLDRAWARRAYSINSTANCEDANGLEPROC) SDL_GL_GetProcAddress("glDrawArraysInstancedANGLE");            
             glDrawElementsInstancedANGLE = (PFNGLDRAWELEMENTSINSTANCEDANGLEPROC) SDL_GL_GetProcAddress("glDrawElementsInstancedANGLE");
             glVertexAttribDivisorANGLE = (PFNGLVERTEXATTRIBDIVISORANGLEPROC) SDL_GL_GetProcAddress("glVertexAttribDivisorANGLE");
             glMapBufferRangeEXT = (PFNGLMAPBUFFERRANGEEXTPROC) SDL_GL_GetProcAddress("glMapBufferRangeEXT");
@@ -40,7 +42,11 @@ namespace gloop {
             glBufferStorageEXT = (PFNGLBUFFERSTORAGEEXTPROC) SDL_GL_GetProcAddress("glBufferStorageEXT");
             glGenVertexArraysOES = (PFNGLGENVERTEXARRAYSOESPROC) SDL_GL_GetProcAddress("glGenVertexArraysOES");
             glDeleteVertexArraysOES = (PFNGLDELETEVERTEXARRAYSOESPROC) SDL_GL_GetProcAddress("glDeleteVertexArraysOES");
-            glBindVertexArrayOES = (PFNGLBINDVERTEXARRAYOESPROC) SDL_GL_GetProcAddress("glBindVertexArrayOES");            
+            glBindVertexArrayOES = (PFNGLBINDVERTEXARRAYOESPROC) SDL_GL_GetProcAddress("glBindVertexArrayOES");      
+            
+            if (glBindVertexArrayOES == nullptr) {
+                std::cout << "WARN: could not find glBindVertexArrayOES!" << std::endl;
+            }
         }
     }
 }

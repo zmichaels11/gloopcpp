@@ -8,6 +8,8 @@
 #if GL == GLES2
 #include "buffer_objects.hpp"
 
+#include <iostream>
+
 #include <SDL2/SDL_opengles2.h>
 
 extern PFNGLMAPBUFFERRANGEEXTPROC glMapBufferRangeEXT;
@@ -26,24 +28,28 @@ namespace gloop {
         }
 
         void namedBufferData(
+                gloop::enum_t targetHint,
                 gloop::uint_t buffer,
                 gloop::sizeiptr_t size,
                 const void * data,
                 gloop::enum_t usage) {
 
-            glBindBuffer(GL_ARRAY_BUFFER, buffer);
-            glBufferData(GL_ARRAY_BUFFER, size, data, usage);
+            glBindBuffer(targetHint, buffer);
+            glBufferData(targetHint, size, data, usage);
+            glBindBuffer(targetHint, 0);
         }
 
         void namedBufferStorage(
+                gloop::enum_t targetHint,
                 gloop::uint_t buffer,
                 gloop::sizeiptr_t size,
                 const void * data,
                 gloop::bitfield_t flags) {
 
             if (glBufferStorageEXT != nullptr) {
-                glBindBuffer(GL_ARRAY_BUFFER, buffer);
-                glBufferStorageEXT(GL_ARRAY_BUFFER, size, data, flags);
+                glBindBuffer(targetHint, buffer);
+                glBufferStorageEXT(targetHint, size, data, flags);
+                glBindBuffer(targetHint, 0);
             }
         }
 
@@ -62,65 +68,79 @@ namespace gloop {
         }
 
         void namedBufferSubData(
+                gloop::enum_t targetHint,
                 gloop::uint_t buffer,
                 gloop::intptr_t offset, gloop::sizeiptr_t size,
                 const void * data) {
 
-            glBindBuffer(GL_ARRAY_BUFFER, buffer);
-            glBufferSubData(GL_ARRAY_BUFFER, offset, size, data);
+            glBindBuffer(targetHint, buffer);
+            glBufferSubData(targetHint, offset, size, data);
+            glBindBuffer(targetHint, 0);
         }
 
         void * mapNamedBufferRange(
+                gloop::enum_t targetHint,
                 gloop::uint_t buffer,
                 gloop::intptr_t offset, gloop::sizeiptr_t length,
                 gloop::bitfield_t access) {
-            
+
             if (glMapBufferRangeEXT != nullptr) {
-                glBindBuffer(GL_ARRAY_BUFFER, buffer);
-                
-                return glMapBufferRangeEXT(GL_ARRAY_BUFFER, offset, length, access);
+                glBindBuffer(targetHint, buffer);
+
+                void * out = glMapBufferRangeEXT(targetHint, offset, length, access);
+
+                glBindBuffer(targetHint, 0);
+
+                return out;
             } else if (glUnmapBufferOES != nullptr) {
-                glBindBuffer(GL_ARRAY_BUFFER, buffer);
-                
-                gloop::char_t * ptr = (gloop::char_t *) glMapBufferOES(buffer, access);
-                
+                glBindBuffer(targetHint, buffer);
+
+                gloop::char_t * ptr = (gloop::char_t *) glMapBufferOES(targetHint, access);
+
+                glBindBuffer(targetHint, 0);
+
                 return (ptr + offset);
             } else {
                 throw "glMapBufferOES is not supported!";
             }
         }
 
-        void unmapNamedBuffer(gloop::uint_t buffer) {
+        void unmapNamedBuffer(
+                gloop::enum_t targetHint,
+                gloop::uint_t buffer) {
+
             if (glUnmapBufferOES != nullptr) {
-                glBindBuffer(GL_ARRAY_BUFFER, buffer);
-                glUnmapBufferOES(GL_ARRAY_BUFFER);
+                glBindBuffer(targetHint, buffer);
+                glUnmapBufferOES(targetHint);
+                glBindBuffer(targetHint, 0);
             } else {
                 throw "glUnmapBufferOES is not supported!";
             }
         }
-        
+
         void getNamedBufferSubData(
+                gloop::enum_t targetHint,
                 gloop::uint_t buffer,
                 gloop::intptr_t offset,
                 gloop::sizeiptr_t size,
                 void * data) {
-            
+
             throw "glGetBufferSubData is not supported!";
         }
-        
-        void bindBufferRange(
+
+        void bindBufferRange(                
                 gloop::enum_t target,
                 gloop::uint_t index,
                 gloop::uint_t buffer,
                 gloop::intptr_t offset, gloop::sizeiptr_t size) {
-            
+
             throw "glBindBufferRange is not supported!";
         }
 
-        void bindBufferBase(
+        void bindBufferBase(                
                 gloop::enum_t target,
                 gloop::uint_t buffer) {
-            
+
             throw "glBindBufferBase is not supported!";
         }
     }

@@ -7,6 +7,7 @@
 #include "program.hpp"
 
 #include <cstddef>
+#include <iostream>
 #include <string>
 
 #include "exception/invalid_uniform_name_exception.hpp"
@@ -18,7 +19,7 @@
 
 namespace {
 
-    static std::string getProgramLog(GLuint program) {
+    static std::string getProgramLog(gloop::uint_t program) {
         gloop::int_t logLength = 0;
         gloop::int_t maxLength = 0;
 
@@ -68,16 +69,16 @@ namespace gloop {
         return _id != 0;
     }
 
-    void program::linkShaders(shader * shaders, const std::size_t count) {
+    void program::linkShaders(shader * shaders, const std::size_t count) {        
         auto glId = gloop::wrapper::createProgram();
 
-        this->_attribs.bindAttributes(glId);
-
+        this->_attribs.bindAttributes(glId);        
+        
         for (auto it = shaders; it != shaders + count; it++) {
             gloop::wrapper::attachShader(glId, it->getId());
-        }
+        }                
 
-        gloop::wrapper::linkProgram(glId);
+        gloop::wrapper::linkProgram(glId);               
 
         for (auto it = shaders; it != shaders + count; it++) {
             gloop::wrapper::detachShader(glId, it->getId());
@@ -88,7 +89,7 @@ namespace gloop {
         gloop::wrapper::getProgramiv(glId, gloop::wrapper::LINK_STATUS, &isLinked);
 
         if (isLinked) {
-            this->_id = glId;
+            this->_id = glId;            
         } else {
             auto infoLog = getProgramLog(glId);
             
@@ -110,6 +111,7 @@ namespace gloop {
 
     void program::setVertexAttributes(const vertex_attributes attribs) {
         if (this->isInitialized()) {
+            std::cerr << "Unable to set vertex attributes!" << std::endl;
             throw gloop::exception::program_link_exception("Cannot set vertex attributes if program is already linked!");
         }
 

@@ -47,6 +47,9 @@ namespace gloop {
 
         context_hints _hints;
         gloop::context * _context;
+        
+        static application * MAIN_APPLICATION;
+        static void runLoop();
 
     public:
 

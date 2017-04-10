@@ -29,8 +29,8 @@ namespace gloop {
         vertex_attribute_binding bindBuffer(
                 const buffer * bufId, 
                 const enums::vertex_attribute_type, 
-                const GLsizei stride = 0, const void * ptr = nullptr, 
-                const GLuint divisor = 0) const;
+                const gloop::sizei_t stride = 0, const void * ptr = nullptr, 
+                const gloop::uint_t divisor = 0) const;
 
         void enable() const;
 
@@ -39,16 +39,16 @@ namespace gloop {
 
     class vertex_attributes {
     private:
-        std::map<std::string, GLint> _nameMap;
+        std::map<std::string, gloop::int_t> _nameMap;
 
     public:
-        void setLocation(std::string name, GLint index);
+        void setLocation(std::string name, gloop::int_t index);
 
-        GLint getLocation(const std::string& name) const;
+        gloop::int_t getLocation(const std::string& name) const;
 
         bool hasAttribute(const std::string& name) const;
 
-        void bindAttributes(GLuint program) const;
+        void bindAttributes(gloop::uint_t program) const;
 
         void enableAttributes() const;
 

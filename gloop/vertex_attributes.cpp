@@ -37,7 +37,7 @@ namespace gloop {
         return (this->_nameMap.find(name) != this->_nameMap.end());
     }
 
-    void vertex_attributes::bindAttributes(GLuint program) const {
+    void vertex_attributes::bindAttributes(gloop::uint_t program) const {
         for (auto it = this->_nameMap.begin(); it != this->_nameMap.end(); it++) {
             gloop::wrapper::bindAttribLocation(program, it->second, it->first.c_str());
         }
