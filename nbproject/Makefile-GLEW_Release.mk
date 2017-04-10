@@ -35,6 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/dummy_main.o \
 	${OBJECTDIR}/gloop/application.o \
 	${OBJECTDIR}/gloop/bitfields/buffer_access_hint.o \
 	${OBJECTDIR}/gloop/bitfields/buffer_immutable_storage_hint.o \
@@ -50,7 +51,9 @@ OBJECTFILES= \
 	${OBJECTDIR}/gloop/states/clear.o \
 	${OBJECTDIR}/gloop/states/depth_range.o \
 	${OBJECTDIR}/gloop/states/scissor.o \
+	${OBJECTDIR}/gloop/states/texture2D_parameters.o \
 	${OBJECTDIR}/gloop/states/viewport.o \
+	${OBJECTDIR}/gloop/texture2D.o \
 	${OBJECTDIR}/gloop/tools.o \
 	${OBJECTDIR}/gloop/uniform/uniform_bindings.o \
 	${OBJECTDIR}/gloop/uniform/uniform_block_binding.o \
@@ -60,11 +63,16 @@ OBJECTFILES= \
 	${OBJECTDIR}/gloop/wrapper/gles2_buffer_objects.o \
 	${OBJECTDIR}/gloop/wrapper/gles2_drawing_commands.o \
 	${OBJECTDIR}/gloop/wrapper/gles2_gl.o \
+	${OBJECTDIR}/gloop/wrapper/gles2_shaders_and_programs.o \
+	${OBJECTDIR}/gloop/wrapper/gles2_states.o \
+	${OBJECTDIR}/gloop/wrapper/gles2_texture_objects.o \
+	${OBJECTDIR}/gloop/wrapper/gles2_vertex_arrays.o \
 	${OBJECTDIR}/gloop/wrapper/glew_buffer_objects.o \
 	${OBJECTDIR}/gloop/wrapper/glew_drawing_commands.o \
 	${OBJECTDIR}/gloop/wrapper/glew_gl.o \
 	${OBJECTDIR}/gloop/wrapper/glew_shaders_and_programs.o \
 	${OBJECTDIR}/gloop/wrapper/glew_states.o \
+	${OBJECTDIR}/gloop/wrapper/glew_texture_objects.o \
 	${OBJECTDIR}/gloop/wrapper/glew_vertex_arrays.o
 
 # Test Directory
@@ -101,6 +109,11 @@ LDLIBSOPTIONS=`pkg-config --libs sdl2` `pkg-config --libs glew`
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/camstreamtest: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/camstreamtest ${OBJECTFILES} ${LDLIBSOPTIONS}
+
+${OBJECTDIR}/dummy_main.o: dummy_main.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/dummy_main.o dummy_main.cpp
 
 ${OBJECTDIR}/gloop/application.o: gloop/application.cpp
 	${MKDIR} -p ${OBJECTDIR}/gloop
@@ -177,10 +190,20 @@ ${OBJECTDIR}/gloop/states/scissor.o: gloop/states/scissor.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/states/scissor.o gloop/states/scissor.cpp
 
+${OBJECTDIR}/gloop/states/texture2D_parameters.o: gloop/states/texture2D_parameters.cpp
+	${MKDIR} -p ${OBJECTDIR}/gloop/states
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/states/texture2D_parameters.o gloop/states/texture2D_parameters.cpp
+
 ${OBJECTDIR}/gloop/states/viewport.o: gloop/states/viewport.cpp
 	${MKDIR} -p ${OBJECTDIR}/gloop/states
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/states/viewport.o gloop/states/viewport.cpp
+
+${OBJECTDIR}/gloop/texture2D.o: gloop/texture2D.cpp
+	${MKDIR} -p ${OBJECTDIR}/gloop
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/texture2D.o gloop/texture2D.cpp
 
 ${OBJECTDIR}/gloop/tools.o: gloop/tools.cpp
 	${MKDIR} -p ${OBJECTDIR}/gloop
@@ -227,6 +250,26 @@ ${OBJECTDIR}/gloop/wrapper/gles2_gl.o: gloop/wrapper/gles2_gl.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/wrapper/gles2_gl.o gloop/wrapper/gles2_gl.cpp
 
+${OBJECTDIR}/gloop/wrapper/gles2_shaders_and_programs.o: gloop/wrapper/gles2_shaders_and_programs.cpp
+	${MKDIR} -p ${OBJECTDIR}/gloop/wrapper
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/wrapper/gles2_shaders_and_programs.o gloop/wrapper/gles2_shaders_and_programs.cpp
+
+${OBJECTDIR}/gloop/wrapper/gles2_states.o: gloop/wrapper/gles2_states.cpp
+	${MKDIR} -p ${OBJECTDIR}/gloop/wrapper
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/wrapper/gles2_states.o gloop/wrapper/gles2_states.cpp
+
+${OBJECTDIR}/gloop/wrapper/gles2_texture_objects.o: gloop/wrapper/gles2_texture_objects.cpp
+	${MKDIR} -p ${OBJECTDIR}/gloop/wrapper
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/wrapper/gles2_texture_objects.o gloop/wrapper/gles2_texture_objects.cpp
+
+${OBJECTDIR}/gloop/wrapper/gles2_vertex_arrays.o: gloop/wrapper/gles2_vertex_arrays.cpp
+	${MKDIR} -p ${OBJECTDIR}/gloop/wrapper
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/wrapper/gles2_vertex_arrays.o gloop/wrapper/gles2_vertex_arrays.cpp
+
 ${OBJECTDIR}/gloop/wrapper/glew_buffer_objects.o: gloop/wrapper/glew_buffer_objects.cpp
 	${MKDIR} -p ${OBJECTDIR}/gloop/wrapper
 	${RM} "$@.d"
@@ -252,6 +295,11 @@ ${OBJECTDIR}/gloop/wrapper/glew_states.o: gloop/wrapper/glew_states.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/wrapper/glew_states.o gloop/wrapper/glew_states.cpp
 
+${OBJECTDIR}/gloop/wrapper/glew_texture_objects.o: gloop/wrapper/glew_texture_objects.cpp
+	${MKDIR} -p ${OBJECTDIR}/gloop/wrapper
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/wrapper/glew_texture_objects.o gloop/wrapper/glew_texture_objects.cpp
+
 ${OBJECTDIR}/gloop/wrapper/glew_vertex_arrays.o: gloop/wrapper/glew_vertex_arrays.cpp
 	${MKDIR} -p ${OBJECTDIR}/gloop/wrapper
 	${RM} "$@.d"
@@ -274,6 +322,19 @@ ${TESTDIR}/tests/basic_rect.o: tests/basic_rect.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -I. `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/basic_rect.o tests/basic_rect.cpp
 
+
+${OBJECTDIR}/dummy_main_nomain.o: ${OBJECTDIR}/dummy_main.o dummy_main.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/dummy_main.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/dummy_main_nomain.o dummy_main.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/dummy_main.o ${OBJECTDIR}/dummy_main_nomain.o;\
+	fi
 
 ${OBJECTDIR}/gloop/application_nomain.o: ${OBJECTDIR}/gloop/application.o gloop/application.cpp 
 	${MKDIR} -p ${OBJECTDIR}/gloop
@@ -470,6 +531,19 @@ ${OBJECTDIR}/gloop/states/scissor_nomain.o: ${OBJECTDIR}/gloop/states/scissor.o 
 	    ${CP} ${OBJECTDIR}/gloop/states/scissor.o ${OBJECTDIR}/gloop/states/scissor_nomain.o;\
 	fi
 
+${OBJECTDIR}/gloop/states/texture2D_parameters_nomain.o: ${OBJECTDIR}/gloop/states/texture2D_parameters.o gloop/states/texture2D_parameters.cpp 
+	${MKDIR} -p ${OBJECTDIR}/gloop/states
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/gloop/states/texture2D_parameters.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/states/texture2D_parameters_nomain.o gloop/states/texture2D_parameters.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/gloop/states/texture2D_parameters.o ${OBJECTDIR}/gloop/states/texture2D_parameters_nomain.o;\
+	fi
+
 ${OBJECTDIR}/gloop/states/viewport_nomain.o: ${OBJECTDIR}/gloop/states/viewport.o gloop/states/viewport.cpp 
 	${MKDIR} -p ${OBJECTDIR}/gloop/states
 	@NMOUTPUT=`${NM} ${OBJECTDIR}/gloop/states/viewport.o`; \
@@ -481,6 +555,19 @@ ${OBJECTDIR}/gloop/states/viewport_nomain.o: ${OBJECTDIR}/gloop/states/viewport.
 	    $(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/states/viewport_nomain.o gloop/states/viewport.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/gloop/states/viewport.o ${OBJECTDIR}/gloop/states/viewport_nomain.o;\
+	fi
+
+${OBJECTDIR}/gloop/texture2D_nomain.o: ${OBJECTDIR}/gloop/texture2D.o gloop/texture2D.cpp 
+	${MKDIR} -p ${OBJECTDIR}/gloop
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/gloop/texture2D.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/texture2D_nomain.o gloop/texture2D.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/gloop/texture2D.o ${OBJECTDIR}/gloop/texture2D_nomain.o;\
 	fi
 
 ${OBJECTDIR}/gloop/tools_nomain.o: ${OBJECTDIR}/gloop/tools.o gloop/tools.cpp 
@@ -600,6 +687,58 @@ ${OBJECTDIR}/gloop/wrapper/gles2_gl_nomain.o: ${OBJECTDIR}/gloop/wrapper/gles2_g
 	    ${CP} ${OBJECTDIR}/gloop/wrapper/gles2_gl.o ${OBJECTDIR}/gloop/wrapper/gles2_gl_nomain.o;\
 	fi
 
+${OBJECTDIR}/gloop/wrapper/gles2_shaders_and_programs_nomain.o: ${OBJECTDIR}/gloop/wrapper/gles2_shaders_and_programs.o gloop/wrapper/gles2_shaders_and_programs.cpp 
+	${MKDIR} -p ${OBJECTDIR}/gloop/wrapper
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/gloop/wrapper/gles2_shaders_and_programs.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/wrapper/gles2_shaders_and_programs_nomain.o gloop/wrapper/gles2_shaders_and_programs.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/gloop/wrapper/gles2_shaders_and_programs.o ${OBJECTDIR}/gloop/wrapper/gles2_shaders_and_programs_nomain.o;\
+	fi
+
+${OBJECTDIR}/gloop/wrapper/gles2_states_nomain.o: ${OBJECTDIR}/gloop/wrapper/gles2_states.o gloop/wrapper/gles2_states.cpp 
+	${MKDIR} -p ${OBJECTDIR}/gloop/wrapper
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/gloop/wrapper/gles2_states.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/wrapper/gles2_states_nomain.o gloop/wrapper/gles2_states.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/gloop/wrapper/gles2_states.o ${OBJECTDIR}/gloop/wrapper/gles2_states_nomain.o;\
+	fi
+
+${OBJECTDIR}/gloop/wrapper/gles2_texture_objects_nomain.o: ${OBJECTDIR}/gloop/wrapper/gles2_texture_objects.o gloop/wrapper/gles2_texture_objects.cpp 
+	${MKDIR} -p ${OBJECTDIR}/gloop/wrapper
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/gloop/wrapper/gles2_texture_objects.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/wrapper/gles2_texture_objects_nomain.o gloop/wrapper/gles2_texture_objects.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/gloop/wrapper/gles2_texture_objects.o ${OBJECTDIR}/gloop/wrapper/gles2_texture_objects_nomain.o;\
+	fi
+
+${OBJECTDIR}/gloop/wrapper/gles2_vertex_arrays_nomain.o: ${OBJECTDIR}/gloop/wrapper/gles2_vertex_arrays.o gloop/wrapper/gles2_vertex_arrays.cpp 
+	${MKDIR} -p ${OBJECTDIR}/gloop/wrapper
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/gloop/wrapper/gles2_vertex_arrays.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/wrapper/gles2_vertex_arrays_nomain.o gloop/wrapper/gles2_vertex_arrays.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/gloop/wrapper/gles2_vertex_arrays.o ${OBJECTDIR}/gloop/wrapper/gles2_vertex_arrays_nomain.o;\
+	fi
+
 ${OBJECTDIR}/gloop/wrapper/glew_buffer_objects_nomain.o: ${OBJECTDIR}/gloop/wrapper/glew_buffer_objects.o gloop/wrapper/glew_buffer_objects.cpp 
 	${MKDIR} -p ${OBJECTDIR}/gloop/wrapper
 	@NMOUTPUT=`${NM} ${OBJECTDIR}/gloop/wrapper/glew_buffer_objects.o`; \
@@ -663,6 +802,19 @@ ${OBJECTDIR}/gloop/wrapper/glew_states_nomain.o: ${OBJECTDIR}/gloop/wrapper/glew
 	    $(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/wrapper/glew_states_nomain.o gloop/wrapper/glew_states.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/gloop/wrapper/glew_states.o ${OBJECTDIR}/gloop/wrapper/glew_states_nomain.o;\
+	fi
+
+${OBJECTDIR}/gloop/wrapper/glew_texture_objects_nomain.o: ${OBJECTDIR}/gloop/wrapper/glew_texture_objects.o gloop/wrapper/glew_texture_objects.cpp 
+	${MKDIR} -p ${OBJECTDIR}/gloop/wrapper
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/gloop/wrapper/glew_texture_objects.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/wrapper/glew_texture_objects_nomain.o gloop/wrapper/glew_texture_objects.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/gloop/wrapper/glew_texture_objects.o ${OBJECTDIR}/gloop/wrapper/glew_texture_objects_nomain.o;\
 	fi
 
 ${OBJECTDIR}/gloop/wrapper/glew_vertex_arrays_nomain.o: ${OBJECTDIR}/gloop/wrapper/glew_vertex_arrays.o gloop/wrapper/glew_vertex_arrays.cpp 

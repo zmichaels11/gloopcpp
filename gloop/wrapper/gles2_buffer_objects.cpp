@@ -9,7 +9,6 @@
 #include "buffer_objects.hpp"
 
 #include <SDL2/SDL_opengles2.h>
-#include <SDL2/SDL_opengles2_gl2ext.h>
 
 extern PFNGLMAPBUFFERRANGEEXTPROC glMapBufferRangeEXT;
 extern PFNGLMAPBUFFEROESPROC glMapBufferOES;

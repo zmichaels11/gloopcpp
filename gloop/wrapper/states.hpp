@@ -51,9 +51,10 @@ namespace gloop {
                 gloop::float_t green,
                 gloop::float_t blue,
                 gloop::float_t alpha);
-        
+
         void clearDepth(gloop::double_t depth);
-        
+
         void clearStencil(gloop::int_t stencil);
+        
     }
 }

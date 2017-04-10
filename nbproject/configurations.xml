@@ -25,6 +25,11 @@
           <itemPath>gloop/enums/blend_eq.hpp</itemPath>
           <itemPath>gloop/enums/blend_func.hpp</itemPath>
           <itemPath>gloop/enums/shader_type.hpp</itemPath>
+          <itemPath>gloop/enums/texture_format.hpp</itemPath>
+          <itemPath>gloop/enums/texture_internal_format.hpp</itemPath>
+          <itemPath>gloop/enums/texture_mag_filter.hpp</itemPath>
+          <itemPath>gloop/enums/texture_min_filter.hpp</itemPath>
+          <itemPath>gloop/enums/texture_wrap.hpp</itemPath>
           <itemPath>gloop/enums/vertex_attribute_type.hpp</itemPath>
         </logicalFolder>
         <logicalFolder name="f4" displayName="error" projectFiles="true">
@@ -48,6 +53,7 @@
           <itemPath>gloop/states/clear.hpp</itemPath>
           <itemPath>gloop/states/depth_range.hpp</itemPath>
           <itemPath>gloop/states/scissor.hpp</itemPath>
+          <itemPath>gloop/states/texture2D_parameters.hpp</itemPath>
           <itemPath>gloop/states/viewport.hpp</itemPath>
         </logicalFolder>
         <logicalFolder name="f1" displayName="uniform" projectFiles="true">
@@ -79,6 +85,7 @@
           <itemPath>gloop/wrapper/gl.hpp</itemPath>
           <itemPath>gloop/wrapper/shaders_and_programs.hpp</itemPath>
           <itemPath>gloop/wrapper/states.hpp</itemPath>
+          <itemPath>gloop/wrapper/texture_objects.hpp</itemPath>
           <itemPath>gloop/wrapper/vertex_arrays.hpp</itemPath>
         </logicalFolder>
         <itemPath>gloop/application.hpp</itemPath>
@@ -89,6 +96,7 @@
         <itemPath>gloop/exceptions.hpp</itemPath>
         <itemPath>gloop/glint.hpp</itemPath>
         <itemPath>gloop/glwrapper.hpp</itemPath>
+        <itemPath>gloop/pixel_formats.hpp</itemPath>
         <itemPath>gloop/program.hpp</itemPath>
         <itemPath>gloop/shader.hpp</itemPath>
         <itemPath>gloop/texture2D.hpp</itemPath>
@@ -126,6 +134,7 @@
           <itemPath>gloop/states/clear.cpp</itemPath>
           <itemPath>gloop/states/depth_range.cpp</itemPath>
           <itemPath>gloop/states/scissor.cpp</itemPath>
+          <itemPath>gloop/states/texture2D_parameters.cpp</itemPath>
           <itemPath>gloop/states/viewport.cpp</itemPath>
         </logicalFolder>
         <logicalFolder name="f2" displayName="uniform" projectFiles="true">
@@ -136,6 +145,10 @@
             <itemPath>gloop/wrapper/gles2_buffer_objects.cpp</itemPath>
             <itemPath>gloop/wrapper/gles2_drawing_commands.cpp</itemPath>
             <itemPath>gloop/wrapper/gles2_gl.cpp</itemPath>
+            <itemPath>gloop/wrapper/gles2_shaders_and_programs.cpp</itemPath>
+            <itemPath>gloop/wrapper/gles2_states.cpp</itemPath>
+            <itemPath>gloop/wrapper/gles2_texture_objects.cpp</itemPath>
+            <itemPath>gloop/wrapper/gles2_vertex_arrays.cpp</itemPath>
           </logicalFolder>
           <logicalFolder name="f1" displayName="glew" projectFiles="true">
             <itemPath>gloop/wrapper/glew_buffer_objects.cpp</itemPath>
@@ -143,6 +156,7 @@
             <itemPath>gloop/wrapper/glew_gl.cpp</itemPath>
             <itemPath>gloop/wrapper/glew_shaders_and_programs.cpp</itemPath>
             <itemPath>gloop/wrapper/glew_states.cpp</itemPath>
+            <itemPath>gloop/wrapper/glew_texture_objects.cpp</itemPath>
             <itemPath>gloop/wrapper/glew_vertex_arrays.cpp</itemPath>
           </logicalFolder>
         </logicalFolder>
@@ -151,12 +165,14 @@
         <itemPath>gloop/program.cpp</itemPath>
         <itemPath>gloop/program_uniform_binding.cpp</itemPath>
         <itemPath>gloop/shader.cpp</itemPath>
+        <itemPath>gloop/texture2D.cpp</itemPath>
         <itemPath>gloop/tools.cpp</itemPath>
         <itemPath>gloop/uniform/uniform_block_binding.cpp</itemPath>
         <itemPath>gloop/vertex_array.cpp</itemPath>
         <itemPath>gloop/vertex_attribute_binding.cpp</itemPath>
         <itemPath>gloop/vertex_attributes.cpp</itemPath>
       </logicalFolder>
+      <itemPath>dummy_main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -198,6 +214,8 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
+      <item path="dummy_main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <folder path="TestFiles/f1">
         <cTool>
           <incDir>
@@ -278,6 +296,19 @@
       </item>
       <item path="gloop/enums/shader_type.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/enums/texture_format.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/enums/texture_internal_format.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/enums/texture_mag_filter.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/enums/texture_min_filter.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/enums/texture_wrap.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/enums/vertex_attribute_type.hpp"
             ex="false"
             tool="3"
@@ -349,6 +380,8 @@
       </item>
       <item path="gloop/glwrapper.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/pixel_formats.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/program.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/program.hpp" ex="false" tool="3" flavor2="0">
@@ -375,9 +408,21 @@
       </item>
       <item path="gloop/states/scissor.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/states/texture2D_parameters.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="gloop/states/texture2D_parameters.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="gloop/states/viewport.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/states/viewport.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/texture2D.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/texture2D.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -526,6 +571,23 @@
       </item>
       <item path="gloop/wrapper/gles2_gl.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="gloop/wrapper/gles2_shaders_and_programs.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="gloop/wrapper/gles2_states.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="gloop/wrapper/gles2_texture_objects.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="gloop/wrapper/gles2_vertex_arrays.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
       <item path="gloop/wrapper/glew_buffer_objects.cpp"
             ex="false"
             tool="1"
@@ -545,6 +607,11 @@
       </item>
       <item path="gloop/wrapper/glew_states.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="gloop/wrapper/glew_texture_objects.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
       <item path="gloop/wrapper/glew_vertex_arrays.cpp"
             ex="false"
             tool="1"
@@ -556,6 +623,8 @@
             flavor2="0">
       </item>
       <item path="gloop/wrapper/states.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/wrapper/texture_objects.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/wrapper/vertex_arrays.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -594,6 +663,8 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
+      <item path="dummy_main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <folder path="TestFiles/f1">
         <cTool>
           <incDir>
@@ -674,6 +745,19 @@
       </item>
       <item path="gloop/enums/shader_type.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/enums/texture_format.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/enums/texture_internal_format.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/enums/texture_mag_filter.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/enums/texture_min_filter.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/enums/texture_wrap.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/enums/vertex_attribute_type.hpp"
             ex="false"
             tool="3"
@@ -745,6 +829,8 @@
       </item>
       <item path="gloop/glwrapper.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/pixel_formats.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/program.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/program.hpp" ex="false" tool="3" flavor2="0">
@@ -771,9 +857,21 @@
       </item>
       <item path="gloop/states/scissor.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/states/texture2D_parameters.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="gloop/states/texture2D_parameters.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="gloop/states/viewport.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/states/viewport.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/texture2D.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/texture2D.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -922,6 +1020,23 @@
       </item>
       <item path="gloop/wrapper/gles2_gl.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="gloop/wrapper/gles2_shaders_and_programs.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="gloop/wrapper/gles2_states.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="gloop/wrapper/gles2_texture_objects.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="gloop/wrapper/gles2_vertex_arrays.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
       <item path="gloop/wrapper/glew_buffer_objects.cpp"
             ex="false"
             tool="1"
@@ -941,6 +1056,11 @@
       </item>
       <item path="gloop/wrapper/glew_states.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="gloop/wrapper/glew_texture_objects.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
       <item path="gloop/wrapper/glew_vertex_arrays.cpp"
             ex="false"
             tool="1"
@@ -952,6 +1072,8 @@
             flavor2="0">
       </item>
       <item path="gloop/wrapper/states.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/wrapper/texture_objects.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/wrapper/vertex_arrays.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -980,6 +1102,8 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
+      <item path="dummy_main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <folder path="TestFiles/f1">
         <cTool>
           <incDir>
@@ -1060,6 +1184,19 @@
       </item>
       <item path="gloop/enums/shader_type.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/enums/texture_format.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/enums/texture_internal_format.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/enums/texture_mag_filter.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/enums/texture_min_filter.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/enums/texture_wrap.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/enums/vertex_attribute_type.hpp"
             ex="false"
             tool="3"
@@ -1134,6 +1271,8 @@
       </item>
       <item path="gloop/glwrapper.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/pixel_formats.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/program.cpp" ex="false" tool="1" flavor2="11">
       </item>
       <item path="gloop/program.hpp" ex="false" tool="3" flavor2="0">
@@ -1160,9 +1299,21 @@
       </item>
       <item path="gloop/states/scissor.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/states/texture2D_parameters.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="gloop/states/texture2D_parameters.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="gloop/states/viewport.cpp" ex="false" tool="1" flavor2="11">
       </item>
       <item path="gloop/states/viewport.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/texture2D.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/texture2D.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -1317,6 +1468,23 @@
       </item>
       <item path="gloop/wrapper/gles2_gl.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="gloop/wrapper/gles2_shaders_and_programs.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="gloop/wrapper/gles2_states.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="gloop/wrapper/gles2_texture_objects.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="gloop/wrapper/gles2_vertex_arrays.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
       <item path="gloop/wrapper/glew_buffer_objects.cpp"
             ex="false"
             tool="1"
@@ -1336,6 +1504,11 @@
       </item>
       <item path="gloop/wrapper/glew_states.cpp" ex="false" tool="1" flavor2="11">
       </item>
+      <item path="gloop/wrapper/glew_texture_objects.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
       <item path="gloop/wrapper/glew_vertex_arrays.cpp"
             ex="false"
             tool="1"
@@ -1347,6 +1520,8 @@
             flavor2="0">
       </item>
       <item path="gloop/wrapper/states.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/wrapper/texture_objects.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/wrapper/vertex_arrays.hpp" ex="false" tool="3" flavor2="0">
       </item>

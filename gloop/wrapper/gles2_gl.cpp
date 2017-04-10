@@ -8,7 +8,6 @@
 #include "gl.hpp"
 
 #include <SDL2/SDL_opengles2.h>
-#include <SDL2/SDL_opengles2_gl2ext.h>
 #include <SDL2/SDL_video.h>
 
 #include "../glint.hpp"
@@ -20,6 +19,9 @@ PFNGLMAPBUFFERRANGEEXTPROC glMapBufferRangeEXT;
 PFNGLMAPBUFFEROESPROC glMapBufferOES;
 PFNGLUNMAPBUFFEROESPROC glUnmapBufferOES;
 PFNGLBUFFERSTORAGEEXTPROC glBufferStorageEXT;
+PFNGLGENVERTEXARRAYSOESPROC glGenVertexArraysOES;
+PFNGLDELETEVERTEXARRAYSOESPROC glDeleteVertexArraysOES;
+PFNGLBINDVERTEXARRAYOESPROC glBindVertexArrayOES;
 
 namespace gloop {
     namespace wrapper {
@@ -36,6 +38,9 @@ namespace gloop {
             glMapBufferOES = (PFNGLMAPBUFFEROESPROC) SDL_GL_GetProcAddress("glMapBufferOES");
             glUnmapBufferOES = (PFNGLUNMAPBUFFEROESPROC) SDL_GL_GetProcAddress("glUnmapBufferOES");
             glBufferStorageEXT = (PFNGLBUFFERSTORAGEEXTPROC) SDL_GL_GetProcAddress("glBufferStorageEXT");
+            glGenVertexArraysOES = (PFNGLGENVERTEXARRAYSOESPROC) SDL_GL_GetProcAddress("glGenVertexArraysOES");
+            glDeleteVertexArraysOES = (PFNGLDELETEVERTEXARRAYSOESPROC) SDL_GL_GetProcAddress("glDeleteVertexArraysOES");
+            glBindVertexArrayOES = (PFNGLBINDVERTEXARRAYOESPROC) SDL_GL_GetProcAddress("glBindVertexArrayOES");            
         }
     }
 }
