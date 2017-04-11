@@ -13,9 +13,9 @@
 
 #pragma once
 
-#include "glint.hpp"
 #include "enums/texture_internal_format.hpp"
 #include "enums/texture_format.hpp"
+#include "glint.hpp"
 #include "pixel_formats.hpp"
 
 namespace gloop {

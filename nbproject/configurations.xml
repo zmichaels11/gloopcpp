@@ -97,7 +97,7 @@
         <itemPath>gloop/errors.hpp</itemPath>
         <itemPath>gloop/exceptions.hpp</itemPath>
         <itemPath>gloop/glint.hpp</itemPath>
-        <itemPath>gloop/glwrapper.hpp</itemPath>
+        <itemPath>gloop/gloop_throw.hpp</itemPath>
         <itemPath>gloop/pixel_formats.hpp</itemPath>
         <itemPath>gloop/program.hpp</itemPath>
         <itemPath>gloop/shader.hpp</itemPath>
@@ -366,7 +366,7 @@
       </item>
       <item path="gloop/glint.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="gloop/glwrapper.hpp" ex="false" tool="3" flavor2="0">
+      <item path="gloop/gloop_throw.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/pixel_formats.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -804,7 +804,7 @@
       </item>
       <item path="gloop/glint.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="gloop/glwrapper.hpp" ex="false" tool="3" flavor2="0">
+      <item path="gloop/gloop_throw.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/pixel_formats.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -1235,7 +1235,7 @@
       </item>
       <item path="gloop/glint.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="gloop/glwrapper.hpp" ex="false" tool="3" flavor2="0">
+      <item path="gloop/gloop_throw.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/pixel_formats.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -1504,6 +1504,7 @@
       </toolsSet>
       <compileType>
         <ccTool>
+          <developmentMode>2</developmentMode>
           <standard>11</standard>
           <commandlineTool>em++</commandlineTool>
           <commandLine>-DGL=GLES2 -s USE_SDL=2</commandLine>
@@ -1514,7 +1515,7 @@
           <linkerLibItems>
             <linkerOptionItem>`pkg-config --libs glesv2`</linkerOptionItem>
           </linkerLibItems>
-          <commandLine>-s USE_SDL=2 --preload-file tests/basic.frag --preload-file tests/basic.vert</commandLine>
+          <commandLine>-s USE_SDL=2 --preload-file tests/basic.frag --preload-file tests/basic.vert -O2</commandLine>
         </linkerTool>
       </compileType>
       <item path="gloop/application.cpp" ex="false" tool="1" flavor2="11">
@@ -1674,7 +1675,7 @@
       </item>
       <item path="gloop/glint.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="gloop/glwrapper.hpp" ex="false" tool="3" flavor2="0">
+      <item path="gloop/gloop_throw.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/pixel_formats.hpp" ex="false" tool="3" flavor2="0">
       </item>

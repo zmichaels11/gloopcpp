@@ -15,6 +15,7 @@
 #include "exception/shader_compile_exception.hpp"
 #include "exception/unsupported_shader_type_exception.hpp"
 #include "glint.hpp"
+#include "gloop_throw.hpp"
 #include "tools.hpp"
 #include "wrapper/gl.hpp"
 #include "wrapper/shaders_and_programs.hpp"
@@ -95,7 +96,7 @@ namespace gloop {
 
             gloop::wrapper::deleteShader(glId);
 
-            throw exception::shader_compile_exception(infoLog);
+            gloop_throw(exception::shader_compile_exception(infoLog));
         }
     }
 

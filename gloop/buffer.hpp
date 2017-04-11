@@ -7,15 +7,15 @@
 
 #pragma once
 
-#include <vector>
 #include <array>
 #include <cstddef>
+#include <vector>
 
-#include "glint.hpp"
 #include "bitfields/buffer_access_hint.hpp"
 #include "bitfields/buffer_immutable_storage_hint.hpp"
 #include "enums/buffer_target.hpp"
 #include "enums/buffer_storage_hint.hpp"
+#include "glint.hpp"
 
 namespace gloop {
 

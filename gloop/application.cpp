@@ -17,15 +17,16 @@
 #include <SDL2/SDL.h>
 
 #include "context.hpp"
+#include "gloop_throw.hpp"
 #include "wrapper/gl.hpp"
 
 namespace gloop {
 
     application * application::MAIN_APPLICATION = nullptr;
-    
+
     void application::setMainLoop(const std::function<void(const application *, context *) > callback) {
         if (this->isInitialized()) {
-            throw "Unable to set main loop after application is initialized!";
+            gloop_throw("Unable to set main loop after application is initialized!");
         }
 
         this->_mainLoop = callback;
@@ -36,13 +37,13 @@ namespace gloop {
     }
 
     void application::start() {
-        if (this->isInitialized()) {
-            std::cerr << "The application is already initialized!" << std::endl;
+        if (this->isInitialized()) {            
+            std::cout << "WARN: The application is already initialized!" << std::endl;
             return;
         }
 
         if (SDL_Init(SDL_INIT_VIDEO) != 0) {
-            throw "Unable to initialize SDL!";
+            gloop_throw("Unable to initialize SDL!");
         }
 
         SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, this->_hints.version.major);
@@ -70,14 +71,13 @@ namespace gloop {
                 SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
 
         if (this->_window == nullptr) {
-            throw "SDL_Window could not be created!";
+            gloop_throw("SDL_Window could not be created!");
         }
 
         this->_glContext = SDL_GL_CreateContext(this->_window);
 
         if (this->_glContext == nullptr) {
-            std::cerr << "SDL_Error: " << SDL_GetError() << std::endl;
-            throw "OpenGL context could not be created!";
+            gloop_throw("OpenGL[ES] context could not be created!");
         }
 
         gloop::wrapper::init();
@@ -103,8 +103,8 @@ namespace gloop {
         if (this->_context != nullptr) {
             _context->currentScissor = _context->currentScissor.withSize({_width, _height});
             _context->currentViewport = _context->currentViewport.withSize({_width, _height});
-        }        
-        
+        }
+
         MAIN_APPLICATION = this;
 
 #ifdef __EMSCRIPTEN__
@@ -115,24 +115,29 @@ namespace gloop {
         }
 #endif
     }
-    
+
+    //NOTE: emscripten doesn't support exceptions, so omit the try-catch
     void application::runLoop() {
+#ifdef __EMSCRIPTEN__
+        MAIN_APPLICATION->_mainLoop(MAIN_APPLICATION, MAIN_APPLICATION->_context);
+#else
         try {
-                MAIN_APPLICATION->_mainLoop(MAIN_APPLICATION, MAIN_APPLICATION->_context);
-            } catch (const char * err) {
-                std::cerr << err << std::endl;
+            MAIN_APPLICATION->_mainLoop(MAIN_APPLICATION, MAIN_APPLICATION->_context);
+        } catch (const char * err) {
+            std::cerr << err << std::endl;
+            std::terminate();
+        }
+#endif
+
+        SDL_Event event;
+
+        while (SDL_PollEvent(&event) != 0) {
+            if (event.type == SDL_QUIT) {
                 std::terminate();
             }
+        }
 
-            SDL_Event event;
-
-            while (SDL_PollEvent(&event) != 0) {
-                if (event.type == SDL_QUIT) {
-                    std::terminate();
-                }
-            }
-
-            SDL_GL_SwapWindow(MAIN_APPLICATION->_window);
+        SDL_GL_SwapWindow(MAIN_APPLICATION->_window);
     }
 
     int application::getWidth() const {
@@ -161,7 +166,7 @@ namespace gloop {
 
     void application::setGLHints(const context_hints hints) {
         if (this->isInitialized()) {
-            throw "Unable to set OpenGL hints after SDL is initialized!";
+            gloop_throw("Unable to set OpenGL hints after SDL is initialized!");
         }
 
         this->_hints = hints;
@@ -173,7 +178,7 @@ namespace gloop {
 
     void application::setGLContext(context * ctx) {
         if (this->isInitialized()) {
-            throw "Unable to specify GL context after SDL is initialized!";
+            gloop_throw("Unable to specify GL context after SDL is initialized!");
         }
 
         this->_context = ctx;

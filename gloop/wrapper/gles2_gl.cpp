@@ -42,11 +42,7 @@ namespace gloop {
             glBufferStorageEXT = (PFNGLBUFFERSTORAGEEXTPROC) SDL_GL_GetProcAddress("glBufferStorageEXT");
             glGenVertexArraysOES = (PFNGLGENVERTEXARRAYSOESPROC) SDL_GL_GetProcAddress("glGenVertexArraysOES");
             glDeleteVertexArraysOES = (PFNGLDELETEVERTEXARRAYSOESPROC) SDL_GL_GetProcAddress("glDeleteVertexArraysOES");
-            glBindVertexArrayOES = (PFNGLBINDVERTEXARRAYOESPROC) SDL_GL_GetProcAddress("glBindVertexArrayOES");      
-            
-            if (glBindVertexArrayOES == nullptr) {
-                std::cout << "WARN: could not find glBindVertexArrayOES!" << std::endl;
-            }
+            glBindVertexArrayOES = (PFNGLBINDVERTEXARRAYOESPROC) SDL_GL_GetProcAddress("glBindVertexArrayOES");                  
         }
     }
 }

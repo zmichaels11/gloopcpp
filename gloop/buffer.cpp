@@ -6,8 +6,6 @@
 
 #include "buffer.hpp"
 
-#include <iostream>
-
 #include "enums/buffer_target.hpp"
 #include "enums/buffer_storage_hint.hpp"
 #include "glint.hpp"

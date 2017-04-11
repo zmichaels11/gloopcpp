@@ -11,6 +11,7 @@
 #include "enums/buffer_target.hpp"
 #include "exception/invalid_enum_exception.hpp"
 #include "glint.hpp"
+#include "gloop_throw.hpp"
 #include "wrapper/gl.hpp"
 #include "wrapper/vertex_arrays.hpp"
 
@@ -49,7 +50,7 @@ namespace gloop {
                 case gloop::enums::vertex_attribute_type::VEC4:
                     return { 4, gloop::wrapper::FLOAT};
                 default:
-                    throw gloop::exception::invalid_enum_exception("Unsupported vertex attribute type!");
+                    gloop_throw(gloop::exception::invalid_enum_exception("Unsupported vertex attribute type!"));
             }
         }
     }

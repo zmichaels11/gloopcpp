@@ -10,6 +10,7 @@
 
 #include "exception/invalid_uniform_name_exception.hpp"
 #include "glint.hpp"
+#include "gloop_throw.hpp"
 #include "wrapper/shaders_and_programs.hpp"
 
 namespace gloop {
@@ -23,7 +24,7 @@ namespace gloop {
             auto loc = gloop::wrapper::getUniformLocation(getId(), uniformName.c_str());
 
             if (loc == -1) {
-                throw gloop::exception::invalid_uniform_name_exception("Could not find uniform with name: " + uniformName);
+                gloop_throw(gloop::exception::invalid_uniform_name_exception("Could not find uniform with name: " + uniformName));
             } else {
                 this->_uniforms[uniformName] = loc;
 

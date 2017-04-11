@@ -18,7 +18,7 @@ namespace gloop {
         }
         
         void init() {
-            if (glewInit() != GLEW_OK) {
+            if (glewInit() != GLEW_OK) {                
                 throw "GLEW could not be initialized!";
             }
         }
