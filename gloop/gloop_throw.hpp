@@ -13,14 +13,13 @@
 
 #pragma once
 
-#ifdef __EMSCRIPTEN__
-#include <exception>
-#include <iostream>
-
 #include "errors.hpp"
 #include "exceptions.hpp"
 
-#define gloop_throw(ex) std::cout << ex << std::endl; std::terminate()
+#ifdef __EMSCRIPTEN__
+#include <exception>
+#include <iostream>
+#define gloop_throw(ex) std::cout << ex.what() << std::endl; std::terminate()
 #else
 #define gloop_throw(ex) throw ex
 #endif

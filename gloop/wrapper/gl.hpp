@@ -28,6 +28,7 @@ namespace gloop {
         constexpr gloop::enum_t FLOAT = 0x1406;
         constexpr gloop::enum_t INT = 0x1404;
         constexpr gloop::enum_t UNSIGNED_INT =0x1405;
+        constexpr gloop::enum_t UNSIGNED_BYTE = 0x1401;
         
                 
         gloop::enum_t getError();

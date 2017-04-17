@@ -20,9 +20,7 @@ namespace gloop {
 
         enum class texture_internal_format : gloop::enum_t {
             R8_G8_B8_UNORM = 0x8051,
-            R8_G8_B8_A8_UNORM = 0x8058,
-            R16_G16_B16_FLOAT = 0x881B,
-            R16_G16_B16_A16_FLOAT = 0x881A,
+            R8_G8_B8_A8_UNORM = 0x8058,            
             R32_G32_B32_FLOAT = 0x8815,
             R32_G32_B32_A32_FLOAT = 0x8814
         };
