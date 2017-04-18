@@ -78,5 +78,5 @@ namespace gloop {
         }
     }
 }
-
 #endif
+#undef GLEW

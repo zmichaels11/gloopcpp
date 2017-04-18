@@ -278,3 +278,4 @@ namespace gloop {
     }
 }
 #endif
+#undef GLES2
