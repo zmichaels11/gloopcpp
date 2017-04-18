@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-#define GLES2 1
+#define GLES2 2
 #if GL == GLES2
 #include "drawing_commands.hpp"
 
