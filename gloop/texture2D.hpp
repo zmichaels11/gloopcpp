@@ -13,10 +13,13 @@
 
 #pragma once
 
+#include <SDL2/SDL_surface.h>
+
 #include "enums/texture_internal_format.hpp"
 #include "enums/texture_format.hpp"
 #include "glint.hpp"
 #include "pixel_formats.hpp"
+#include "tools.hpp"
 
 namespace gloop {
 
@@ -63,6 +66,12 @@ namespace gloop {
                 const enums::texture_internal_format internalFormat,
                 const gloop::sizei_t levels,
                 const gloop::sizei_t width, const gloop::sizei_t height);
+        
+        void allocate(const SDL_Surface * img);
+        
+        inline void allocate(const std::unique_ptr<SDL_Surface, tools::sdl_surface_deleter>& pImg) {
+            allocate(pImg.get());
+        }
 
         void update(
                 const gloop::sizei_t level,
@@ -112,8 +121,21 @@ namespace gloop {
                 const gloop::sizei_t width, const gloop::sizei_t height,
                 const gloop::pixel_formats::R8_G8_B8_A8 * ddata) const;
 
+        void update(
+                const gloop::sizei_t level,
+                const gloop::int_t xOffset, const gloop::int_t yOffset,
+                const gloop::sizei_t width, const gloop::sizei_t height,
+                const SDL_Surface * image) const;
+
+        inline void update(
+                const gloop::sizei_t level,
+                const SDL_Surface * image) const {
+
+            update(level, 0, 0, image->w, image->h, image);
+        }
+
         void free();
-        
+
         void bind(const gloop::uint_t unit) const;
     };
 }

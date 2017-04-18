@@ -12,6 +12,7 @@
 #include <string>
 
 #include <SDL2/SDL_rwops.h>
+#include <SDL2/SDL_surface.h>
 
 #include "exceptions.hpp"
 #include "errors.hpp"
@@ -19,6 +20,25 @@
 #include "wrapper/gl.hpp"
 
 namespace gloop {
+    namespace {
+
+        static bool hasSuffix(
+                const std::string& str,
+                const std::string& suffix) {
+
+            return str.size() >= suffix.size() && str.compare(str.size() - suffix.size(), suffix.size(), suffix) == 0;
+        }
+    }
+
+    std::unique_ptr<SDL_Surface, tools::sdl_surface_deleter> tools::loadImage(const std::string& img) {
+        if (hasSuffix(img, ".bmp")) {
+            return std::unique_ptr<SDL_Surface, tools::sdl_surface_deleter> (
+                    SDL_LoadBMP(img.c_str()),
+                    tools::sdl_surface_deleter());
+        } else {
+            gloop_throw("Only bitmaps are currently supported!");
+        }
+    }
 
     std::string tools::readAll(SDL_RWops * file) {
         if (file == nullptr) {
@@ -48,7 +68,7 @@ namespace gloop {
     }
 
     void tools::assertGLError() {
-        auto err = gloop::wrapper::getError();                
+        auto err = gloop::wrapper::getError();
 
         switch (err) {
             case gloop::wrapper::INVALID_ENUM:
@@ -64,7 +84,7 @@ namespace gloop {
             case gloop::wrapper::NO_ERROR:
                 // nothing to report
                 break;
-            default:            
+            default:
                 gloop_throw(gloop::exception::base_exception("Unknown error"));
         }
     }

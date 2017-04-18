@@ -175,6 +175,13 @@
         <itemPath>gloop/vertex_attributes.cpp</itemPath>
       </logicalFolder>
       <logicalFolder name="f2" displayName="tests" projectFiles="true">
+        <logicalFolder name="f1" displayName="nehe" projectFiles="true">
+          <itemPath>lesson06.cpp</itemPath>
+          <itemPath>tests/texture.frag</itemPath>
+          <itemPath>tests/texture.vert</itemPath>
+        </logicalFolder>
+        <itemPath>tests/basic.frag</itemPath>
+        <itemPath>tests/basic.vert</itemPath>
         <itemPath>simple_rect.cpp</itemPath>
         <itemPath>test_runner.cpp</itemPath>
       </logicalFolder>
@@ -616,9 +623,19 @@
       </item>
       <item path="gloop/wrapper/vertex_arrays.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="lesson06.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="simple_rect.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="test_runner.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/basic.frag" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/basic.vert" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/texture.frag" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/texture.vert" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="GLEW_Release" type="1">
@@ -1054,9 +1071,19 @@
       </item>
       <item path="gloop/wrapper/vertex_arrays.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="lesson06.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="simple_rect.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="test_runner.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/basic.frag" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/basic.vert" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/texture.frag" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/texture.vert" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="GLES2_Debug" type="1">
@@ -1491,9 +1518,19 @@
       </item>
       <item path="gloop/wrapper/vertex_arrays.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="lesson06.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="simple_rect.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="test_runner.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/basic.frag" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/basic.vert" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/texture.frag" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/texture.vert" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="WEBGL_Debug" type="1">
@@ -1931,9 +1968,19 @@
       </item>
       <item path="gloop/wrapper/vertex_arrays.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="lesson06.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="simple_rect.cpp" ex="false" tool="1" flavor2="11">
       </item>
       <item path="test_runner.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/basic.frag" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/basic.vert" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/texture.frag" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/texture.vert" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>

@@ -6,9 +6,11 @@
 
 #pragma once
 
+#include <memory>
 #include <string>
 
 #include <SDL2/SDL_rwops.h>
+#include <SDL2/SDL_surface.h>
 
 namespace gloop {
     namespace tools {        
@@ -16,6 +18,12 @@ namespace gloop {
         
         void assertGLError(std::string customMsg);
         
-        void assertGLError();                
+        void assertGLError();     
+        
+        struct sdl_surface_deleter {
+            void operator() (SDL_Surface * p) const { SDL_FreeSurface(p); }
+        };
+        
+        std::unique_ptr<SDL_Surface, sdl_surface_deleter> loadImage(const std::string& img);
     }
 }

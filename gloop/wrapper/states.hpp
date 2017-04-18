@@ -14,12 +14,10 @@
 #pragma once
 
 #include "../glint.hpp"
+#include "gl.hpp"
 
 namespace gloop {
-    namespace wrapper {
-        constexpr gloop::enum_t BLEND = 0x0BE2;
-        constexpr gloop::enum_t SCISSOR = 0x0C11;
-
+    namespace wrapper {        
         void enable(gloop::enum_t state);
 
         void disable(gloop::enum_t state);

@@ -22,6 +22,10 @@ namespace gloop {
                 throw "GLEW could not be initialized!";
             }
         }
+        
+        const gloop::ubyte_t * getString(gloop::enum_t param) {
+            return glGetString(param);
+        }
     }
 }
 #endif

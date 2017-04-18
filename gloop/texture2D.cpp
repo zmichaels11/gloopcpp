@@ -6,11 +6,14 @@
 
 #include "texture2D.hpp"
 
+#include <SDL2/SDL_surface.h>
+
 #include "enums/texture_internal_format.hpp"
 #include "glint.hpp"
+#include "gloop_throw.hpp"
+#include "tools.hpp"
 #include "wrapper/texture_objects.hpp"
 #include "wrapper/gl.hpp"
-#include "tools.hpp"
 
 namespace gloop {
 
@@ -132,7 +135,131 @@ namespace gloop {
 
         wrapper::textureSubImage2D(_id, level, xOffset, yOffset, width, height, wrapper::RGBA, wrapper::UNSIGNED_BYTE, data);
     }
-    
+
+    void texture2D::update(
+            const gloop::sizei_t level,
+            const gloop::int_t xOffset, const gloop::int_t yOffset,
+            const gloop::sizei_t width, const gloop::sizei_t height,
+            const SDL_Surface* img) const {
+
+        auto sdlFormat = img->format->format;
+        gloop::enum_t glType = 0;
+        gloop::enum_t glFormat = 0;
+        enums::texture_internal_format glInternalFormat = static_cast<enums::texture_internal_format> (0);
+
+        switch (SDL_PIXELTYPE(sdlFormat)) {
+            case SDL_PIXELTYPE_UNKNOWN:
+                gloop_throw("Unknown pixel type!");
+                break;
+            case SDL_PIXELTYPE_ARRAYU8:
+                glType = wrapper::UNSIGNED_BYTE;
+
+                switch (SDL_PIXELORDER(sdlFormat)) {
+                    case SDL_ARRAYORDER_NONE:
+                        gloop_throw("An array order is required!");
+                        break;
+                    case SDL_ARRAYORDER_BGR:
+                        glInternalFormat = enums::texture_internal_format::R8_G8_B8_UNORM;
+                        glFormat = wrapper::BGR;
+                        break;
+                    case SDL_ARRAYORDER_RGB:
+                        glInternalFormat = enums::texture_internal_format::R8_G8_B8_UNORM;
+                        glFormat = wrapper::RGB;
+                        break;
+                    case SDL_ARRAYORDER_BGRA:
+                        glInternalFormat = enums::texture_internal_format::R8_G8_B8_A8_UNORM;
+                        glFormat = wrapper::BGRA;
+                        break;
+                    case SDL_ARRAYORDER_RGBA:
+                        glInternalFormat = enums::texture_internal_format::R8_G8_B8_A8_UNORM;
+                        glFormat = wrapper::RGBA;
+                        break;
+                    case SDL_ARRAYORDER_ARGB:
+                        gloop_throw("Array order ARGB is not supported!");
+                        break;
+                    case SDL_ARRAYORDER_ABGR:
+                        gloop_throw("Array order ABGR is not supported!");
+                        break;
+                    default:
+                        gloop_throw("Unknown array order!");
+                        break;
+                }
+
+                break;
+            default:
+                gloop_throw("PixelType not supported!");
+                break;
+        }
+        
+        wrapper::textureSubImage2D(_id, 0, 0, 0, img->w, img->h, glFormat, glType, img->pixels);
+    }
+
+    void texture2D::allocate(const SDL_Surface* img) {
+        gloop::uint_t glId = 0;
+
+        wrapper::createTextures(wrapper::TEXTURE_2D, 1, &glId);
+
+        auto sdlFormat = img->format->format;
+        gloop::enum_t glType = 0;
+        gloop::enum_t glFormat = 0;
+        enums::texture_internal_format glInternalFormat = static_cast<enums::texture_internal_format> (0);
+
+        switch (SDL_PIXELTYPE(sdlFormat)) {
+            case SDL_PIXELTYPE_UNKNOWN:
+                gloop_throw("Unknown pixel type!");
+                break;
+            case SDL_PIXELTYPE_ARRAYU8:
+                glType = wrapper::UNSIGNED_BYTE;
+
+                switch (SDL_PIXELORDER(sdlFormat)) {
+                    case SDL_ARRAYORDER_NONE:
+                        gloop_throw("An array order is required!");
+                        break;
+                    case SDL_ARRAYORDER_BGR:
+                        glInternalFormat = enums::texture_internal_format::R8_G8_B8_UNORM;
+                        glFormat = wrapper::BGR;
+                        break;
+                    case SDL_ARRAYORDER_RGB:
+                        glInternalFormat = enums::texture_internal_format::R8_G8_B8_UNORM;
+                        glFormat = wrapper::RGB;
+                        break;
+                    case SDL_ARRAYORDER_BGRA:
+                        glInternalFormat = enums::texture_internal_format::R8_G8_B8_A8_UNORM;
+                        glFormat = wrapper::BGRA;
+                        break;
+                    case SDL_ARRAYORDER_RGBA:
+                        glInternalFormat = enums::texture_internal_format::R8_G8_B8_A8_UNORM;
+                        glFormat = wrapper::RGBA;
+                        break;
+                    case SDL_ARRAYORDER_ARGB:
+                        gloop_throw("Array order ARGB is not supported!");
+                        break;
+                    case SDL_ARRAYORDER_ABGR:
+                        gloop_throw("Array order ABGR is not supported!");
+                        break;
+                    default:
+                        gloop_throw("Unknown array order!");
+                        break;
+                }
+
+                break;
+            default:
+                gloop_throw("PixelType not supported!");
+                break;
+        }
+
+        wrapper::textureStorage2D(glId, 1, static_cast<gloop::enum_t> (glInternalFormat), img->w, img->h);
+        wrapper::textureSubImage2D(glId, 0, 0, 0, img->w, img->h, glFormat, glType, img->pixels);
+
+        tools::assertGLError("Error creating texture2D!");
+
+        _id = glId;
+        _format = glInternalFormat;
+        _size.width = img->w;
+        _size.height = img->h;
+        _levels = 1;
+    }
+
     void texture2D::free() {
         if (isValid()) {
             wrapper::deleteTextures(1, &_id);
@@ -143,7 +270,7 @@ namespace gloop {
             _levels = 0;
         }
     }
-    
+
     void texture2D::bind(const gloop::uint_t unit) const {
         wrapper::bindTextureUnit(unit, _id);
     }

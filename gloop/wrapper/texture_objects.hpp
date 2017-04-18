@@ -14,21 +14,10 @@
 #pragma once
 
 #include "../glint.hpp"
+#include "gl.hpp"
 
 namespace gloop {
-    namespace wrapper {
-        constexpr gloop::enum_t TEXTURE_MAG_FILTER = 0x2800;
-        constexpr gloop::enum_t TEXTURE_MIN_FILTER = 0x2801;
-        constexpr gloop::enum_t TEXTURE_WRAP_S = 0x2802;
-        constexpr gloop::enum_t TEXTURE_WRAP_T = 0x2803;
-        constexpr gloop::enum_t TEXTURE_MAX_ANISOTROPY = 0x84FE;
-        constexpr gloop::enum_t TEXTURE_1D = 0x0DE0;
-        constexpr gloop::enum_t TEXTURE_2D = 0x0DE1;
-        constexpr gloop::enum_t BGR = 0x80E0;
-        constexpr gloop::enum_t BGRA = 0x80E1;
-        constexpr gloop::enum_t RGB = 0x1907;
-        constexpr gloop::enum_t RGBA = 0x1908;
-
+    namespace wrapper {        
         void textureParameteri(
                 gloop::uint_t texture,
                 gloop::enum_t pname,

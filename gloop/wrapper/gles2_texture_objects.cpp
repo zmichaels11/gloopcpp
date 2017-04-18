@@ -3,6 +3,7 @@
 #include "texture_objects.hpp"
 
 #include <algorithm>
+#include <iostream>
 
 #include <SDL2/SDL_opengles2.h>
 
@@ -75,6 +76,7 @@ namespace gloop {
                 case 0x8051:
                     glType = GL_UNSIGNED_BYTE;
                     glFormat = GL_RGB;
+                    
                     break;
                 case 0x8058:
                     glType = GL_UNSIGNED_BYTE;
@@ -95,11 +97,15 @@ namespace gloop {
             glBindTexture(GL_TEXTURE_2D, texture);
 
             for (int i = 0; i < levels; i++) {
-                glTexImage2D(GL_TEXTURE_2D, i, glFormat, width, height, 0, glFormat, glType, nullptr);
+                glTexImage2D(GL_TEXTURE_2D, i, glFormat, width, height, 0, glFormat, glType, nullptr);                
+                
                 width = std::max(1, (width / 2));
                 height = std::max(1, (height / 2));
-            }
+            }                        
 
+            glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
+	    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
+            
             glBindTexture(GL_TEXTURE_2D, 0);
         }
 

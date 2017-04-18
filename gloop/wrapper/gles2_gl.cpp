@@ -31,6 +31,10 @@ namespace gloop {
         gloop::enum_t getError() {
             return glGetError();
         }
+        
+        const gloop::ubyte_t * getString(gloop::enum_t param) {
+            return glGetString(param);
+        }
 
         void init() {                        
             glDrawArraysInstancedANGLE = (PFNGLDRAWARRAYSINSTANCEDANGLEPROC) SDL_GL_GetProcAddress("glDrawArraysInstancedANGLE");            

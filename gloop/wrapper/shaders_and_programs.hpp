@@ -14,14 +14,10 @@
 #pragma once
 
 #include "../glint.hpp"
+#include "gl.hpp"
 
 namespace gloop {
-    namespace wrapper {
-        constexpr gloop::enum_t INFO_LOG_LENGTH = 0x8B84;
-        constexpr gloop::enum_t COMPILE_STATUS = 0x8B81;
-        constexpr gloop::enum_t LINK_STATUS = 0x8B82;
-        constexpr gloop::enum_t INVALID_INDEX = 0xFFFFFFFF;
-
+    namespace wrapper {        
         void getShaderiv(
                 gloop::uint_t shader,
                 gloop::enum_t pname,

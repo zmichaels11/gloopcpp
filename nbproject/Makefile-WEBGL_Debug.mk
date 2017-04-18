@@ -73,6 +73,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/gloop/wrapper/glew_states.o \
 	${OBJECTDIR}/gloop/wrapper/glew_texture_objects.o \
 	${OBJECTDIR}/gloop/wrapper/glew_vertex_arrays.o \
+	${OBJECTDIR}/lesson06.o \
 	${OBJECTDIR}/simple_rect.o \
 	${OBJECTDIR}/test_runner.o
 
@@ -290,6 +291,11 @@ ${OBJECTDIR}/gloop/wrapper/glew_vertex_arrays.o: gloop/wrapper/glew_vertex_array
 	${MKDIR} -p ${OBJECTDIR}/gloop/wrapper
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -O `pkg-config --cflags glesv2` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/wrapper/glew_vertex_arrays.o gloop/wrapper/glew_vertex_arrays.cpp
+
+${OBJECTDIR}/lesson06.o: lesson06.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -O `pkg-config --cflags glesv2` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/lesson06.o lesson06.cpp
 
 ${OBJECTDIR}/simple_rect.o: simple_rect.cpp
 	${MKDIR} -p ${OBJECTDIR}

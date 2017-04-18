@@ -5,7 +5,7 @@
  */
 
 #ifndef TEST
-#define TEST simple_rect
+#define TEST lesson06
 #endif
 
 extern int TEST(int argc, char** argv);
