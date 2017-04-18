@@ -165,6 +165,7 @@
           <logicalFolder name="f1" displayName="glew" projectFiles="true">
             <itemPath>gloop/wrapper/glew_buffer_objects.cpp</itemPath>
             <itemPath>gloop/wrapper/glew_drawing_commands.cpp</itemPath>
+            <itemPath>gloop/wrapper/glew_framebuffer_objects.cpp</itemPath>
             <itemPath>gloop/wrapper/glew_gl.cpp</itemPath>
             <itemPath>gloop/wrapper/glew_shaders_and_programs.cpp</itemPath>
             <itemPath>gloop/wrapper/glew_states.cpp</itemPath>
@@ -637,6 +638,11 @@
             flavor2="0">
       </item>
       <item path="gloop/wrapper/glew_drawing_commands.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="gloop/wrapper/glew_framebuffer_objects.cpp"
             ex="false"
             tool="1"
             flavor2="0">
@@ -1126,6 +1132,11 @@
             tool="1"
             flavor2="0">
       </item>
+      <item path="gloop/wrapper/glew_framebuffer_objects.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
       <item path="gloop/wrapper/glew_gl.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/wrapper/glew_shaders_and_programs.cpp"
@@ -1609,6 +1620,11 @@
             ex="false"
             tool="1"
             flavor2="11">
+      </item>
+      <item path="gloop/wrapper/glew_framebuffer_objects.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
       </item>
       <item path="gloop/wrapper/glew_gl.cpp" ex="false" tool="1" flavor2="11">
       </item>
@@ -2096,6 +2112,11 @@
             ex="false"
             tool="1"
             flavor2="11">
+      </item>
+      <item path="gloop/wrapper/glew_framebuffer_objects.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
       </item>
       <item path="gloop/wrapper/glew_gl.cpp" ex="false" tool="1" flavor2="11">
       </item>
