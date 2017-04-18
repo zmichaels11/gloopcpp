@@ -74,6 +74,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/gloop/wrapper/glew_texture_objects.o \
 	${OBJECTDIR}/gloop/wrapper/glew_vertex_arrays.o \
 	${OBJECTDIR}/lesson06.o \
+	${OBJECTDIR}/pixel_formats.o \
 	${OBJECTDIR}/simple_rect.o \
 	${OBJECTDIR}/test_runner.o
 
@@ -100,7 +101,7 @@ LDLIBSOPTIONS=`pkg-config --libs glesv2`
 
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/gloopcpp_test.html: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	em++ -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/gloopcpp_test.html ${OBJECTFILES} ${LDLIBSOPTIONS} -s USE_SDL=2 --preload-file tests/basic.frag --preload-file tests/basic.vert -O2
+	em++ -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/gloopcpp_test.html ${OBJECTFILES} ${LDLIBSOPTIONS} -s USE_SDL=2 --preload-file tests -O2
 
 ${OBJECTDIR}/gloop/application.o: gloop/application.cpp
 	${MKDIR} -p ${OBJECTDIR}/gloop
@@ -296,6 +297,11 @@ ${OBJECTDIR}/lesson06.o: lesson06.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -O `pkg-config --cflags glesv2` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/lesson06.o lesson06.cpp
+
+${OBJECTDIR}/pixel_formats.o: pixel_formats.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -O `pkg-config --cflags glesv2` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/pixel_formats.o pixel_formats.cpp
 
 ${OBJECTDIR}/simple_rect.o: simple_rect.cpp
 	${MKDIR} -p ${OBJECTDIR}

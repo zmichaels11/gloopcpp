@@ -52,7 +52,14 @@ namespace gloop {
         gloop::uint_t glId = 0;
 
         wrapper::createTextures(wrapper::TEXTURE_2D, 1, &glId);
-        wrapper::textureStorage2D(glId, levels, static_cast<gloop::enum_t> (internalFormat), width, height);
+        
+        wrapper::textureParameteri(glId, wrapper::TEXTURE_MAG_FILTER, static_cast<gloop::int_t> (_params.getMagFilter()));
+        wrapper::textureParameteri(glId, wrapper::TEXTURE_MIN_FILTER, static_cast<gloop::int_t> (_params.getMinFilter()));
+        wrapper::textureParameteri(glId, wrapper::TEXTURE_WRAP_S, static_cast<gloop::int_t> (_params.getWrapS()));
+        wrapper::textureParameteri(glId, wrapper::TEXTURE_WRAP_T, static_cast<gloop::int_t> (_params.getWrapT()));
+        wrapper::textureParameterf(glId, wrapper::TEXTURE_MAX_ANISOTROPY, _params.getAnisotropic());
+        
+        wrapper::textureStorage2D(glId, levels, static_cast<gloop::enum_t> (internalFormat), width, height);                
 
         tools::assertGLError("Error creating texture2D!");
 
@@ -95,7 +102,7 @@ namespace gloop {
             const gloop::sizei_t level,
             const gloop::int_t xOffset, const gloop::int_t yOffset,
             const gloop::sizei_t width, const gloop::sizei_t height,
-            const gloop::pixel_formats::B8_R8_G8_A8* data) const {
+            const gloop::pixel_formats::B8_G8_R8_A8* data) const {
 
         wrapper::textureSubImage2D(_id, level, xOffset, yOffset, width, height, wrapper::BGRA, wrapper::UNSIGNED_BYTE, data);
     }
@@ -194,11 +201,7 @@ namespace gloop {
         wrapper::textureSubImage2D(_id, 0, 0, 0, img->w, img->h, glFormat, glType, img->pixels);
     }
 
-    void texture2D::allocate(const SDL_Surface* img) {
-        gloop::uint_t glId = 0;
-
-        wrapper::createTextures(wrapper::TEXTURE_2D, 1, &glId);
-
+    void texture2D::load(texture2D& out, const SDL_Surface* img) {        
         auto sdlFormat = img->format->format;
         gloop::enum_t glType = 0;
         gloop::enum_t glFormat = 0;
@@ -247,17 +250,9 @@ namespace gloop {
                 gloop_throw("PixelType not supported!");
                 break;
         }
-
-        wrapper::textureStorage2D(glId, 1, static_cast<gloop::enum_t> (glInternalFormat), img->w, img->h);
-        wrapper::textureSubImage2D(glId, 0, 0, 0, img->w, img->h, glFormat, glType, img->pixels);
-
-        tools::assertGLError("Error creating texture2D!");
-
-        _id = glId;
-        _format = glInternalFormat;
-        _size.width = img->w;
-        _size.height = img->h;
-        _levels = 1;
+                
+        out.allocate(glInternalFormat, 1, img->w, img->h);
+        out.update(0, img);
     }
 
     void texture2D::free() {

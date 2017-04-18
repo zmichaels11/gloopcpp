@@ -13,12 +13,14 @@
 
 #pragma once
 
+#include <cstring>
+
 #include "../glint.hpp"
 
 namespace gloop {
     namespace wrapper {
         constexpr gloop::enum_t TRUE = 1;
-        constexpr gloop::enum_t FALSE = 0;        
+        constexpr gloop::enum_t FALSE = 0;
         constexpr gloop::enum_t NO_ERROR = 0;
         constexpr gloop::enum_t INVALID_ENUM = 0x0500;
         constexpr gloop::enum_t INVALID_VALUE = 0x501;
@@ -27,7 +29,7 @@ namespace gloop {
         constexpr gloop::enum_t INVALID_FRAMEBUFFER_OPERATION = 0x0506;
         constexpr gloop::enum_t FLOAT = 0x1406;
         constexpr gloop::enum_t INT = 0x1404;
-        constexpr gloop::enum_t UNSIGNED_INT =0x1405;
+        constexpr gloop::enum_t UNSIGNED_INT = 0x1405;
         constexpr gloop::enum_t UNSIGNED_BYTE = 0x1401;
         constexpr gloop::enum_t INFO_LOG_LENGTH = 0x8B84;
         constexpr gloop::enum_t COMPILE_STATUS = 0x8B81;
@@ -50,12 +52,17 @@ namespace gloop {
         constexpr gloop::enum_t RENDERER = 0x1F01;
         constexpr gloop::enum_t VERSION = 0x1F02;
         constexpr gloop::enum_t EXTENSIONS = 0x1F03;
-        
-                
+
         gloop::enum_t getError();
-        
+
         const gloop::ubyte_t * getString(gloop::enum_t param);
-        
+
         void init();
+                
+        inline bool hasExtension(const char * ext) {
+            const auto extensions = reinterpret_cast<const char *> (getString(EXTENSIONS));
+            
+            return std::strstr(extensions, ext);
+        }
     }
 }

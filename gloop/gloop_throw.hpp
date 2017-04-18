@@ -17,9 +17,8 @@
 #include "exceptions.hpp"
 
 #ifdef __EMSCRIPTEN__
-#include <exception>
 #include <iostream>
-#define gloop_throw(ex) std::cout << ex.what() << std::endl; std::terminate()
+#define gloop_throw(ex) std::cout << ex << std::endl; std::terminate()
 #else
 #define gloop_throw(ex) throw ex
 #endif

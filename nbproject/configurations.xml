@@ -164,6 +164,7 @@
         </logicalFolder>
         <itemPath>gloop/application.cpp</itemPath>
         <itemPath>gloop/buffer.cpp</itemPath>
+        <itemPath>pixel_formats.cpp</itemPath>
         <itemPath>gloop/program.cpp</itemPath>
         <itemPath>gloop/program_uniform_binding.cpp</itemPath>
         <itemPath>gloop/shader.cpp</itemPath>
@@ -625,6 +626,8 @@
       </item>
       <item path="lesson06.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="pixel_formats.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="simple_rect.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="test_runner.cpp" ex="false" tool="1" flavor2="0">
@@ -1073,6 +1076,8 @@
       </item>
       <item path="lesson06.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="pixel_formats.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="simple_rect.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="test_runner.cpp" ex="false" tool="1" flavor2="0">
@@ -1520,6 +1525,8 @@
       </item>
       <item path="lesson06.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="pixel_formats.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="simple_rect.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="test_runner.cpp" ex="false" tool="1" flavor2="0">
@@ -1552,7 +1559,7 @@
           <linkerLibItems>
             <linkerOptionItem>`pkg-config --libs glesv2`</linkerOptionItem>
           </linkerLibItems>
-          <commandLine>-s USE_SDL=2 --preload-file tests/basic.frag --preload-file tests/basic.vert -O2</commandLine>
+          <commandLine>-s USE_SDL=2 --preload-file tests -O2</commandLine>
         </linkerTool>
       </compileType>
       <item path="gloop/application.cpp" ex="false" tool="1" flavor2="11">
@@ -1969,6 +1976,8 @@
       <item path="gloop/wrapper/vertex_arrays.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="lesson06.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="pixel_formats.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="simple_rect.cpp" ex="false" tool="1" flavor2="11">
       </item>

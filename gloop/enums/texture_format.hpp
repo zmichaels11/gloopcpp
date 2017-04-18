@@ -23,6 +23,6 @@ namespace gloop {
             RGBA = 0x1908,
             BGR = 0x80E0,
             BGRA = 0x80E1
-        };
+        };                
     }
 }

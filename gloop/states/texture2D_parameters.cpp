@@ -10,9 +10,6 @@
 #include "../enums/texture_min_filter.hpp"
 #include "../enums/texture_wrap.hpp"
 #include "../glint.hpp"
-#include "../gloop_throw.hpp"
-#include "../texture2D.hpp"
-#include "../wrapper/texture_objects.hpp"
 
 namespace gloop {
     namespace states {
@@ -55,39 +52,6 @@ namespace gloop {
 
         gloop::float_t texture2D_parameters::getAnisotropic() const {
             return _aniso;
-        }
-
-        void texture2D_parameters::apply(texture2D const * const texture) const {
-            if (texture == nullptr) {
-                gloop_throw("Texture cannot be null!");
-            }
-
-            auto id = texture->getId();
-
-            gloop::wrapper::textureParameteri(
-                    id,
-                    gloop::wrapper::TEXTURE_MAG_FILTER,
-                    static_cast<gloop::int_t> (_magFilter));
-
-            gloop::wrapper::textureParameteri(
-                    id,
-                    gloop::wrapper::TEXTURE_MIN_FILTER,
-                    static_cast<gloop::int_t> (_minFilter));
-
-            gloop::wrapper::textureParameteri(
-                    id,
-                    gloop::wrapper::TEXTURE_WRAP_S,
-                    static_cast<gloop::int_t> (_wrapS));
-
-            gloop::wrapper::textureParameteri(
-                    id,
-                    gloop::wrapper::TEXTURE_WRAP_T,
-                    static_cast<gloop::int_t> (_wrapT));
-
-            gloop::wrapper::textureParameterf(
-                    id,
-                    gloop::wrapper::TEXTURE_MAX_ANISOTROPY,
-                    _aniso);
         }
     }
 }

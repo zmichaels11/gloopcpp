@@ -1,4 +1,6 @@
+#include <iostream>
 #include <memory>
+#include <utility>
 
 #include <SDL2/SDL_surface.h>
 
@@ -88,8 +90,10 @@ namespace {
                 .bindBuffer(&(glCtx->vUVs), gloop::enums::vertex_attribute_type::VEC2));        
     }
     
-    static void initTexture(lesson06_context * glCtx) {        
-        glCtx->texture.allocate(gloop::tools::loadImage("tests/data/nehe.bmp"));
+    static void initTexture(lesson06_context * glCtx) {
+        auto img = gloop::tools::loadImage("tests/data/nehe.bmp");
+        
+        gloop::texture2D::load(glCtx->texture, img);
     }
     
     static void initModel(lesson06_context * glCtx) {
@@ -111,7 +115,7 @@ namespace {
         
         glCtx->model.uniforms = std::make_unique<gloop::uniform::uniform_int_binding> (setTexture);
         
-        glCtx->model.texture = &(glCtx->texture);
+        glCtx->model.texture = &(glCtx->texture);        
     }
 
     static void render(const gloop::application * app, gloop::context * ctx) {
@@ -136,7 +140,7 @@ namespace {
         if (!glCtx->model.program) {
             initModel(glCtx);
         }
-        
+                
         gloop::tools::assertGLError();
         
         glCtx->currentClear();
@@ -168,4 +172,6 @@ int lesson06(int argc, char** argv) {
     } catch (const char * err) {
         std::cerr << err << std::endl;
     }
+    
+    return 0;
 }

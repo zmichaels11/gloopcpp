@@ -18,7 +18,7 @@ namespace gloop {
             invalid_enum_exception(std::string msg) : base_exception(msg) {
             }
 
-            invalid_enum_exception() : base_exception("An value for an enumerated argument was detected!") {
+            invalid_enum_exception() : base_exception("An invalid value for an enumerated argument was detected!") {
             }
         };
     }

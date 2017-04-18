@@ -19,6 +19,7 @@
 #include "enums/texture_format.hpp"
 #include "glint.hpp"
 #include "pixel_formats.hpp"
+#include "states/texture2D_parameters.hpp"
 #include "tools.hpp"
 
 namespace gloop {
@@ -35,13 +36,15 @@ namespace gloop {
         size _size;
         enums::texture_internal_format _format;
         gloop::sizei_t _levels;
+        gloop::states::texture2D_parameters _params;
 
     public:
 
         texture2D() :
         _size({0, 0}),
         _format(static_cast<enums::texture_internal_format> (0)),
-        _levels(0) {
+        _levels(0),
+        _params(){
         }
 
         texture2D(texture2D&) = delete;
@@ -66,13 +69,17 @@ namespace gloop {
                 const enums::texture_internal_format internalFormat,
                 const gloop::sizei_t levels,
                 const gloop::sizei_t width, const gloop::sizei_t height);
+                
+        static void load(texture2D& out, const SDL_Surface * img);
         
-        void allocate(const SDL_Surface * img);
-        
-        inline void allocate(const std::unique_ptr<SDL_Surface, tools::sdl_surface_deleter>& pImg) {
-            allocate(pImg.get());
+        inline static void load(texture2D& out, const std::unique_ptr<SDL_Surface, tools::sdl_surface_deleter>& pImg) {
+            load(out, pImg.get());
         }
-
+        
+        void setParameters(const gloop::states::texture2D_parameters& params);
+        
+        gloop::states::texture2D_parameters& getParameters() const;
+       
         void update(
                 const gloop::sizei_t level,
                 const gloop::int_t xOffset, const gloop::int_t yOffset,
@@ -95,7 +102,7 @@ namespace gloop {
                 const gloop::sizei_t level,
                 const gloop::int_t xOffset, const gloop::int_t yOffset,
                 const gloop::sizei_t width, const gloop::sizei_t height,
-                const gloop::pixel_formats::B8_R8_G8_A8 * data) const;
+                const gloop::pixel_formats::B8_G8_R8_A8 * data) const;
 
         void update(
                 const gloop::sizei_t level,

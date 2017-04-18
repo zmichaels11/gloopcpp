@@ -24,6 +24,6 @@ namespace gloop {
             void operator() (SDL_Surface * p) const { SDL_FreeSurface(p); }
         };
         
-        std::unique_ptr<SDL_Surface, sdl_surface_deleter> loadImage(const std::string& img);
+        std::unique_ptr<SDL_Surface, sdl_surface_deleter> loadImage(const std::string& img);                
     }
 }

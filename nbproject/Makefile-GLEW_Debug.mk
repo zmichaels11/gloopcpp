@@ -74,6 +74,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/gloop/wrapper/glew_texture_objects.o \
 	${OBJECTDIR}/gloop/wrapper/glew_vertex_arrays.o \
 	${OBJECTDIR}/lesson06.o \
+	${OBJECTDIR}/pixel_formats.o \
 	${OBJECTDIR}/simple_rect.o \
 	${OBJECTDIR}/test_runner.o
 
@@ -296,6 +297,11 @@ ${OBJECTDIR}/lesson06.o: lesson06.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/lesson06.o lesson06.cpp
+
+${OBJECTDIR}/pixel_formats.o: pixel_formats.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/pixel_formats.o pixel_formats.cpp
 
 ${OBJECTDIR}/simple_rect.o: simple_rect.cpp
 	${MKDIR} -p ${OBJECTDIR}

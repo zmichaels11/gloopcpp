@@ -17,7 +17,6 @@
 #include "../enums/texture_min_filter.hpp"
 #include "../enums/texture_wrap.hpp"
 #include "../glint.hpp"
-#include "../texture2D.hpp"
 
 namespace gloop {
     namespace states {
@@ -33,8 +32,8 @@ namespace gloop {
         public:
 
             texture2D_parameters() :
-            _magFilter(enums::texture_mag_filter::LINEAR),
-            _minFilter(enums::texture_min_filter::NEAREST_MIPMAP_LINEAR),
+            _magFilter(enums::texture_mag_filter::NEAREST),
+            _minFilter(enums::texture_min_filter::NEAREST),
             _wrapS(enums::texture_wrap::REPEAT),
             _wrapT(enums::texture_wrap::REPEAT),
             _aniso(1.0F) {
@@ -69,12 +68,6 @@ namespace gloop {
             enums::texture_wrap getWrapT() const;
 
             gloop::float_t getAnisotropic() const;
-
-            void apply(texture2D const * const texture) const;
-
-            inline void operator()(texture2D * texture) const {
-                apply(texture);
-            }
         };
     }
 }
