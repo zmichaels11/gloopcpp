@@ -41,10 +41,13 @@ OBJECTFILES= \
 	${OBJECTDIR}/gloop/bitfields/clear_mask.o \
 	${OBJECTDIR}/gloop/buffer.o \
 	${OBJECTDIR}/gloop/draw_calls.o \
+	${OBJECTDIR}/gloop/enums/framebuffer_attachment.o \
 	${OBJECTDIR}/gloop/error/base_error.o \
 	${OBJECTDIR}/gloop/exception/base_exception.o \
+	${OBJECTDIR}/gloop/framebuffer.o \
 	${OBJECTDIR}/gloop/program.o \
 	${OBJECTDIR}/gloop/program_uniform_binding.o \
+	${OBJECTDIR}/gloop/renderbuffer.o \
 	${OBJECTDIR}/gloop/shader.o \
 	${OBJECTDIR}/gloop/states/blend.o \
 	${OBJECTDIR}/gloop/states/clear.o \
@@ -61,6 +64,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/gloop/vertex_attributes.o \
 	${OBJECTDIR}/gloop/wrapper/gles2_buffer_objects.o \
 	${OBJECTDIR}/gloop/wrapper/gles2_drawing_commands.o \
+	${OBJECTDIR}/gloop/wrapper/gles2_framebuffer_objects.o \
 	${OBJECTDIR}/gloop/wrapper/gles2_gl.o \
 	${OBJECTDIR}/gloop/wrapper/gles2_shaders_and_programs.o \
 	${OBJECTDIR}/gloop/wrapper/gles2_states.o \
@@ -133,6 +137,11 @@ ${OBJECTDIR}/gloop/draw_calls.o: gloop/draw_calls.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/draw_calls.o gloop/draw_calls.cpp
 
+${OBJECTDIR}/gloop/enums/framebuffer_attachment.o: gloop/enums/framebuffer_attachment.cpp
+	${MKDIR} -p ${OBJECTDIR}/gloop/enums
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/enums/framebuffer_attachment.o gloop/enums/framebuffer_attachment.cpp
+
 ${OBJECTDIR}/gloop/error/base_error.o: gloop/error/base_error.cpp
 	${MKDIR} -p ${OBJECTDIR}/gloop/error
 	${RM} "$@.d"
@@ -143,6 +152,11 @@ ${OBJECTDIR}/gloop/exception/base_exception.o: gloop/exception/base_exception.cp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/exception/base_exception.o gloop/exception/base_exception.cpp
 
+${OBJECTDIR}/gloop/framebuffer.o: gloop/framebuffer.cpp
+	${MKDIR} -p ${OBJECTDIR}/gloop
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/framebuffer.o gloop/framebuffer.cpp
+
 ${OBJECTDIR}/gloop/program.o: gloop/program.cpp
 	${MKDIR} -p ${OBJECTDIR}/gloop
 	${RM} "$@.d"
@@ -152,6 +166,11 @@ ${OBJECTDIR}/gloop/program_uniform_binding.o: gloop/program_uniform_binding.cpp
 	${MKDIR} -p ${OBJECTDIR}/gloop
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/program_uniform_binding.o gloop/program_uniform_binding.cpp
+
+${OBJECTDIR}/gloop/renderbuffer.o: gloop/renderbuffer.cpp
+	${MKDIR} -p ${OBJECTDIR}/gloop
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/renderbuffer.o gloop/renderbuffer.cpp
 
 ${OBJECTDIR}/gloop/shader.o: gloop/shader.cpp
 	${MKDIR} -p ${OBJECTDIR}/gloop
@@ -232,6 +251,11 @@ ${OBJECTDIR}/gloop/wrapper/gles2_drawing_commands.o: gloop/wrapper/gles2_drawing
 	${MKDIR} -p ${OBJECTDIR}/gloop/wrapper
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/wrapper/gles2_drawing_commands.o gloop/wrapper/gles2_drawing_commands.cpp
+
+${OBJECTDIR}/gloop/wrapper/gles2_framebuffer_objects.o: gloop/wrapper/gles2_framebuffer_objects.cpp
+	${MKDIR} -p ${OBJECTDIR}/gloop/wrapper
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/wrapper/gles2_framebuffer_objects.o gloop/wrapper/gles2_framebuffer_objects.cpp
 
 ${OBJECTDIR}/gloop/wrapper/gles2_gl.o: gloop/wrapper/gles2_gl.cpp
 	${MKDIR} -p ${OBJECTDIR}/gloop/wrapper

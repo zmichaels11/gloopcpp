@@ -52,6 +52,7 @@ namespace gloop {
         constexpr gloop::enum_t RENDERER = 0x1F01;
         constexpr gloop::enum_t VERSION = 0x1F02;
         constexpr gloop::enum_t EXTENSIONS = 0x1F03;
+        constexpr gloop::enum_t RENDERBUFFER = 0x8D41;
 
         gloop::enum_t getError();
 

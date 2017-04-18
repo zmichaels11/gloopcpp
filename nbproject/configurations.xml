@@ -26,6 +26,9 @@
           <itemPath>gloop/enums/blend_func.hpp</itemPath>
           <itemPath>gloop/enums/buffer_storage_hint.hpp</itemPath>
           <itemPath>gloop/enums/buffer_target.hpp</itemPath>
+          <itemPath>gloop/enums/framebuffer_attachment.hpp</itemPath>
+          <itemPath>gloop/enums/framebuffer_target.hpp</itemPath>
+          <itemPath>gloop/enums/renderbuffer_internal_format.hpp</itemPath>
           <itemPath>gloop/enums/shader_type.hpp</itemPath>
           <itemPath>gloop/enums/texture_format.hpp</itemPath>
           <itemPath>gloop/enums/texture_internal_format.hpp</itemPath>
@@ -84,6 +87,7 @@
         <logicalFolder name="f8" displayName="wrapper" projectFiles="true">
           <itemPath>gloop/wrapper/buffer_objects.hpp</itemPath>
           <itemPath>gloop/wrapper/drawing_commands.hpp</itemPath>
+          <itemPath>gloop/wrapper/framebuffer_objects.hpp</itemPath>
           <itemPath>gloop/wrapper/gl.hpp</itemPath>
           <itemPath>gloop/wrapper/shaders_and_programs.hpp</itemPath>
           <itemPath>gloop/wrapper/states.hpp</itemPath>
@@ -96,10 +100,12 @@
         <itemPath>gloop/draw_calls.hpp</itemPath>
         <itemPath>gloop/errors.hpp</itemPath>
         <itemPath>gloop/exceptions.hpp</itemPath>
+        <itemPath>gloop/framebuffer.hpp</itemPath>
         <itemPath>gloop/glint.hpp</itemPath>
         <itemPath>gloop/gloop_throw.hpp</itemPath>
         <itemPath>gloop/pixel_formats.hpp</itemPath>
         <itemPath>gloop/program.hpp</itemPath>
+        <itemPath>gloop/renderbuffer.hpp</itemPath>
         <itemPath>gloop/shader.hpp</itemPath>
         <itemPath>gloop/texture2D.hpp</itemPath>
         <itemPath>gloop/tools.hpp</itemPath>
@@ -125,6 +131,9 @@
         <logicalFolder name="f3" displayName="draw" projectFiles="true">
           <itemPath>gloop/draw_calls.cpp</itemPath>
         </logicalFolder>
+        <logicalFolder name="f8" displayName="enums" projectFiles="true">
+          <itemPath>gloop/enums/framebuffer_attachment.cpp</itemPath>
+        </logicalFolder>
         <logicalFolder name="f4" displayName="error" projectFiles="true">
           <itemPath>gloop/error/base_error.cpp</itemPath>
         </logicalFolder>
@@ -146,6 +155,7 @@
           <logicalFolder name="f2" displayName="gles2" projectFiles="true">
             <itemPath>gloop/wrapper/gles2_buffer_objects.cpp</itemPath>
             <itemPath>gloop/wrapper/gles2_drawing_commands.cpp</itemPath>
+            <itemPath>gloop/wrapper/gles2_framebuffer_objects.cpp</itemPath>
             <itemPath>gloop/wrapper/gles2_gl.cpp</itemPath>
             <itemPath>gloop/wrapper/gles2_shaders_and_programs.cpp</itemPath>
             <itemPath>gloop/wrapper/gles2_states.cpp</itemPath>
@@ -164,9 +174,11 @@
         </logicalFolder>
         <itemPath>gloop/application.cpp</itemPath>
         <itemPath>gloop/buffer.cpp</itemPath>
+        <itemPath>gloop/framebuffer.cpp</itemPath>
         <itemPath>pixel_formats.cpp</itemPath>
         <itemPath>gloop/program.cpp</itemPath>
         <itemPath>gloop/program_uniform_binding.cpp</itemPath>
+        <itemPath>gloop/renderbuffer.cpp</itemPath>
         <itemPath>gloop/shader.cpp</itemPath>
         <itemPath>gloop/texture2D.cpp</itemPath>
         <itemPath>gloop/tools.cpp</itemPath>
@@ -290,6 +302,23 @@
       </item>
       <item path="gloop/enums/buffer_target.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/enums/framebuffer_attachment.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="gloop/enums/framebuffer_attachment.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/enums/framebuffer_target.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/enums/renderbuffer_internal_format.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="gloop/enums/shader_type.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/enums/texture_format.hpp" ex="false" tool="3" flavor2="0">
@@ -372,6 +401,10 @@
       </item>
       <item path="gloop/exceptions.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/framebuffer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="gloop/framebuffer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/glint.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/gloop_throw.hpp" ex="false" tool="3" flavor2="0">
@@ -383,6 +416,10 @@
       <item path="gloop/program.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/program_uniform_binding.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="gloop/renderbuffer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="gloop/renderbuffer.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/shader.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -553,6 +590,11 @@
       </item>
       <item path="gloop/wrapper/drawing_commands.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/wrapper/framebuffer_objects.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="gloop/wrapper/gl.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/wrapper/gles2_buffer_objects.cpp"
@@ -561,6 +603,11 @@
             flavor2="0">
       </item>
       <item path="gloop/wrapper/gles2_drawing_commands.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="gloop/wrapper/gles2_framebuffer_objects.cpp"
             ex="false"
             tool="1"
             flavor2="0">
@@ -740,6 +787,23 @@
       </item>
       <item path="gloop/enums/buffer_target.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/enums/framebuffer_attachment.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="gloop/enums/framebuffer_attachment.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/enums/framebuffer_target.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/enums/renderbuffer_internal_format.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="gloop/enums/shader_type.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/enums/texture_format.hpp" ex="false" tool="3" flavor2="0">
@@ -822,6 +886,10 @@
       </item>
       <item path="gloop/exceptions.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/framebuffer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="gloop/framebuffer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/glint.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/gloop_throw.hpp" ex="false" tool="3" flavor2="0">
@@ -833,6 +901,10 @@
       <item path="gloop/program.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/program_uniform_binding.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="gloop/renderbuffer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="gloop/renderbuffer.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/shader.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -1003,6 +1075,11 @@
       </item>
       <item path="gloop/wrapper/drawing_commands.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/wrapper/framebuffer_objects.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="gloop/wrapper/gl.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/wrapper/gles2_buffer_objects.cpp"
@@ -1011,6 +1088,11 @@
             flavor2="0">
       </item>
       <item path="gloop/wrapper/gles2_drawing_commands.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="gloop/wrapper/gles2_framebuffer_objects.cpp"
             ex="false"
             tool="1"
             flavor2="0">
@@ -1180,6 +1262,23 @@
       </item>
       <item path="gloop/enums/buffer_target.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/enums/framebuffer_attachment.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="gloop/enums/framebuffer_attachment.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/enums/framebuffer_target.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/enums/renderbuffer_internal_format.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="gloop/enums/shader_type.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/enums/texture_format.hpp" ex="false" tool="3" flavor2="0">
@@ -1265,6 +1364,10 @@
       </item>
       <item path="gloop/exceptions.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/framebuffer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="gloop/framebuffer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/glint.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/gloop_throw.hpp" ex="false" tool="3" flavor2="0">
@@ -1276,6 +1379,10 @@
       <item path="gloop/program.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/program_uniform_binding.cpp" ex="false" tool="1" flavor2="11">
+      </item>
+      <item path="gloop/renderbuffer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="gloop/renderbuffer.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/shader.cpp" ex="false" tool="1" flavor2="11">
       </item>
@@ -1452,6 +1559,11 @@
       </item>
       <item path="gloop/wrapper/drawing_commands.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/wrapper/framebuffer_objects.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="gloop/wrapper/gl.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/wrapper/gles2_buffer_objects.cpp"
@@ -1460,6 +1572,11 @@
             flavor2="11">
       </item>
       <item path="gloop/wrapper/gles2_drawing_commands.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="gloop/wrapper/gles2_framebuffer_objects.cpp"
             ex="false"
             tool="1"
             flavor2="0">
@@ -1632,6 +1749,23 @@
       </item>
       <item path="gloop/enums/buffer_target.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/enums/framebuffer_attachment.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="gloop/enums/framebuffer_attachment.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/enums/framebuffer_target.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/enums/renderbuffer_internal_format.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="gloop/enums/shader_type.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/enums/texture_format.hpp" ex="false" tool="3" flavor2="0">
@@ -1717,6 +1851,10 @@
       </item>
       <item path="gloop/exceptions.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/framebuffer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="gloop/framebuffer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/glint.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/gloop_throw.hpp" ex="false" tool="3" flavor2="0">
@@ -1728,6 +1866,10 @@
       <item path="gloop/program.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/program_uniform_binding.cpp" ex="false" tool="1" flavor2="11">
+      </item>
+      <item path="gloop/renderbuffer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="gloop/renderbuffer.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/shader.cpp" ex="false" tool="1" flavor2="11">
       </item>
@@ -1904,6 +2046,11 @@
       </item>
       <item path="gloop/wrapper/drawing_commands.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/wrapper/framebuffer_objects.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="gloop/wrapper/gl.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/wrapper/gles2_buffer_objects.cpp"
@@ -1915,6 +2062,11 @@
             ex="false"
             tool="1"
             flavor2="11">
+      </item>
+      <item path="gloop/wrapper/gles2_framebuffer_objects.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
       </item>
       <item path="gloop/wrapper/gles2_gl.cpp" ex="false" tool="1" flavor2="11">
       </item>
