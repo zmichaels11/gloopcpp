@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-#define GLES2 3
+#define GLES3 3
 #if GL == GLES3
 #include "shaders_and_programs.hpp"
 
@@ -11,6 +11,8 @@
 #include <GLES3/gl31.h>
 
 #include "../glint.hpp"
+#include "gl.hpp"
+#include "gl_gles3.hpp"
 
 namespace gloop {
     namespace wrapper {
@@ -95,7 +97,7 @@ namespace gloop {
         }
 
         gloop::uint_t getUniformBlockIndex(gloop::uint_t program, const gloop::char_t * uniformName) {
-            throw "getUniformBlockIndex is not available!";
+            return glGetUniformBlockIndex(program, uniformName);
         }
 
         gloop::int_t getUniformLocation(gloop::uint_t program, const gloop::char_t * uniformName) {
@@ -107,7 +109,7 @@ namespace gloop {
                 gloop::uint_t uniformBlockIndex,
                 gloop::uint_t uniformBlockBinding) {
 
-            throw "uniformBlockBinding is not available!";
+            glUniformBlockBinding(program, uniformBlockIndex, uniformBlockBinding);
         }
 
         void bindAttribLocation(
@@ -123,9 +125,12 @@ namespace gloop {
                 gloop::uint_t loc,
                 gloop::float_t value) {
 
-            glUseProgram(pid);
-            glUniform1f(loc, value);
-
+            if (OPENGLES_3_1) {
+                glProgramUniform1f(pid, loc, value);
+            } else {
+                glUseProgram(pid);
+                glUniform1f(loc, value);
+            }
         }
 
         void programUniform2f(
@@ -134,9 +139,12 @@ namespace gloop {
                 gloop::float_t x,
                 gloop::float_t y) {
 
-            glUseProgram(pid);
-            glUniform2f(loc, x, y);
-
+            if (OPENGLES_3_1) {
+                glProgramUniform2f(pid, loc, x, y);
+            } else {
+                glUseProgram(pid);
+                glUniform2f(loc, x, y);
+            }
         }
 
         void programUniform3f(
@@ -146,9 +154,12 @@ namespace gloop {
                 gloop::float_t y,
                 gloop::float_t z) {
 
-            glUseProgram(pid);
-            glUniform3f(loc, x, y, z);
-
+            if (OPENGLES_3_1) {
+                glProgramUniform3f(pid, loc, x, y, z);
+            } else {
+                glUseProgram(pid);
+                glUniform3f(loc, x, y, z);
+            }
         }
 
         void programUniform4f(
@@ -159,9 +170,12 @@ namespace gloop {
                 gloop::float_t z,
                 gloop::float_t w) {
 
-            glUseProgram(pid);
-            glUniform4f(loc, x, y, z, w);
-
+            if (OPENGLES_3_1) {
+                glProgramUniform4f(pid, loc, x, y, z, w);
+            } else {
+                glUseProgram(pid);
+                glUniform4f(loc, x, y, z, w);
+            }
         }
 
         void programUniform1i(
@@ -169,9 +183,12 @@ namespace gloop {
                 gloop::uint_t loc,
                 gloop::int_t value) {
 
-            glUseProgram(pid);
-            glUniform1i(loc, value);
-
+            if (OPENGLES_3_1) {
+                glProgramUniform1i(pid, loc, value);
+            } else {
+                glUseProgram(pid);
+                glUniform1i(loc, value);
+            }
         }
 
         void programUniform2i(
@@ -180,9 +197,12 @@ namespace gloop {
                 gloop::int_t x,
                 gloop::int_t y) {
 
-            glUseProgram(pid);
-            glUniform2i(loc, x, y);
-
+            if (OPENGLES_3_1) {
+                glProgramUniform2i(pid, loc, x, y);
+            } else {
+                glUseProgram(pid);
+                glUniform2i(loc, x, y);
+            }
         }
 
         void programUniform3i(
@@ -192,9 +212,12 @@ namespace gloop {
                 gloop::int_t y,
                 gloop::int_t z) {
 
-            glUseProgram(pid);
-            glUniform3i(loc, x, y, z);
-
+            if (OPENGLES_3_1) {
+                glProgramUniform3i(pid, loc, x, y, z);
+            } else {
+                glUseProgram(pid);
+                glUniform3i(loc, x, y, z);
+            }
         }
 
         void programUniform4i(
@@ -205,9 +228,12 @@ namespace gloop {
                 gloop::int_t z,
                 gloop::int_t w) {
 
-            glUseProgram(pid);
-            glUniform4i(loc, x, y, z, w);
-
+            if (OPENGLES_3_1) {
+                glProgramUniform4i(pid, loc, x, y, z, w);
+            } else {
+                glUseProgram(pid);
+                glUniform4i(loc, x, y, z, w);
+            }
         }
 
         void programUniform1fv(
@@ -216,9 +242,12 @@ namespace gloop {
                 gloop::sizei_t count,
                 const gloop::float_t * values) {
 
-            glUseProgram(pid);
-            glUniform1fv(loc, count, values);
-
+            if (OPENGLES_3_1) {
+                glProgramUniform1fv(pid, loc, count, values);
+            } else {
+                glUseProgram(pid);
+                glUniform1fv(loc, count, values);
+            }
         }
 
         void programUniform2fv(
@@ -227,9 +256,12 @@ namespace gloop {
                 gloop::sizei_t count,
                 const gloop::float_t * values) {
 
-            glUseProgram(pid);
-            glUniform2fv(loc, count, values);
-
+            if (OPENGLES_3_1) {
+                glProgramUniform2fv(pid, loc, count, values);
+            } else {
+                glUseProgram(pid);
+                glUniform2fv(loc, count, values);
+            }
         }
 
         void programUniform3fv(
@@ -238,9 +270,12 @@ namespace gloop {
                 gloop::sizei_t count,
                 const gloop::float_t * values) {
 
-            glUseProgram(pid);
-            glUniform3fv(loc, count, values);
-
+            if (OPENGLES_3_1) {
+                glProgramUniform3fv(pid, loc, count, values);
+            } else {
+                glUseProgram(pid);
+                glUniform3fv(loc, count, values);
+            }
         }
 
         void programUniform4fv(
@@ -249,9 +284,12 @@ namespace gloop {
                 gloop::sizei_t count,
                 const gloop::float_t * values) {
 
-            glUseProgram(pid);
-            glUniform4fv(loc, count, values);
-
+            if (OPENGLES_3_1) {
+                glProgramUniform4fv(pid, loc, count, values);
+            } else {
+                glUseProgram(pid);
+                glUniform4fv(loc, count, values);
+            }
         }
 
         void programUniform1iv(
@@ -260,9 +298,12 @@ namespace gloop {
                 gloop::sizei_t count,
                 const gloop::int_t * values) {
 
-            glUseProgram(pid);
-            glUniform1iv(loc, count, values);
-
+            if (OPENGLES_3_1) {
+                glProgramUniform1iv(pid, loc, count, values);
+            } else {
+                glUseProgram(pid);
+                glUniform1iv(loc, count, values);
+            }
         }
 
         void programUniform2iv(
@@ -271,9 +312,12 @@ namespace gloop {
                 gloop::sizei_t count,
                 const gloop::int_t * values) {
 
-            glUseProgram(pid);
-            glUniform2iv(loc, count, values);
-
+            if (OPENGLES_3_1) {
+                glProgramUniform2iv(pid, loc, count, values);
+            } else {
+                glUseProgram(pid);
+                glUniform2iv(loc, count, values);
+            }
         }
 
         void programUniform3iv(
@@ -282,9 +326,12 @@ namespace gloop {
                 gloop::sizei_t count,
                 const gloop::int_t * values) {
 
-            glUseProgram(pid);
-            glUniform3iv(loc, count, values);
-
+            if (OPENGLES_3_1) {
+                glProgramUniform3iv(pid, loc, count, values);
+            } else {
+                glUseProgram(pid);
+                glUniform3iv(loc, count, values);
+            }
         }
 
         void programUniform4iv(
@@ -293,9 +340,12 @@ namespace gloop {
                 gloop::sizei_t count,
                 const gloop::int_t * values) {
 
-            glUseProgram(pid);
-            glUniform4iv(loc, count, values);
-
+            if (OPENGLES_3_1) {
+                glProgramUniform4iv(pid, loc, count, values);
+            } else {
+                glUseProgram(pid);
+                glUniform4iv(loc, count, values);
+            }
         }
 
         void programUniformMatrix2fv(
@@ -305,9 +355,12 @@ namespace gloop {
                 gloop::boolean_t transpose,
                 const gloop::float_t * values) {
 
-            glUseProgram(pid);
-            glUniformMatrix2fv(loc, count, transpose, values);
-
+            if (OPENGLES_3_1) {
+                glProgramUniformMatrix2fv(pid, loc, count, transpose, values);
+            } else {
+                glUseProgram(pid);
+                glUniformMatrix2fv(loc, count, transpose, values);
+            }
         }
 
         void programUniformMatrix3fv(
@@ -317,9 +370,12 @@ namespace gloop {
                 gloop::boolean_t transpose,
                 const gloop::float_t * values) {
 
-            glUseProgram(pid);
-            glUniformMatrix3fv(loc, count, transpose, values);
-
+            if (OPENGLES_3_1) {
+                glProgramUniformMatrix3fv(pid, loc, count, transpose, values);
+            } else {
+                glUseProgram(pid);
+                glUniformMatrix3fv(loc, count, transpose, values);
+            }
         }
 
         void programUniformMatrix4fv(
@@ -329,9 +385,12 @@ namespace gloop {
                 gloop::boolean_t transpose,
                 const gloop::float_t * values) {
 
-            glUseProgram(pid);
-            glUniformMatrix4fv(loc, count, transpose, values);
-
+            if (OPENGLES_3_1) {
+                glProgramUniformMatrix4fv(pid, loc, count, transpose, values);
+            } else {
+                glUseProgram(pid);
+                glUniformMatrix4fv(loc, count, transpose, values);
+            }
         }
     }
 }

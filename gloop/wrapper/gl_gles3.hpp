@@ -21,14 +21,50 @@
 #include "../glint.hpp"
 
 namespace gloop {
-    namespace wrapper {
-        // EXT_texture_storage
-        extern const std::function<void(gloop::enum_t, gloop::sizei_t, gloop::enum_t, gloop::sizei_t, gloop::sizei_t)>& glTexStorage2DEXT;
-        extern const bool& EXT_texture_storage;
-        
+    namespace wrapper {        
         // EXT_buffer_storage
         extern const std::function<void(gloop::enum_t, gloop::sizeiptr_t, const void *, gloop::bitfield_t)>& glBufferStorageEXT;
         extern const bool& EXT_buffer_storage;
+        
+        extern const bool& OPENGLES_3_0;
+        
+        // OpenGLES 3.1
+        extern const std::function<void(gloop::uint_t, gloop::int_t, gloop::int_t)>& glProgramUniform1i;
+        extern const std::function<void(gloop::uint_t, gloop::int_t, gloop::int_t, gloop::int_t)>& glProgramUniform2i;
+        extern const std::function<void(gloop::uint_t, gloop::int_t, gloop::int_t, gloop::int_t, gloop::int_t)>& glProgramUniform3i;
+        extern const std::function<void(gloop::uint_t, gloop::int_t, gloop::int_t, gloop::int_t, gloop::int_t, gloop::int_t)>& glProgramUniform4i;
+        
+        extern const std::function<void(gloop::uint_t, gloop::int_t, gloop::float_t)>& glProgramUniform1f;
+        extern const std::function<void(gloop::uint_t, gloop::int_t, gloop::float_t, gloop::float_t)>& glProgramUniform2f;
+        extern const std::function<void(gloop::uint_t, gloop::int_t, gloop::float_t, gloop::float_t, gloop::float_t)>& glProgramUniform3f;
+        extern const std::function<void(gloop::uint_t, gloop::int_t, gloop::float_t, gloop::float_t, gloop::float_t, gloop::float_t)>& glProgramUniform4f;
+        
+        extern const std::function<void(gloop::uint_t, gloop::int_t, gloop::sizei_t, const gloop::int_t*)>& glProgramUniform1iv;
+        extern const std::function<void(gloop::uint_t, gloop::int_t, gloop::sizei_t, const gloop::int_t*)>& glProgramUniform2iv;
+        extern const std::function<void(gloop::uint_t, gloop::int_t, gloop::sizei_t, const gloop::int_t*)>& glProgramUniform3iv;
+        extern const std::function<void(gloop::uint_t, gloop::int_t, gloop::sizei_t, const gloop::int_t*)>& glProgramUniform4iv;
+        
+        extern const std::function<void(gloop::uint_t, gloop::int_t, gloop::sizei_t, const gloop::float_t*)>& glProgramUniform1fv;
+        extern const std::function<void(gloop::uint_t, gloop::int_t, gloop::sizei_t, const gloop::float_t*)>& glProgramUniform2fv;
+        extern const std::function<void(gloop::uint_t, gloop::int_t, gloop::sizei_t, const gloop::float_t*)>& glProgramUniform3fv;
+        extern const std::function<void(gloop::uint_t, gloop::int_t, gloop::sizei_t, const gloop::float_t*)>& glProgramUniform4fv;
+        
+        extern const std::function<void(gloop::uint_t, gloop::int_t, gloop::sizei_t, gloop::boolean_t, const gloop::float_t *)>& glProgramUniformMatrix2fv;
+        extern const std::function<void(gloop::uint_t, gloop::int_t, gloop::sizei_t, gloop::boolean_t, const gloop::float_t *)>& glProgramUniformMatrix3fv;
+        extern const std::function<void(gloop::uint_t, gloop::int_t, gloop::sizei_t, gloop::boolean_t, const gloop::float_t *)>& glProgramUniformMatrix4fv;               
+                
+        extern const std::function<void(gloop::enum_t, const void*)>& glDrawArraysIndirect;
+        extern const std::function<void(gloop::enum_t, gloop::enum_t, const void*)>& glDrawElementsIndirect;                
+        
+        extern const bool& OPENGLES_3_1;
+        
+        extern const std::function<void(gloop::uint_t, gloop::uint_t, gloop::uint_t)>& glDispatchCompute;
+        
+        extern const std::function<void(gloop::intptr_t)>& glDispatchComputeIndirect;
+        
+        extern const bool& OPENGLES_3_2;
+        
+        
     }
 }
 

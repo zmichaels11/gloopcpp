@@ -11,7 +11,6 @@
 #include "buffer_objects.hpp"
 
 #include <GLES3/gl3.h>
-#include <GLES3/gl31.h>
 
 #include "../glint.hpp"
 #include "../gloop_throw.hpp"

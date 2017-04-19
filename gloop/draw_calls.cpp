@@ -6,7 +6,7 @@
 
 #include "draw_calls.hpp"
 
-#include "glwrapper.hpp"
+#include "wrapper/drawing_commands.hpp"
 
 namespace gloop {
 
@@ -42,11 +42,25 @@ namespace gloop {
                 primitiveCount);
     }
 
-    void draw::elements_base_vertex::draw() const {
-        throw "unsupported operation";
+    void draw::arrays_indirect::draw() const {
+        wrapper::drawArraysIndirect(
+                static_cast<gloop::enum_t> (drawMode),
+                indirect);
     }
 
-    void draw::range_elements::draw() const {
-        throw "unsupported operation";
+    void draw::elements_indirect::draw() const {
+        wrapper::drawElementsIndirect(
+                static_cast<gloop::enum_t> (drawMode),
+                static_cast<gloop::enum_t> (type),
+                indirect);
+    }
+
+    void draw::compute::execute() const {
+
+        wrapper::dispatchCompute(numGroupsX, numGroupsY, numGroupsZ);
+    }
+
+    void draw::compute_indirect::execute() const {
+        wrapper::dispatchComputeIndirect(indirect);
     }
 }

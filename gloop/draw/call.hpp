@@ -15,5 +15,13 @@ namespace gloop {
                 draw();
             }
         };
+        
+        struct compute_call {
+            virtual void execute() const = 0;
+            
+            inline void operator()() const {
+                execute();
+            }
+        };
     }
 }

@@ -15,12 +15,12 @@ namespace gloop {
     namespace wrapper {
         gloop::enum_t getError() {
             return glGetError();
-        }
+        }                
         
         void init() {
             if (glewInit() != GLEW_OK) {                
                 throw "GLEW could not be initialized!";
-            }
+            }            
         }
         
         const gloop::ubyte_t * getString(gloop::enum_t param) {

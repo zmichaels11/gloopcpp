@@ -12,10 +12,14 @@
         </logicalFolder>
         <logicalFolder name="f2" displayName="draw" projectFiles="true">
           <itemPath>gloop/draw/arrays.hpp</itemPath>
+          <itemPath>gloop/draw/arrays_indirect.hpp</itemPath>
           <itemPath>gloop/draw/arrays_instanced.hpp</itemPath>
           <itemPath>gloop/draw/call.hpp</itemPath>
+          <itemPath>gloop/draw/compute.hpp</itemPath>
+          <itemPath>gloop/draw/compute_indirect.hpp</itemPath>
           <itemPath>gloop/draw/elements.hpp</itemPath>
           <itemPath>gloop/draw/elements_base_vertex.hpp</itemPath>
+          <itemPath>gloop/draw/elements_indirect.hpp</itemPath>
           <itemPath>gloop/draw/elements_instanced.hpp</itemPath>
           <itemPath>gloop/draw/index_type.hpp</itemPath>
           <itemPath>gloop/draw/mode.hpp</itemPath>
@@ -86,6 +90,7 @@
         </logicalFolder>
         <logicalFolder name="f8" displayName="wrapper" projectFiles="true">
           <itemPath>gloop/wrapper/buffer_objects.hpp</itemPath>
+          <itemPath>gloop/wrapper/compute_shaders.hpp</itemPath>
           <itemPath>gloop/wrapper/drawing_commands.hpp</itemPath>
           <itemPath>gloop/wrapper/framebuffer_objects.hpp</itemPath>
           <itemPath>gloop/wrapper/gl.hpp</itemPath>
@@ -281,9 +286,15 @@
       </item>
       <item path="gloop/draw/arrays.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/draw/arrays_indirect.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/draw/arrays_instanced.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/draw/call.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/draw/compute.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/draw/compute_indirect.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/draw/elements.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -291,6 +302,8 @@
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="gloop/draw/elements_indirect.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/draw/elements_instanced.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -600,6 +613,8 @@
       <item path="gloop/vertex_attributes.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/wrapper/buffer_objects.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/wrapper/compute_shaders.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/wrapper/drawing_commands.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -809,9 +824,15 @@
       </item>
       <item path="gloop/draw/arrays.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/draw/arrays_indirect.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/draw/arrays_instanced.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/draw/call.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/draw/compute.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/draw/compute_indirect.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/draw/elements.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -819,6 +840,8 @@
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="gloop/draw/elements_indirect.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/draw/elements_instanced.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -1129,6 +1152,8 @@
       </item>
       <item path="gloop/wrapper/buffer_objects.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/wrapper/compute_shaders.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/wrapper/drawing_commands.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/wrapper/framebuffer_objects.hpp"
@@ -1327,9 +1352,15 @@
       </item>
       <item path="gloop/draw/arrays.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/draw/arrays_indirect.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/draw/arrays_instanced.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/draw/call.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/draw/compute.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/draw/compute_indirect.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/draw/elements.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -1337,6 +1368,8 @@
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="gloop/draw/elements_indirect.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/draw/elements_instanced.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -1655,6 +1688,8 @@
       <item path="gloop/vertex_attributes.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/wrapper/buffer_objects.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/wrapper/compute_shaders.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/wrapper/drawing_commands.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -1854,9 +1889,15 @@
       </item>
       <item path="gloop/draw/arrays.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/draw/arrays_indirect.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/draw/arrays_instanced.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/draw/call.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/draw/compute.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/draw/compute_indirect.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/draw/elements.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -1864,6 +1905,8 @@
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="gloop/draw/elements_indirect.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/draw/elements_instanced.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -2182,6 +2225,8 @@
       <item path="gloop/vertex_attributes.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/wrapper/buffer_objects.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/wrapper/compute_shaders.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/wrapper/drawing_commands.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -2384,9 +2429,15 @@
       </item>
       <item path="gloop/draw/arrays.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/draw/arrays_indirect.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/draw/arrays_instanced.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/draw/call.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/draw/compute.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/draw/compute_indirect.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/draw/elements.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -2394,6 +2445,8 @@
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="gloop/draw/elements_indirect.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/draw/elements_instanced.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -2713,6 +2766,8 @@
       </item>
       <item path="gloop/wrapper/buffer_objects.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/wrapper/compute_shaders.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/wrapper/drawing_commands.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/wrapper/framebuffer_objects.hpp"
@@ -2914,9 +2969,15 @@
       </item>
       <item path="gloop/draw/arrays.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/draw/arrays_indirect.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/draw/arrays_instanced.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/draw/call.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/draw/compute.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/draw/compute_indirect.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/draw/elements.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -2924,6 +2985,8 @@
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="gloop/draw/elements_indirect.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/draw/elements_instanced.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -3242,6 +3305,8 @@
       <item path="gloop/vertex_attributes.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/wrapper/buffer_objects.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/wrapper/compute_shaders.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/wrapper/drawing_commands.hpp" ex="false" tool="3" flavor2="0">
       </item>

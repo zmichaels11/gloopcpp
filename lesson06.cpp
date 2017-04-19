@@ -15,6 +15,7 @@
 #include "gloop/tools.hpp"
 #include "gloop/vertex_attributes.hpp"
 #include "gloop/vertex_array.hpp"
+#include "gloop/wrapper/gl.hpp"
 
 namespace {
 
@@ -50,7 +51,7 @@ namespace {
 
 namespace {
 
-    static void initProgram(lesson06_context * glCtx) {
+    static void initProgram(lesson06_context * glCtx) {                
         gloop::shader shaders[]{
             gloop::shader::makeVertexShader("tests/texture.vert"),
             gloop::shader::makeFragmentShader("tests/texture.frag")

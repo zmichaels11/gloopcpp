@@ -8,8 +8,12 @@
 #pragma once
 
 #include "draw/arrays.hpp"
+#include "draw/arrays_indirect.hpp"
 #include "draw/arrays_instanced.hpp"
+
+#include "draw/compute.hpp"
+#include "draw/compute_indirect.hpp"
+
 #include "draw/elements.hpp"
-#include "draw/elements_base_vertex.hpp"
+#include "draw/elements_indirect.hpp"
 #include "draw/elements_instanced.hpp"
-#include "draw/range_elements.hpp"

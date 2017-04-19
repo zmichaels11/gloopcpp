@@ -142,7 +142,7 @@ namespace gloop {
         }
         
         decltype(glBufferStorageEXT) glBufferStorageEXT = _glBufferStorageEXT;
-        decltype(EXT_buffer_storage) EXT_buffer_storage = _EXT_buffer_storage;
+        decltype(EXT_buffer_storage) EXT_buffer_storage = _EXT_buffer_storage;                
 
         gloop::enum_t getError() {
             return glGetError();
@@ -153,6 +153,7 @@ namespace gloop {
         }
 
         void init() {
+            
             init_EXT_buffer_storage();
 
             init_ANGLE_instanced_arrays();
@@ -164,7 +165,8 @@ namespace gloop {
             init_OES_vertex_array_object();
 
             init_EXT_texture_storage();
-
+            
+            
         }
     }
 }
