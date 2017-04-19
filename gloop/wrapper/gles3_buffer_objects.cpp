@@ -13,7 +13,6 @@
 #include <GLES3/gl3.h>
 
 #include "../glint.hpp"
-#include "../gloop_throw.hpp"
 
 #include "gl.hpp"
 #include "gl_gles3.hpp"
@@ -104,16 +103,6 @@ namespace gloop {
 
             glBindBuffer(targetHint, buffer);
             glUnmapBuffer(targetHint);
-        }
-
-        void getNamedBufferSubData(
-                gloop::enum_t targetHint,
-                gloop::uint_t buffer,
-                gloop::intptr_t offset,
-                gloop::sizeiptr_t size,
-                void * data) {
-
-            gloop_throw("glGetBufferSubData is not supported!");
         }
 
         void bindBufferRange(

@@ -111,12 +111,12 @@ namespace gloop {
         static inline void __dispatchCompute(...) {
             gloop_throw(gloop::exception::invalid_operation_exception("Compute Shaders are not supported!"));
         }
-        
+
         template<bool isSupported = supports_compute_shaders, typename std::enable_if<isSupported, void * >::type = nullptr>
         static inline void __dispatchComputeIndirect(gloop::intptr_t indirect) {
             wrapper::dispatchComputeIndirect(indirect);
         }
-        
+
         template<bool isSupported = supports_compute_shaders, typename std::enable_if<!isSupported, void * >::type = nullptr>
         static inline void __dispatchComputeIndirect(...) {
             gloop_throw(gloop::exception::invalid_operation_exception("Compute Shaders are not supported!"));

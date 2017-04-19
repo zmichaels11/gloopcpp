@@ -10,7 +10,6 @@
 
 #include <SDL2/SDL_opengles2.h>
 
-#include "../gloop_throw.hpp"
 #include "gl.hpp"
 #include "gl_gles2.hpp"
 
@@ -112,33 +111,6 @@ namespace gloop {
             } else {
                 gloop_throw("OES_mapbuffer is not supported!");
             }
-        }
-
-        void getNamedBufferSubData(
-                gloop::enum_t targetHint,
-                gloop::uint_t buffer,
-                gloop::intptr_t offset,
-                gloop::sizeiptr_t size,
-                void * data) {
-
-            gloop_throw("glGetBufferSubData is not supported!");
-        }
-
-        void bindBufferRange(                
-                gloop::enum_t target,
-                gloop::uint_t index,
-                gloop::uint_t buffer,
-                gloop::intptr_t offset, gloop::sizeiptr_t size) {
-
-            gloop_throw("glBindBufferRange is not supported!");
-        }
-
-        void bindBufferBase(                
-                gloop::enum_t target,
-                gloop::uint_t index,
-                gloop::uint_t buffer) {
-
-            gloop_throw("glBindBufferBase is not supported!");
         }
     }
 }
