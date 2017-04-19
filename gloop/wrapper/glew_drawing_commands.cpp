@@ -49,6 +49,33 @@ namespace gloop {
 
             glDrawElementsInstanced(mode, count, type, indices, instanceCount);
         }
+
+        void drawArraysIndirect(
+                gloop::enum_t mode,
+                const void * indirect) {
+
+            glDrawArraysIndirect(mode, indirect);
+        }
+
+        void drawElementsIndirect(
+                gloop::enum_t mode,
+                gloop::enum_t type,
+                const void * indirect) {
+
+            glDrawElementsIndirect(mode, type, indirect);
+        }
+
+        void dispatchCompute(
+                gloop::uint_t numGroupsX,
+                gloop::uint_t numGroupsY,
+                gloop::uint_t numGroupsZ) {
+
+            glDispatchCompute(numGroupsX, numGroupsY, numGroupsZ);
+        }
+        
+        void dispatchComputeIndirect(gloop::intptr_t indirect) {
+            glDispatchComputeIndirect(indirect);
+        }
     }
 }
 #endif

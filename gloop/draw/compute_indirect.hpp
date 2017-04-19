@@ -19,6 +19,12 @@
 
 namespace gloop {
     namespace draw {
+        struct compute_indirect_commant {
+            gloop::uint_t numGroupsX;
+            gloop::uint_t numGroupsY;
+            gloop::uint_t numGroupsZ;
+        };
+        
         struct compute_indirect : compute_call {
             gloop::intptr_t indirect;
             
