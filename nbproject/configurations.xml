@@ -2165,5 +2165,497 @@
       <item path="tests/texture.vert" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
+    <conf name="WEBGL_Release" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <ccTool>
+          <developmentMode>6</developmentMode>
+          <standard>11</standard>
+          <commandlineTool>em++</commandlineTool>
+          <commandLine>-DGL=GLES2 -s USE_SDL=2</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/gloopcpp_test.html</output>
+          <commandlineTool>em++</commandlineTool>
+          <linkerLibItems>
+            <linkerOptionItem>`pkg-config --libs glesv2`</linkerOptionItem>
+          </linkerLibItems>
+          <commandLine>-s USE_SDL=2 --preload-file tests -O3</commandLine>
+        </linkerTool>
+      </compileType>
+      <item path="gloop/application.cpp" ex="false" tool="1" flavor2="11">
+      </item>
+      <item path="gloop/application.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/bitfields/buffer_access_hint.cpp"
+            ex="false"
+            tool="1"
+            flavor2="11">
+      </item>
+      <item path="gloop/bitfields/buffer_access_hint.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/bitfields/buffer_immutable_storage_hint.cpp"
+            ex="false"
+            tool="1"
+            flavor2="11">
+      </item>
+      <item path="gloop/bitfields/buffer_immutable_storage_hint.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/bitfields/clear_mask.cpp" ex="false" tool="1" flavor2="11">
+      </item>
+      <item path="gloop/bitfields/clear_mask.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/buffer.cpp" ex="false" tool="1" flavor2="11">
+      </item>
+      <item path="gloop/buffer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/context.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/draw/arrays.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/draw/arrays_instanced.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/draw/call.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/draw/elements.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/draw/elements_base_vertex.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/draw/elements_instanced.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/draw/index_type.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/draw/mode.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/draw/range_elements.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/draw_calls.cpp" ex="false" tool="1" flavor2="11">
+      </item>
+      <item path="gloop/draw_calls.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/enums/blend_eq.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/enums/blend_func.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/enums/buffer_storage_hint.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/enums/buffer_target.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/enums/framebuffer_attachment.cpp"
+            ex="false"
+            tool="1"
+            flavor2="11">
+      </item>
+      <item path="gloop/enums/framebuffer_attachment.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/enums/framebuffer_target.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/enums/renderbuffer_internal_format.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/enums/shader_type.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/enums/texture_format.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/enums/texture_internal_format.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/enums/texture_mag_filter.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/enums/texture_min_filter.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/enums/texture_wrap.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/enums/vertex_attribute_type.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/error/base_error.cpp" ex="false" tool="1" flavor2="11">
+      </item>
+      <item path="gloop/error/base_error.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/error/out_of_memory_error.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/errors.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/exception/base_exception.cpp"
+            ex="false"
+            tool="1"
+            flavor2="11">
+      </item>
+      <item path="gloop/exception/base_exception.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/exception/invalid_enum_exception.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/exception/invalid_framebuffer_operation_exception.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/exception/invalid_operation_exception.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/exception/invalid_uniform_name_exception.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/exception/invalid_value_exception.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/exception/program_link_exception.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/exception/shader_compile_exception.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/exception/uniform_name_not_found_exception.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/exception/unsupported_shader_type_exception.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/exceptions.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/framebuffer.cpp" ex="false" tool="1" flavor2="11">
+      </item>
+      <item path="gloop/framebuffer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/glint.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/gloop_throw.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/pixel_formats.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/program.cpp" ex="false" tool="1" flavor2="11">
+      </item>
+      <item path="gloop/program.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/program_uniform_binding.cpp" ex="false" tool="1" flavor2="11">
+      </item>
+      <item path="gloop/renderbuffer.cpp" ex="false" tool="1" flavor2="11">
+      </item>
+      <item path="gloop/renderbuffer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/shader.cpp" ex="false" tool="1" flavor2="11">
+      </item>
+      <item path="gloop/shader.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/states/blend.cpp" ex="false" tool="1" flavor2="11">
+      </item>
+      <item path="gloop/states/blend.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/states/clear.cpp" ex="false" tool="1" flavor2="11">
+      </item>
+      <item path="gloop/states/clear.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/states/depth_range.cpp" ex="false" tool="1" flavor2="11">
+      </item>
+      <item path="gloop/states/depth_range.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/states/scissor.cpp" ex="false" tool="1" flavor2="11">
+      </item>
+      <item path="gloop/states/scissor.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/states/texture2D_parameters.cpp"
+            ex="false"
+            tool="1"
+            flavor2="11">
+      </item>
+      <item path="gloop/states/texture2D_parameters.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/states/viewport.cpp" ex="false" tool="1" flavor2="11">
+      </item>
+      <item path="gloop/states/viewport.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/texture2D.cpp" ex="false" tool="1" flavor2="11">
+      </item>
+      <item path="gloop/texture2D.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/tools.cpp" ex="false" tool="1" flavor2="11">
+      </item>
+      <item path="gloop/tools.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_binding.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_bindings.cpp"
+            ex="false"
+            tool="1"
+            flavor2="11">
+      </item>
+      <item path="gloop/uniform/uniform_block_binding.cpp"
+            ex="false"
+            tool="1"
+            flavor2="11">
+      </item>
+      <item path="gloop/uniform/uniform_block_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_float_array_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_float_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_int_array_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_int_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_ivec2_array_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_ivec2_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_ivec3_array_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_ivec3_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_ivec4_array_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_ivec4_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_mat2_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_mat3_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_mat4_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_vec2_array_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_vec2_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_vec3_array_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_vec3_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_vec4_array_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniform/uniform_vec4_binding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/uniforms.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/vertex_array.cpp" ex="false" tool="1" flavor2="11">
+      </item>
+      <item path="gloop/vertex_array.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/vertex_attribute_binding.cpp"
+            ex="false"
+            tool="1"
+            flavor2="11">
+      </item>
+      <item path="gloop/vertex_attribute_binding.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/vertex_attributes.cpp" ex="false" tool="1" flavor2="11">
+      </item>
+      <item path="gloop/vertex_attributes.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/wrapper/buffer_objects.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/wrapper/drawing_commands.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/wrapper/framebuffer_objects.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/wrapper/gl.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/wrapper/gles2_buffer_objects.cpp"
+            ex="false"
+            tool="1"
+            flavor2="11">
+      </item>
+      <item path="gloop/wrapper/gles2_drawing_commands.cpp"
+            ex="false"
+            tool="1"
+            flavor2="11">
+      </item>
+      <item path="gloop/wrapper/gles2_framebuffer_objects.cpp"
+            ex="false"
+            tool="1"
+            flavor2="11">
+      </item>
+      <item path="gloop/wrapper/gles2_gl.cpp" ex="false" tool="1" flavor2="11">
+      </item>
+      <item path="gloop/wrapper/gles2_shaders_and_programs.cpp"
+            ex="false"
+            tool="1"
+            flavor2="11">
+      </item>
+      <item path="gloop/wrapper/gles2_states.cpp" ex="false" tool="1" flavor2="11">
+      </item>
+      <item path="gloop/wrapper/gles2_texture_objects.cpp"
+            ex="false"
+            tool="1"
+            flavor2="11">
+      </item>
+      <item path="gloop/wrapper/gles2_vertex_arrays.cpp"
+            ex="false"
+            tool="1"
+            flavor2="11">
+      </item>
+      <item path="gloop/wrapper/glew_buffer_objects.cpp"
+            ex="false"
+            tool="1"
+            flavor2="11">
+      </item>
+      <item path="gloop/wrapper/glew_drawing_commands.cpp"
+            ex="false"
+            tool="1"
+            flavor2="11">
+      </item>
+      <item path="gloop/wrapper/glew_framebuffer_objects.cpp"
+            ex="false"
+            tool="1"
+            flavor2="11">
+      </item>
+      <item path="gloop/wrapper/glew_gl.cpp" ex="false" tool="1" flavor2="11">
+      </item>
+      <item path="gloop/wrapper/glew_shaders_and_programs.cpp"
+            ex="false"
+            tool="1"
+            flavor2="11">
+      </item>
+      <item path="gloop/wrapper/glew_states.cpp" ex="false" tool="1" flavor2="11">
+      </item>
+      <item path="gloop/wrapper/glew_texture_objects.cpp"
+            ex="false"
+            tool="1"
+            flavor2="11">
+      </item>
+      <item path="gloop/wrapper/glew_vertex_arrays.cpp"
+            ex="false"
+            tool="1"
+            flavor2="11">
+      </item>
+      <item path="gloop/wrapper/shaders_and_programs.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="gloop/wrapper/states.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/wrapper/texture_objects.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/wrapper/vertex_arrays.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="lesson06.cpp" ex="false" tool="1" flavor2="11">
+      </item>
+      <item path="pixel_formats.cpp" ex="false" tool="1" flavor2="11">
+      </item>
+      <item path="simple_rect.cpp" ex="false" tool="1" flavor2="11">
+      </item>
+      <item path="test_runner.cpp" ex="false" tool="1" flavor2="11">
+      </item>
+      <item path="tests/basic.frag" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/basic.vert" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/texture.frag" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/texture.vert" ex="false" tool="3" flavor2="0">
+      </item>
+    </conf>
   </confs>
 </configurationDescriptor>

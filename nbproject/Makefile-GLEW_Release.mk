@@ -21,8 +21,8 @@ FC=gfortran
 AS=as
 
 # Macros
-CND_PLATFORM=GNU-Linux
-CND_DLIB_EXT=so
+CND_PLATFORM=None-Windows
+CND_DLIB_EXT=dll
 CND_CONF=GLEW_Release
 CND_DISTDIR=dist
 CND_BUILDDIR=build
@@ -102,9 +102,9 @@ LDLIBSOPTIONS=`pkg-config --libs sdl2` `pkg-config --libs glew`
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/gloopcpp_test
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/gloopcpp_test.exe
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/gloopcpp_test: ${OBJECTFILES}
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/gloopcpp_test.exe: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/gloopcpp_test ${OBJECTFILES} ${LDLIBSOPTIONS}
 

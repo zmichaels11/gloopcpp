@@ -24,14 +24,14 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=CamStreamTest
+PROJECTNAME=gloop_cpp.core
 
 # Active Configuration
 DEFAULTCONF=GLEW_Debug
 CONF=${DEFAULTCONF}
 
 # All Configurations
-ALLCONFS=GLEW_Debug GLEW_Release GLES2_Debug WEBGL_Debug 
+ALLCONFS=GLEW_Debug GLEW_Release GLES2_Debug WEBGL_Debug WEBGL_Release 
 
 
 # build
