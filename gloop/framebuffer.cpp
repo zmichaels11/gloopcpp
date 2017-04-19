@@ -40,9 +40,9 @@ namespace gloop {
                 const auto glEnum = static_cast<gloop::enum_t> (it->first);
                 
                 if (it->second.type == attachment_type::RENDERBUFFER) {                    
-                    wrapper::namedFramebufferRenderbuffer(glId, glEnum, wrapper::RENDERBUFFER, it->second.renderbuffer->getId());
+                    wrapper::namedFramebufferRenderbuffer(glId, glEnum, wrapper::RENDERBUFFER, it->second.rb->getId());
                 } else if (it->second.type == attachment_type::TEXTURE) {
-                    wrapper::namedFramebufferTexture(glId, glEnum, wrapper::TEXTURE_2D, it->second.texture->getId());
+                    wrapper::namedFramebufferTexture(glId, glEnum, wrapper::TEXTURE_2D, it->second.tex->getId());
                 } else {
                     gloop_throw(gloop::exception::invalid_enum_exception("Unknown attachment type!"));
                 }
@@ -86,7 +86,7 @@ namespace gloop {
         framebuffer::attachment storage;
 
         storage.type = framebuffer::attachment_type::TEXTURE;
-        storage.texture = texture;
+        storage.tex = texture;
 
         _attachments[attachment] = storage;
 
@@ -99,7 +99,7 @@ namespace gloop {
         framebuffer::attachment storage;
 
         storage.type = framebuffer::attachment_type::RENDERBUFFER;
-        storage.renderbuffer = renderbuffer;
+        storage.rb = renderbuffer;
 
         _attachments[attachment] = storage;
 

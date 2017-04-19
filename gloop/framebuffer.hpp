@@ -37,8 +37,8 @@ namespace gloop {
             attachment_type type;
 
             union {
-                texture2D * texture;
-                renderbuffer * renderbuffer;
+                texture2D * tex;
+                renderbuffer * rb;
             };
         };
     private:

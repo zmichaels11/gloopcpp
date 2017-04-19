@@ -30,7 +30,7 @@ namespace gloop {
 
             glGetShaderInfoLog(shader, bufSize, length, infoLog);
         }
-        
+
         gloop::uint_t createShader(gloop::enum_t type) {
             return glCreateShader(type);
         }
@@ -116,164 +116,221 @@ namespace gloop {
 
             glBindAttribLocation(program, index, name);
         }
-        
-        void uniform1f(
+
+        void programUniform1f(
+                gloop::uint_t pid,
                 gloop::uint_t loc,
                 gloop::float_t value) {
-            
+
+            glUseProgram(pid);
             glUniform1f(loc, value);
+
         }
 
-        void uniform2f(
+        void programUniform2f(
+                gloop::uint_t pid,
                 gloop::uint_t loc,
                 gloop::float_t x,
                 gloop::float_t y) {
-            
+
+            glUseProgram(pid);
             glUniform2f(loc, x, y);
+
         }
 
-        void uniform3f(
+        void programUniform3f(
+                gloop::uint_t pid,
                 gloop::uint_t loc,
                 gloop::float_t x,
                 gloop::float_t y,
                 gloop::float_t z) {
-            
+
+            glUseProgram(pid);
             glUniform3f(loc, x, y, z);
+
         }
 
-        void uniform4f(
+        void programUniform4f(
+                gloop::uint_t pid,
                 gloop::uint_t loc,
                 gloop::float_t x,
                 gloop::float_t y,
                 gloop::float_t z,
                 gloop::float_t w) {
-            
+
+            glUseProgram(pid);
             glUniform4f(loc, x, y, z, w);
+
         }
 
-        void uniform1i(
+        void programUniform1i(
+                gloop::uint_t pid,
                 gloop::uint_t loc,
                 gloop::int_t value) {
-            
+
+            glUseProgram(pid);
             glUniform1i(loc, value);
+
         }
 
-        void uniform2i(
+        void programUniform2i(
+                gloop::uint_t pid,
                 gloop::uint_t loc,
                 gloop::int_t x,
                 gloop::int_t y) {
-            
+
+            glUseProgram(pid);
             glUniform2i(loc, x, y);
+
         }
 
-        void uniform3i(
+        void programUniform3i(
+                gloop::uint_t pid,
                 gloop::uint_t loc,
                 gloop::int_t x,
                 gloop::int_t y,
                 gloop::int_t z) {
-            
+
+            glUseProgram(pid);
             glUniform3i(loc, x, y, z);
+
         }
 
-        void uniform4i(
+        void programUniform4i(
+                gloop::uint_t pid,
                 gloop::uint_t loc,
                 gloop::int_t x,
                 gloop::int_t y,
                 gloop::int_t z,
                 gloop::int_t w) {
-            
+
+            glUseProgram(pid);
             glUniform4i(loc, x, y, z, w);
+
         }
 
-        void uniform1fv(
+        void programUniform1fv(
+                gloop::uint_t pid,
                 gloop::uint_t loc,
                 gloop::sizei_t count,
                 const gloop::float_t * values) {
-            
+
+            glUseProgram(pid);
             glUniform1fv(loc, count, values);
+
         }
 
-        void uniform2fv(
+        void programUniform2fv(
+                gloop::uint_t pid,
                 gloop::uint_t loc,
                 gloop::sizei_t count,
                 const gloop::float_t * values) {
-            
+
+            glUseProgram(pid);
             glUniform2fv(loc, count, values);
+
         }
 
-        void uniform3fv(
+        void programUniform3fv(
+                gloop::uint_t pid,
                 gloop::uint_t loc,
                 gloop::sizei_t count,
                 const gloop::float_t * values) {
-            
+
+            glUseProgram(pid);
             glUniform3fv(loc, count, values);
+
         }
 
-        void uniform4fv(
+        void programUniform4fv(
+                gloop::uint_t pid,
                 gloop::uint_t loc,
                 gloop::sizei_t count,
                 const gloop::float_t * values) {
-            
+
+            glUseProgram(pid);
             glUniform4fv(loc, count, values);
+
         }
 
-        void uniform1iv(
+        void programUniform1iv(
+                gloop::uint_t pid,
                 gloop::uint_t loc,
                 gloop::sizei_t count,
                 const gloop::int_t * values) {
-            
+
+            glUseProgram(pid);
             glUniform1iv(loc, count, values);
+
         }
 
-        void uniform2iv(
+        void programUniform2iv(
+                gloop::uint_t pid,
                 gloop::uint_t loc,
                 gloop::sizei_t count,
                 const gloop::int_t * values) {
-            
+
+            glUseProgram(pid);
             glUniform2iv(loc, count, values);
+
         }
 
-        void uniform3iv(
+        void programUniform3iv(
+                gloop::uint_t pid,
                 gloop::uint_t loc,
                 gloop::sizei_t count,
                 const gloop::int_t * values) {
-            
+
+            glUseProgram(pid);
             glUniform3iv(loc, count, values);
+
         }
 
-        void uniform4iv(
+        void programUniform4iv(
+                gloop::uint_t pid,
                 gloop::uint_t loc,
                 gloop::sizei_t count,
                 const gloop::int_t * values) {
-            
+
+            glUseProgram(pid);
             glUniform4iv(loc, count, values);
+
         }
 
-        void uniformMatrix2fv(
+        void programUniformMatrix2fv(
+                gloop::uint_t pid,
                 gloop::uint_t loc,
                 gloop::sizei_t count,
                 gloop::boolean_t transpose,
                 const gloop::float_t * values) {
-            
+
+            glUseProgram(pid);
             glUniformMatrix2fv(loc, count, transpose, values);
+
         }
-        
-        void uniformMatrix3fv(
+
+        void programUniformMatrix3fv(
+                gloop::uint_t pid,
                 gloop::uint_t loc,
                 gloop::sizei_t count,
                 gloop::boolean_t transpose,
                 const gloop::float_t * values) {
-            
+
+            glUseProgram(pid);
             glUniformMatrix3fv(loc, count, transpose, values);
+
         }
-        
-        void uniformMatrix4fv(
+
+        void programUniformMatrix4fv(
+                gloop::uint_t pid,
                 gloop::uint_t loc,
                 gloop::sizei_t count,
                 gloop::boolean_t transpose,
                 const gloop::float_t * values) {
-            
+
+            glUseProgram(pid);
             glUniformMatrix4fv(loc, count, transpose, values);
+
         }
     }
 }
