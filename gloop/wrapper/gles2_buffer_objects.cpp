@@ -10,6 +10,7 @@
 
 #include <SDL2/SDL_opengles2.h>
 
+#include "../gloop_throw.hpp"
 #include "gl.hpp"
 #include "gl_gles2.hpp"
 
