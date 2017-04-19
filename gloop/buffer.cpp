@@ -212,6 +212,7 @@ namespace gloop {
         if (this->isInitialized()) {
             gloop::wrapper::bindBufferBase(
                     static_cast<gloop::enum_t> (target),
+                    binding,
                     _id);
         }
     }

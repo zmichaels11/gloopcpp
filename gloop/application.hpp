@@ -8,6 +8,7 @@
 #pragma once
 
 #include <functional>
+#include <iostream>
 #include <string>
 
 #include <SDL2/SDL.h>
@@ -34,6 +35,27 @@ namespace gloop {
         int swapInterval;
         bool doubleBuffer;
     };
+    
+    inline context_hints getDefaultContextHints() {
+#define GLEW 1
+#define GLES2 2
+#define GLES3 3
+
+#if GL == GLEW
+        std::cout << "DEBUG: Default context is OpenGL 3.3" << std::endl;
+        return { {3, 3}, context_profile::CORE, 1, true};
+#elif GL == GLES2
+        std::cout << "DEBUG: Default context is OpenGLES 2.0" << std::endl;
+        return { {2, 0}, context_profile::ES, 1, true};
+#elif GL == GLES3
+        std::cout << "DEBUG: Default context is OPENGLES 3.0" << std::endl;
+        return { {3, 0}, context_profile::ES, 1, true};
+#endif
+        
+#undef GLES3
+#undef GLES2
+#undef GLEW
+    }
 
     class application {
     private:

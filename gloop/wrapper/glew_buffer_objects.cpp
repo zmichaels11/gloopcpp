@@ -75,9 +75,10 @@ namespace gloop {
 
         void bindBufferBase(
                 gloop::enum_t target,
+                gloop::uint_t index,
                 gloop::uint_t buffer) {
 
-            bindBufferBase(target, buffer);
+            glBindBufferBase(target, index, buffer);
         }
 
         void bindBufferRange(
@@ -86,7 +87,7 @@ namespace gloop {
                 gloop::uint_t buffer,
                 gloop::intptr_t offset, gloop::sizeiptr_t size) {
 
-            bindBufferRange(target, index, buffer, offset, size);
+            glBindBufferRange(target, index, buffer, offset, size);
         }
 
         void namedBufferSubData(

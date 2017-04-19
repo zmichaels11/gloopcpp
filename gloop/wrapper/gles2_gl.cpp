@@ -8,7 +8,7 @@
 #include "gl.hpp"
 #include "gl_gles2.hpp"
 
-#include <iostream>
+#include <functional>
 #include <type_traits>
 
 #include <SDL2/SDL_opengles2.h>
@@ -153,8 +153,6 @@ namespace gloop {
         }
 
         void init() {
-            std::cout << "Initializing GL!" << std::endl;
-
             init_EXT_buffer_storage();
 
             init_ANGLE_instanced_arrays();

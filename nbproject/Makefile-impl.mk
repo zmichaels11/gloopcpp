@@ -31,7 +31,7 @@ DEFAULTCONF=GLEW_Debug
 CONF=${DEFAULTCONF}
 
 # All Configurations
-ALLCONFS=GLEW_Debug GLEW_Release GLES2_Debug WEBGL_Debug WEBGL_Release 
+ALLCONFS=GLEW_Debug GLEW_Release GLES2_Debug GLES3_Debug WEBGL_Debug WEBGL_Release 
 
 
 # build

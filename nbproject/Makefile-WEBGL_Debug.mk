@@ -70,6 +70,14 @@ OBJECTFILES= \
 	${OBJECTDIR}/gloop/wrapper/gles2_states.o \
 	${OBJECTDIR}/gloop/wrapper/gles2_texture_objects.o \
 	${OBJECTDIR}/gloop/wrapper/gles2_vertex_arrays.o \
+	${OBJECTDIR}/gloop/wrapper/gles3_buffer_objects.o \
+	${OBJECTDIR}/gloop/wrapper/gles3_drawing_commands.o \
+	${OBJECTDIR}/gloop/wrapper/gles3_framebuffer_objects.o \
+	${OBJECTDIR}/gloop/wrapper/gles3_gl.o \
+	${OBJECTDIR}/gloop/wrapper/gles3_shaders_and_programs.o \
+	${OBJECTDIR}/gloop/wrapper/gles3_states.o \
+	${OBJECTDIR}/gloop/wrapper/gles3_texture_objects.o \
+	${OBJECTDIR}/gloop/wrapper/gles3_vertex_arrays.o \
 	${OBJECTDIR}/gloop/wrapper/glew_buffer_objects.o \
 	${OBJECTDIR}/gloop/wrapper/glew_drawing_commands.o \
 	${OBJECTDIR}/gloop/wrapper/glew_framebuffer_objects.o \
@@ -282,6 +290,46 @@ ${OBJECTDIR}/gloop/wrapper/gles2_vertex_arrays.o: gloop/wrapper/gles2_vertex_arr
 	${MKDIR} -p ${OBJECTDIR}/gloop/wrapper
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -O `pkg-config --cflags glesv2` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/wrapper/gles2_vertex_arrays.o gloop/wrapper/gles2_vertex_arrays.cpp
+
+${OBJECTDIR}/gloop/wrapper/gles3_buffer_objects.o: gloop/wrapper/gles3_buffer_objects.cpp
+	${MKDIR} -p ${OBJECTDIR}/gloop/wrapper
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -O `pkg-config --cflags glesv2` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/wrapper/gles3_buffer_objects.o gloop/wrapper/gles3_buffer_objects.cpp
+
+${OBJECTDIR}/gloop/wrapper/gles3_drawing_commands.o: gloop/wrapper/gles3_drawing_commands.cpp
+	${MKDIR} -p ${OBJECTDIR}/gloop/wrapper
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -O `pkg-config --cflags glesv2` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/wrapper/gles3_drawing_commands.o gloop/wrapper/gles3_drawing_commands.cpp
+
+${OBJECTDIR}/gloop/wrapper/gles3_framebuffer_objects.o: gloop/wrapper/gles3_framebuffer_objects.cpp
+	${MKDIR} -p ${OBJECTDIR}/gloop/wrapper
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -O `pkg-config --cflags glesv2` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/wrapper/gles3_framebuffer_objects.o gloop/wrapper/gles3_framebuffer_objects.cpp
+
+${OBJECTDIR}/gloop/wrapper/gles3_gl.o: gloop/wrapper/gles3_gl.cpp
+	${MKDIR} -p ${OBJECTDIR}/gloop/wrapper
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -O `pkg-config --cflags glesv2` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/wrapper/gles3_gl.o gloop/wrapper/gles3_gl.cpp
+
+${OBJECTDIR}/gloop/wrapper/gles3_shaders_and_programs.o: gloop/wrapper/gles3_shaders_and_programs.cpp
+	${MKDIR} -p ${OBJECTDIR}/gloop/wrapper
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -O `pkg-config --cflags glesv2` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/wrapper/gles3_shaders_and_programs.o gloop/wrapper/gles3_shaders_and_programs.cpp
+
+${OBJECTDIR}/gloop/wrapper/gles3_states.o: gloop/wrapper/gles3_states.cpp
+	${MKDIR} -p ${OBJECTDIR}/gloop/wrapper
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -O `pkg-config --cflags glesv2` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/wrapper/gles3_states.o gloop/wrapper/gles3_states.cpp
+
+${OBJECTDIR}/gloop/wrapper/gles3_texture_objects.o: gloop/wrapper/gles3_texture_objects.cpp
+	${MKDIR} -p ${OBJECTDIR}/gloop/wrapper
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -O `pkg-config --cflags glesv2` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/wrapper/gles3_texture_objects.o gloop/wrapper/gles3_texture_objects.cpp
+
+${OBJECTDIR}/gloop/wrapper/gles3_vertex_arrays.o: gloop/wrapper/gles3_vertex_arrays.cpp
+	${MKDIR} -p ${OBJECTDIR}/gloop/wrapper
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -O `pkg-config --cflags glesv2` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/wrapper/gles3_vertex_arrays.o gloop/wrapper/gles3_vertex_arrays.cpp
 
 ${OBJECTDIR}/gloop/wrapper/glew_buffer_objects.o: gloop/wrapper/glew_buffer_objects.cpp
 	${MKDIR} -p ${OBJECTDIR}/gloop/wrapper

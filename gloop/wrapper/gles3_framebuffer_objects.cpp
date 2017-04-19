@@ -4,11 +4,11 @@
  * and open the template in the editor.
  */
 
-#define GLES2 2
-#if GL == GLES2
+#define GLES3 3
+#if GL == GLES3
 #include "framebuffer_objects.hpp"
 
-#include <SDL2/SDL_opengles2.h>
+#include <GLES3/gl3.h>
 
 #include "../glint.hpp"
 
@@ -81,4 +81,4 @@ namespace gloop {
     }
 }
 #endif
-#undef GLES2
+#undef GLES3

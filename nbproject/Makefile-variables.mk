@@ -30,6 +30,14 @@ CND_ARTIFACT_PATH_GLES2_Debug=dist/GLES2_Debug/GNU-Linux/gloopcpp_test
 CND_PACKAGE_DIR_GLES2_Debug=dist/GLES2_Debug/GNU-Linux/package
 CND_PACKAGE_NAME_GLES2_Debug=camstreamtest.tar
 CND_PACKAGE_PATH_GLES2_Debug=dist/GLES2_Debug/GNU-Linux/package/camstreamtest.tar
+# GLES3_Debug configuration
+CND_PLATFORM_GLES3_Debug=GNU-Linux
+CND_ARTIFACT_DIR_GLES3_Debug=dist/GLES3_Debug/GNU-Linux
+CND_ARTIFACT_NAME_GLES3_Debug=gloopcpp_test
+CND_ARTIFACT_PATH_GLES3_Debug=dist/GLES3_Debug/GNU-Linux/gloopcpp_test
+CND_PACKAGE_DIR_GLES3_Debug=dist/GLES3_Debug/GNU-Linux/package
+CND_PACKAGE_NAME_GLES3_Debug=camstreamtest.tar
+CND_PACKAGE_PATH_GLES3_Debug=dist/GLES3_Debug/GNU-Linux/package/camstreamtest.tar
 # WEBGL_Debug configuration
 CND_PLATFORM_WEBGL_Debug=GNU-Linux
 CND_ARTIFACT_DIR_WEBGL_Debug=dist/WEBGL_Debug/GNU-Linux

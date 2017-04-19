@@ -3,25 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-#define GLES2 2
-#if GL == GLES2
+#define GLES3 3
+#if GL == GLES3
 
 #include "vertex_arrays.hpp"
 
-#include <SDL2/SDL_opengles2.h>
+#include <GLES3/gl3.h>
 
 #include "../glint.hpp"
-#include "gl_gles2.hpp"
 
 namespace gloop {
     namespace wrapper {
 
         void createVertexArrays(gloop::sizei_t n, gloop::uint_t * arrays) {            
-            glGenVertexArraysOES(n, arrays);
+            glGenVertexArrays(n, arrays);
         }
 
         void bindVertexArray(gloop::uint_t vertexArray) {
-            glBindVertexArrayOES(vertexArray);
+            glBindVertexArray(vertexArray);
         }
 
         void enableVertexAttribArray(gloop::uint_t attrib) {
@@ -33,11 +32,11 @@ namespace gloop {
         }
 
         void deleteVertexArrays(gloop::sizei_t n, gloop::uint_t * arrays) {
-            glDeleteVertexArraysOES(n, arrays);
+            glDeleteVertexArrays(n, arrays);
         }
         
         void vertexAttribDivisor(gloop::uint_t index, gloop::uint_t divisor) {
-            glVertexAttribDivisorANGLE(index, divisor);
+            glVertexAttribDivisor(index, divisor);
         }
         
         void vertexAttribPointer(gloop::uint_t index, gloop::int_t size, gloop::enum_t type, gloop::boolean_t normalized, gloop::sizei_t stride, const void * pointer) {
@@ -51,4 +50,4 @@ namespace gloop {
     }
 }
 #endif
-#undef GLES2
+#undef GLES3

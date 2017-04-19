@@ -45,6 +45,7 @@ namespace gloop {
 
         void bindBufferBase(
                 gloop::enum_t target,
+                gloop::uint_t index,
                 gloop::uint_t buffer);
 
         void bindBufferRange(

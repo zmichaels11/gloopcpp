@@ -151,17 +151,8 @@ namespace {
 int lesson06(int argc, char** argv) {
     gloop::application app(640, 480, "NEHE: Lesson06");
 
-    {
-        gloop::context_hints hints;
-
-        hints.profile = gloop::context_profile::ES;
-        hints.version.major = 2;
-        hints.version.minor = 0;
-        hints.swapInterval = 1;
-        hints.doubleBuffer = true;
-
-        app.setGLHints(hints);
-    }
+    app.setGLHints(gloop::getDefaultContextHints());
+    
 
     app.setGLContext(&glContext);
 

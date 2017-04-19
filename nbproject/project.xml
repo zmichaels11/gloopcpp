@@ -24,6 +24,10 @@
                     <type>1</type>
                 </confElem>
                 <confElem>
+                    <name>GLES3_Debug</name>
+                    <type>1</type>
+                </confElem>
+                <confElem>
                     <name>WEBGL_Debug</name>
                     <type>1</type>
                 </confElem>

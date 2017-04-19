@@ -4,15 +4,20 @@
  * and open the template in the editor.
  */
 
-#define GLES2 2
-#if GL == GLES2
+#define GLES3 3
+#if GL == GLES3
+#include "gl.hpp"
+
 #include "buffer_objects.hpp"
 
-#include <SDL2/SDL_opengles2.h>
+#include <GLES3/gl3.h>
+#include <GLES3/gl31.h>
 
+#include "../glint.hpp"
 #include "../gloop_throw.hpp"
+
 #include "gl.hpp"
-#include "gl_gles2.hpp"
+#include "gl_gles3.hpp"
 
 namespace gloop {
     namespace wrapper {
@@ -41,6 +46,7 @@ namespace gloop {
                 gloop::sizeiptr_t size,
                 const void * data,
                 gloop::bitfield_t flags) {
+
 
             if (EXT_buffer_storage) {
                 glBindBuffer(targetHint, buffer);
@@ -85,33 +91,20 @@ namespace gloop {
                 gloop::intptr_t offset, gloop::sizeiptr_t length,
                 gloop::bitfield_t access) {
 
-            if (EXT_map_buffer_range) {
-                glBindBuffer(targetHint, buffer);
 
-                void * out = glMapBufferRangeEXT(targetHint, offset, length, access);
+            glBindBuffer(targetHint, buffer);
 
-                return out;
-            } else if (OES_mapbuffer) {
-                glBindBuffer(targetHint, buffer);
+            void * out = glMapBufferRange(targetHint, offset, length, access);
 
-                gloop::char_t * ptr = (gloop::char_t *) glMapBufferOES(targetHint, access);
-
-                return (ptr + offset);
-            } else {
-                gloop_throw("EXT_map_buffer_range and OES_mapbuffer is not supported!");
-            }
+            return out;
         }
 
         void unmapNamedBuffer(
                 gloop::enum_t targetHint,
                 gloop::uint_t buffer) {
 
-            if (OES_mapbuffer) {
-                glBindBuffer(targetHint, buffer);
-                glUnmapBufferOES(targetHint);                
-            } else {
-                gloop_throw("OES_mapbuffer is not supported!");
-            }
+            glBindBuffer(targetHint, buffer);
+            glUnmapBuffer(targetHint);
         }
 
         void getNamedBufferSubData(
@@ -124,23 +117,23 @@ namespace gloop {
             gloop_throw("glGetBufferSubData is not supported!");
         }
 
-        void bindBufferRange(                
+        void bindBufferRange(
                 gloop::enum_t target,
                 gloop::uint_t index,
                 gloop::uint_t buffer,
                 gloop::intptr_t offset, gloop::sizeiptr_t size) {
 
-            gloop_throw("glBindBufferRange is not supported!");
+            glBindBufferRange(target, index, buffer, offset, size);
         }
 
-        void bindBufferBase(                
+        void bindBufferBase(
                 gloop::enum_t target,
                 gloop::uint_t index,
                 gloop::uint_t buffer) {
 
-            gloop_throw("glBindBufferBase is not supported!");
+            glBindBufferBase(target, index, buffer);
         }
     }
 }
 #endif
-#undef GLES2
+#undef GLES3
