@@ -12,6 +12,12 @@
 
 #include <SDL2/SDL_opengles2.h>
 
+#include "../gloop_throw.hpp"
+
+extern bool OES_mapbuffer;
+extern bool EXT_map_buffer_range;
+extern bool EXT_buffer_storage;
+
 extern PFNGLMAPBUFFERRANGEEXTPROC glMapBufferRangeEXT;
 extern PFNGLMAPBUFFEROESPROC glMapBufferOES;
 extern PFNGLUNMAPBUFFEROESPROC glUnmapBufferOES;
@@ -36,7 +42,6 @@ namespace gloop {
 
             glBindBuffer(targetHint, buffer);
             glBufferData(targetHint, size, data, usage);
-            glBindBuffer(targetHint, 0);
         }
 
         void namedBufferStorage(
@@ -46,10 +51,16 @@ namespace gloop {
                 const void * data,
                 gloop::bitfield_t flags) {
 
-            if (glBufferStorageEXT != nullptr) {
+            if (EXT_buffer_storage) {
                 glBindBuffer(targetHint, buffer);
                 glBufferStorageEXT(targetHint, size, data, flags);
-                glBindBuffer(targetHint, 0);
+            } else {
+                glBindBuffer(targetHint, buffer);
+                if (data == nullptr) {
+                    glBufferData(targetHint, size, nullptr, GL_DYNAMIC_DRAW);
+                } else {
+                    glBufferData(targetHint, size, data, GL_STATIC_DRAW);
+                }
             }
         }
 
@@ -75,7 +86,6 @@ namespace gloop {
 
             glBindBuffer(targetHint, buffer);
             glBufferSubData(targetHint, offset, size, data);
-            glBindBuffer(targetHint, 0);
         }
 
         void * mapNamedBufferRange(
@@ -84,7 +94,7 @@ namespace gloop {
                 gloop::intptr_t offset, gloop::sizeiptr_t length,
                 gloop::bitfield_t access) {
 
-            if (glMapBufferRangeEXT != nullptr) {
+            if (EXT_map_buffer_range) {
                 glBindBuffer(targetHint, buffer);
 
                 void * out = glMapBufferRangeEXT(targetHint, offset, length, access);
@@ -92,7 +102,7 @@ namespace gloop {
                 glBindBuffer(targetHint, 0);
 
                 return out;
-            } else if (glUnmapBufferOES != nullptr) {
+            } else if (OES_mapbuffer) {
                 glBindBuffer(targetHint, buffer);
 
                 gloop::char_t * ptr = (gloop::char_t *) glMapBufferOES(targetHint, access);
@@ -101,7 +111,7 @@ namespace gloop {
 
                 return (ptr + offset);
             } else {
-                throw "glMapBufferOES is not supported!";
+                gloop_throw("EXT_map_buffer_range and OES_mapbuffer is not supported!");
             }
         }
 
@@ -109,12 +119,12 @@ namespace gloop {
                 gloop::enum_t targetHint,
                 gloop::uint_t buffer) {
 
-            if (glUnmapBufferOES != nullptr) {
+            if (OES_mapbuffer) {
                 glBindBuffer(targetHint, buffer);
                 glUnmapBufferOES(targetHint);
                 glBindBuffer(targetHint, 0);
             } else {
-                throw "glUnmapBufferOES is not supported!";
+                gloop_throw("OES_mapbuffer is not supported!");
             }
         }
 
@@ -125,7 +135,7 @@ namespace gloop {
                 gloop::sizeiptr_t size,
                 void * data) {
 
-            throw "glGetBufferSubData is not supported!";
+            gloop_throw("glGetBufferSubData is not supported!");
         }
 
         void bindBufferRange(                
@@ -134,14 +144,14 @@ namespace gloop {
                 gloop::uint_t buffer,
                 gloop::intptr_t offset, gloop::sizeiptr_t size) {
 
-            throw "glBindBufferRange is not supported!";
+            gloop_throw("glBindBufferRange is not supported!");
         }
 
         void bindBufferBase(                
                 gloop::enum_t target,
                 gloop::uint_t buffer) {
 
-            throw "glBindBufferBase is not supported!";
+            gloop_throw("glBindBufferBase is not supported!");
         }
     }
 }
