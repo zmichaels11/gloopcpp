@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=gloop_cpp.core
+PROJECTNAME=CamStreamTest
 
 # Active Configuration
 DEFAULTCONF=GLEW_Debug

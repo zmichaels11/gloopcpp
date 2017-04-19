@@ -11,16 +11,14 @@
 #include <SDL2/SDL_opengles2.h>
 
 #include "../glint.hpp"
+#include "gl_gles2.hpp"
 
-extern PFNGLGENVERTEXARRAYSOESPROC glGenVertexArraysOES;
-extern PFNGLDELETEVERTEXARRAYSOESPROC glDeleteVertexArraysOES;
-extern PFNGLBINDVERTEXARRAYOESPROC glBindVertexArrayOES;
 extern PFNGLVERTEXATTRIBDIVISORANGLEPROC glVertexAttribDivisorANGLE;
 
 namespace gloop {
     namespace wrapper {
 
-        void createVertexArrays(gloop::sizei_t n, gloop::uint_t * arrays) {
+        void createVertexArrays(gloop::sizei_t n, gloop::uint_t * arrays) {            
             glGenVertexArraysOES(n, arrays);
         }
 
@@ -36,7 +34,7 @@ namespace gloop {
             glDisableVertexAttribArray(attrib);
         }
 
-        void deleteVertexArrays(gloop::sizei_t n, const gloop::uint_t * arrays) {
+        void deleteVertexArrays(gloop::sizei_t n, gloop::uint_t * arrays) {
             glDeleteVertexArraysOES(n, arrays);
         }
         

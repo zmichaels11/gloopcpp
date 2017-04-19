@@ -89,6 +89,7 @@
           <itemPath>gloop/wrapper/drawing_commands.hpp</itemPath>
           <itemPath>gloop/wrapper/framebuffer_objects.hpp</itemPath>
           <itemPath>gloop/wrapper/gl.hpp</itemPath>
+          <itemPath>gloop/wrapper/gl_gles2.hpp</itemPath>
           <itemPath>gloop/wrapper/shaders_and_programs.hpp</itemPath>
           <itemPath>gloop/wrapper/states.hpp</itemPath>
           <itemPath>gloop/wrapper/texture_objects.hpp</itemPath>
@@ -598,6 +599,8 @@
       </item>
       <item path="gloop/wrapper/gl.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/wrapper/gl_gles2.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/wrapper/gles2_buffer_objects.cpp"
             ex="false"
             tool="1"
@@ -1088,6 +1091,8 @@
       </item>
       <item path="gloop/wrapper/gl.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/wrapper/gl_gles2.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/wrapper/gles2_buffer_objects.cpp"
             ex="false"
             tool="1"
@@ -1576,6 +1581,8 @@
             flavor2="0">
       </item>
       <item path="gloop/wrapper/gl.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/wrapper/gl_gles2.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/wrapper/gles2_buffer_objects.cpp"
             ex="false"
@@ -2069,6 +2076,8 @@
       </item>
       <item path="gloop/wrapper/gl.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/wrapper/gl_gles2.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/wrapper/gles2_buffer_objects.cpp"
             ex="false"
             tool="1"
@@ -2560,6 +2569,8 @@
             flavor2="0">
       </item>
       <item path="gloop/wrapper/gl.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/wrapper/gl_gles2.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/wrapper/gles2_buffer_objects.cpp"
             ex="false"

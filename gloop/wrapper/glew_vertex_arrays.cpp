@@ -31,7 +31,7 @@ namespace gloop {
             glDisableVertexAttribArray(attrib);
         }
 
-        void deleteVertexArrays(gloop::sizei_t n, const gloop::uint_t * arrays) {
+        void deleteVertexArrays(gloop::sizei_t n, gloop::uint_t * arrays) {
             glDeleteVertexArrays(n, arrays);
         }
         

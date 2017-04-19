@@ -21,8 +21,8 @@ FC=gfortran
 AS=as
 
 # Macros
-CND_PLATFORM=None-Windows
-CND_DLIB_EXT=dll
+CND_PLATFORM=GNU-Linux
+CND_DLIB_EXT=so
 CND_CONF=WEBGL_Release
 CND_DISTDIR=dist
 CND_BUILDDIR=build
@@ -102,9 +102,9 @@ LDLIBSOPTIONS=`pkg-config --libs glesv2`
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/gloopcpp_test.html.exe
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/gloopcpp_test.html
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/gloopcpp_test.html.exe: ${OBJECTFILES}
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/gloopcpp_test.html: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	em++ -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/gloopcpp_test.html ${OBJECTFILES} ${LDLIBSOPTIONS} -s USE_SDL=2 --preload-file tests -O3
 

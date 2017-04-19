@@ -13,8 +13,8 @@
 #include <SDL2/SDL_opengles2.h>
 
 #include "../gloop_throw.hpp"
+#include "gl_gles2.hpp"
 
-extern bool OES_mapbuffer;
 extern bool EXT_map_buffer_range;
 extern bool EXT_buffer_storage;
 

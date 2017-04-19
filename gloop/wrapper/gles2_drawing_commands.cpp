@@ -10,10 +10,7 @@
 #include <SDL2/SDL_opengles2.h>
 
 #include "../glint.hpp"
-
-extern PFNGLDRAWARRAYSINSTANCEDANGLEPROC glDrawArraysInstancedANGLE;
-extern PFNGLDRAWELEMENTSINSTANCEDANGLEPROC glDrawElementsInstancedANGLE;
-extern PFNGLVERTEXATTRIBDIVISORANGLEPROC glVertexAttribDivisorANGLE;
+#include "gl_gles2.hpp"
 
 namespace gloop {
     namespace wrapper {
