@@ -14,6 +14,7 @@
 #pragma once
 
 #include <cstddef>
+#include <iostream>
 #include <map>
 
 #include "enums/framebuffer_attachment.hpp"
@@ -32,6 +33,22 @@ namespace gloop {
             RENDERBUFFER,
             TEXTURE
         };
+        
+        inline friend std::ostream& operator<<(std::ostream& os, attachment_type type) {
+            switch (type) {
+                case attachment_type::RENDERBUFFER:
+                    os << "RENDERBUFFER";
+                    break;
+                case attachment_type::TEXTURE:
+                    os << "TEXTURE";
+                    break;
+                default:
+                    os << "UNKNOWN";
+                    break;
+            }
+            
+            return os;
+        }
 
         struct attachment {
             attachment_type type;
@@ -40,6 +57,33 @@ namespace gloop {
                 texture2D * tex;
                 renderbuffer * rb;
             };
+            
+            inline friend std::ostream& operator<<(std::ostream& os, const attachment& a) {
+                os << "attachment: [";
+                os << "type: " << a.type;
+                
+                switch (a.type) {
+                    case attachment_type::TEXTURE:
+                        if (a.tex) {
+                            os << ", " << *(a.tex);
+                        } else {
+                            os << ", texture2D: [null]";
+                        }
+                        break;
+                    case attachment_type::RENDERBUFFER:
+                        if (a.rb) {
+                            os << ", " << *(a.rb);
+                        } else {
+                            os << ", renderbuffer: [null]";
+                        }
+                        break;                        
+                    default:
+                        // nothing to do
+                        break;
+                }
+                
+                return os << "]";
+            }
         };
     private:
         gloop::uint_t _id;

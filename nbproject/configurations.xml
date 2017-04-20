@@ -240,7 +240,7 @@
       <compileType>
         <ccTool>
           <standard>11</standard>
-          <commandLine>-DGL=GLEW</commandLine>
+          <commandLine>-DGL=GLEW -D_DEBUG=1</commandLine>
         </ccTool>
         <linkerTool>
           <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/gloopcpp_test</output>
@@ -1306,7 +1306,7 @@
       <compileType>
         <ccTool>
           <standard>11</standard>
-          <commandLine>-DGL=GLES2</commandLine>
+          <commandLine>-DGL=GLES2 -D_DEBUG=1</commandLine>
         </ccTool>
         <linkerTool>
           <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/gloopcpp_test</output>
@@ -1843,7 +1843,7 @@
       <compileType>
         <ccTool>
           <standard>11</standard>
-          <commandLine>-DGL=GLES3</commandLine>
+          <commandLine>-DGL=GLES3 -D_DEBUG=1</commandLine>
         </ccTool>
         <linkerTool>
           <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/gloopcpp_test</output>
@@ -2382,7 +2382,7 @@
           <developmentMode>2</developmentMode>
           <standard>11</standard>
           <commandlineTool>em++</commandlineTool>
-          <commandLine>-DGL=GLES2 -s USE_SDL=2</commandLine>
+          <commandLine>-DGL=GLES2 -s USE_SDL=2 -D_DEBUG=1</commandLine>
         </ccTool>
         <linkerTool>
           <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/gloopcpp_test.html</output>

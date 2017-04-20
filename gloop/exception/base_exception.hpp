@@ -26,12 +26,9 @@ namespace gloop {
 
             virtual const char * what() const throw ();
             
-            friend std::ostream& operator<< (std::ostream& os, const base_exception& ex);
-        };
-        
-        inline std::ostream& operator<<(std::ostream& os, const base_exception& ex) {
-            os << ex._msg;
-            return os;
-        }
+            inline friend std::ostream& operator<< (std::ostream& os, const base_exception& ex) {
+                return os << ex._msg;
+            }
+        };        
     }
 }

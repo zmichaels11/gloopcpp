@@ -71,7 +71,7 @@ namespace gloop {
             gloop::float_t getAnisotropic() const;
             
             friend inline std::ostream& operator<<(std::ostream& os, const texture2D_parameters& params) {
-                return os << "Texture Parameters: ["
+                return os << "texture2D_parameters: ["
                         << "mag filter: "
                         << params._magFilter
                         << ", min filter: "

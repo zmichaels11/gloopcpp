@@ -13,6 +13,7 @@
 
 #pragma once
 
+#include <iostream>
 #include <vector>
 
 #include "buffer.hpp"
@@ -48,6 +49,35 @@ namespace gloop {
         vertex_array& operator=(vertex_array&&) = default;
 
         vertex_array& operator<<(const vertex_attribute_binding& binding);
+        
+        inline friend std::ostream& operator<<(std::ostream& os, const vertex_array& va) {
+            os << "vertex_array: [";
+            
+            if (va) {
+                os << "id: " << va._id;
+                
+                if (va._indexBuffer) {
+                    os << ", index buffer id: " << va._indexBuffer->getId();
+                }
+                
+                os << ", bindings: [";
+                
+                int i = 0;
+                for (auto it = va._bindings.begin(); it != va._bindings.end(); it++) {
+                    os << *it;
+                    
+                    if (i < va._bindings.size() - 1) {
+                        os << ", ";
+                    }
+                }
+                
+                os << "]";
+            } else {
+                os << "UNINITIALIZED]";
+            }
+            
+            return os;
+        }
 
         operator bool() const;
 

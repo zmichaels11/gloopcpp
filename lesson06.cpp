@@ -96,13 +96,7 @@ namespace {
         auto tex = gloop::tools::loadTexture("tests/data/nehe.bmp");
                 
         std::swap(glCtx->texture, tex);
-        
-        std::cout << "Allocated texture: "
-                << "id: " << glCtx->texture.getId()
-                << " width: " << glCtx->texture.getSize().width
-                << " height: " << glCtx->texture.getSize().height
-                << " " << glCtx->texture.getParameters()
-                << std::endl;
+        std::cout << "Allocated " << glCtx->texture << std::endl;
     }
     
     static void initModel(lesson06_context * glCtx) {

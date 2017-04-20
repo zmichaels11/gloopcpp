@@ -6,6 +6,8 @@
 
 #pragma once
 
+#include <iostream>
+
 #include "glint.hpp"
 
 #include "states/blend.hpp"
@@ -24,14 +26,24 @@ namespace gloop {
         context(
                 const gloop::sizei_t width = 0,
                 const gloop::sizei_t height = 0) :
-        currentScissor(false,{0, 0}, 
+        currentScissor(false,{0, 0},
         {
             width, height
         }),
         currentViewport({0, 0},
         {
-width, height
+
+            width, height
         }) {
+        }
+
+        inline friend std::ostream& operator<<(std::ostream& os, const context& ctx) {
+            return os << "context: ["
+                    << "blend: " << ctx.currentBlend
+                    << ", scissor: " << ctx.currentScissor
+                    << ", viewport: " << ctx.currentViewport
+                    << ", clear: " << ctx.currentClear
+                    << "]";
         }
     };
 }

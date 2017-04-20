@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include <iostream>
 #include <string>
 
 #include "enums/shader_type.hpp"
@@ -37,6 +38,20 @@ namespace gloop {
         shader& operator=(const shader&) = delete;
         
         shader& operator=(shader&&) = default;
+        
+        inline friend std::ostream& operator<<(std::ostream& os, const shader& s) {
+            os << "shader: [";
+            
+            if (s.isInitialized()) {
+                os << "id: " << s._id;
+                os << " type: " << s._type;
+                os << "]";
+            } else {
+                os << "UNINITIALIZED]";
+            }
+            
+            return os;
+        }
 
         gloop::uint_t getId();
 

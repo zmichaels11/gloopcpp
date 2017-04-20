@@ -26,13 +26,10 @@ namespace gloop {
             }
 
             virtual const char * what() const throw ();
-                        
-            friend std::ostream& operator<<(std::ostream& os, const base_error& err);
+
+            inline friend std::ostream& operator<<(std::ostream& os, const base_error& err) {
+                return os << err._msg;
+            }
         };
-        
-        inline std::ostream& operator<<(std::ostream& os, const base_error& err) {
-            os << err._msg;
-            return os;
-        }
     }
 }

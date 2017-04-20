@@ -18,7 +18,7 @@ namespace gloop {
             gloop::uint_t glId = 0;
 
             wrapper::createRenderbuffers(1, &glId);
-            wrapper::namedRenderbufferStorage(glId, static_cast<gloop::enum_t> (_format), _width, _height);
+            wrapper::namedRenderbufferStorage(glId, static_cast<gloop::enum_t> (_format), _size.width, _size.height);
 
             _id = glId;
 
@@ -42,17 +42,13 @@ namespace gloop {
             _id = 0;
         }
 
-        _width = 0;
-        _height = 0;
+        _size.width = 0;
+        _size.height = 0;
         _format = static_cast<gloop::enums::renderbuffer_internal_format> (0);
     }
-
-    gloop::sizei_t renderbuffer::getWidth() const {
-        return _width;
-    }
-
-    gloop::sizei_t renderbuffer::getHeight() const {
-        return _height;
+    
+    const gloop::renderbuffer::size& renderbuffer::getSize() const {
+        return _size;
     }
 
     enums::renderbuffer_internal_format renderbuffer::getInternalFormat() const {

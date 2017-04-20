@@ -9,6 +9,7 @@
 
 #include <array>
 #include <cstddef>
+#include <iostream>
 #include <vector>
 
 #include "bitfields/buffer_access_hint.hpp"
@@ -34,22 +35,44 @@ namespace gloop {
         _target(enums::buffer_target::ARRAY),
         _id(0),
         _size(0),
-        _storageHint(static_cast<enums::buffer_storage_hint> (0)),
-        _immutableStorageHints(static_cast<bitfields::buffer_immutable_storage_hint> (0)),
+        _storageHint(enums::buffer_storage_hint::UNKNOWN),
+        _immutableStorageHints(bitfields::buffer_immutable_storage_hint::NONE),
         _isImmutable(false) {
-        }        
-        
+        }
+
         ~buffer();
-        
+
         buffer(const buffer&) = delete;
-        
+
         buffer(buffer&&) = default;
-        
+
         buffer& operator=(const buffer&) = delete;
-        
+
         buffer& operator=(buffer&&) = default;
 
-        enums::buffer_target getTargetHint() const;                                
+        inline friend std::ostream& operator<<(std::ostream& os, const buffer& b) {
+            os << "buffer: [";
+
+            if (b.isInitialized()) {
+                os << "id: " << b._id;
+                os << ", target: " << b._target;
+                os << ", size: " << b._size;
+                
+                if (b.isImmutable()) {
+                    os << ", immutable storage hints: " << b._immutableStorageHints;
+                } else {
+                    os << ", storage hints " << b._storageHint;
+                }
+                
+                os << "]";
+            } else {                
+                os << "UNINITIALIZED]";
+            }
+            
+            return os;
+        }
+
+        enums::buffer_target getTargetHint() const;
 
         enums::buffer_storage_hint getStorageHint() const;
 

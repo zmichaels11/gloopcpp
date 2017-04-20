@@ -13,6 +13,8 @@
 
 #pragma once
 
+#include <iostream>
+
 #include "enums/texture_internal_format.hpp"
 #include "enums/texture_format.hpp"
 #include "glint.hpp"
@@ -27,6 +29,14 @@ namespace gloop {
         struct size {
             gloop::sizei_t width;
             gloop::sizei_t height;
+            
+            inline friend std::ostream& operator<<(std::ostream& os, const size& s) {
+                return os << "size: <"
+                        << s.width
+                        << ", "
+                        << s.height
+                        << ">";
+            }
         };
     private:
         gloop::uint_t _id;
@@ -53,7 +63,24 @@ namespace gloop {
         
         texture2D& operator=(const texture2D&) = delete;
         
-        texture2D& operator=(texture2D&&) = default;        
+        texture2D& operator=(texture2D&&) = default;    
+        
+        inline friend std::ostream& operator<<(std::ostream& os, const texture2D& t) {
+            os << "texture2D: [";
+            
+            if (t.isValid()) {
+                os << "id: " << t._id;
+                os << ", format: " << t._format;
+                os << ", levels: " << t._levels;
+                os << ", " << t._size;
+                os << ", " << t._params;
+                os << "]";
+            } else {
+                os << "UNINITIALIZED]";
+            }
+            
+            return os;
+        }
 
         gloop::uint_t getId() const;
 

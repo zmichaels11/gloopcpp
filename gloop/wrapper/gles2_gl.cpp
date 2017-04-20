@@ -9,6 +9,7 @@
 #include "gl_gles2.hpp"
 
 #include <functional>
+#include <iostream>
 #include <type_traits>
 
 #include <SDL2/SDL_opengles2.h>
@@ -32,6 +33,15 @@ namespace {
 
 namespace gloop {
     namespace wrapper {
+        namespace {
+            static inline void __debug(const char * msg) {
+#ifdef _DEBUG
+                std::cout << "DEBUG: ";
+                std::cout << msg;
+                std::cout << std::endl;
+#endif                
+            }                        
+        }
 
         namespace {
             static std::decay<decltype(glGenVertexArraysOES)>::type _glGenVertexArraysOES;
@@ -42,10 +52,14 @@ namespace gloop {
             static void init_OES_vertex_array_object() {
                 _OES_vertex_array_object = hasExtension("GL_OES_vertex_array_object");
 
+                __debug("checking extension: \"OES_vertex_array_object\"...");
+
                 if (_OES_vertex_array_object) {
                     _glGenVertexArraysOES = load<void(gloop::sizei_t, gloop::uint_t *)>("glGenVertexArraysOES");
                     _glDeleteVertexArraysOES = load<void(gloop::sizei_t, gloop::uint_t *)>("glDeleteVertexArraysOES");
-                    _glBindVertexArrayOES = load<void(gloop::uint_t)>("glBindVertexArrayOES");
+                    _glBindVertexArrayOES = load<void(gloop::uint_t)>("glBindVertexArrayOES");                    
+                } else {
+                    __debug("\tUnsupported!");
                 }
             }
         }
@@ -64,10 +78,14 @@ namespace gloop {
             static void init_ANGLE_instanced_arrays() {
                 _ANGLE_instanced_arrays = hasExtension("GL_ANGLE_instanced_arrays");
 
+                __debug("checking extension: \"ANGLE_instanced_arrays\"...");
+                
                 if (_ANGLE_instanced_arrays) {
                     _glDrawArraysInstancedANGLE = load<void(GLenum, GLint, GLsizei, GLsizei)>("glDrawArraysInstancedANGLE");
                     _glDrawElementsInstancedANGLE = load<void(GLenum, GLsizei, GLenum, const void *, GLsizei)>("glDrawElementsInstancedANGLE");
                     _glVertexAttribDivisorANGLE = load<void(GLuint, GLuint)>("glVertexAttribDivisorANGLE");
+                } else {
+                    __debug("\tUnsupported!");
                 }
             }
         }
@@ -84,8 +102,12 @@ namespace gloop {
             static void init_EXT_map_buffer_range() {
                 _EXT_map_buffer_range = hasExtension("GL_EXT_map_buffer_range");
 
+                __debug("checking extension: \"EXT_map_buffer_range\"...");
+                
                 if (_EXT_map_buffer_range) {
-                    _glMapBufferRangeEXT = load<void*(GLenum, GLintptr, GLsizeiptr, GLbitfield)> ("glMapBufferRangeEXT");
+                    _glMapBufferRangeEXT = load<void*(GLenum, GLintptr, GLsizeiptr, GLbitfield)> ("glMapBufferRangeEXT");                                        
+                } else {
+                    __debug("\tUnsupported!");
                 }
             }
         }
@@ -101,9 +123,13 @@ namespace gloop {
             static void init_OES_mapbuffer() {
                 _OES_mapbuffer = hasExtension("GL_OES_mapbuffer");
 
+                __debug("checking extension: \"OES_mapbuffer\"...");
+                
                 if (_OES_mapbuffer) {
                     _glMapBufferOES = load<void*(GLenum, GLenum)>("glMapBufferOES");
                     _glUnmapBufferOES = load < GLboolean(GLenum)>("glUnmapBufferOES");
+                } else {
+                    __debug("\tUnsupported!");
                 }
             }
         }
@@ -119,30 +145,37 @@ namespace gloop {
             static void init_EXT_texture_storage() {
                 _EXT_texture_storage = hasExtension("GL_EXT_texture_storage");
 
+                __debug("checking extension: \"EXT_texture_storage\"...");
+                
                 if (_EXT_texture_storage) {
                     _glTexStorage2DEXT = load<void(GLenum, GLsizei, GLenum, GLsizei, GLsizei)>("glTexStorage2DEXT");
+                    __debug("\tUnsupported!");
                 }
             }
         }
 
         decltype(glTexStorage2DEXT) glTexStorage2DEXT = _glTexStorage2DEXT;
         decltype(EXT_texture_storage) EXT_texture_storage = _EXT_texture_storage;
-        
+
         namespace {
             static std::decay<decltype(glBufferStorageEXT)>::type _glBufferStorageEXT;
-            static bool _EXT_buffer_storage;
+            static bool _EXT_buffer_storage;            
             
             static void init_EXT_buffer_storage() {
                 _EXT_buffer_storage = hasExtension("EXT_buffer_storage");
+
+                __debug("checking extension: \"EXT_buffer_storage\"...");
                 
                 if (_EXT_buffer_storage) {
-                    _glBufferStorageEXT = load<void(GLenum, GLsizeiptr, const void *, GLbitfield)>("glBufferStorageEXT");
+                    _glBufferStorageEXT = load<void(GLenum, GLsizeiptr, const void *, GLbitfield)>("glBufferStorageEXT");                    
+                } else {
+                    __debug("\tUnsupported!");
                 }
             }
         }
-        
+
         decltype(glBufferStorageEXT) glBufferStorageEXT = _glBufferStorageEXT;
-        decltype(EXT_buffer_storage) EXT_buffer_storage = _EXT_buffer_storage;                
+        decltype(EXT_buffer_storage) EXT_buffer_storage = _EXT_buffer_storage;
 
         gloop::enum_t getError() {
             return glGetError();
@@ -153,7 +186,7 @@ namespace gloop {
         }
 
         void init() {
-            
+
             init_EXT_buffer_storage();
 
             init_ANGLE_instanced_arrays();
@@ -165,10 +198,12 @@ namespace gloop {
             init_OES_vertex_array_object();
 
             init_EXT_texture_storage();
-            
-            
+
+
         }
     }
 }
+#undef __debugCond
+
 #endif
 #undef GLES2

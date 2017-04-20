@@ -7,6 +7,7 @@
 #pragma once
 
 #include <cstddef>
+#include <iostream>
 #include <map>
 #include <string>
 
@@ -39,6 +40,8 @@ namespace gloop {
         program& operator=(const program&) = delete;
         
         program& operator=(program&&) = default;
+        
+        
 
         void setVertexAttributes(const vertex_attributes attribs);
 
