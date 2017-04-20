@@ -17,6 +17,8 @@
 #include "exceptions.hpp"
 #include "errors.hpp"
 #include "gloop_throw.hpp"
+#include "states/texture2D_parameters.hpp"
+#include "texture2D.hpp"
 #include "wrapper/gl.hpp"
 
 namespace gloop {
@@ -30,14 +32,49 @@ namespace gloop {
         }
     }
 
-    std::unique_ptr<SDL_Surface, tools::sdl_surface_deleter> tools::loadImage(const std::string& img) {
-        if (hasSuffix(img, ".bmp")) {
-            return std::unique_ptr<SDL_Surface, tools::sdl_surface_deleter> (
-                    SDL_LoadBMP(img.c_str()),
-                    tools::sdl_surface_deleter());
+    gloop::texture2D tools::loadTexture(const std::string& file, const states::texture2D_parameters params) {
+        gloop::texture2D out;
+
+        out.setParameters(params);
+
+        const auto img = SDL_LoadBMP(file.c_str());
+
+        const auto sdlFormat = img->format->format;
+        const auto sdlPixelType = SDL_PIXELTYPE(sdlFormat);
+        const auto sdlPixelOrder = SDL_PIXELORDER(sdlFormat);
+
+        if (sdlPixelType == SDL_PIXELTYPE_UNKNOWN) {
+            gloop_throw(gloop::exception::invalid_enum_exception("Unknown SDL pixel type!"));
+        } else if (sdlPixelType == SDL_PIXELTYPE_ARRAYU8) {
+            switch (sdlPixelOrder) {
+                case SDL_ARRAYORDER_NONE:
+                    gloop_throw(gloop::exception::invalid_enum_exception("SDL pixel type array must have an array order!"));
+                    break;
+                case SDL_ARRAYORDER_BGR:                    
+                    out.allocate(enums::texture_internal_format::R8_G8_B8_UNORM, 1, img->w, img->h);
+                    out.update(0, 0, 0, img->w, img->h, reinterpret_cast<gloop::pixel_formats::B8_G8_R8*> (img->pixels));
+                    break;
+                case SDL_ARRAYORDER_BGRA:
+                    out.allocate(enums::texture_internal_format::R8_G8_B8_A8_UNORM, 1, img->w, img->h);
+                    out.update(0, 0, 0, img->w, img->h, reinterpret_cast<gloop::pixel_formats::B8_G8_R8_A8*> (img->pixels));
+                    break;
+                case SDL_ARRAYORDER_RGB:
+                    out.allocate(enums::texture_internal_format::R8_G8_B8_UNORM, 1, img->w, img->h);
+                    out.update(0, 0, 0, img->w, img->h, reinterpret_cast<gloop::pixel_formats::R8_G8_B8 *> (img->pixels));
+                    break;
+                case SDL_ARRAYORDER_RGBA:
+                    out.allocate(enums::texture_internal_format::R8_G8_B8_A8_UNORM, 1, img->w, img->h);
+                    out.update(0, 0, 0, img->w, img->h, reinterpret_cast<gloop::pixel_formats::R8_G8_B8_A8 *> (img->pixels));
+                    break;
+                default:
+                    gloop_throw(gloop::exception::invalid_enum_exception("Unsupported SDL pixel type array order!"));
+                    break;
+            }
         } else {
-            gloop_throw("Only bitmaps are currently supported!");
-        }
+            gloop_throw(gloop::exception::invalid_enum_exception("Unsupported SDL pixel type!"));
+        }                
+        
+        return out;
     }
 
     std::string tools::readAll(SDL_RWops * file) {
@@ -110,4 +147,6 @@ namespace gloop {
                 gloop_throw(gloop::exception::base_exception(customMsg));
         }
     }
+
+
 }

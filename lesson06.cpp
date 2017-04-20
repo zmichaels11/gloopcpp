@@ -3,6 +3,7 @@
 #include <utility>
 
 #include <SDL2/SDL_surface.h>
+#include <fstream>
 
 #include "gloop/application.hpp"
 #include "gloop/buffer.hpp"
@@ -91,10 +92,16 @@ namespace {
                 .bindBuffer(&(glCtx->vUVs), gloop::enums::vertex_attribute_type::VEC2));        
     }
     
-    static void initTexture(lesson06_context * glCtx) {
-        auto img = gloop::tools::loadImage("tests/data/nehe.bmp");
+    static void initTexture(lesson06_context * glCtx) {        
+        auto tex = gloop::tools::loadTexture("tests/data/nehe.bmp");
+                
+        std::swap(glCtx->texture, tex);
         
-        gloop::texture2D::load(glCtx->texture, img);
+        std::cout << "Allocated texture: "
+                << "id: " << glCtx->texture.getId()
+                << " width: " << glCtx->texture.getSize().width
+                << " height: " << glCtx->texture.getSize().height                
+                << std::endl;
     }
     
     static void initModel(lesson06_context * glCtx) {

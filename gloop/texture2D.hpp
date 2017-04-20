@@ -13,14 +13,11 @@
 
 #pragma once
 
-#include <SDL2/SDL_surface.h>
-
 #include "enums/texture_internal_format.hpp"
 #include "enums/texture_format.hpp"
 #include "glint.hpp"
 #include "pixel_formats.hpp"
 #include "states/texture2D_parameters.hpp"
-#include "tools.hpp"
 
 namespace gloop {
 
@@ -41,6 +38,7 @@ namespace gloop {
     public:
 
         texture2D() :
+        _id(0),
         _size({0, 0}),
         _format(static_cast<enums::texture_internal_format> (0)),
         _levels(0),
@@ -70,13 +68,7 @@ namespace gloop {
         void allocate(
                 const enums::texture_internal_format internalFormat,
                 const gloop::sizei_t levels,
-                const gloop::sizei_t width, const gloop::sizei_t height);
-                
-        static void load(texture2D& out, const SDL_Surface * img);
-        
-        inline static void load(texture2D& out, const std::unique_ptr<SDL_Surface, tools::sdl_surface_deleter>& pImg) {
-            load(out, pImg.get());
-        }
+                const gloop::sizei_t width, const gloop::sizei_t height);                                       
         
         void setParameters(const gloop::states::texture2D_parameters& params);
         
@@ -128,23 +120,12 @@ namespace gloop {
                 const gloop::sizei_t level,
                 const gloop::int_t xOffset, const gloop::int_t yOffset,
                 const gloop::sizei_t width, const gloop::sizei_t height,
-                const gloop::pixel_formats::R8_G8_B8_A8 * ddata) const;
-
-        void update(
-                const gloop::sizei_t level,
-                const gloop::int_t xOffset, const gloop::int_t yOffset,
-                const gloop::sizei_t width, const gloop::sizei_t height,
-                const SDL_Surface * image) const;
-
-        inline void update(
-                const gloop::sizei_t level,
-                const SDL_Surface * image) const {
-
-            update(level, 0, 0, image->w, image->h, image);
-        }
+                const gloop::pixel_formats::R8_G8_B8_A8 * ddata) const;        
 
         void free();
 
         void bind(const gloop::uint_t unit) const;
+        
+        texture2D& operator=(texture2D&&) = default;
     };
 }

@@ -212,9 +212,9 @@ namespace gloop {
                         glTexSubImage2D(GL_TEXTURE_2D, level, xOffset, yOffset, width, height, wrapper::RGB, wrapper::FLOAT, dst);
 
                         delete[] dst;
-                    } else if (isUint8(type)) {
+                    } else if (isUint8(type)) {                                                
                         auto dst = new pixel_formats::R8_G8_B8[size];
-                        const auto src = reinterpret_cast<const pixel_formats::B8_G8_R8 *> (pixels);
+                        const auto src = reinterpret_cast<const pixel_formats::B8_G8_R8 *> (pixels);                        
 
                         pixel_formats::reorder(dst, src, size);
 

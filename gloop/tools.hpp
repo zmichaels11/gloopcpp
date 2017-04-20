@@ -12,22 +12,18 @@
 #include <SDL2/SDL_rwops.h>
 #include <SDL2/SDL_surface.h>
 
-#include "image.hpp"
+#include "states/texture2D_parameters.hpp"
+#include "texture2D.hpp"
 
-namespace gloop {
-    namespace tools {        
+namespace gloop {        
+    
+    namespace tools {
         std::string readAll(SDL_RWops * file);
-        
+
         void assertGLError(std::string customMsg);
+
+        void assertGLError();        
         
-        void assertGLError();     
-        
-        struct sdl_surface_deleter {
-            void operator() (SDL_Surface * p) const { SDL_FreeSurface(p); }
-        };
-        
-        std::unique_ptr<SDL_Surface, sdl_surface_deleter> loadImage(const std::string& img);
-        
-        
+        gloop::texture2D loadTexture(const std::string& file, const states::texture2D_parameters params = states::texture2D_parameters());
     }
 }
