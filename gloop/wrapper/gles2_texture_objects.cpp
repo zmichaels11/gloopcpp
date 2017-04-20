@@ -78,50 +78,7 @@ namespace gloop {
 
             glDeleteTextures(count, textures);
         }
-
-        void textureStorage1D(
-                gloop::enum_t texture,
-                gloop::sizei_t levels,
-                gloop::enum_t internalFormat,
-                gloop::sizei_t width) {
-
-            glBindTexture(GL_TEXTURE_2D, texture);
-
-            if (EXT_texture_storage) {
-                glTexStorage2DEXT(GL_TEXTURE_2D, levels, internalFormat, width, 1);
-            } else {
-                GLenum glType = 0;
-                GLenum glFormat = 0;
-
-                switch (internalFormat) {
-                    case 0x8051:
-                        glType = GL_UNSIGNED_BYTE;
-                        glFormat = GL_RGB;
-
-                        break;
-                    case 0x8058:
-                        glType = GL_UNSIGNED_BYTE;
-                        glFormat = GL_RGBA;
-                        break;
-                    case 0x8815:
-                        glType = GL_FLOAT;
-                        glFormat = GL_RGB;
-                        break;
-                    case 0x8814:
-                        glType = GL_FLOAT;
-                        glFormat = GL_RGBA;
-                        break;
-                    default:
-                        gloop_throw(gloop::exception::invalid_enum_exception("Unsupported format!"));
-                }
-
-                for (int i = 0; i < levels; i++) {
-                    glTexImage2D(GL_TEXTURE_2D, i, glFormat, width, 1, 0, glFormat, glType, nullptr);
-                    width = std::max(1, (width / 2));
-                }
-            }
-        }
-
+        
         void textureStorage2D(
                 gloop::enum_t texture,
                 gloop::sizei_t levels,
@@ -132,6 +89,7 @@ namespace gloop {
 
             if (EXT_texture_storage) {
                 glTexStorage2DEXT(GL_TEXTURE_2D, levels, internalFormat, width, height);
+                tools::__debugAssertGLError("Unable to allocate 2D storage!");
             } else {
                 GLenum glType = 0;
                 GLenum glFormat = 0;
@@ -164,30 +122,9 @@ namespace gloop {
                     width = std::max(1, (width / 2));
                     height = std::max(1, (height / 2));
                 }
+                
+                tools::__debugAssertGLError("Unable to allocate 2D storage!");
             }
-        }
-
-        void textureStorage3D(
-                gloop::enum_t texture,
-                gloop::sizei_t levels,
-                gloop::enum_t internalFormat,
-                gloop::sizei_t width, gloop::sizei_t height, gloop::sizei_t depth) {
-
-            gloop_throw(gloop::exception::invalid_operation_exception("3D textures are not supported!"));
-        }
-
-        void textureSubImage1D(
-                gloop::uint_t texture,
-                gloop::int_t level,
-                gloop::int_t xOffset,
-                gloop::sizei_t width,
-                gloop::enum_t format,
-                gloop::enum_t type,
-                const void * pixels) {
-
-            glBindTexture(GL_TEXTURE_2D, texture);
-
-            glTexSubImage2D(GL_TEXTURE_2D, level, xOffset, 0, width, 1, format, type, pixels);
         }
 
         void textureSubImage2D(
@@ -256,24 +193,16 @@ namespace gloop {
                     glTexSubImage2D(GL_TEXTURE_2D, level, xOffset, yOffset, width, height, format, type, pixels);
                 }
             }
-        }
-
-        void textureSubImage3D(
-                gloop::uint_t texture,
-                gloop::int_t level,
-                gloop::int_t xOffset, gloop::int_t yOffset, gloop::int_t zOffset,
-                gloop::sizei_t width, gloop::sizei_t height, gloop::sizei_t depth,
-                gloop::enum_t format, gloop::enum_t type, const void * pixels) {
-
-            gloop_throw(gloop::exception::invalid_operation_exception("3D textures are not supported!"));
-        }
+            
+            tools::__debugAssertGLError("Unable to update 2D storage!");
+        }        
 
         void bindTextureUnit(
                 gloop::uint_t unit,
                 gloop::uint_t texture) {
 
             glActiveTexture(GL_TEXTURE0 + unit);
-            glBindTexture(GL_TEXTURE_2D, texture);
+            glBindTexture(GL_TEXTURE_2D, texture);            
         }
     }
 }
