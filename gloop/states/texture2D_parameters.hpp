@@ -71,75 +71,18 @@ namespace gloop {
             gloop::float_t getAnisotropic() const;
             
             friend inline std::ostream& operator<<(std::ostream& os, const texture2D_parameters& params) {
-                os << "Texture Parameters: [";
-                                
-                switch (params._magFilter) {
-                    case enums::texture_mag_filter::NEAREST:
-                        os << "mag filter: nearest, ";
-                        break;
-                    case enums::texture_mag_filter::LINEAR:
-                        os << "mag filter: linear, ";
-                        break;
-                    default:
-                        os << "mag filter: unknown, ";
-                        break;
-                }
-                
-                switch (params._minFilter) {
-                    case enums::texture_min_filter::NEAREST:
-                        os << "min filter: nearest, ";
-                        break;
-                    case enums::texture_min_filter::LINEAR:
-                        os << "min filter: linear, ";
-                        break;
-                    case enums::texture_min_filter::NEAREST_MIPMAP_NEAREST:
-                        os << "min filter: nearest mipmap nearest, ";
-                        break;
-                    case enums::texture_min_filter::NEAREST_MIPMAP_LINEAR:
-                        os << "min filter: nearest mipmap linear, ";
-                        break;
-                    case enums::texture_min_filter::LINEAR_MIPMAP_NEAREST:
-                        os << "min filter: linear mipmap nearest, ";
-                        break;
-                    case enums::texture_min_filter::LINEAR_MIPMAP_LINEAR:
-                        os << "min filter: linear mipmap linear, ";
-                        break;
-                    default:
-                        os << "min filter:: unknown, ";
-                        break;
-                }
-                
-                switch (params._wrapS) {
-                    case enums::texture_wrap::REPEAT:
-                        os << "wrap s: repeat, ";
-                        break;
-                    case enums::texture_wrap::CLAMP_TO_EDGE:
-                        os << "wrap s: clamp to edge, ";
-                        break;
-                    case enums::texture_wrap::MIRRORED_REPEAT:
-                        os << "wrap s: mirrored repeat, ";
-                        break;
-                    default:
-                        os << "wrap s: unknown, ";
-                }
-                
-                switch (params._wrapS) {
-                    case enums::texture_wrap::REPEAT:
-                        os << "wrap t: repeat, ";
-                        break;
-                    case enums::texture_wrap::CLAMP_TO_EDGE:
-                        os << "wrap t: clamp to edge, ";
-                        break;
-                    case enums::texture_wrap::MIRRORED_REPEAT:
-                        os << "wrap t: mirrored repeat, ";
-                        break;
-                    default:
-                        os << "wrap t: unknown, ";
-                }
-                
-                os << "aniso: " << params._aniso;
-                
-                return os;
+                return os << "Texture Parameters: ["
+                        << "mag filter: "
+                        << params._magFilter
+                        << ", min filter: "
+                        << params._magFilter
+                        << ", wrap s: "
+                        << params._wrapS
+                        << ", wrap t: "
+                        << params._wrapT
+                        << ", aniso: "
+                        << params._aniso
+                        << "]";
             }
         };
     }

@@ -13,12 +13,15 @@
 
 #pragma once
 
+#include <iostream>
+
 #include "../glint.hpp"
 
 namespace gloop {
     namespace bitfields {
 
         enum class buffer_access_hint : gloop::bitfield_t {
+            NONE = 0,
             READ = 0x0001,
             WRITE = 0x0002,
             PERSISTENT = 0x00000040,
@@ -36,5 +39,71 @@ namespace gloop {
         buffer_access_hint& operator|=(buffer_access_hint& lhs, buffer_access_hint rhs);
         buffer_access_hint& operator&=(buffer_access_hint& lhs, buffer_access_hint rhs);
         buffer_access_hint& operator^=(buffer_access_hint& lhs, buffer_access_hint rhs);
+                
+        constexpr bool hasFlag(buffer_access_hint lhs, buffer_access_hint rhs) {
+            return (static_cast<gloop::bitfield_t> (lhs) & static_cast<gloop::bitfield_t> (rhs));
+        }
+        
+        inline std::ostream& operator<<(std::ostream& os, buffer_access_hint bitfield) {
+            switch (bitfield) {
+                case buffer_access_hint::NONE:
+                    os << "NONE";
+                    break;
+                case buffer_access_hint::READ:
+                    os << "READ";
+                    break;
+                case buffer_access_hint::WRITE:
+                    os << "WRITE";
+                    break;
+                case buffer_access_hint::PERSISTENT:
+                    os << "PERSISTENT";
+                    break;
+                case buffer_access_hint::COHERENT:
+                    os << "COHERENT";
+                    break;
+                case buffer_access_hint::INVALIDATE_BUFFER:
+                    os << "INVALIDATE_BUFFER";
+                    break;
+                case buffer_access_hint::INVALIDATE_RANGE:
+                    os << "INVALIDATE_RANGE";
+                    break;
+                case buffer_access_hint::FLUSH_EXPLICIT:
+                    os << "FLUSH_EXPLICIT";
+                    break;
+                case buffer_access_hint::UNSYNCHRONIZED:
+                    os << "UNSYNCHRONIZED";
+                    break;
+                default:
+                    os << "[";
+                                        
+                    auto apply = [] (std::ostream& os, buffer_access_hint lhs, buffer_access_hint rhs, bool applyPipe) {
+                        if (hasFlag(lhs, rhs)) {
+                            if (applyPipe) {
+                                os << " | ";
+                            }
+                            
+                            os << lhs;                                                        
+                            
+                            return true;
+                        }               
+                        
+                        return false;
+                    };
+                    
+                    bool hasPipe = apply(os, bitfield, buffer_access_hint::READ, false);
+                    hasPipe = apply(os, bitfield, buffer_access_hint::WRITE, hasPipe);
+                    hasPipe = apply(os, bitfield, buffer_access_hint::PERSISTENT, hasPipe);
+                    hasPipe = apply(os, bitfield, buffer_access_hint::COHERENT, hasPipe);
+                    hasPipe = apply(os, bitfield, buffer_access_hint::INVALIDATE_BUFFER, hasPipe);
+                    hasPipe = apply(os, bitfield, buffer_access_hint::INVALIDATE_RANGE, hasPipe);
+                    hasPipe = apply(os, bitfield, buffer_access_hint::FLUSH_EXPLICIT, hasPipe);
+                    hasPipe = apply(os, bitfield, buffer_access_hint::UNSYNCHRONIZED, hasPipe);
+                    
+                    os << "]";
+                    break;
+            }
+            
+            return os;
+        }
     }
 }

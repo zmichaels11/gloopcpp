@@ -45,11 +45,15 @@ namespace gloop {
         _params(){
         }
 
+        ~texture2D();
+        
         texture2D(const texture2D&) = delete;
         
         texture2D(texture2D&&) = default;
-
-        ~texture2D();
+        
+        texture2D& operator=(const texture2D&) = delete;
+        
+        texture2D& operator=(texture2D&&) = default;        
 
         gloop::uint_t getId() const;
 
@@ -72,7 +76,7 @@ namespace gloop {
         
         void setParameters(const gloop::states::texture2D_parameters& params);
         
-        gloop::states::texture2D_parameters& getParameters() const;
+        const gloop::states::texture2D_parameters& getParameters() const;
        
         void update(
                 const gloop::sizei_t level,
@@ -124,8 +128,6 @@ namespace gloop {
 
         void free();
 
-        void bind(const gloop::uint_t unit) const;
-        
-        texture2D& operator=(texture2D&&) = default;
+        void bind(const gloop::uint_t unit) const;                
     };
 }

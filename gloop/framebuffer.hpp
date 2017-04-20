@@ -52,12 +52,15 @@ namespace gloop {
         _id(0) {
         }
         
+        ~framebuffer();
+        
         framebuffer(const framebuffer&) = delete;
         
         framebuffer(framebuffer&&) = default;
         
-        ~framebuffer();
-
+        framebuffer& operator=(const framebuffer&) = delete;
+        
+        framebuffer& operator=(framebuffer&&) = default;
 
         void bind(const enums::framebuffer_target target = enums::framebuffer_target::FRAMEBUFFER);
         

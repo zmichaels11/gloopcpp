@@ -7,6 +7,8 @@
 
 #pragma once
 
+#include <iostream>
+
 #include "../enums/blend_eq.hpp"
 #include "../enums/blend_func.hpp"
 
@@ -74,6 +76,17 @@ namespace gloop {
 
             inline void operator()() const {
                 this->apply();
+            }
+            
+            inline friend std::ostream& operator<<(std::ostream& os, const blend& b) {
+                return os << "blend: ["
+                        << "rgb: [src: " << b._srcRGB
+                        << ", dst: " << b._dstRGB
+                        << ", eq: " << b._eqRGB
+                        << "], alpha: [src: " << b._srcAlpha
+                        << ", dst: " << b._dstAlpha
+                        << ", eq: " << b._eqAlpha
+                        << "]";
             }
         };
     }

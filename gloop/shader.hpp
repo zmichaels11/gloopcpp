@@ -28,11 +28,15 @@ namespace gloop {
         _type(type), _src(src), _id(0) {
         }
 
+        ~shader();
+        
         shader(const shader&) = delete;
 
         shader(shader&&) = default;
-
-        ~shader();
+        
+        shader& operator=(const shader&) = delete;
+        
+        shader& operator=(shader&&) = default;
 
         gloop::uint_t getId();
 

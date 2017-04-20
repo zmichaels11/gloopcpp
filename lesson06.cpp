@@ -100,7 +100,8 @@ namespace {
         std::cout << "Allocated texture: "
                 << "id: " << glCtx->texture.getId()
                 << " width: " << glCtx->texture.getSize().width
-                << " height: " << glCtx->texture.getSize().height                
+                << " height: " << glCtx->texture.getSize().height
+                << " " << glCtx->texture.getParameters()
                 << std::endl;
     }
     
@@ -116,6 +117,8 @@ namespace {
         
         glCtx->model.drawCall = std::make_unique<gloop::draw::arrays>(drawCall);        
         glCtx->currentClear = glCtx->currentClear.withColor(0.5F, 0.5F, 0.6F, 1.0F);
+        
+        std::cout << glCtx->currentClear << std::endl;
         
         gloop::uniform::uniform_int_binding setTexture;
         
@@ -134,7 +137,7 @@ namespace {
         auto glCtx = reinterpret_cast<lesson06_context *> (ctx);
 
         if (!glCtx->program) {
-            initProgram(glCtx);
+            initProgram(glCtx);            
         }
         
         if (!glCtx->vao) {

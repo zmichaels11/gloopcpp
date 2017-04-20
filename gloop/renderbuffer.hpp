@@ -36,11 +36,15 @@ namespace gloop {
         _format(fmt) {
         }
         
+        ~renderbuffer();
+        
         renderbuffer(const renderbuffer&) = delete;
         
-        renderbuffer(renderbuffer&&) = default;
+        renderbuffer(renderbuffer&&) = default;                
         
-        ~renderbuffer();
+        renderbuffer& operator=(const renderbuffer&) = delete;
+        
+        renderbuffer& operator=(renderbuffer&&) = default;
 
         bool isValid() const;
         

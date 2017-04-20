@@ -13,12 +13,15 @@
 
 #pragma once
 
+#include <iostream>
+
 #include "../glint.hpp"
 
 namespace gloop {
     namespace enums {
 
         enum class buffer_target : gloop::enum_t {
+            UNKNOWN = 0,
             ARRAY = 0x8892,
             ELEMENT_ARRAY = 0x8893,
             ATOMIC_COUNTER = 0x92C0,
@@ -34,5 +37,56 @@ namespace gloop {
             TRANSFORM_FEEDBACK = 0x8C8E,
             UNIFORM = 0x8A11
         };
+        
+        inline std::ostream& operator<<(std::ostream& os, buffer_target enumval) {
+            switch(enumval) {
+                case buffer_target::ARRAY:
+                    os << "ARRAY";
+                    break;
+                case buffer_target::ELEMENT_ARRAY:
+                    os << "ELEMENT_ARRAY";
+                    break;
+                case buffer_target::ATOMIC_COUNTER:
+                    os << "ATOMIC_COUNTER";
+                    break;
+                case buffer_target::COPY_READ:
+                    os << "COPY_READ";
+                    break;
+                case buffer_target::COPY_WRITE:
+                    os << "COPY_WRITE";
+                    break;
+                case buffer_target::DISPATCH_INDIRECT:
+                    os << "DISPATCH_INDIRECT";
+                    break;
+                case buffer_target::DRAW_INDIRECT:
+                    os << "DRAW_INDIRECT";
+                    break;
+                case buffer_target::PIXEL_PACK:
+                    os << "PIXEL_PACK";
+                    break;
+                case buffer_target::PIXEL_UNPACK:
+                    os << "PIXEL_UNPACK";
+                    break;
+                case buffer_target::QUERY:
+                    os << "QUERY";
+                    break;
+                case buffer_target::SHADER_STORAGE:
+                    os << "SHADER_STORAGE";
+                    break;
+                case buffer_target::TEXTURE:
+                    os << "TEXTURE";
+                    break;
+                case buffer_target::TRANSFORM_FEEDBACK:
+                    os << "TRANSFORM_FEEDBACK";
+                    break;
+                case buffer_target::UNIFORM:
+                    os << "UNIFORM";
+                    break;
+                default:
+                    os << "UNKNOWN";
+            }
+            
+            return os;
+        }
     }
 }

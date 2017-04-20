@@ -7,6 +7,8 @@
 
 #pragma once
 
+#include <iostream>
+
 #include "../glint.hpp"
 #include "../bitfields/clear_mask.hpp"
 
@@ -21,6 +23,14 @@ namespace gloop {
                 gloop::float_t green;
                 gloop::float_t blue;
                 gloop::float_t alpha;
+
+                inline friend std::ostream& operator<<(std::ostream& os, color c) {
+                    return os << "color: <"
+                            << c.red << ", "
+                            << c.green << ", "
+                            << c.blue << ", "
+                            << c.alpha << ">";
+                }
             };
 
         private:
@@ -72,6 +82,15 @@ namespace gloop {
 
             inline void operator()() const {
                 this->apply();
+            }
+            
+            inline friend std::ostream& operator<<(std::ostream& os, clear c) {
+                return os << "clear: ["
+                        << c._color
+                        << ", depth: " << c._depth
+                        << ", stencil: " << c._stencil
+                        << ", mask: " << c._mask
+                        << "]";
             }
         };
     }

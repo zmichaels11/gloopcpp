@@ -86,6 +86,10 @@ namespace gloop {
         application(const application&) = delete;
         
         application(application&&) = default;
+        
+        application& operator=(const application&) = delete;
+        
+        application& operator=(application&&) = default;
 
         void setGLContext(context * ctx);
 
@@ -107,6 +111,6 @@ namespace gloop {
 
         void close();
 
-        const context_hints getGLHints() const;
+        const context_hints getGLHints() const;                
     };
 }

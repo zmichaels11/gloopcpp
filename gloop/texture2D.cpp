@@ -168,5 +168,9 @@ namespace gloop {
             wrapper::textureParameteri(_id, wrapper::TEXTURE_WRAP_T, static_cast<gloop::int_t> (_params.getWrapT()));
             wrapper::textureParameterf(_id, wrapper::TEXTURE_MAX_ANISOTROPY, _params.getAnisotropic());
         }
-    }        
+    } 
+    
+    const states::texture2D_parameters& texture2D::getParameters() const {
+        return _params;
+    }
 }

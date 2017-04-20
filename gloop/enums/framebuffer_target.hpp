@@ -13,12 +13,28 @@
 
 #pragma once
 
+#include <iostream>
+
 #include "../glint.hpp"
 
 namespace gloop {
     namespace enums {
         enum class framebuffer_target : gloop::enum_t {
+            UNKNOWN = 0,
             FRAMEBUFFER = 0x8D40
         };
+        
+        inline std::ostream& operator<<(std::ostream& os, framebuffer_target tgt) {
+            switch (tgt) {
+                case framebuffer_target::FRAMEBUFFER:
+                    os << "FRAMEBUFFER";
+                    break;
+                default:
+                    os << "UNKNOWN";
+                    break;
+            }
+            
+            return os;
+        }
     }
 }

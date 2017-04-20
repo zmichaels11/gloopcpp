@@ -19,6 +19,7 @@ namespace gloop {
     namespace enums {
 
         enum class texture_format : gloop::enum_t {
+            UNKNOWN = 0,
             RGB = 0x1907,
             RGBA = 0x1908,
             BGR = 0x80E0,

@@ -6,6 +6,8 @@
 
 #pragma once
 
+#include <iostream>
+
 #include "../glint.hpp"
 
 namespace gloop {
@@ -20,5 +22,33 @@ namespace gloop {
             TESSELLATION_CONTROL = 0x8E88,
             COMPUTE = 0x91B9
         };
+
+        inline std::ostream& operator<<(std::ostream& os, shader_type type) {
+            switch (type) {
+                case shader_type::VERTEX:
+                    os << "VERTEX";
+                    break;
+                case shader_type::FRAGMENT:
+                    os << "FRAGMENT";
+                    break;
+                case shader_type::GEOMETRY:
+                    os << "GEOMETRY";
+                    break;
+                case shader_type::TESSELLATION_CONTROL:
+                    os << "TESSELLATION_CONTROL";
+                    break;
+                case shader_type::TESSELLATION_EVALUATION:
+                    os << "TESSELLATION_EVALUATION";
+                    break;
+                case shader_type::COMPUTE:
+                    os << "COMPUTE";
+                    break;
+                default:
+                    os << "UNKNOWN";
+                    break;
+            }
+            
+            return os;
+        }
     }
 }

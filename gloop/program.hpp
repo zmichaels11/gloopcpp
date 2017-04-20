@@ -29,12 +29,16 @@ namespace gloop {
 
         program() : _id(0) {
         }
+        
+        ~program();
 
         program(const program&) = delete;
 
         program(program&&) = default;
-
-        ~program();
+        
+        program& operator=(const program&) = delete;
+        
+        program& operator=(program&&) = default;
 
         void setVertexAttributes(const vertex_attributes attribs);
 

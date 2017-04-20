@@ -38,14 +38,18 @@ namespace gloop {
         _immutableStorageHints(static_cast<bitfields::buffer_immutable_storage_hint> (0)),
         _isImmutable(false) {
         }        
-
-        enums::buffer_target getTargetHint() const;
-
-        buffer(const buffer&) = delete;
-
-        buffer(buffer&&) = default;
-
+        
         ~buffer();
+        
+        buffer(const buffer&) = delete;
+        
+        buffer(buffer&&) = default;
+        
+        buffer& operator=(const buffer&) = delete;
+        
+        buffer& operator=(buffer&&) = default;
+
+        enums::buffer_target getTargetHint() const;                                
 
         enums::buffer_storage_hint getStorageHint() const;
 

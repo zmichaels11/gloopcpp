@@ -6,6 +6,8 @@
 
 #pragma once
 
+#include <iostream>
+
 #include "../glint.hpp"
 #include "depth_range.hpp"
 
@@ -18,11 +20,23 @@ namespace gloop {
             struct offset {
                 gloop::int_t x;
                 gloop::int_t y;
+                
+                inline friend std::ostream& operator<<(std::ostream& os, const offset& o) {
+                    return os << "offset: <" << o.x << ", " << o.y << ">";
+                }
             };
 
             struct size {
                 gloop::sizei_t width;
                 gloop::sizei_t height;
+                
+                inline friend std::ostream& operator<<(std::ostream& os, const size& s) {
+                    return os << "size: <" 
+                            << s.width 
+                            << ", " 
+                            << s.height 
+                            << ">";
+                }
             };
 
         private:
@@ -56,6 +70,14 @@ namespace gloop {
 
             inline void operator()() const {
                 apply();
+            }
+            
+            inline friend std::ostream& operator<<(std::ostream& os, const viewport& v) {
+                return os << "viewport: ["
+                        << v._offset
+                        << ", " << v._size
+                        << ", " << v._depthRange
+                        << "]";
             }
         };
     }
