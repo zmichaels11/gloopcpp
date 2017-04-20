@@ -127,7 +127,7 @@ namespace gloop {
                 const void * data);
 
         template<class T>
-        void setData(
+        inline void setData(
                 const gloop::intptr_t offset,
                 const std::vector<T>& data) {
 
@@ -135,7 +135,7 @@ namespace gloop {
         }
 
         template<class T, std::size_t N>
-        void setData(
+        inline void setData(
                 const gloop::intptr_t offset,
                 const std::array<T, N>& data) {
 

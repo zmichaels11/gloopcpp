@@ -82,6 +82,8 @@ namespace gloop {
         }
 
         ~application();
+        
+        application(const application&) = delete;
 
         void setGLContext(context * ctx);
 
