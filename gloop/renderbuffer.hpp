@@ -38,6 +38,8 @@ namespace gloop {
         
         renderbuffer(const renderbuffer&) = delete;
         
+        renderbuffer(renderbuffer&&) = default;
+        
         ~renderbuffer();
 
         bool isValid() const;

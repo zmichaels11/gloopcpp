@@ -54,6 +54,8 @@ namespace gloop {
         
         framebuffer(const framebuffer&) = delete;
         
+        framebuffer(framebuffer&&) = default;
+        
         ~framebuffer();
 
 

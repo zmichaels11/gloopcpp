@@ -21,7 +21,8 @@ namespace gloop {
 
     public:
 
-        vertex_attribute(gloop::uint_t id) : _id(id) {
+        vertex_attribute(gloop::uint_t id) : 
+        _id(id) {
         };
 
         gloop::uint_t getId() const;        

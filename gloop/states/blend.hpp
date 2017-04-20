@@ -26,10 +26,10 @@ namespace gloop {
         public:
 
             blend() :
-            _enabled(false),
-            _srcRGB(enums::blend_func::ONE), _dstRGB(enums::blend_func::ZERO),
-            _srcAlpha(enums::blend_func::ONE), _dstAlpha(enums::blend_func::ZERO),
-            _eqRGB(enums::blend_eq::ADD), _eqAlpha(enums::blend_eq::ADD) {
+            blend(false,
+            enums::blend_func::ONE, enums::blend_func::ZERO,
+            enums::blend_func::ONE, enums::blend_func::ZERO,
+            enums::blend_eq::ADD, enums::blend_eq::ADD) {
             }
 
             blend(

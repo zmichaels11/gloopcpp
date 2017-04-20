@@ -47,7 +47,9 @@ namespace gloop {
         _params(){
         }
 
-        texture2D(texture2D&) = delete;
+        texture2D(const texture2D&) = delete;
+        
+        texture2D(texture2D&&) = default;
 
         ~texture2D();
 

@@ -32,6 +32,7 @@
           <itemPath>gloop/enums/buffer_target.hpp</itemPath>
           <itemPath>gloop/enums/framebuffer_attachment.hpp</itemPath>
           <itemPath>gloop/enums/framebuffer_target.hpp</itemPath>
+          <itemPath>gloop/enums/pixel_type.hpp</itemPath>
           <itemPath>gloop/enums/renderbuffer_internal_format.hpp</itemPath>
           <itemPath>gloop/enums/shader_type.hpp</itemPath>
           <itemPath>gloop/enums/texture_format.hpp</itemPath>
@@ -110,6 +111,7 @@
         <itemPath>gloop/framebuffer.hpp</itemPath>
         <itemPath>gloop/glint.hpp</itemPath>
         <itemPath>gloop/gloop_throw.hpp</itemPath>
+        <itemPath>gloop/image.hpp</itemPath>
         <itemPath>gloop/pixel_formats.hpp</itemPath>
         <itemPath>gloop/program.hpp</itemPath>
         <itemPath>gloop/renderbuffer.hpp</itemPath>
@@ -340,6 +342,8 @@
       </item>
       <item path="gloop/enums/framebuffer_target.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/enums/pixel_type.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/enums/renderbuffer_internal_format.hpp"
             ex="false"
             tool="3"
@@ -434,6 +438,8 @@
       <item path="gloop/glint.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/gloop_throw.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/image.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/pixel_formats.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -878,6 +884,8 @@
       </item>
       <item path="gloop/enums/framebuffer_target.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/enums/pixel_type.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/enums/renderbuffer_internal_format.hpp"
             ex="false"
             tool="3"
@@ -972,6 +980,8 @@
       <item path="gloop/glint.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/gloop_throw.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/image.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/pixel_formats.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -1406,6 +1416,8 @@
       </item>
       <item path="gloop/enums/framebuffer_target.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/enums/pixel_type.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/enums/renderbuffer_internal_format.hpp"
             ex="false"
             tool="3"
@@ -1503,6 +1515,8 @@
       <item path="gloop/glint.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/gloop_throw.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/image.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/pixel_formats.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -1943,6 +1957,8 @@
       </item>
       <item path="gloop/enums/framebuffer_target.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/enums/pixel_type.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/enums/renderbuffer_internal_format.hpp"
             ex="false"
             tool="3"
@@ -2040,6 +2056,8 @@
       <item path="gloop/glint.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/gloop_throw.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/image.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/pixel_formats.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -2483,6 +2501,8 @@
       </item>
       <item path="gloop/enums/framebuffer_target.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/enums/pixel_type.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/enums/renderbuffer_internal_format.hpp"
             ex="false"
             tool="3"
@@ -2580,6 +2600,8 @@
       <item path="gloop/glint.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/gloop_throw.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/image.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/pixel_formats.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -3023,6 +3045,8 @@
       </item>
       <item path="gloop/enums/framebuffer_target.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/enums/pixel_type.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/enums/renderbuffer_internal_format.hpp"
             ex="false"
             tool="3"
@@ -3120,6 +3144,8 @@
       <item path="gloop/glint.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/gloop_throw.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/image.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/pixel_formats.hpp" ex="false" tool="3" flavor2="0">
       </item>

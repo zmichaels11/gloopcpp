@@ -33,11 +33,11 @@ namespace gloop {
     public:
 
         vertex_array() : _id(0), _indexBuffer(nullptr) {
-        }
+        }        
 
-        vertex_array(vertex_array&& other) = default;
-
-        vertex_array(vertex_array&) = delete;
+        vertex_array(const vertex_array&) = delete;
+        
+        vertex_array(vertex_array&&) = default;
 
         ~vertex_array();
 

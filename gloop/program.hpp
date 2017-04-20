@@ -30,7 +30,7 @@ namespace gloop {
         program() : _id(0) {
         }
 
-        program(program&) = delete;
+        program(const program&) = delete;
 
         program(program&&) = default;
 

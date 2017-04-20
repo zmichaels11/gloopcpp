@@ -30,13 +30,7 @@ namespace gloop {
             size _size;
             depth_range _depthRange;
 
-        public:
-
-            viewport() :
-            _offset({0, 0}),
-            _size({0, 0}),
-            _depthRange({0.0, 1.0}) {
-            }
+        public:            
 
             viewport(
                     const offset offset,

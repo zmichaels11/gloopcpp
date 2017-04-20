@@ -12,6 +12,8 @@
 #include <SDL2/SDL_rwops.h>
 #include <SDL2/SDL_surface.h>
 
+#include "image.hpp"
+
 namespace gloop {
     namespace tools {        
         std::string readAll(SDL_RWops * file);
@@ -24,6 +26,8 @@ namespace gloop {
             void operator() (SDL_Surface * p) const { SDL_FreeSurface(p); }
         };
         
-        std::unique_ptr<SDL_Surface, sdl_surface_deleter> loadImage(const std::string& img);                
+        std::unique_ptr<SDL_Surface, sdl_surface_deleter> loadImage(const std::string& img);
+        
+        
     }
 }

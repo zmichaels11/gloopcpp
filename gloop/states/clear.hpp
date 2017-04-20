@@ -15,13 +15,14 @@ namespace gloop {
 
         class clear {
         public:
+
             struct color {
                 gloop::float_t red;
                 gloop::float_t green;
                 gloop::float_t blue;
                 gloop::float_t alpha;
             };
-            
+
         private:
             bitfields::clear_mask _mask;
             color _color;
@@ -31,9 +32,9 @@ namespace gloop {
         public:
 
             clear() :
-            _mask(bitfields::clear_mask::COLOR),
-            _color({0.0F, 0.0F, 0.0F, 0.0F}),
-            _depth(1.0F), _stencil(0) {
+            clear(
+            bitfields::clear_mask::COLOR,{0.0F, 0.0F, 0.0F, 0.0F},
+            1.0F, 0) {
             }
 
             clear(
@@ -48,12 +49,12 @@ namespace gloop {
             clear withMask(const bitfields::clear_mask mask) const;
 
             clear withColor(const color color) const;
-            
+
             clear withColor(
-                const gloop::float_t red,
-                const gloop::float_t green,
-                const gloop::float_t blue,
-                const gloop::float_t alpha) const;
+                    const gloop::float_t red,
+                    const gloop::float_t green,
+                    const gloop::float_t blue,
+                    const gloop::float_t alpha) const;
 
             clear withDepth(const gloop::double_t depth) const;
 

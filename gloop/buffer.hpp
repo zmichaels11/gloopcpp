@@ -41,7 +41,7 @@ namespace gloop {
 
         enums::buffer_target getTargetHint() const;
 
-        buffer(buffer&) = delete;
+        buffer(const buffer&) = delete;
 
         buffer(buffer&&) = default;
 

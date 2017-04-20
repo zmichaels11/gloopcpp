@@ -32,11 +32,10 @@ namespace gloop {
         public:
 
             texture2D_parameters() :
-            _magFilter(enums::texture_mag_filter::NEAREST),
-            _minFilter(enums::texture_min_filter::NEAREST),
-            _wrapS(enums::texture_wrap::REPEAT),
-            _wrapT(enums::texture_wrap::REPEAT),
-            _aniso(1.0F) {
+            texture2D_parameters(
+            enums::texture_mag_filter::NEAREST, enums::texture_min_filter::NEAREST,
+            enums::texture_wrap::REPEAT, enums::texture_wrap::REPEAT,
+            1.0F) {
             }
 
             texture2D_parameters(

@@ -28,7 +28,7 @@ namespace gloop {
         _type(type), _src(src), _id(0) {
         }
 
-        shader(shader&) = delete;
+        shader(const shader&) = delete;
 
         shader(shader&&) = default;
 
