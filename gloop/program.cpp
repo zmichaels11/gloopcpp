@@ -117,6 +117,36 @@ namespace gloop {
         this->_attribs = attribs;
     }
 
+    namespace {
+#define GLEW 1
+#define GLES2 2
+#define GLES3 3
+#ifndef GL
+#define __GL_NOT_DEFINED
+#define GL 0
+#endif
+      
+        static constexpr bool supports_uniform_block_binding = (GL == GLEW || GL == GLES3);
+        
+        template <bool isSupported = supports_uniform_block_binding, typename std::enable_if<isSupported, void * >::type = nullptr>
+        static inline gloop::uint_t __getUniformBlockIndex(gloop::uint_t pid, const gloop::char_t * uName) {
+            return wrapper::getUniformBlockIndex(pid, uName);
+        }
+        
+        template <bool isSupported = supports_uniform_block_binding, typename std::enable_if<!isSupported, void * >::type = nullptr>
+        static inline gloop::uint_t __getUniformBlockIndex(gloop::uint_t pid, const gloop::char_t * uName) {
+            gloop_throw(gloop::exception::invalid_operation_exception("GetUniformBlockIndex is not supported!"));
+        }
+      
+#ifdef __GL_NOT_DEFINED
+#undef GL
+#undef __GL_NOT_DEFINED
+#endif
+#undef GLES3
+#undef GLES2
+#undef GLEW
+    }
+    
     const uniform::uniform_block_binding gloop::program::getUniformBlock(const std::string& uniformName) const {
         auto it = this->_uniformBlocks.find(uniformName);
 
@@ -135,7 +165,7 @@ namespace gloop {
         }
 
         auto glId = this->getId();
-        gloop::uint_t glIndex = gloop::wrapper::getUniformBlockIndex(glId, uniformName.c_str());
+        gloop::uint_t glIndex = __getUniformBlockIndex(glId, uniformName.c_str());
 
         if (glIndex == gloop::wrapper::INVALID_INDEX) {
             gloop_throw(gloop::exception::invalid_uniform_name_exception("Could not find uniform block name: " + uniformName));

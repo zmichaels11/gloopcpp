@@ -6,12 +6,13 @@
 
 #include "buffer.hpp"
 
+#include <type_traits>
+
 #include "enums/buffer_target.hpp"
 #include "enums/buffer_storage_hint.hpp"
 #include "exception/invalid_operation_exception.hpp"
 #include "glint.hpp"
 #include "gloop_throw.hpp"
-#include "tools.hpp"
 #include "wrapper/buffer_objects.hpp"
 
 namespace gloop {
@@ -128,9 +129,9 @@ namespace gloop {
     }
 
     void buffer::free() {
-        if (this->isInitialized()) {
+        if (this->isInitialized()) {            
             gloop::wrapper::deleteBuffers(1, &_id);
-            this->_id = 0;
+            this->_id = 0;                        
         }
     }
 
@@ -211,7 +212,7 @@ namespace gloop {
 
 #undef GLES3
 #undef GLES2
-#undef GLES1
+#undef GLEW
     }
 
     void buffer::getData(

@@ -21,8 +21,26 @@ namespace gloop {
         std::string readAll(SDL_RWops * file);
 
         void assertGLError(std::string customMsg);
-
-        void assertGLError();        
+        
+        void assertGLError();                        
+        
+        inline void __debugAssertGLError(std::string customMsg) {
+#ifdef _DEBUG
+            assertGLError(customMsg);
+#endif
+        }
+        
+        inline void __debugAssertGLError() { 
+#ifdef _DEBUG
+            assertGLError();
+#endif
+        }
+        
+        inline void __debug(std::string msg) {
+#ifdef _DEBUG
+            std::cout << "DEBUG: " << msg << std::endl;
+#endif
+        }
         
         gloop::texture2D loadTexture(const std::string& file, const states::texture2D_parameters params = states::texture2D_parameters());
     }

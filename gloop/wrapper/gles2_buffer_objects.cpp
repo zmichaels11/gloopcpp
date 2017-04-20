@@ -8,20 +8,23 @@
 #if GL == GLES2
 #include "buffer_objects.hpp"
 
+#include <iostream>
+
 #include <SDL2/SDL_opengles2.h>
 
 #include "../gloop_throw.hpp"
+#include "../tools.hpp"
 #include "gl.hpp"
 #include "gl_gles2.hpp"
 
 namespace gloop {
-    namespace wrapper {
-
+    namespace wrapper {        
         void bindBuffer(
                 gloop::enum_t target,
                 gloop::uint_t buffer) {
 
             glBindBuffer(target, buffer);
+            tools::__debugAssertGLError("Unable to bind buffer!");
         }
 
         void namedBufferData(
@@ -33,6 +36,7 @@ namespace gloop {
 
             glBindBuffer(targetHint, buffer);
             glBufferData(targetHint, size, data, usage);
+            tools::__debugAssertGLError("Unable to allocate buffer!");
         }
 
         void namedBufferStorage(
@@ -53,6 +57,8 @@ namespace gloop {
                     glBufferData(targetHint, size, data, GL_STATIC_DRAW);
                 }
             }
+            
+            tools::__debugAssertGLError("Unable to allocate immutable buffer!");
         }
 
         void createBuffers(
@@ -77,6 +83,7 @@ namespace gloop {
 
             glBindBuffer(targetHint, buffer);
             glBufferSubData(targetHint, offset, size, data);
+            tools::__debugAssertGLError("Unable to update buffer!");
         }
 
         void * mapNamedBufferRange(
@@ -89,12 +96,16 @@ namespace gloop {
                 glBindBuffer(targetHint, buffer);
 
                 void * out = glMapBufferRangeEXT(targetHint, offset, length, access);
+                
+                tools::__debugAssertGLError("Unable to map buffer range!");
 
                 return out;
             } else if (OES_mapbuffer) {
                 glBindBuffer(targetHint, buffer);
 
                 gloop::char_t * ptr = (gloop::char_t *) glMapBufferOES(targetHint, access);
+                
+                tools::__debugAssertGLError("Unable to map buffer!");
 
                 return (ptr + offset);
             } else {
@@ -108,7 +119,8 @@ namespace gloop {
 
             if (OES_mapbuffer) {
                 glBindBuffer(targetHint, buffer);
-                glUnmapBufferOES(targetHint);                
+                glUnmapBufferOES(targetHint);
+                tools::__debugAssertGLError("Unable to unmap buffer!");
             } else {
                 gloop_throw("OES_mapbuffer is not supported!");
             }

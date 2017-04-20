@@ -10,6 +10,7 @@
 #include <SDL2/SDL_opengles2.h>
 
 #include "../glint.hpp"
+#include "../tools.hpp"
 #include "gl_gles2.hpp"
 
 namespace gloop {
@@ -20,6 +21,7 @@ namespace gloop {
                 gloop::sizei_t count) {
 
             glDrawArrays(mode, first, count);
+            tools::__debugAssertGLError("Unable to draw arrays!");
         }
 
         void drawElements(
@@ -29,6 +31,7 @@ namespace gloop {
                 const void * indices) {
 
             glDrawElements(mode, count, type, indices);
+            tools::__debugAssertGLError("Unable to draw elements!");
         }
 
         void drawArraysInstanced(
@@ -38,6 +41,7 @@ namespace gloop {
                 gloop::sizei_t instanceCount) {
 
             glDrawArraysInstancedANGLE(mode, first, count, instanceCount);
+            tools::__debugAssertGLError("Unable to draw arrays instanced!");
         }
 
         void drawElementsInstanced(
@@ -48,6 +52,7 @@ namespace gloop {
                 gloop::sizei_t instanceCount) {
 
             glDrawElementsInstancedANGLE(mode, count, type, indices, instanceCount);
+            tools::__debugAssertGLError("Unable to draw elements instanced!");
         }
     }
 }

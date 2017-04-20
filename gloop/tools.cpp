@@ -103,7 +103,7 @@ namespace gloop {
             return std::string(res.get(), fileSize);
         }
     }
-
+    
     void tools::assertGLError() {
         auto err = gloop::wrapper::getError();
 

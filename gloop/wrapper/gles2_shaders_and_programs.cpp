@@ -10,6 +10,7 @@
 #include <SDL2/SDL_opengles2.h>
 
 #include "../glint.hpp"
+#include "../tools.hpp"
 
 namespace gloop {
     namespace wrapper {
@@ -42,10 +43,12 @@ namespace gloop {
                 const gloop::int_t * length) {
 
             glShaderSource(shader, count, src, length);
+            gloop::tools::__debugAssertGLError("Unable to specify shader code!");
         }
 
         void compileShader(gloop::uint_t shader) {
             glCompileShader(shader);
+            gloop::tools::__debugAssertGLError("Unable to compile shader!");
         }
 
         void deleteShader(gloop::uint_t shader) {
@@ -79,35 +82,26 @@ namespace gloop {
 
         void attachShader(gloop::uint_t program, gloop::uint_t shader) {
             glAttachShader(program, shader);
+            gloop::tools::__debugAssertGLError("Unable to attach shader!");
         }
 
         void linkProgram(gloop::uint_t program) {
             glLinkProgram(program);
+            gloop::tools::__debugAssertGLError("Unable to link program!");
         }
 
         void detachShader(gloop::uint_t program, gloop::uint_t shader) {
             glDetachShader(program, shader);
+            gloop::tools::__debugAssertGLError("Unable to detach shader!");
         }
 
         void deleteProgram(gloop::uint_t program) {
             glDeleteProgram(program);
         }
 
-        gloop::uint_t getUniformBlockIndex(gloop::uint_t program, const gloop::char_t * uniformName) {
-            throw "getUniformBlockIndex is not available!";
-        }
-
         gloop::int_t getUniformLocation(gloop::uint_t program, const gloop::char_t * uniformName) {
             return glGetUniformLocation(program, uniformName);
-        }
-
-        void uniformBlockBinding(
-                gloop::uint_t program,
-                gloop::uint_t uniformBlockIndex,
-                gloop::uint_t uniformBlockBinding) {
-
-            throw "uniformBlockBinding is not available!";
-        }
+        }        
 
         void bindAttribLocation(
                 gloop::uint_t program,

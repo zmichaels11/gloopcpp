@@ -11,6 +11,7 @@
 #include <SDL2/SDL_opengles2.h>
 
 #include "../glint.hpp"
+#include "../tools.hpp"
 
 namespace gloop {
     namespace wrapper {
@@ -36,6 +37,7 @@ namespace gloop {
 
             glBindRenderbuffer(GL_RENDERBUFFER, renderbuffer);
             glRenderbufferStorage(GL_RENDERBUFFER, internalFormat, width, height);
+            tools::__debugAssertGLError("Unable to allocate renderbuffer!");
         }
 
         void createFramebuffers(
@@ -60,6 +62,7 @@ namespace gloop {
 
             glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
             glFramebufferRenderbuffer(GL_FRAMEBUFFER, attachment, renderbufferTarget, renderbuffer);
+            tools::__debugAssertGLError("Unable to attach renderbuffer to framebuffer!");
         }
 
         void namedFramebufferTexture(
@@ -70,6 +73,7 @@ namespace gloop {
 
             glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
             glFramebufferTexture2D(GL_FRAMEBUFFER, attachment, GL_TEXTURE_2D, texture, level);
+            tools::__debugAssertGLError("Unable to attach texture to framebuffer!");
         }
 
         void bindFramebuffer(
