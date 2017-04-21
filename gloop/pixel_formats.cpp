@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-#include "gloop/pixel_formats.hpp"
+#include "pixel_formats.hpp"
 
 #include <cstddef>
 #include <utility>

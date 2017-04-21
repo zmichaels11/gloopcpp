@@ -54,6 +54,14 @@ CND_ARTIFACT_PATH_WEBGL_Release=dist/WEBGL_Release/GNU-Linux/gloopcpp_test.html
 CND_PACKAGE_DIR_WEBGL_Release=dist/WEBGL_Release/GNU-Linux/package
 CND_PACKAGE_NAME_WEBGL_Release=camstreamtest.tar
 CND_PACKAGE_PATH_WEBGL_Release=dist/WEBGL_Release/GNU-Linux/package/camstreamtest.tar
+# WEBGL_Debug_lib configuration
+CND_PLATFORM_WEBGL_Debug_lib=GNU-Linux
+CND_ARTIFACT_DIR_WEBGL_Debug_lib=dist/WEBGL_Debug_lib/GNU-Linux
+CND_ARTIFACT_NAME_WEBGL_Debug_lib=libgloop.bc
+CND_ARTIFACT_PATH_WEBGL_Debug_lib=dist/WEBGL_Debug_lib/GNU-Linux/libgloop.bc
+CND_PACKAGE_DIR_WEBGL_Debug_lib=dist/WEBGL_Debug_lib/GNU-Linux/package
+CND_PACKAGE_NAME_WEBGL_Debug_lib=camstreamtest.tar
+CND_PACKAGE_PATH_WEBGL_Debug_lib=dist/WEBGL_Debug_lib/GNU-Linux/package/camstreamtest.tar
 #
 # include compiler specific variables
 #

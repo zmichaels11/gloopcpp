@@ -45,6 +45,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/gloop/error/base_error.o \
 	${OBJECTDIR}/gloop/exception/base_exception.o \
 	${OBJECTDIR}/gloop/framebuffer.o \
+	${OBJECTDIR}/gloop/pixel_formats.o \
 	${OBJECTDIR}/gloop/program.o \
 	${OBJECTDIR}/gloop/program_uniform_binding.o \
 	${OBJECTDIR}/gloop/renderbuffer.o \
@@ -87,7 +88,6 @@ OBJECTFILES= \
 	${OBJECTDIR}/gloop/wrapper/glew_texture_objects.o \
 	${OBJECTDIR}/gloop/wrapper/glew_vertex_arrays.o \
 	${OBJECTDIR}/lesson06.o \
-	${OBJECTDIR}/pixel_formats.o \
 	${OBJECTDIR}/simple_rect.o \
 	${OBJECTDIR}/test_runner.o
 
@@ -165,6 +165,11 @@ ${OBJECTDIR}/gloop/framebuffer.o: gloop/framebuffer.cpp
 	${MKDIR} -p ${OBJECTDIR}/gloop
 	${RM} "$@.d"
 	$(COMPILE.cc) -g `pkg-config --cflags sdl2` `pkg-config --cflags glesv2` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/framebuffer.o gloop/framebuffer.cpp
+
+${OBJECTDIR}/gloop/pixel_formats.o: gloop/pixel_formats.cpp
+	${MKDIR} -p ${OBJECTDIR}/gloop
+	${RM} "$@.d"
+	$(COMPILE.cc) -g `pkg-config --cflags sdl2` `pkg-config --cflags glesv2` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/pixel_formats.o gloop/pixel_formats.cpp
 
 ${OBJECTDIR}/gloop/program.o: gloop/program.cpp
 	${MKDIR} -p ${OBJECTDIR}/gloop
@@ -375,11 +380,6 @@ ${OBJECTDIR}/lesson06.o: lesson06.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g `pkg-config --cflags sdl2` `pkg-config --cflags glesv2` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/lesson06.o lesson06.cpp
-
-${OBJECTDIR}/pixel_formats.o: pixel_formats.cpp
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -g `pkg-config --cflags sdl2` `pkg-config --cflags glesv2` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/pixel_formats.o pixel_formats.cpp
 
 ${OBJECTDIR}/simple_rect.o: simple_rect.cpp
 	${MKDIR} -p ${OBJECTDIR}
