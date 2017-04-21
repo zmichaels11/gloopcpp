@@ -82,4 +82,4 @@ $RECYCLE.BIN/
 # End of https://www.gitignore.io/api/c++,linux,windows,netbeans
 
 #emsdk
-emsdk/
+#.emsdk_portable
