@@ -49,6 +49,7 @@ MKDIR=mkdir
 CP=cp
 CCADMIN=CCadmin
 
+-include emsdk_env.mk
 
 # build
 build: .build-post
@@ -119,7 +120,20 @@ help: .help-post
 .help-post: .help-impl
 # Add your post 'help' code here...
 
+emsdk_env.mk: .emsdk_portable/emsdk_set_env.sh
+	sed 's/"//g ; s/=/:=/' < $< > $@
 
+.emsdk_portable/emsdk_set_env.sh: emsdk_activate
+
+emsdk_activate: emsdk_install
+	.emsdk_portable/emsdk activate latest
+	.emsdk_portable/emsdk construct_env
+
+emsdk_install: emsdk_update
+	.emsdk_portable/emsdk install latest
+
+emsdk_update:
+	.emsdk_portable/emsdk update
 
 # include project implementation makefile
 include nbproject/Makefile-impl.mk
