@@ -123,7 +123,7 @@ help: .help-post
 emsdk_env.mk: .emsdk_portable/emsdk_set_env.sh
 	sed 's/"//g ; s/=/:=/' < $< > $@
 
-.emsdk_portable/emsdk_set_env.sh: emsdk_activate
+#.emsdk_portable/emsdk_set_env.sh: emsdk_activate
 
 emsdk_activate: emsdk_install
 	.emsdk_portable/emsdk activate latest
