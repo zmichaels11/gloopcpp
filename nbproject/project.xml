@@ -39,6 +39,10 @@
                     <name>WEBGL_Debug_lib</name>
                     <type>1</type>
                 </confElem>
+                <confElem>
+                    <name>GLES2_Debug_lib</name>
+                    <type>3</type>
+                </confElem>
             </confList>
             <formatting>
                 <project-formatting-style>false</project-formatting-style>

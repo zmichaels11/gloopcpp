@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+#ifndef _LIB
 #ifndef TEST
 #define TEST lesson06
 #endif
@@ -13,3 +14,4 @@ extern int TEST(int argc, char** argv);
 int main(int argc, char** argv) {
     return TEST(argc, argv);
 }
+#endif

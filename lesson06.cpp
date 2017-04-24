@@ -1,3 +1,4 @@
+#ifndef _LIB
 #include <iostream>
 #include <memory>
 #include <utility>
@@ -164,3 +165,4 @@ int lesson06(int argc, char** argv) {
     
     return 0;
 }
+#endif

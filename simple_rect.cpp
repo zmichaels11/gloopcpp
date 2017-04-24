@@ -10,7 +10,7 @@
  *
  * Created on March 20, 2017, 9:46 AM
  */
-
+#ifndef _LIB
 #include <iostream>
 #include <memory>
 #include <utility>
@@ -170,3 +170,4 @@ int simple_rect(int argc, char** argv) {
 
     return EXIT_SUCCESS;
 }
+#endif

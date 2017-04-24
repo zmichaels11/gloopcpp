@@ -6,11 +6,34 @@
 
 #include "viewport.hpp"
 
+#include <iostream>
+
 #include "../wrapper/states.hpp"
 #include "depth_range.hpp"
 
 namespace gloop {
-    namespace states {       
+    namespace states {
+
+        std::ostream& operator<<(std::ostream& os, const viewport::offset& o) {
+            return os << "offset: <" << o.x << ", " << o.y << ">";
+        }
+
+        std::ostream& operator<<(std::ostream& os, const viewport::size& s) {
+            return os << "size: <"
+                    << s.width
+                    << ", "
+                    << s.height
+                    << ">";
+        }
+
+        std::ostream& operator<<(std::ostream& os, const viewport& v) {
+            return os << "viewport: ["
+                    << v._offset
+                    << ", " << v._size
+                    << ", " << v._depthRange
+                    << "]";
+        }
+
         viewport viewport::withOffset(const offset offset) const {
             return viewport(offset, _size, _depthRange);
         }
@@ -34,7 +57,7 @@ namespace gloop {
         const depth_range& viewport::getDepthRange() const {
             return _depthRange;
         }
-        
+
         void viewport::apply() const {
             gloop::wrapper::viewport(_offset.x, _offset.y, _size.width, _size.height);
             _depthRange();

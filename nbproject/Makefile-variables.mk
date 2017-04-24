@@ -62,6 +62,14 @@ CND_ARTIFACT_PATH_WEBGL_Debug_lib=dist/WEBGL_Debug_lib/GNU-Linux/libgloop.bc
 CND_PACKAGE_DIR_WEBGL_Debug_lib=dist/WEBGL_Debug_lib/GNU-Linux/package
 CND_PACKAGE_NAME_WEBGL_Debug_lib=camstreamtest.tar
 CND_PACKAGE_PATH_WEBGL_Debug_lib=dist/WEBGL_Debug_lib/GNU-Linux/package/camstreamtest.tar
+# GLES2_Debug_lib configuration
+CND_PLATFORM_GLES2_Debug_lib=GNU-Linux
+CND_ARTIFACT_DIR_GLES2_Debug_lib=dist/GLES2_Debug_lib/GNU-Linux
+CND_ARTIFACT_NAME_GLES2_Debug_lib=libcamstreamtest.a
+CND_ARTIFACT_PATH_GLES2_Debug_lib=dist/GLES2_Debug_lib/GNU-Linux/libcamstreamtest.a
+CND_PACKAGE_DIR_GLES2_Debug_lib=dist/GLES2_Debug_lib/GNU-Linux/package
+CND_PACKAGE_NAME_GLES2_Debug_lib=CamStreamTest.tar
+CND_PACKAGE_PATH_GLES2_Debug_lib=dist/GLES2_Debug_lib/GNU-Linux/package/CamStreamTest.tar
 #
 # include compiler specific variables
 #
