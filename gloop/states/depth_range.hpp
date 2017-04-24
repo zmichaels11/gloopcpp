@@ -12,21 +12,24 @@
 #include "../glint.hpp"
 
 namespace gloop {
-    struct depth_range {
-        gloop::double_t near;
-        gloop::double_t far;
-        
-        void apply() const;
-        
-        inline void operator()() const {
-            apply();
-        }
-        
-        inline friend std::ostream& operator<<(std::ostream& os, const depth_range& d) {
-            return os << "depth_range: ["
-                    << "near: " << d.near
-                    << ", far: " << d.far
-                    << "]";
-        }
-    };
+    namespace states {
+
+        struct depth_range {
+            gloop::double_t near;
+            gloop::double_t far;
+
+            void apply() const;
+
+            inline void operator()() const {
+                apply();
+            }
+
+            inline friend std::ostream& operator<<(std::ostream& os, const depth_range& d) {
+                return os << "depth_range: ["
+                        << "near: " << d.near
+                        << ", far: " << d.far
+                        << "]";
+            }
+        };
+    }
 }

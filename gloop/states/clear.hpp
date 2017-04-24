@@ -24,13 +24,7 @@ namespace gloop {
                 gloop::float_t blue;
                 gloop::float_t alpha;
 
-                inline friend std::ostream& operator<<(std::ostream& os, color c) {
-                    return os << "color: <"
-                            << c.red << ", "
-                            << c.green << ", "
-                            << c.blue << ", "
-                            << c.alpha << ">";
-                }
+                friend std::ostream& operator<<(std::ostream& os, color c);
             };
 
         private:
@@ -84,14 +78,7 @@ namespace gloop {
                 this->apply();
             }
             
-            inline friend std::ostream& operator<<(std::ostream& os, clear c) {
-                return os << "clear: ["
-                        << c._color
-                        << ", depth: " << c._depth
-                        << ", stencil: " << c._stencil
-                        << ", mask: " << c._mask
-                        << "]";
-            }
+            friend std::ostream& operator<<(std::ostream& os, clear c);
         };
     }
 }

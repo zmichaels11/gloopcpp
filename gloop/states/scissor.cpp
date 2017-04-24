@@ -6,6 +6,8 @@
 
 #include "scissor.hpp"
 
+#include <iostream>
+
 #include "../wrapper/states.hpp"
 
 namespace gloop {
@@ -42,6 +44,33 @@ namespace gloop {
             } else {
                 gloop::wrapper::disable(gloop::wrapper::SCISSOR);
             }
+        }
+
+        std::ostream& operator<<(std::ostream& os, const scissor::offset& o) {
+            return os << "offset: <"
+                    << o.x
+                    << ", "
+                    << o.y
+                    << ", "
+                    << ">";
+        }
+
+        std::ostream& operator<<(std::ostream& os, const scissor::size& s) {
+            return os << "size: <"
+                    << s.width
+                    << ", "
+                    << s.height
+                    << ">";
+        }
+
+        std::ostream& operator<<(std::ostream& os, const scissor& s) {
+            return os << "scissor: ["
+                    << "enabled: " << (s._enable ? "true" : "false")
+                    << ", "
+                    << s._offset
+                    << ", "
+                    << s._size
+                    << "]";
         }
     }
 }

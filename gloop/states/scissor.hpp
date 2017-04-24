@@ -20,27 +20,14 @@ namespace gloop {
                 gloop::int_t x;
                 gloop::int_t y;
                 
-                inline friend std::ostream& operator<<(std::ostream& os, const offset& o) {
-                    return os << "offset: <"
-                            << o.x
-                            << ", "
-                            << o.y
-                            << ", "
-                            << ">";
-                }
+                friend std::ostream& operator<<(std::ostream& os, const offset& o);
             };
 
             struct size {
                 gloop::sizei_t width;
                 gloop::sizei_t height;
                 
-                inline friend std::ostream& operator<<(std::ostream& os, const size& s) {
-                    return os << "size: <"
-                            << s.width
-                            << ", "
-                            << s.height
-                            << ">";
-                }
+                friend std::ostream& operator<<(std::ostream& os, const size& s);
             };
         private:
 
@@ -77,15 +64,7 @@ namespace gloop {
                 this->apply();
             }
             
-            inline friend std::ostream& operator<<(std::ostream& os, const scissor& s) {
-                return os << "scissor: ["
-                        << "enabled: " << (s._enable ? "true" : "false")
-                        << ", "
-                        << s._offset
-                        << ", "
-                        << s._size
-                        << "]";
-            }
+            friend std::ostream& operator<<(std::ostream& os, const scissor& s);
         };
     }
 }

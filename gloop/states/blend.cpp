@@ -6,12 +6,34 @@
 
 #include "blend.hpp"
 
+#include <iostream>
+
 #include "../enums/blend_eq.hpp"
 #include "../enums/blend_func.hpp"
 #include "../wrapper/states.hpp"
 
 namespace gloop {
     namespace states {
+
+        std::ostream& operator<<(std::ostream& os, const blend& b) {
+            return os << "blend: ["
+                    << "rgb: [src: " << b._srcRGB
+                    << ", dst: " << b._dstRGB
+                    << ", eq: " << b._eqRGB
+                    << "], alpha: [src: " << b._srcAlpha
+                    << ", dst: " << b._dstAlpha
+                    << ", eq: " << b._eqAlpha
+                    << "]";
+        }
+        
+        blend::blend() {
+            _srcRGB = enums::blend_func::ONE;
+            _srcAlpha = enums::blend_func::ONE;
+            _dstRGB = enums::blend_func::ZERO;
+            _dstAlpha = enums::blend_func::ZERO;
+            _eqRGB = enums::blend_eq::ADD;
+            _eqAlpha = enums::blend_eq::ADD;
+        }
 
         blend blend::withEnabled(const bool enabled) const {
             return blend(enabled, _srcRGB, _dstRGB, _srcAlpha, _dstAlpha, _eqRGB, _eqAlpha);

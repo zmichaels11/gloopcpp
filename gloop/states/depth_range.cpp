@@ -6,10 +6,17 @@
 
 #include "depth_range.hpp"
 
+#include <iostream>
+
 #include "../wrapper/states.hpp"
 
 namespace gloop {
-    void depth_range::apply() const {
-        gloop::wrapper::depthRange(near, far);
+    namespace states {
+
+        void depth_range::apply() const {
+            gloop::wrapper::depthRange(near, far);
+        }
+
+        
     }
 }

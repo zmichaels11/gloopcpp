@@ -9,12 +9,16 @@
 
 #include <iostream>
 
-#include "../enums/blend_eq.hpp"
-#include "../enums/blend_func.hpp"
+#include "../glint.hpp"
 
 namespace gloop {
-    namespace states {
-
+    namespace enums {
+        enum class blend_func : gloop::enum_t;
+        enum class blend_eq : gloop::enum_t;        
+    }
+    
+    namespace states {        
+        
         class blend {
         private:
             bool _enabled;
@@ -27,12 +31,7 @@ namespace gloop {
 
         public:
 
-            blend() :
-            blend(false,
-            enums::blend_func::ONE, enums::blend_func::ZERO,
-            enums::blend_func::ONE, enums::blend_func::ZERO,
-            enums::blend_eq::ADD, enums::blend_eq::ADD) {
-            }
+            blend();
 
             blend(
                     const bool enabled,
@@ -78,16 +77,7 @@ namespace gloop {
                 this->apply();
             }
             
-            inline friend std::ostream& operator<<(std::ostream& os, const blend& b) {
-                return os << "blend: ["
-                        << "rgb: [src: " << b._srcRGB
-                        << ", dst: " << b._dstRGB
-                        << ", eq: " << b._eqRGB
-                        << "], alpha: [src: " << b._srcAlpha
-                        << ", dst: " << b._dstAlpha
-                        << ", eq: " << b._eqAlpha
-                        << "]";
-            }
+            friend std::ostream& operator<<(std::ostream& os, const blend& b);
         };
     }
 }

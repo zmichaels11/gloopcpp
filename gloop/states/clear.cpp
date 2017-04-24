@@ -6,6 +6,8 @@
 
 #include "clear.hpp"
 
+#include <iostream>
+
 #include "../bitfields/clear_mask.hpp"
 #include "../glint.hpp"
 #include "../wrapper/states.hpp"
@@ -26,6 +28,22 @@ namespace gloop {
     }
     
     namespace states {
+        std::ostream& operator<<(std::ostream& os, clear c) {
+            return os << "clear: ["
+                    << c._color
+                    << ", depth: " << c._depth
+                    << ", stencil: " << c._stencil
+                    << ", mask: " << c._mask
+                    << "]";
+        }
+
+        std::ostream& operator<<(std::ostream& os, clear::color c) {
+            return os << "color: <"
+                    << c.red << ", "
+                    << c.green << ", "
+                    << c.blue << ", "
+                    << c.alpha << ">";
+        }
 
         clear clear::withMask(const bitfields::clear_mask mask) const {
             return clear(mask, _color, _depth, _stencil);
