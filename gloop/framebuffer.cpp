@@ -7,16 +7,63 @@
 #include "framebuffer.hpp"
 
 #include <cstddef>
+#include <iostream>
 
+#include "enums/framebuffer_attachment.hpp"
 #include "enums/framebuffer_target.hpp"
 #include "glint.hpp"
 #include "gloop_throw.hpp"
+#include "renderbuffer.hpp"
+#include "texture2D.hpp"
 
 #include "wrapper/framebuffer_objects.hpp"
 #include "wrapper/gl.hpp"
 #include "exception/invalid_enum_exception.hpp"
 
 namespace gloop {
+    
+    std::ostream& operator<<(std::ostream& os, framebuffer::attachment_type type) {
+            switch (type) {
+                case framebuffer::attachment_type::RENDERBUFFER:
+                    os << "RENDERBUFFER";
+                    break;
+                case framebuffer::attachment_type::TEXTURE:
+                    os << "TEXTURE";
+                    break;
+                default:
+                    os << "UNKNOWN";
+                    break;
+            }
+
+            return os;
+        }
+
+    std::ostream& operator<<(std::ostream& os, const framebuffer::attachment& a) {
+        os << "attachment: [";
+        os << "type: " << a.type;
+
+        switch (a.type) {
+            case framebuffer::attachment_type::TEXTURE:
+                if (a.tex) {
+                    os << ", " << *(a.tex);
+                } else {
+                    os << ", texture2D: [null]";
+                }
+                break;
+            case framebuffer::attachment_type::RENDERBUFFER:
+                if (a.rb) {
+                    os << ", " << *(a.rb);
+                } else {
+                    os << ", renderbuffer: [null]";
+                }
+                break;
+            default:
+                // nothing to do
+                break;
+        }
+
+        return os << "]";
+    }
 
     framebuffer::~framebuffer() {
         free();
@@ -38,8 +85,8 @@ namespace gloop {
 
             for (auto it = _attachments.begin(); it != _attachments.end(); it++) {
                 const auto glEnum = static_cast<gloop::enum_t> (it->first);
-                
-                if (it->second.type == attachment_type::RENDERBUFFER) {                    
+
+                if (it->second.type == attachment_type::RENDERBUFFER) {
                     wrapper::namedFramebufferRenderbuffer(glId, glEnum, wrapper::RENDERBUFFER, it->second.rb->getId());
                 } else if (it->second.type == attachment_type::TEXTURE) {
                     wrapper::namedFramebufferTexture(glId, glEnum, wrapper::TEXTURE_2D, it->second.tex->getId());
@@ -82,7 +129,7 @@ namespace gloop {
         return out;
     }
 
-    void framebuffer::attach(const enums::framebuffer_attachment attachment, texture2D* texture) {        
+    void framebuffer::attach(const enums::framebuffer_attachment attachment, texture2D* texture) {
         framebuffer::attachment storage;
 
         storage.type = framebuffer::attachment_type::TEXTURE;
@@ -95,7 +142,7 @@ namespace gloop {
         }
     }
 
-    void framebuffer::attach(const enums::framebuffer_attachment attachment, renderbuffer* renderbuffer) {        
+    void framebuffer::attach(const enums::framebuffer_attachment attachment, renderbuffer* renderbuffer) {
         framebuffer::attachment storage;
 
         storage.type = framebuffer::attachment_type::RENDERBUFFER;

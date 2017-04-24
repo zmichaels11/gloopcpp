@@ -17,13 +17,17 @@
 #include <iostream>
 #include <map>
 
-#include "enums/framebuffer_attachment.hpp"
-#include "enums/framebuffer_target.hpp"
 #include "glint.hpp"
-#include "renderbuffer.hpp"
-#include "texture2D.hpp"
 
-namespace gloop {
+namespace gloop {   
+    
+    namespace enums {
+        enum class framebuffer_attachment : gloop::enum_t;
+        enum class framebuffer_target : gloop::enum_t;
+    }
+    
+    class renderbuffer;
+    class texture2D;    
 
     class framebuffer {
     public:
@@ -33,22 +37,8 @@ namespace gloop {
             RENDERBUFFER,
             TEXTURE
         };
-        
-        inline friend std::ostream& operator<<(std::ostream& os, attachment_type type) {
-            switch (type) {
-                case attachment_type::RENDERBUFFER:
-                    os << "RENDERBUFFER";
-                    break;
-                case attachment_type::TEXTURE:
-                    os << "TEXTURE";
-                    break;
-                default:
-                    os << "UNKNOWN";
-                    break;
-            }
-            
-            return os;
-        }
+
+        friend std::ostream& operator<<(std::ostream& os, attachment_type type);
 
         struct attachment {
             attachment_type type;
@@ -57,33 +47,8 @@ namespace gloop {
                 texture2D * tex;
                 renderbuffer * rb;
             };
-            
-            inline friend std::ostream& operator<<(std::ostream& os, const attachment& a) {
-                os << "attachment: [";
-                os << "type: " << a.type;
-                
-                switch (a.type) {
-                    case attachment_type::TEXTURE:
-                        if (a.tex) {
-                            os << ", " << *(a.tex);
-                        } else {
-                            os << ", texture2D: [null]";
-                        }
-                        break;
-                    case attachment_type::RENDERBUFFER:
-                        if (a.rb) {
-                            os << ", " << *(a.rb);
-                        } else {
-                            os << ", renderbuffer: [null]";
-                        }
-                        break;                        
-                    default:
-                        // nothing to do
-                        break;
-                }
-                
-                return os << "]";
-            }
+
+            friend std::ostream& operator<<(std::ostream& os, const attachment& a);
         };
     private:
         gloop::uint_t _id;
@@ -95,19 +60,19 @@ namespace gloop {
         framebuffer() :
         _id(0) {
         }
-        
+
         ~framebuffer();
-        
+
         framebuffer(const framebuffer&) = delete;
-        
+
         framebuffer(framebuffer&&) = default;
-        
+
         framebuffer& operator=(const framebuffer&) = delete;
-        
+
         framebuffer& operator=(framebuffer&&) = default;
 
-        void bind(const enums::framebuffer_target target = enums::framebuffer_target::FRAMEBUFFER);
-        
+        void bind(const enums::framebuffer_target target = static_cast<enums::framebuffer_target> (0x8D40));
+
         bool isValid() const;
 
         gloop::uint_t getId();

@@ -10,13 +10,17 @@
 #include <map>
 #include <string>
 
-#include "buffer.hpp"
-#include "enums/vertex_attribute_type.hpp"
 #include "glint.hpp"
-#include "vertex_attribute_binding.hpp"
 
 namespace gloop {
+    
+    namespace enums {
+        enum class vertex_attribute_type : gloop::enum_t;
+    }
 
+    class buffer;
+    class vertex_attribute_binding;
+    
     class vertex_attribute {
     private:
         const gloop::uint_t _id;
@@ -27,11 +31,7 @@ namespace gloop {
         _id(id) {
         };
 
-        inline friend std::ostream& operator<<(std::ostream& os, const vertex_attribute& va) {
-            return os << "vertex_attribute: [id: "
-                    << va._id
-                    << "]";
-        }
+        friend std::ostream& operator<<(std::ostream& os, const vertex_attribute& va);
 
         gloop::uint_t getId() const;
 
@@ -52,24 +52,7 @@ namespace gloop {
 
     public:
 
-        inline friend std::ostream& operator<<(std::ostream& os, const vertex_attributes& va) {
-            os << "vertex_attributes: [";
-
-            int i = 0;
-            for (auto it = va._nameMap.begin(); it != va._nameMap.end(); it++) {
-                os << it->first
-                        << ": "
-                        << it->second;
-
-                if (i < va._nameMap.size() - 1) {
-                    os << ", ";
-                }
-                
-                i++;
-            }
-
-            return os << "]";
-        }
+        friend std::ostream& operator<<(std::ostream& os, const vertex_attributes& va);
 
         void setLocation(std::string name, gloop::int_t index);
 

@@ -14,15 +14,31 @@
 #pragma once
 
 #include <iostream>
+#include <memory>
 
-#include "enums/texture_internal_format.hpp"
-#include "enums/texture_format.hpp"
 #include "glint.hpp"
-#include "pixel_formats.hpp"
-#include "states/texture2D_parameters.hpp"
 
 namespace gloop {
 
+    namespace enums {
+        enum class texture_internal_format : gloop::enum_t;
+    }        
+    
+    namespace pixel_formats {
+        struct R8_G8_B8;
+        struct R8_G8_B8_A8;
+        struct B8_G8_R8;
+        struct B8_G8_R8_A8;
+        struct R32F_G32F_B32F;
+        struct R32F_G32F_B32F_A32F;       
+        struct B32F_G32F_R32F;
+        struct B32F_G32F_R32F_A32F;
+    }
+    
+    namespace states {
+        class texture2D_parameters;
+    }
+    
     class texture2D {
     public:
 
@@ -30,30 +46,18 @@ namespace gloop {
             gloop::sizei_t width;
             gloop::sizei_t height;
             
-            inline friend std::ostream& operator<<(std::ostream& os, const size& s) {
-                return os << "size: <"
-                        << s.width
-                        << ", "
-                        << s.height
-                        << ">";
-            }
+            friend std::ostream& operator<<(std::ostream& os, const size& s);
         };
     private:
         gloop::uint_t _id;
         size _size;
         enums::texture_internal_format _format;
         gloop::sizei_t _levels;
-        gloop::states::texture2D_parameters _params;
+        std::unique_ptr<states::texture2D_parameters> _params;
 
     public:
 
-        texture2D() :
-        _id(0),
-        _size({0, 0}),
-        _format(static_cast<enums::texture_internal_format> (0)),
-        _levels(0),
-        _params(){
-        }
+        texture2D();
 
         ~texture2D();
         
@@ -65,22 +69,7 @@ namespace gloop {
         
         texture2D& operator=(texture2D&&) = default;    
         
-        inline friend std::ostream& operator<<(std::ostream& os, const texture2D& t) {
-            os << "texture2D: [";
-            
-            if (t.isValid()) {
-                os << "id: " << t._id;
-                os << ", format: " << t._format;
-                os << ", levels: " << t._levels;
-                os << ", " << t._size;
-                os << ", " << t._params;
-                os << "]";
-            } else {
-                os << "UNINITIALIZED]";
-            }
-            
-            return os;
-        }
+        friend std::ostream& operator<<(std::ostream& os, const texture2D& t);
 
         gloop::uint_t getId() const;
 

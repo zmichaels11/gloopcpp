@@ -2,20 +2,13 @@
 #include <memory>
 #include <utility>
 
-#include <SDL2/SDL_surface.h>
-#include <fstream>
-
 #include "gloop/application.hpp"
-#include "gloop/buffer.hpp"
-#include "gloop/draw/arrays.hpp"
-#include "gloop/draw/call.hpp"
-#include "gloop/exception/invalid_value_exception.hpp"
-#include "gloop/program.hpp"
-#include "gloop/shader.hpp"
-#include "gloop/texture2D.hpp"
+#include "gloop/objects.hpp"
+#include "gloop/draw_calls.hpp"
+#include "gloop/enums.hpp"
+#include "gloop/exceptions.hpp"
 #include "gloop/tools.hpp"
-#include "gloop/vertex_attributes.hpp"
-#include "gloop/vertex_array.hpp"
+#include "gloop/uniforms.hpp"
 #include "gloop/wrapper/gl.hpp"
 
 namespace {

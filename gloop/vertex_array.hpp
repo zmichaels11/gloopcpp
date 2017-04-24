@@ -13,20 +13,24 @@
 
 #pragma once
 
+#include <array>
 #include <iostream>
-#include <vector>
+#include <memory>
 
-#include "buffer.hpp"
 #include "glint.hpp"
-#include "vertex_attribute_binding.hpp"
-#include "vertex_attributes.hpp"
 
 namespace gloop {
 
+    class buffer;
+    class vertex_attribute_binding;
+    
     class vertex_array {
+    public:
+        static constexpr unsigned int MAX_VERTEX_ATTRIBUTES = 16;
     private:
         gloop::uint_t _id;
-        std::vector<vertex_attribute_binding> _bindings;
+        std::array<std::unique_ptr<vertex_attribute_binding>, MAX_VERTEX_ATTRIBUTES> _bindings;
+        unsigned int _numBindings;
         const buffer * _indexBuffer;
 
         void init();
@@ -35,7 +39,8 @@ namespace gloop {
 
         vertex_array() :
         _id(0),
-        _indexBuffer(nullptr) {
+        _indexBuffer(nullptr),                
+        _numBindings(0) {
         }
         
         ~vertex_array();
@@ -46,38 +51,9 @@ namespace gloop {
         
         vertex_array& operator=(const vertex_array&) = delete;
         
-        vertex_array& operator=(vertex_array&&) = default;
-
-        vertex_array& operator<<(const vertex_attribute_binding& binding);
+        vertex_array& operator=(vertex_array&&) = default;        
         
-        inline friend std::ostream& operator<<(std::ostream& os, const vertex_array& va) {
-            os << "vertex_array: [";
-            
-            if (va) {
-                os << "id: " << va._id;
-                
-                if (va._indexBuffer) {
-                    os << ", index buffer id: " << va._indexBuffer->getId();
-                }
-                
-                os << ", bindings: [";
-                
-                int i = 0;
-                for (auto it = va._bindings.begin(); it != va._bindings.end(); it++) {
-                    os << *it;
-                    
-                    if (i < va._bindings.size() - 1) {
-                        os << ", ";
-                    }
-                }
-                
-                os << "]";
-            } else {
-                os << "UNINITIALIZED]";
-            }
-            
-            return os;
-        }
+        friend std::ostream& operator<<(std::ostream& os, const vertex_array& va);
 
         operator bool() const;
 
@@ -89,7 +65,7 @@ namespace gloop {
 
         const buffer * getIndexBuffer() const;
 
-        const std::vector<vertex_attribute_binding> getBindings() const;
+        const std::array<std::unique_ptr<vertex_attribute_binding>, MAX_VERTEX_ATTRIBUTES>& getBindings() const;
 
         void free();
 

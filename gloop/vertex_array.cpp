@@ -6,13 +6,18 @@
 
 #include "vertex_array.hpp"
 
+#include <algorithm>
 #include <iostream>
 #include <memory>
-#include <vector>
 
+#include "buffer.hpp"
 #include "enums/buffer_target.hpp"
+#include "exception/invalid_operation_exception.hpp"
+#include "gloop_throw.hpp"
 #include "tools.hpp"
+#include "vertex_attribute_binding.hpp"
 #include "wrapper/vertex_arrays.hpp"
+#include "wrapper/states.hpp"
 
 namespace gloop {
 
@@ -22,28 +27,26 @@ namespace gloop {
 
     void vertex_array::init() {
         // dont bother initializing if there are no bindings and no element buffer
-        if (this->_bindings.size() == 0 && !this->_indexBuffer) {
+        if (this->_numBindings == 0 && !this->_indexBuffer) {               
             return;
         }
 
         gloop::uint_t glId = 0;
 
-        gloop::wrapper::createVertexArrays(1, &glId);                        
-        gloop::wrapper::bindVertexArray(glId);        
-        
+        gloop::wrapper::createVertexArrays(1, &glId);
+        gloop::wrapper::bindVertexArray(glId);
 
-        if (this->_indexBuffer) {            
-            this->_indexBuffer->bind(gloop::enums::buffer_target::ELEMENT_ARRAY);            
+
+        if (this->_indexBuffer) {
+            this->_indexBuffer->bind(gloop::enums::buffer_target::ELEMENT_ARRAY);
         }
 
-        for (auto it = this->_bindings.begin(); it != this->_bindings.end(); it++) {
-            vertex_attribute_binding binding = *it;
-
-            gloop::wrapper::enableVertexAttribArray(binding.getAttributeId());
-            binding();            
+        for (int i = 0; i < _numBindings; i++) {            
+            wrapper::enableVertexAttribArray(_bindings[i]->getAttributeId());
+            _bindings[i]->apply();
         }
 
-        gloop::wrapper::bindVertexArray(0);        
+        gloop::wrapper::bindVertexArray(0);
 
         this->_id = glId;
     }
@@ -66,16 +69,12 @@ namespace gloop {
         }
     }
 
-    void vertex_array::addBinding(const vertex_attribute_binding& binding) {
-        this->_bindings.push_back(binding);
+    void vertex_array::addBinding(const vertex_attribute_binding& binding) {        
+        this->_bindings[this->_numBindings] = std::make_unique<vertex_attribute_binding> (binding);
+        this->_numBindings++;
     }
 
-    vertex_array& vertex_array::operator<<(const vertex_attribute_binding& binding) {
-        this->addBinding(binding);
-        return *this;
-    }
-
-    const std::vector<vertex_attribute_binding> vertex_array::getBindings() const {
+    const std::array<std::unique_ptr<vertex_attribute_binding>, vertex_array::MAX_VERTEX_ATTRIBUTES>& vertex_array::getBindings() const {
         return this->_bindings;
     }
 
@@ -88,7 +87,7 @@ namespace gloop {
 
     void vertex_array::bind() {
         // this will bind vertex array 0 if the vertex array has no attached buffers
-        gloop::wrapper::bindVertexArray(getId());        
+        gloop::wrapper::bindVertexArray(getId());
     }
 
     bool vertex_array::isInitialized() const {
@@ -102,5 +101,33 @@ namespace gloop {
     const buffer * vertex_array::getIndexBuffer() const {
         return this->_indexBuffer;
 
+    }
+
+    std::ostream& operator<<(std::ostream& os, const vertex_array& va) {
+        os << "vertex_array: [";
+
+        if (va) {
+            os << "id: " << va._id;
+
+            if (va._indexBuffer) {
+                os << ", index buffer id: " << va._indexBuffer->getId();
+            }
+
+            os << ", bindings: [";
+            
+            for (int i = 0; i < va._numBindings; i++) {
+                os << *(va._bindings[i]);
+                
+                if (i < va._numBindings - 1) {
+                    os << ", ";
+                }
+            }
+
+            os << "]";
+        } else {
+            os << "UNINITIALIZED]";
+        }
+
+        return os;
     }
 }

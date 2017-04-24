@@ -9,11 +9,14 @@
 #include <iostream>
 #include <string>
 
-#include "enums/shader_type.hpp"
 #include "glint.hpp"
 
 namespace gloop {
 
+    namespace enums {
+        enum class shader_type : gloop::enum_t;
+    }
+    
     class shader {
     private:
         gloop::uint_t _id;
@@ -23,35 +26,24 @@ namespace gloop {
         void init();
     public:
 
-        shader(
-                enums::shader_type type = enums::shader_type::UNKNOWN,
-                std::string src = "") :
+        shader() : shader(static_cast<enums::shader_type> (0), "") {
+        }
+
+        shader(enums::shader_type type, std::string src) :
         _type(type), _src(src), _id(0) {
         }
 
         ~shader();
-        
+
         shader(const shader&) = delete;
 
         shader(shader&&) = default;
-        
+
         shader& operator=(const shader&) = delete;
-        
+
         shader& operator=(shader&&) = default;
-        
-        inline friend std::ostream& operator<<(std::ostream& os, const shader& s) {
-            os << "shader: [";
-            
-            if (s.isInitialized()) {
-                os << "id: " << s._id;
-                os << " type: " << s._type;
-                os << "]";
-            } else {
-                os << "UNINITIALIZED]";
-            }
-            
-            return os;
-        }
+
+        friend std::ostream& operator<<(std::ostream& os, const shader& s);
 
         gloop::uint_t getId();
 

@@ -9,27 +9,50 @@
 #include <cstddef>
 #include <iostream>
 #include <map>
+#include <memory>
 #include <string>
 
 #include "glint.hpp"
-#include "shader.hpp"
-#include "uniforms.hpp"
-#include "vertex_attributes.hpp"
 
 namespace gloop {
-
+    
+    class shader;
+    class vertex_attributes;
+    
+    namespace uniform {
+        class uniform_block_binding;
+        class uniform_float_binding;
+        class uniform_int_binding;
+        class uniform_vec2_binding;
+        class uniform_vec3_binding;
+        class uniform_vec4_binding;
+        class uniform_ivec2_binding;
+        class uniform_ivec3_binding;
+        class uniform_ivec4_binding;
+        class uniform_int_array_binding;
+        class uniform_float_array_binding;
+        class uniform_vec2_array_binding;
+        class uniform_vec3_array_binding;
+        class uniform_vec4_array_binding;
+        class uniform_ivec2_array_binding;
+        class uniform_ivec3_array_binding;
+        class uniform_ivec4_array_binding;
+        class uniform_mat2_binding;
+        class uniform_mat3_binding;
+        class uniform_mat4_binding;
+    }
+    
     class program {
     private:
         gloop::uint_t _id;
-        vertex_attributes _attribs;
+        std::unique_ptr<vertex_attributes> _attribs;
         std::map<std::string, gloop::uint_t> _uniforms;
         std::map<std::string, uniform::uniform_block_binding> _uniformBlocks;
         gloop::uint_t getUniform(const std::string& uniformName);
 
     public:
 
-        program() : _id(0) {
-        }
+        program();
         
         ~program();
 
@@ -39,11 +62,11 @@ namespace gloop {
         
         program& operator=(const program&) = delete;
         
-        program& operator=(program&&) = default;
-        
-        
+        program& operator=(program&&) = default;                
 
-        void setVertexAttributes(const vertex_attributes attribs);
+        void setVertexAttributes(const vertex_attributes& attribs);
+        
+        const vertex_attributes& getVertexAttributes() const;
 
         void linkShaders(shader * shaders, const std::size_t count);
 

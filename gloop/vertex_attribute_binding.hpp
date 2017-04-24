@@ -8,22 +8,29 @@
 
 #include <iostream>
 
-#include "buffer.hpp"
-#include "enums/vertex_attribute_type.hpp"
 #include "glint.hpp"
 
 namespace gloop {
+    namespace enums {
+        enum class vertex_attribute_type : gloop::enum_t;
+    }
+    
+    class buffer;
 
     class vertex_attribute_binding {
     private:
-        const gloop::uint_t _id;
+        gloop::uint_t _id;
         const buffer * _buffer;
-        const enums::vertex_attribute_type _type;
-        const gloop::sizei_t _stride;
+        enums::vertex_attribute_type _type;
+        gloop::sizei_t _stride;
         const void * _ptr;
-        const gloop::uint_t _divisor;
+        gloop::uint_t _divisor;
 
     public:
+
+        vertex_attribute_binding() :
+        vertex_attribute_binding(0, nullptr, static_cast<enums::vertex_attribute_type> (0)) {
+        }
 
         vertex_attribute_binding(
                 const gloop::uint_t id, const buffer * buffer,
@@ -37,24 +44,7 @@ namespace gloop {
         _divisor(divisor) {
         }
 
-        inline friend std::ostream& operator<<(std::ostream& os, const vertex_attribute_binding& vab) {
-            os << "vertex_attribute_binding: [";
-            os << "id: " << vab._id;
-
-            if (vab._buffer != nullptr) {
-                os << ", buffer id: " << vab._buffer->getId();
-            }
-
-            os << ", type: " << vab._type;
-            os << ", stride: " << vab._stride;
-            os << ", ptr: " << vab._ptr;
-            
-            if (vab._divisor) {
-                os << ", divisor: " << vab._divisor;
-            }
-            
-            return os << "]";
-        }
+        friend std::ostream& operator<<(std::ostream& os, const vertex_attribute_binding& vab);
 
         gloop::uint_t getAttributeId() const;
 

@@ -15,11 +15,14 @@
 
 #include <iostream>
 
-#include "enums/renderbuffer_internal_format.hpp"
 #include "glint.hpp"
 
 namespace gloop {
 
+    namespace enums {
+        enum class renderbuffer_internal_format : gloop::enum_t;
+    }
+    
     class renderbuffer {
     public:
 
@@ -27,13 +30,7 @@ namespace gloop {
             gloop::sizei_t width;
             gloop::sizei_t height;
 
-            inline friend std::ostream& operator<<(std::ostream& os, const size& s) {
-                return os << "size: <"
-                        << s.width
-                        << ", "
-                        << s.height
-                        << ">";
-            }
+            friend std::ostream& operator<<(std::ostream& os, const size& s) ;
         };
     private:
         gloop::uint_t _id;
@@ -60,20 +57,7 @@ namespace gloop {
 
         renderbuffer& operator=(renderbuffer&&) = default;
 
-        inline friend std::ostream& operator<<(std::ostream& os, const renderbuffer& rb) {
-            os << "renderbuffer: [";
-
-            if (rb.isValid()) {
-                os << "id: " << rb._id;
-                os << " format:" << rb._format;
-                os << " " << rb._size;
-                os << "]";
-            } else {
-                os << "UNINITIALIZED]";
-            }
-            
-            return os;
-        }
+        friend std::ostream& operator<<(std::ostream& os, const renderbuffer& rb);
 
         bool isValid() const;
 

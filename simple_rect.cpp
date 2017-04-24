@@ -16,15 +16,12 @@
 #include <utility>
 
 #include "gloop/application.hpp"
-#include "gloop/buffer.hpp"
+#include "gloop/objects.hpp"
 #include "gloop/context.hpp"
 #include "gloop/draw_calls.hpp"
-#include "gloop/program.hpp"
-#include "gloop/shader.hpp"
+#include "gloop/enums.hpp"
 #include "gloop/tools.hpp"
 #include "gloop/uniforms.hpp"
-#include "gloop/vertex_array.hpp"
-#include "gloop/vertex_attributes.hpp"
 #include "gloop/wrapper/gl.hpp"
 
 namespace {

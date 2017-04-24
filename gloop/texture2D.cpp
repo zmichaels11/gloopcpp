@@ -6,14 +6,25 @@
 
 #include "texture2D.hpp"
 
+#include <iostream>
+
 #include "enums/texture_internal_format.hpp"
 #include "glint.hpp"
 #include "gloop_throw.hpp"
+#include "states/texture2D_parameters.hpp"
 #include "tools.hpp"
 #include "wrapper/texture_objects.hpp"
 #include "wrapper/gl.hpp"
 
 namespace gloop {
+    texture2D::texture2D() {
+        _id = 0;
+        _size.width = 0;
+        _size.height = 0;
+        _format = enums::texture_internal_format::UNKNOWN;
+        _levels = 0;
+        _params = std::make_unique<states::texture2D_parameters>();
+    }
 
     gloop::uint_t texture2D::getId() const {
         return _id;
@@ -50,12 +61,12 @@ namespace gloop {
         gloop::uint_t glId = 0;
 
         wrapper::createTextures(wrapper::TEXTURE_2D, 1, &glId);
-                
-        wrapper::textureParameteri(glId, wrapper::TEXTURE_MAG_FILTER, static_cast<gloop::int_t> (_params.getMagFilter()));
-        wrapper::textureParameteri(glId, wrapper::TEXTURE_MIN_FILTER, static_cast<gloop::int_t> (_params.getMinFilter()));
-        wrapper::textureParameteri(glId, wrapper::TEXTURE_WRAP_S, static_cast<gloop::int_t> (_params.getWrapS()));
-        wrapper::textureParameteri(glId, wrapper::TEXTURE_WRAP_T, static_cast<gloop::int_t> (_params.getWrapT()));
-        wrapper::textureParameterf(glId, wrapper::TEXTURE_MAX_ANISOTROPY, _params.getAnisotropic());
+
+        wrapper::textureParameteri(glId, wrapper::TEXTURE_MAG_FILTER, static_cast<gloop::int_t> (_params->getMagFilter()));
+        wrapper::textureParameteri(glId, wrapper::TEXTURE_MIN_FILTER, static_cast<gloop::int_t> (_params->getMinFilter()));
+        wrapper::textureParameteri(glId, wrapper::TEXTURE_WRAP_S, static_cast<gloop::int_t> (_params->getWrapS()));
+        wrapper::textureParameteri(glId, wrapper::TEXTURE_WRAP_T, static_cast<gloop::int_t> (_params->getWrapT()));
+        wrapper::textureParameterf(glId, wrapper::TEXTURE_MAX_ANISOTROPY, _params->getAnisotropic());
 
         wrapper::textureStorage2D(glId, levels, static_cast<gloop::enum_t> (internalFormat), width, height);
 
@@ -141,7 +152,7 @@ namespace gloop {
         wrapper::textureSubImage2D(_id, level, xOffset, yOffset, width, height, wrapper::RGBA, wrapper::UNSIGNED_BYTE, data);
     }
 
-    void texture2D::free() {        
+    void texture2D::free() {
         if (isValid()) {
             wrapper::deleteTextures(1, &_id);
             _id = 0;
@@ -154,23 +165,48 @@ namespace gloop {
 
     void texture2D::bind(const gloop::uint_t unit) const {
         if (isValid()) {
-            wrapper::bindTextureUnit(unit, _id);            
+            wrapper::bindTextureUnit(unit, _id);
         }
     }
 
     void texture2D::setParameters(const gloop::states::texture2D_parameters& params) {
-        _params = params;
+        _params = std::make_unique<states::texture2D_parameters> (params);
 
         if (isValid()) {
-            wrapper::textureParameteri(_id, wrapper::TEXTURE_MAG_FILTER, static_cast<gloop::int_t> (_params.getMagFilter()));
-            wrapper::textureParameteri(_id, wrapper::TEXTURE_MIN_FILTER, static_cast<gloop::int_t> (_params.getMinFilter()));
-            wrapper::textureParameteri(_id, wrapper::TEXTURE_WRAP_S, static_cast<gloop::int_t> (_params.getWrapS()));
-            wrapper::textureParameteri(_id, wrapper::TEXTURE_WRAP_T, static_cast<gloop::int_t> (_params.getWrapT()));
-            wrapper::textureParameterf(_id, wrapper::TEXTURE_MAX_ANISOTROPY, _params.getAnisotropic());
+            wrapper::textureParameteri(_id, wrapper::TEXTURE_MAG_FILTER, static_cast<gloop::int_t> (_params->getMagFilter()));
+            wrapper::textureParameteri(_id, wrapper::TEXTURE_MIN_FILTER, static_cast<gloop::int_t> (_params->getMinFilter()));
+            wrapper::textureParameteri(_id, wrapper::TEXTURE_WRAP_S, static_cast<gloop::int_t> (_params->getWrapS()));
+            wrapper::textureParameteri(_id, wrapper::TEXTURE_WRAP_T, static_cast<gloop::int_t> (_params->getWrapT()));
+            wrapper::textureParameterf(_id, wrapper::TEXTURE_MAX_ANISOTROPY, _params->getAnisotropic());
         }
-    } 
-    
-    const states::texture2D_parameters& texture2D::getParameters() const {
-        return _params;
     }
+
+    const states::texture2D_parameters& texture2D::getParameters() const {
+        return *_params;
+    }
+
+    std::ostream& operator<<(std::ostream& os, const texture2D::size& s) {
+        return os << "size: <"
+                << s.width
+                << ", "
+                << s.height
+                << ">";
+    }
+    
+    std::ostream& operator<<(std::ostream& os, const texture2D& t) {
+            os << "texture2D: [";
+            
+            if (t.isValid()) {
+                os << "id: " << t._id;
+                os << ", format: " << t._format;
+                os << ", levels: " << t._levels;
+                os << ", " << t._size;
+                os << ", " << *t._params;
+                os << "]";
+            } else {
+                os << "UNINITIALIZED]";
+            }
+            
+            return os;
+        }
 }

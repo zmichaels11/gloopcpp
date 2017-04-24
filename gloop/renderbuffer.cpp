@@ -6,10 +6,12 @@
 
 #include "renderbuffer.hpp"
 
+#include <iostream>
+
 #include "enums/renderbuffer_internal_format.hpp"
 #include "glint.hpp"
-#include "wrapper/framebuffer_objects.hpp"
 #include "tools.hpp"
+#include "wrapper/framebuffer_objects.hpp"
 
 namespace gloop {
 
@@ -46,12 +48,35 @@ namespace gloop {
         _size.height = 0;
         _format = static_cast<gloop::enums::renderbuffer_internal_format> (0);
     }
-    
+
     const gloop::renderbuffer::size& renderbuffer::getSize() const {
         return _size;
     }
 
     enums::renderbuffer_internal_format renderbuffer::getInternalFormat() const {
         return _format;
+    }
+
+    std::ostream& operator<<(std::ostream& os, const renderbuffer& rb) {
+        os << "renderbuffer: [";
+
+        if (rb.isValid()) {
+            os << "id: " << rb._id;
+            os << " format:" << rb._format;
+            os << " " << rb._size;
+            os << "]";
+        } else {
+            os << "UNINITIALIZED]";
+        }
+
+        return os;
+    }
+
+    std::ostream& operator<<(std::ostream& os, const renderbuffer::size& s) {
+        return os << "size: <"
+                << s.width
+                << ", "
+                << s.height
+                << ">";
     }
 }

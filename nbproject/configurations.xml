@@ -102,14 +102,17 @@
           <itemPath>gloop/wrapper/vertex_arrays.hpp</itemPath>
         </logicalFolder>
         <itemPath>gloop/application.hpp</itemPath>
+        <itemPath>gloop/bitfields.hpp</itemPath>
         <itemPath>gloop/buffer.hpp</itemPath>
         <itemPath>gloop/context.hpp</itemPath>
         <itemPath>gloop/draw_calls.hpp</itemPath>
+        <itemPath>gloop/enums.hpp</itemPath>
         <itemPath>gloop/errors.hpp</itemPath>
         <itemPath>gloop/exceptions.hpp</itemPath>
         <itemPath>gloop/framebuffer.hpp</itemPath>
         <itemPath>gloop/glint.hpp</itemPath>
         <itemPath>gloop/gloop_throw.hpp</itemPath>
+        <itemPath>gloop/objects.hpp</itemPath>
         <itemPath>gloop/pixel_formats.hpp</itemPath>
         <itemPath>gloop/program.hpp</itemPath>
         <itemPath>gloop/renderbuffer.hpp</itemPath>
@@ -254,6 +257,8 @@
       </item>
       <item path="gloop/application.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/bitfields.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/bitfields/buffer_access_hint.cpp"
             ex="false"
             tool="1"
@@ -316,6 +321,8 @@
       <item path="gloop/draw_calls.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/draw_calls.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/enums.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/enums/blend_eq.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -434,6 +441,8 @@
       <item path="gloop/glint.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/gloop_throw.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/objects.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/pixel_formats.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -792,6 +801,8 @@
       </item>
       <item path="gloop/application.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/bitfields.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/bitfields/buffer_access_hint.cpp"
             ex="false"
             tool="1"
@@ -854,6 +865,8 @@
       <item path="gloop/draw_calls.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/draw_calls.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/enums.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/enums/blend_eq.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -972,6 +985,8 @@
       <item path="gloop/glint.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/gloop_throw.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/objects.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/pixel_formats.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -1320,6 +1335,8 @@
       </item>
       <item path="gloop/application.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/bitfields.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/bitfields/buffer_access_hint.cpp"
             ex="false"
             tool="1"
@@ -1382,6 +1399,8 @@
       <item path="gloop/draw_calls.cpp" ex="false" tool="1" flavor2="11">
       </item>
       <item path="gloop/draw_calls.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/enums.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/enums/blend_eq.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -1503,6 +1522,8 @@
       <item path="gloop/glint.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/gloop_throw.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/objects.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/pixel_formats.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -1857,6 +1878,8 @@
       </item>
       <item path="gloop/application.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/bitfields.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/bitfields/buffer_access_hint.cpp"
             ex="false"
             tool="1"
@@ -1919,6 +1942,8 @@
       <item path="gloop/draw_calls.cpp" ex="false" tool="1" flavor2="11">
       </item>
       <item path="gloop/draw_calls.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/enums.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/enums/blend_eq.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -2040,6 +2065,8 @@
       <item path="gloop/glint.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/gloop_throw.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/objects.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/pixel_formats.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -2397,6 +2424,8 @@
       </item>
       <item path="gloop/application.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/bitfields.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/bitfields/buffer_access_hint.cpp"
             ex="false"
             tool="1"
@@ -2459,6 +2488,8 @@
       <item path="gloop/draw_calls.cpp" ex="false" tool="1" flavor2="11">
       </item>
       <item path="gloop/draw_calls.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/enums.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/enums/blend_eq.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -2580,6 +2611,8 @@
       <item path="gloop/glint.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/gloop_throw.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/objects.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/pixel_formats.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -2937,6 +2970,8 @@
       </item>
       <item path="gloop/application.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/bitfields.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/bitfields/buffer_access_hint.cpp"
             ex="false"
             tool="1"
@@ -2999,6 +3034,8 @@
       <item path="gloop/draw_calls.cpp" ex="false" tool="1" flavor2="11">
       </item>
       <item path="gloop/draw_calls.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/enums.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/enums/blend_eq.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -3120,6 +3157,8 @@
       <item path="gloop/glint.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/gloop_throw.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/objects.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/pixel_formats.cpp" ex="false" tool="1" flavor2="11">
       </item>
@@ -3476,6 +3515,8 @@
       </item>
       <item path="gloop/application.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/bitfields.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/bitfields/buffer_access_hint.cpp"
             ex="false"
             tool="1"
@@ -3538,6 +3579,8 @@
       <item path="gloop/draw_calls.cpp" ex="false" tool="1" flavor2="11">
       </item>
       <item path="gloop/draw_calls.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/enums.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/enums/blend_eq.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -3659,6 +3702,8 @@
       <item path="gloop/glint.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/gloop_throw.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/objects.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/pixel_formats.cpp" ex="false" tool="1" flavor2="11">
       </item>

@@ -9,6 +9,7 @@
 #include "buffer.hpp"
 
 #include "enums/buffer_target.hpp"
+#include "enums/vertex_attribute_type.hpp"
 #include "exception/invalid_enum_exception.hpp"
 #include "glint.hpp"
 #include "gloop_throw.hpp"
@@ -54,6 +55,25 @@ namespace gloop {
             }
         }
     }
+    
+    std::ostream& operator<<(std::ostream& os, const vertex_attribute_binding& vab) {
+            os << "vertex_attribute_binding: [";
+            os << "id: " << vab._id;
+
+            if (vab._buffer != nullptr) {
+                os << ", buffer id: " << vab._buffer->getId();
+            }
+
+            os << ", type: " << vab._type;
+            os << ", stride: " << vab._stride;
+            os << ", ptr: " << vab._ptr;
+
+            if (vab._divisor) {
+                os << ", divisor: " << vab._divisor;
+            }
+
+            return os << "]";
+        }
     
     gloop::uint_t vertex_attribute_binding::getAttributeId() const {
         return _id;

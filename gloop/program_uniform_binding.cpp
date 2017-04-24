@@ -11,6 +11,7 @@
 #include "exception/invalid_uniform_name_exception.hpp"
 #include "glint.hpp"
 #include "gloop_throw.hpp"
+#include "uniforms.hpp"
 #include "wrapper/shaders_and_programs.hpp"
 
 namespace gloop {

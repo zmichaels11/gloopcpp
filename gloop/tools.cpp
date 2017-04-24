@@ -14,8 +14,9 @@
 #include <SDL2/SDL_rwops.h>
 #include <SDL2/SDL_surface.h>
 
-#include "exceptions.hpp"
+#include "enums/texture_internal_format.hpp"
 #include "errors.hpp"
+#include "exceptions.hpp"
 #include "gloop_throw.hpp"
 #include "states/texture2D_parameters.hpp"
 #include "texture2D.hpp"

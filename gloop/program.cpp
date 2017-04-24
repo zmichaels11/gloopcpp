@@ -14,6 +14,7 @@
 #include "exception/program_link_exception.hpp"
 #include "shader.hpp"
 #include "wrapper/shaders_and_programs.hpp"
+#include "uniform/uniform_block_binding.hpp"
 #include "vertex_attributes.hpp"
 #include "wrapper/gl.hpp"
 
@@ -45,8 +46,17 @@ namespace {
 
 namespace gloop {
     
+    program::program() {
+        _id = 0;
+        _attribs = std::make_unique<vertex_attributes>();        
+    }
+    
     program::~program() {
         free();
+    }
+    
+    const vertex_attributes& program::getVertexAttributes() const {
+        return *_attribs;
     }
 
     void program::use() const {
@@ -72,7 +82,7 @@ namespace gloop {
     void program::linkShaders(shader * shaders, const std::size_t count) {        
         auto glId = gloop::wrapper::createProgram();
 
-        this->_attribs.bindAttributes(glId);        
+        this->_attribs->bindAttributes(glId);        
         
         for (auto it = shaders; it != shaders + count; it++) {
             gloop::wrapper::attachShader(glId, it->getId());
@@ -109,12 +119,12 @@ namespace gloop {
         return this->isInitialized();
     }
 
-    void program::setVertexAttributes(const vertex_attributes attribs) {
+    void program::setVertexAttributes(const vertex_attributes& attribs) {
         if (this->isInitialized()) {            
             gloop_throw(gloop::exception::program_link_exception("Cannot set vertex attributes if program is already linked!"));
         }
 
-        this->_attribs = attribs;
+        this->_attribs = std::make_unique<vertex_attributes> (attribs);
     }
 
     namespace {

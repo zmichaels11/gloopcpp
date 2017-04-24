@@ -19,6 +19,31 @@
 
 namespace gloop {
 
+    std::ostream& operator<<(std::ostream& os, const vertex_attribute& va) {
+        return os << "vertex_attribute: [id: "
+                << va._id
+                << "]";
+    }
+    
+    std::ostream& operator<<(std::ostream& os, const vertex_attributes& va) {
+            os << "vertex_attributes: [";
+
+            int i = 0;
+            for (auto it = va._nameMap.begin(); it != va._nameMap.end(); it++) {
+                os << it->first
+                        << ": "
+                        << it->second;
+
+                if (i < va._nameMap.size() - 1) {
+                    os << ", ";
+                }
+                
+                i++;
+            }
+
+            return os << "]";
+        }
+
     void vertex_attributes::setLocation(std::string name, gloop::int_t index) {
         this->_nameMap[name] = index;
     }

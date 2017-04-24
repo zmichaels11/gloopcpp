@@ -8,10 +8,12 @@
 
 #include <iostream>
 
+#include "../glint.hpp"
+
 namespace gloop {
     namespace enums {
 
-        enum class vertex_attribute_type {
+        enum class vertex_attribute_type : gloop::enum_t {
             UNKNOWN = 0,
             FLOAT,
             INT,

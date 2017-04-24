@@ -60,7 +60,7 @@ namespace {
         if (hasSuffix(srcOrFile, suffix) || hasSuffix(srcOrFile, ".glsl")) {
             auto file = SDL_RWFromFile(srcOrFile.c_str(), "rb");
             auto src = gloop::tools::readAll(file);
-            
+
             return gloop::shader(type, src);
         } else {
             return gloop::shader(type, srcOrFile);
@@ -69,6 +69,7 @@ namespace {
 }
 
 namespace gloop {
+
     shader::~shader() {
         free();
     }
@@ -80,7 +81,7 @@ namespace gloop {
         {
             auto cstr = this->_src.c_str();
 
-            gloop::wrapper::shaderSource(glId, 1, &cstr, nullptr); 
+            gloop::wrapper::shaderSource(glId, 1, &cstr, nullptr);
         }
 
         gloop::wrapper::compileShader(glId);
@@ -90,7 +91,7 @@ namespace gloop {
         gloop::wrapper::getShaderiv(glId, gloop::wrapper::COMPILE_STATUS, &isCompiled);
 
         if (isCompiled) {
-            this->_id = glId;                        
+            this->_id = glId;
         } else {
             std::string infoLog = getShaderLog(glId);
 
@@ -129,7 +130,7 @@ namespace gloop {
 
     shader::operator bool() {
         return this->getId() != 0;
-    }    
+    }
 
     shader shader::makeVertexShader(const std::string& srcOrFileName) {
         return readFromSrcOrFileName(enums::shader_type::VERTEX, ".vert", srcOrFileName);
@@ -153,5 +154,19 @@ namespace gloop {
 
     shader shader::makeTessellationEvaluationShader(const std::string& srcOrFileName) {
         return readFromSrcOrFileName(enums::shader_type::TESSELLATION_EVALUATION, ".tese", srcOrFileName);
+    }
+
+    std::ostream& operator<<(std::ostream& os, const shader& s) {
+        os << "shader: [";
+
+        if (s.isInitialized()) {
+            os << "id: " << s._id;
+            os << " type: " << s._type;
+            os << "]";
+        } else {
+            os << "UNINITIALIZED]";
+        }
+
+        return os;
     }
 }
