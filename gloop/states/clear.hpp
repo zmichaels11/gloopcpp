@@ -10,9 +10,12 @@
 #include <iostream>
 
 #include "../glint.hpp"
-#include "../bitfields/clear_mask.hpp"
 
 namespace gloop {
+    namespace bitfields {
+        enum class clear_mask : gloop::bitfield_t;
+    }
+    
     namespace states {
 
         class clear {
@@ -35,11 +38,7 @@ namespace gloop {
 
         public:
 
-            clear() :
-            clear(
-            bitfields::clear_mask::COLOR,{0.0F, 0.0F, 0.0F, 0.0F},
-            1.0F, 0) {
-            }
+            clear();
 
             clear(
                     const bitfields::clear_mask mask,

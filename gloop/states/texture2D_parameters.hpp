@@ -15,12 +15,15 @@
 
 #include <iostream>
 
-#include "../enums/texture_mag_filter.hpp"
-#include "../enums/texture_min_filter.hpp"
-#include "../enums/texture_wrap.hpp"
 #include "../glint.hpp"
 
 namespace gloop {
+    namespace enums {
+        enum class texture_mag_filter : gloop::enum_t;
+        enum class texture_min_filter : gloop::enum_t;
+        enum class texture_wrap : gloop::enum_t;
+    }
+    
     namespace states {
 
         class texture2D_parameters {
@@ -33,12 +36,7 @@ namespace gloop {
 
         public:
 
-            texture2D_parameters() :
-            texture2D_parameters(
-            enums::texture_mag_filter::NEAREST, enums::texture_min_filter::NEAREST,
-            enums::texture_wrap::REPEAT, enums::texture_wrap::REPEAT,
-            1.0F) {
-            }
+            texture2D_parameters();
 
             texture2D_parameters(
                     const enums::texture_mag_filter magFilter,
@@ -70,20 +68,7 @@ namespace gloop {
 
             gloop::float_t getAnisotropic() const;
             
-            friend inline std::ostream& operator<<(std::ostream& os, const texture2D_parameters& params) {
-                return os << "texture2D_parameters: ["
-                        << "mag filter: "
-                        << params._magFilter
-                        << ", min filter: "
-                        << params._magFilter
-                        << ", wrap s: "
-                        << params._wrapS
-                        << ", wrap t: "
-                        << params._wrapT
-                        << ", aniso: "
-                        << params._aniso
-                        << "]";
-            }
+            friend std::ostream& operator<<(std::ostream& os, const texture2D_parameters& params);
         };
     }
 }

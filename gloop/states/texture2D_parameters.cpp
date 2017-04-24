@@ -6,6 +6,8 @@
 
 #include "texture2D_parameters.hpp"
 
+#include <iostream>
+
 #include "../enums/texture_mag_filter.hpp"
 #include "../enums/texture_min_filter.hpp"
 #include "../enums/texture_wrap.hpp"
@@ -13,6 +15,28 @@
 
 namespace gloop {
     namespace states {
+        std::ostream& operator<<(std::ostream& os, const texture2D_parameters& params) {
+                return os << "texture2D_parameters: ["
+                        << "mag filter: "
+                        << params._magFilter
+                        << ", min filter: "
+                        << params._magFilter
+                        << ", wrap s: "
+                        << params._wrapS
+                        << ", wrap t: "
+                        << params._wrapT
+                        << ", aniso: "
+                        << params._aniso
+                        << "]";
+            }
+        
+        texture2D_parameters::texture2D_parameters() {
+            _minFilter = enums::texture_min_filter::NEAREST;
+            _magFilter = enums::texture_mag_filter::NEAREST;
+            _wrapS = enums::texture_wrap::REPEAT;
+            _wrapT = enums::texture_wrap::REPEAT;
+            _aniso = 1.0F;
+        }
 
         texture2D_parameters texture2D_parameters::withAnisotropic(const gloop::float_t aniso) const {
             return texture2D_parameters(_magFilter, _minFilter, _wrapS, _wrapT, aniso);

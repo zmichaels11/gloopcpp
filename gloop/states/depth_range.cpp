@@ -17,6 +17,11 @@ namespace gloop {
             gloop::wrapper::depthRange(near, far);
         }
 
-        
+        std::ostream& operator<<(std::ostream& os, const depth_range& d) {
+            return os << "depth_range: ["
+                    << "near: " << d.near
+                    << ", far: " << d.far
+                    << "]";
+        }
     }
 }

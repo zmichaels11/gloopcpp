@@ -24,12 +24,7 @@ namespace gloop {
                 apply();
             }
 
-            inline friend std::ostream& operator<<(std::ostream& os, const depth_range& d) {
-                return os << "depth_range: ["
-                        << "near: " << d.near
-                        << ", far: " << d.far
-                        << "]";
-            }
+            friend std::ostream& operator<<(std::ostream& os, const depth_range& d);
         };
     }
 }

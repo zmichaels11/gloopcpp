@@ -44,6 +44,13 @@ namespace gloop {
                     << c.blue << ", "
                     << c.alpha << ">";
         }
+        
+        clear::clear() {
+            _mask = bitfields::clear_mask::COLOR;
+            _color = clear::color({0.0F, 0.0F, 0.0F, 0.0F});
+            _depth = 1.0F;
+            _stencil = 0;
+        }
 
         clear clear::withMask(const bitfields::clear_mask mask) const {
             return clear(mask, _color, _depth, _stencil);
