@@ -8,77 +8,60 @@
  * File:   vbo_sprite_buffer.hpp
  * Author: zmichaels
  *
- * Created on April 21, 2017, 3:17 PM
+ * Created on April 24, 2017, 4:20 PM
  */
 
 #pragma once
 
 #include <array>
-#include <vector>
+#include <memory>
 
-#include "blend_mode.hpp"
-#include "sprite.hpp"
-#include "sprite_renderer.hpp"
-
-#include "../gloop/buffer.hpp"
-
-#include "../gloop/program.hpp"
-#include "../gloop/texture2D.hpp"
-#include "../gloop/uniforms.hpp"
-#include "../gloop/vertex_array.hpp"
+namespace gloop {
+    class buffer;
+    class texture2D;
+    class vertex_array;
+}
 
 namespace glgfx {
+    enum class blend_mode : unsigned int;
+    class sprite;
 
-    class vbo_sprite_buffer : public sprite_renderer {
+    class vbo_sprite_buffer {
     public:
-        constexpr unsigned int BATCH_SIZE = 256;        
-
+        constexpr static unsigned int BUFFER_COUNT = 3;
+        constexpr static unsigned int BATCH_SIZE = 256;
     private:
 
         struct buffer_data_t {
-            gloop::buffer _verts;
-            gloop::buffer _vInstance;
-            gloop::vertex_array _vao;
+            std::unique_ptr<gloop::buffer> _verts;
+            std::unique_ptr<gloop::buffer> _vInstance;
+            std::unique_ptr<gloop::vertex_array> _vao;
 
             buffer_data_t();
-        } _data;
-        
-        struct sprite_data {            
-            float transform[16];
-            float uvs[4];
-            float colorTransform[16];
-            float colorOffset[4];
-            float ignoreColorTransform;
-        };
+        } _bufferData[BUFFER_COUNT];
 
-        gloop::program * _program;
-        gloop::uniform::uniform_int_binding _spritesheetBinding;
+        struct draw_data_t {
+            std::array<float, 16> vMvp;
+            std::array<float, 4> vUVs;
+            std::array<float, 16> vCTr;
+            std::array<float, 4> vCo;
+            float vIgnoreCT;
+        } _drawData[BATCH_SIZE];
+        unsigned int _currentBuffer;
 
-        std::vector<sprite_data> _spriteCache;
-        gloop::texture2D * _currentTexture;
+        unsigned int _spriteCount;
         blend_mode _currentBlendMode;
+        const gloop::texture2D * _currentTexture;
+
         void streamDraw();
-        void draw(const sprite_data& sprite);
 
     public:
-        vbo_sprite_buffer();
+        void draw(const sprite& s);
 
-        vbo_sprite_buffer(const vbo_sprite_buffer&) = delete;
+        void flush();
 
-        vbo_sprite_buffer(vbo_sprite_buffer&&) = default;
+        void reset();
 
-        ~vbo_sprite_buffer() = default;
-
-        vbo_sprite_buffer& operator=(const vbo_sprite_buffer&) = delete;
-
-        vbo_sprite_buffer& operator=(vbo_sprite_buffer&&) = default;
-
-        virtual void draw(const sprite_instance * sprite);
-
-        virtual void flush();
-
-        virtual void reset();
-
-        virtual bool isSupported() const;
+        bool isSupported() const;
     };
 }

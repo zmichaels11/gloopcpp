@@ -35,6 +35,8 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/glgfx/blend_mode.o \
+	${OBJECTDIR}/glgfx/vbo_sprite_buffer.o \
 	${OBJECTDIR}/gloop/application.o \
 	${OBJECTDIR}/gloop/bitfields/buffer_access_hint.o \
 	${OBJECTDIR}/gloop/bitfields/buffer_immutable_storage_hint.o \
@@ -115,6 +117,16 @@ LDLIBSOPTIONS=`pkg-config --libs sdl2` `pkg-config --libs glew`
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/gloopcpp_test: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/gloopcpp_test ${OBJECTFILES} ${LDLIBSOPTIONS}
+
+${OBJECTDIR}/glgfx/blend_mode.o: glgfx/blend_mode.cpp
+	${MKDIR} -p ${OBJECTDIR}/glgfx
+	${RM} "$@.d"
+	$(COMPILE.cc) -g `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/glgfx/blend_mode.o glgfx/blend_mode.cpp
+
+${OBJECTDIR}/glgfx/vbo_sprite_buffer.o: glgfx/vbo_sprite_buffer.cpp
+	${MKDIR} -p ${OBJECTDIR}/glgfx
+	${RM} "$@.d"
+	$(COMPILE.cc) -g `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/glgfx/vbo_sprite_buffer.o glgfx/vbo_sprite_buffer.cpp
 
 ${OBJECTDIR}/gloop/application.o: gloop/application.cpp
 	${MKDIR} -p ${OBJECTDIR}/gloop

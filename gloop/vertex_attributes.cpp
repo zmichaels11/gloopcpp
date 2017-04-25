@@ -24,25 +24,25 @@ namespace gloop {
                 << va._id
                 << "]";
     }
-    
+
     std::ostream& operator<<(std::ostream& os, const vertex_attributes& va) {
-            os << "vertex_attributes: [";
+        os << "vertex_attributes: [";
 
-            int i = 0;
-            for (auto it = va._nameMap.begin(); it != va._nameMap.end(); it++) {
-                os << it->first
-                        << ": "
-                        << it->second;
+        int i = 0;
+        for (auto it = va._nameMap.begin(); it != va._nameMap.end(); it++) {
+            os << it->first
+                    << ": "
+                    << it->second;
 
-                if (i < va._nameMap.size() - 1) {
-                    os << ", ";
-                }
-                
-                i++;
+            if (i < va._nameMap.size() - 1) {
+                os << ", ";
             }
 
-            return os << "]";
+            i++;
         }
+
+        return os << "]";
+    }
 
     void vertex_attributes::setLocation(std::string name, gloop::int_t index) {
         this->_nameMap[name] = index;
@@ -87,6 +87,15 @@ namespace gloop {
             const gloop::uint_t divisor) const {
 
         return vertex_attribute_binding(this->_id, buffer, type, stride, ptr, divisor);
+    }
+
+    vertex_attribute_binding vertex_attribute::bindBuffer(
+            const buffer* bufId,
+            const enums::vertex_attribute_type type,
+            const gloop::sizei_t stride, gloop::intptr_t offset,
+            const gloop::uint_t divisor) const {
+        
+        return bindBuffer(bufId, type, stride, (const void *) offset, divisor);
     }
 
     const vertex_attribute vertex_attributes::operator[](const std::string& name) const {

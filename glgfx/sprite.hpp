@@ -8,52 +8,35 @@
  * File:   sprite.hpp
  * Author: zmichaels
  *
- * Created on April 21, 2017, 3:58 PM
+ * Created on April 24, 2017, 4:13 PM
  */
 
 #pragma once
 
-#include "../gloop/texture2D.hpp"
+#include <array>
 
-#include "blend_mode.hpp"
+namespace gloop {
+    class texture2D;
+}
 
 namespace glgfx {
-    struct sprite_frame {
-        struct size {
-            float width;
-            float height;
-        };
-        
-        virtual const size& getSize() const = 0;
-        
-        struct offset {
-            float x;
-            float y;
-        };
-        
-        virtual const offset& getOffset() const = 0;
-        
-        struct uvs {
+    enum class blend_mode : unsigned int;
+    
+    struct sprite {
+        struct texture_data_t {
             float u0;
             float v0;
             float u1;
             float v1;
-        };
+            const gloop::texture2D * texture;
+        } * textureData;
         
-        virtual const uvs& getUVs() = 0;
+        std::array<float, 16> transformation;
         
-        virtual gloop::texture2D * getTexture() const = 0;
-    };
-    
-    struct sprite_instance {
-        virtual const sprite_frame * getSpriteFrame() const = 0;
+        std::array<float, 25> colorTransform;
         
-        virtual const float * getTransformation() const = 0;
+        bool hasColorTransform;
         
-        virtual const float * getColorTransform() const = 0;
-        
-        virtual bool hasColorTransform() const = 0;
-        
-        virtual blend_mode getBlendMode() const = 0;
+        blend_mode blendMode;
     };
 }

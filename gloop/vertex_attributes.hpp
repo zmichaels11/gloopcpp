@@ -13,14 +13,14 @@
 #include "glint.hpp"
 
 namespace gloop {
-    
+
     namespace enums {
         enum class vertex_attribute_type : gloop::enum_t;
     }
 
     class buffer;
     class vertex_attribute_binding;
-    
+
     class vertex_attribute {
     private:
         const gloop::uint_t _id;
@@ -39,6 +39,12 @@ namespace gloop {
                 const buffer * bufId,
                 const enums::vertex_attribute_type,
                 const gloop::sizei_t stride = 0, const void * ptr = nullptr,
+                const gloop::uint_t divisor = 0) const;
+
+        vertex_attribute_binding bindBuffer(
+                const buffer * bufId,
+                const enums::vertex_attribute_type type,
+                const gloop::sizei_t stride, gloop::intptr_t offset,
                 const gloop::uint_t divisor = 0) const;
 
         void enable() const;

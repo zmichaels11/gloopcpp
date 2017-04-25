@@ -4,6 +4,13 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <logicalFolder name="f2" displayName="cglgfx" projectFiles="true">
+      </logicalFolder>
+      <logicalFolder name="f3" displayName="glgfx" projectFiles="true">
+        <itemPath>glgfx/blend_mode.hpp</itemPath>
+        <itemPath>glgfx/sprite.hpp</itemPath>
+        <itemPath>glgfx/vbo_sprite_buffer.hpp</itemPath>
+      </logicalFolder>
       <logicalFolder name="f1" displayName="gloop" projectFiles="true">
         <logicalFolder name="f6" displayName="bitfields" projectFiles="true">
           <itemPath>gloop/bitfields/buffer_access_hint.hpp</itemPath>
@@ -132,6 +139,12 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <logicalFolder name="f3" displayName="glgfx" projectFiles="true">
+        <itemPath>glgfx/blend_mode.cpp</itemPath>
+        <itemPath>glgfx/vboSpriteES.frag</itemPath>
+        <itemPath>glgfx/vboSpriteES.vert</itemPath>
+        <itemPath>glgfx/vbo_sprite_buffer.cpp</itemPath>
+      </logicalFolder>
       <logicalFolder name="f1" displayName="gloop" projectFiles="true">
         <logicalFolder name="f7" displayName="bitfields" projectFiles="true">
           <itemPath>gloop/bitfields/buffer_access_hint.cpp</itemPath>
@@ -253,6 +266,20 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
+      <item path="glgfx/blend_mode.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="glgfx/blend_mode.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/sprite.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/vboSpriteES.frag" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/vboSpriteES.vert" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/vbo_sprite_buffer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="glgfx/vbo_sprite_buffer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/application.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/application.hpp" ex="false" tool="3" flavor2="0">
@@ -797,6 +824,20 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
+      <item path="glgfx/blend_mode.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="glgfx/blend_mode.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/sprite.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/vboSpriteES.frag" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/vboSpriteES.vert" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/vbo_sprite_buffer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="glgfx/vbo_sprite_buffer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/application.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/application.hpp" ex="false" tool="3" flavor2="0">
@@ -1331,6 +1372,20 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
+      <item path="glgfx/blend_mode.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="glgfx/blend_mode.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/sprite.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/vboSpriteES.frag" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/vboSpriteES.vert" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/vbo_sprite_buffer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="glgfx/vbo_sprite_buffer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/application.cpp" ex="false" tool="1" flavor2="11">
       </item>
       <item path="gloop/application.hpp" ex="false" tool="3" flavor2="0">
@@ -1874,6 +1929,20 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
+      <item path="glgfx/blend_mode.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="glgfx/blend_mode.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/sprite.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/vboSpriteES.frag" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/vboSpriteES.vert" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/vbo_sprite_buffer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="glgfx/vbo_sprite_buffer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/application.cpp" ex="false" tool="1" flavor2="11">
       </item>
       <item path="gloop/application.hpp" ex="false" tool="3" flavor2="0">
@@ -2417,6 +2486,20 @@
           <commandLine>-s USE_SDL=2 --preload-file tests -O2</commandLine>
         </linkerTool>
       </compileType>
+      <item path="glgfx/blend_mode.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="glgfx/blend_mode.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/sprite.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/vboSpriteES.frag" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/vboSpriteES.vert" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/vbo_sprite_buffer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="glgfx/vbo_sprite_buffer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/application.cpp" ex="false" tool="1" flavor2="11">
       </item>
       <item path="gloop/application.hpp" ex="false" tool="3" flavor2="0">
@@ -2960,6 +3043,20 @@
           <commandLine>-s USE_SDL=2 --preload-file tests -O3</commandLine>
         </linkerTool>
       </compileType>
+      <item path="glgfx/blend_mode.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="glgfx/blend_mode.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/sprite.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/vboSpriteES.frag" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/vboSpriteES.vert" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/vbo_sprite_buffer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="glgfx/vbo_sprite_buffer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/application.cpp" ex="false" tool="1" flavor2="11">
       </item>
       <item path="gloop/application.hpp" ex="false" tool="3" flavor2="0">
@@ -3505,6 +3602,20 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
+      <item path="glgfx/blend_mode.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="glgfx/blend_mode.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/sprite.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/vboSpriteES.frag" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/vboSpriteES.vert" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/vbo_sprite_buffer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="glgfx/vbo_sprite_buffer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/application.cpp" ex="false" tool="1" flavor2="11">
       </item>
       <item path="gloop/application.hpp" ex="false" tool="3" flavor2="0">
@@ -4043,6 +4154,20 @@
         <archiverTool>
         </archiverTool>
       </compileType>
+      <item path="glgfx/blend_mode.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="glgfx/blend_mode.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/sprite.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/vboSpriteES.frag" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/vboSpriteES.vert" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/vbo_sprite_buffer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="glgfx/vbo_sprite_buffer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/application.cpp" ex="false" tool="1" flavor2="11">
       </item>
       <item path="gloop/application.hpp" ex="false" tool="3" flavor2="0">

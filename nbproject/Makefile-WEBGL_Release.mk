@@ -35,6 +35,8 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/glgfx/blend_mode.o \
+	${OBJECTDIR}/glgfx/vbo_sprite_buffer.o \
 	${OBJECTDIR}/gloop/application.o \
 	${OBJECTDIR}/gloop/bitfields/buffer_access_hint.o \
 	${OBJECTDIR}/gloop/bitfields/buffer_immutable_storage_hint.o \
@@ -115,6 +117,16 @@ LDLIBSOPTIONS=
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/gloopcpp_test.html: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	em++ -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/gloopcpp_test.html ${OBJECTFILES} ${LDLIBSOPTIONS} -s USE_SDL=2 --preload-file tests -O3
+
+${OBJECTDIR}/glgfx/blend_mode.o: glgfx/blend_mode.cpp
+	${MKDIR} -p ${OBJECTDIR}/glgfx
+	${RM} "$@.d"
+	$(COMPILE.cc) -O3 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/glgfx/blend_mode.o glgfx/blend_mode.cpp
+
+${OBJECTDIR}/glgfx/vbo_sprite_buffer.o: glgfx/vbo_sprite_buffer.cpp
+	${MKDIR} -p ${OBJECTDIR}/glgfx
+	${RM} "$@.d"
+	$(COMPILE.cc) -O3 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/glgfx/vbo_sprite_buffer.o glgfx/vbo_sprite_buffer.cpp
 
 ${OBJECTDIR}/gloop/application.o: gloop/application.cpp
 	${MKDIR} -p ${OBJECTDIR}/gloop

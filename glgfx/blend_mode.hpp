@@ -8,32 +8,25 @@
  * File:   blend_mode.hpp
  * Author: zmichaels
  *
- * Created on April 21, 2017, 2:56 PM
+ * Created on April 24, 2017, 4:17 PM
  */
 
 #pragma once
 
 namespace glgfx {
-    enum class blend_mode {
+    enum class blend_mode : unsigned int {
         NORMAL,
-        PREMULTIPLIED,
-        NONE,
-        LAYER,
-        DARKEN,
-        MULTIPLY,
-        MULTIPLY_ADD,
-        LIGHTEN,
-        SCREEN,
-        OVERLAY,
-        HARDLIGHT,
-        LINEAR_DODGE,
+        MIN,
+        MAX,
         ADD,
         SUBTRACT,
-        DIFFERENCE,
-        INVERT,
-        ALPHA,
-        EASE,
-        MIN,
-        MAX
+        MULTIPLY,
+        MULTIPLY_ADD,
+        SCREEN,
+        LINEAR_DODGE,
+        NONE,
+        PRE_MULTIPLIED
     };
+    
+    void apply(blend_mode);
 }
