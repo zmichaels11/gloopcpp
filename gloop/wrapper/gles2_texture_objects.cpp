@@ -29,11 +29,11 @@ namespace gloop {
             }
 
             static bool isBGR(const gloop::enum_t format) {
-                return gloop::wrapper::BGR;
+                return format == gloop::wrapper::BGR;
             }
 
             static bool isBGRA(const gloop::enum_t format) {
-                return gloop::wrapper::BGRA;
+                return format == gloop::wrapper::BGRA;
             }
 
             static bool isFloat(const gloop::enum_t type) {
@@ -135,8 +135,11 @@ namespace gloop {
                 gloop::enum_t format, gloop::enum_t type, const void * pixels) {
 
             glBindTexture(GL_TEXTURE_2D, texture);
-
-            if (isBGR(format)) {
+            
+            std::cout << "Format: " << format << std::endl;
+            
+            if (isBGR(format)) {                
+                std::cout << "isBGR" << std::endl;
                 if (!isBGRASupported()) {
                     const auto size = width * height - xOffset * yOffset;
 
@@ -164,7 +167,7 @@ namespace gloop {
                 } else {
                     glTexSubImage2D(GL_TEXTURE_2D, level, xOffset, yOffset, width, height, format, type, pixels);
                 }
-            } else if (isBGRA(format)) {
+            } else if (isBGRA(format)) {                
                 if (!isBGRASupported()) {
                     const auto size = width * height - xOffset * yOffset;
 
@@ -192,6 +195,8 @@ namespace gloop {
                 } else {
                     glTexSubImage2D(GL_TEXTURE_2D, level, xOffset, yOffset, width, height, format, type, pixels);
                 }
+            } else {                                
+                glTexSubImage2D(GL_TEXTURE_2D, level, xOffset, yOffset, width, height, format, type, pixels);                
             }
             
             tools::__debugAssertGLError("Unable to update 2D storage!");

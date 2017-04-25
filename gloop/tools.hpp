@@ -14,6 +14,7 @@
 #include <SDL2/SDL_surface.h>
 
 #include "states/texture2D_parameters.hpp"
+#include "texture2D.hpp"
 
 namespace gloop {
 
@@ -44,6 +45,18 @@ namespace gloop {
 #endif
         }
 
-        gloop::texture2D loadTexture(const std::string& file, const states::texture2D_parameters params = states::texture2D_parameters());
+        struct loaded_texture2D {
+            gloop::texture2D texture;
+            struct view_t {
+                float u0;
+                float v0;
+                float u1;
+                float v1;
+            } view;
+        };
+        
+        loaded_texture2D loadTexture(const std::string& file, const states::texture2D_parameters params = states::texture2D_parameters());
+        
+        unsigned int getNearestPowerOf2(unsigned int n);
     }
 }

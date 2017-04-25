@@ -83,6 +83,7 @@ namespace gloop {
         gloop::wrapper::init();
 
         if (this->_hints.swapInterval) {
+            std::cout << "INFO: Setting swap interval to: " << _hints.swapInterval << std::endl;
             if (SDL_GL_SetSwapInterval(this->_hints.swapInterval) != 0) {
                 std::cerr << "WARN: unable to set swap interval! SDL_Error: "
                         << SDL_GetError()

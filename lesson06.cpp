@@ -24,6 +24,10 @@ namespace {
         gloop::buffer vUVs;
 
         gloop::texture2D texture;
+        struct texture_scale_t {
+            float scaleWidth;
+            float scaleHeight;
+        } texture_scale;
 
         struct model {
             gloop::program * program;
@@ -88,8 +92,8 @@ namespace {
     
     static void initTexture(lesson06_context * glCtx) {        
         auto tex = gloop::tools::loadTexture("tests/data/nehe.bmp");
-                
-        std::swap(glCtx->texture, tex);
+                        
+        std::swap(glCtx->texture, tex.texture);
         std::cout << "Allocated " << glCtx->texture << std::endl;
     }
     

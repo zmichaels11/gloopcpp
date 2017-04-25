@@ -1949,7 +1949,6 @@
           <linkerLibItems>
             <linkerOptionItem>`pkg-config --libs sdl2`</linkerOptionItem>
             <linkerOptionItem>`pkg-config --libs glesv2`</linkerOptionItem>
-            <linkerOptionItem>`pkg-config --libs SDL2_image`</linkerOptionItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>

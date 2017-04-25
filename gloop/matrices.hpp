@@ -128,8 +128,8 @@ namespace gloop {
                 0.0F, 0.0F, (2.0F * far * near) / (near - far), 0.0F};
         }
 
-        mat4 makePerspective4F(float fov, float aspect, float near, float far);
-
+        mat4 makePerspective4F(float fov, float aspect, float near, float far);        
+        
         constexpr mat4 multiply(const mat4& in0, const mat4& in1) {
             return mat4{
                 in0[0] * in1[0] + in0[1] * in1[4] + in0[2] * in1[8] + in0[3] * in1[12],
@@ -148,7 +148,7 @@ namespace gloop {
                 in0[12] * in1[1] + in0[13] * in1[5] + in0[14] * in1[9] + in0[15] * in1[13],
                 in0[12] * in1[2] + in0[13] * in1[6] + in0[14] * in1[10] + in0[15] * in1[14],
                 in0[12] * in1[3] + in0[13] * in1[7] + in0[14] * in1[11] + in0[15] * in1[15]};
-        }
+        }        
 
         constexpr vec4 multiply(const mat4& in0, const vec4& in1) {
             return vec4{

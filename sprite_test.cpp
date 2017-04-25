@@ -23,20 +23,23 @@ namespace {
     static struct sprite_test_context : gloop::context {
         glgfx::sprite::texture_data frames[10];
         std::unique_ptr<glgfx::vbo_sprite_buffer> renderer;
-        gloop::texture2D texture;
+        gloop::texture2D texture;                
     } glContext;
 
     static void initFrames(sprite_test_context * ctx) {
         auto tex = gloop::tools::loadTexture("tests/data/duke.bmp");
 
-        std::swap(ctx->texture, tex);
+        float scaleWidth = tex.view.u1;
+        float scaleHeight = tex.view.v1;
+        
+        std::swap(ctx->texture, tex.texture);
 
         for (int i = 0; i < 10; i++) {
             ctx->frames[i].texture = &(ctx->texture);
-            ctx->frames[i].u0 = float(i) / 10.0F;
+            ctx->frames[i].u0 = float(i) / 10.0F * scaleWidth;
             ctx->frames[i].v0 = 0.0F;
-            ctx->frames[i].u1 = float(i + 1) / 10.0F;
-            ctx->frames[i].v1 = 1.0F;
+            ctx->frames[i].u1 = float(i + 1) / 10.0F * scaleWidth;
+            ctx->frames[i].v1 = scaleHeight;
         }
     }
 
@@ -69,7 +72,7 @@ namespace {
             for (int j = 0; j < 8; j++) {
                 glgfx::sprite sprite;
 
-                int frameSelect = (int(frame) + i * 32 + j) % 10;
+                int frameSelect = (int(frame) + i * 8 + j) % 10;
                 
                 sprite.textureData = glCtx->frames + frameSelect;
                 sprite.hasColorTransform = false;
@@ -82,7 +85,7 @@ namespace {
                     
                     auto mSize = gloop::matrices::scale4F(width, height, 1.0F, 1.0F);
                     auto mTr = gloop::matrices::translation4F(width / 2, 0.0F, 0.0F, 1.0F);
-                    auto modelView = gloop::matrices::translation4F(i * xSpacing, j * ySpacing, 0.0F, 1.0F);
+                    auto modelView = gloop::matrices::translation4F(i * xSpacing, j * ySpacing, 0.0F, 1.0F);                    
                     auto mvp = gloop::matrices::multiply(modelView, projection);
                     auto mCat = gloop::matrices::multiply(mSize, gloop::matrices::multiply(mTr, mvp));
 
@@ -105,7 +108,8 @@ namespace {
             fpsStart = now;
         }
         
-        frame += 0.01F;
+        frame = int(elapsedTime / 60);
+        
         glCtx->renderer->flush();
         frameCount++;
     }

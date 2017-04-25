@@ -21,6 +21,7 @@
 #include "states/texture2D_parameters.hpp"
 #include "texture2D.hpp"
 #include "wrapper/gl.hpp"
+#include "pixel_formats.hpp"
 
 namespace gloop {
     namespace {
@@ -33,47 +34,40 @@ namespace gloop {
         }
     }
 
-    gloop::texture2D tools::loadTexture(const std::string& file, const states::texture2D_parameters params) {
-        gloop::texture2D out;
+    tools::loaded_texture2D tools::loadTexture(const std::string& file, const states::texture2D_parameters params) {
+        loaded_texture2D out;
 
-        out.setParameters(params);
+        out.texture.setParameters(params);
 
         const auto img = SDL_LoadBMP(file.c_str());
-
-        const auto sdlFormat = img->format->format;
-        const auto sdlPixelType = SDL_PIXELTYPE(sdlFormat);
-        const auto sdlPixelOrder = SDL_PIXELORDER(sdlFormat);
-
-        if (sdlPixelType == SDL_PIXELTYPE_UNKNOWN) {
-            gloop_throw(gloop::exception::invalid_enum_exception("Unknown SDL pixel type!"));
-        } else if (sdlPixelType == SDL_PIXELTYPE_ARRAYU8) {
-            switch (sdlPixelOrder) {
-                case SDL_ARRAYORDER_NONE:
-                    gloop_throw(gloop::exception::invalid_enum_exception("SDL pixel type array must have an array order!"));
-                    break;
-                case SDL_ARRAYORDER_BGR:                    
-                    out.allocate(enums::texture_internal_format::R8_G8_B8_UNORM, 1, img->w, img->h);
-                    out.update(0, 0, 0, img->w, img->h, reinterpret_cast<gloop::pixel_formats::B8_G8_R8*> (img->pixels));
-                    break;
-                case SDL_ARRAYORDER_BGRA:
-                    out.allocate(enums::texture_internal_format::R8_G8_B8_A8_UNORM, 1, img->w, img->h);
-                    out.update(0, 0, 0, img->w, img->h, reinterpret_cast<gloop::pixel_formats::B8_G8_R8_A8*> (img->pixels));
-                    break;
-                case SDL_ARRAYORDER_RGB:
-                    out.allocate(enums::texture_internal_format::R8_G8_B8_UNORM, 1, img->w, img->h);
-                    out.update(0, 0, 0, img->w, img->h, reinterpret_cast<gloop::pixel_formats::R8_G8_B8 *> (img->pixels));
-                    break;
-                case SDL_ARRAYORDER_RGBA:
-                    out.allocate(enums::texture_internal_format::R8_G8_B8_A8_UNORM, 1, img->w, img->h);
-                    out.update(0, 0, 0, img->w, img->h, reinterpret_cast<gloop::pixel_formats::R8_G8_B8_A8 *> (img->pixels));
-                    break;
-                default:
-                    gloop_throw(gloop::exception::invalid_enum_exception("Unsupported SDL pixel type array order!"));
-                    break;
-            }
-        } else {
-            gloop_throw(gloop::exception::invalid_enum_exception("Unsupported SDL pixel type!"));
-        }                
+        
+        constexpr Uint32 rmask = 0x000000FF;
+        constexpr Uint32 gmask = 0x0000FF00;
+        constexpr Uint32 bmask = 0x00FF0000;
+        constexpr Uint32 amask = 0xFF000000;
+                        
+        const auto optimized = SDL_CreateRGBSurface(0, img->w, img->h, 32, rmask, gmask, bmask, amask);
+        
+        if (optimized == nullptr) {
+            gloop_throw("Unable to create RGB surface!");
+        }
+                
+        
+        SDL_BlitSurface(img, nullptr, optimized, nullptr);
+        
+        auto width = tools::getNearestPowerOf2(img->w);
+        auto height = tools::getNearestPowerOf2(img->h);
+        
+        out.texture.allocate(gloop::enums::texture_internal_format::R8_G8_B8_A8_UNORM, 1, width, height);
+        out.texture.update(0, 0, 0, img->w, img->h, reinterpret_cast<const gloop::pixel_formats::R8_G8_B8_A8 *> (optimized->pixels));
+        
+        out.view.u0 = 0.0F;
+        out.view.v0 = 0.0F;
+        out.view.u1 = float(img->w) / float(width);
+        out.view.v1 = float(img->h) / float(height);
+        
+        SDL_FreeSurface(optimized);
+        SDL_FreeSurface(img);
         
         return out;
     }
@@ -149,5 +143,13 @@ namespace gloop {
         }
     }
 
-
+    unsigned int tools::getNearestPowerOf2(unsigned int n) {
+        unsigned int val = 1;
+        
+        while (val < n) {
+            val <<= 1;
+        }
+        
+        return val;
+    }
 }
