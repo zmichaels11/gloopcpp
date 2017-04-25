@@ -45,7 +45,7 @@ namespace gloop {
         if (SDL_Init(SDL_INIT_VIDEO) != 0) {
             gloop_throw("Unable to initialize SDL!");
         }
-
+        
         SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, this->_hints.version.major);
         SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, this->_hints.version.minor);
 
@@ -136,7 +136,7 @@ namespace gloop {
                 std::terminate();
             }
         }
-
+        
         SDL_GL_SwapWindow(MAIN_APPLICATION->_window);
     }
 

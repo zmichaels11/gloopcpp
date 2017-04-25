@@ -8,6 +8,8 @@
 
 #include "vertex_arrays.hpp"
 
+#include <iostream>
+
 #include <GL/glew.h>
 
 #include "../glint.hpp"
@@ -40,7 +42,7 @@ namespace gloop {
         }
         
         void vertexAttribPointer(gloop::uint_t index, gloop::int_t size, gloop::enum_t type, gloop::boolean_t normalized, gloop::sizei_t stride, const void * pointer) {
-            glVertexAttribPointer(index, size, type, normalized, stride, pointer);
+            glVertexAttribPointer(index, size, type, normalized, stride, pointer);            
         }
         
         void vertexAttribIPointer(gloop::uint_t index, gloop::int_t size, gloop::enum_t type, gloop::sizei_t stride, const void * pointer) {

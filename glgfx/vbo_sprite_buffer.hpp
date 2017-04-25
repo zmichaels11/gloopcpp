@@ -28,7 +28,7 @@ namespace glgfx {
 
     class vbo_sprite_buffer {
     public:
-        constexpr static unsigned int BUFFER_COUNT = 3;
+        constexpr static unsigned int BUFFER_COUNT = 1;
         constexpr static unsigned int BATCH_SIZE = 256;
     private:
 
@@ -46,7 +46,9 @@ namespace glgfx {
             std::array<float, 16> vCTr;
             std::array<float, 4> vCo;
             float vIgnoreCT;
-        } _drawData[BATCH_SIZE];
+        };
+        
+        std::unique_ptr<draw_data_t[]> _drawData;
         unsigned int _currentBuffer;
 
         unsigned int _spriteCount;
@@ -56,6 +58,8 @@ namespace glgfx {
         void streamDraw();
 
     public:
+        vbo_sprite_buffer();
+        
         void draw(const sprite& s);
 
         void flush();

@@ -9,6 +9,7 @@
 #include "texture_objects.hpp"
 
 #include <algorithm>
+#include <iostream>
 
 #include <GL/glew.h>
 
@@ -136,10 +137,10 @@ namespace gloop {
                 gloop::uint_t texture) {
 
             if (GLEW_ARB_direct_state_access) {
-                glBindTextureUnit(unit, texture);
+                glBindTextureUnit(unit, texture);                     
             } else {
                 glActiveTexture(GL_TEXTURE0 + unit);
-                glBindTexture(GL_TEXTURE_2D, texture);
+                glBindTexture(GL_TEXTURE_2D, texture);                
             }
         }
     }

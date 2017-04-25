@@ -39,8 +39,8 @@ namespace gloop {
 
         if (this->_indexBuffer) {
             this->_indexBuffer->bind(gloop::enums::buffer_target::ELEMENT_ARRAY);
-        }
-
+        }        
+        
         for (int i = 0; i < _numBindings; i++) {            
             wrapper::enableVertexAttribArray(_bindings[i]->getAttributeId());
             _bindings[i]->apply();

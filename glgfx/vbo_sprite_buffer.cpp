@@ -9,13 +9,17 @@
 #include <algorithm>
 #include <iostream>
 #include <memory>
+#include <cstddef>
+#include <cstring>
 
 #include "../gloop/buffer.hpp"
 #include "../gloop/draw_calls.hpp"
 #include "../gloop/glint.hpp"
 #include "../gloop/enums.hpp"
+#include "../gloop/matrices.hpp"
 #include "../gloop/objects.hpp"
 #include "../gloop/uniforms.hpp"
+#include "../gloop/tools.hpp"
 
 #include "blend_mode.hpp"
 #include "sprite.hpp"
@@ -55,8 +59,8 @@ namespace glgfx {
                 program.setVertexAttributes(getAttributes());
 
                 gloop::shader shaders[]{
-                    gloop::shader::makeVertexShader("glgfx/vbo_sprite_buffer.vert"),
-                    gloop::shader::makeFragmentShader("glgfx/vbo_sprite_buffer.frag")
+                    gloop::shader::makeVertexShader("glgfx/vboSpriteES.vert"),
+                    gloop::shader::makeFragmentShader("glgfx/vboSpriteES.frag")
                 };
 
                 program.linkShaders(shaders, 2);
@@ -65,88 +69,99 @@ namespace glgfx {
                     textureBind[i] = program.getUniformIntBinding("spritesheet", i);
                 }
             }
-            
+
             program.use();
             textureBind[binding]();
             texture->bind(binding);
         }
     }
 
+    vbo_sprite_buffer::vbo_sprite_buffer() {
+        _drawData = std::make_unique < vbo_sprite_buffer::draw_data_t[]> (BATCH_SIZE);
+        _spriteCount = 0;
+        _currentBuffer = 0;
+        _currentBlendMode = blend_mode::NORMAL;
+        _currentTexture = nullptr;
+    }
+
     vbo_sprite_buffer::buffer_data_t::buffer_data_t() {
-        gloop::buffer verts;
-        gloop::buffer vInstance;
+        gloop::buffer * verts = new gloop::buffer;
+        gloop::buffer * vInstance = new gloop::buffer;
+        
+        constexpr int stride = sizeof (vbo_sprite_buffer::draw_data_t);
+        constexpr int vec4_size = 4 * sizeof (gloop::float_t);        
+        constexpr int buffer_size = stride * BATCH_SIZE;                        
 
-        constexpr int mvpSize = 16 * sizeof (gloop::float_t);
-        constexpr int ctSize = 20 * sizeof (gloop::float_t);
-        constexpr int uvSize = 4 * sizeof (gloop::float_t);
-        constexpr int stride = mvpSize + uvSize + ctSize;
-        constexpr int vec4_size = 4 * sizeof (gloop::float_t);
-
-        verts.allocate(gloop::enums::buffer_target::ARRAY, std::array<float, 8>{0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 0.0F, 1.0F, 1.0F});
-        vInstance.allocate(gloop::enums::buffer_target::ARRAY, stride * BATCH_SIZE, gloop::enums::buffer_storage_hint::STREAM_DRAW);
+        verts->allocate(gloop::enums::buffer_target::ARRAY, std::array<float, 8>{0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 0.0F, 1.0F, 1.0F});
+        vInstance->allocate(gloop::enums::buffer_target::ARRAY, buffer_size, gloop::enums::buffer_storage_hint::STREAM_DRAW);
 
         auto attribs = getAttributes();
 
-        gloop::vertex_array vao;
+        gloop::vertex_array * vao = new gloop::vertex_array;
 
         int off = 0;
 
-        vao.addBinding(attribs["vPos"].bindBuffer(&verts, gloop::enums::vertex_attribute_type::VEC2));
+        vao->addBinding(attribs["vPos"].bindBuffer(verts, gloop::enums::vertex_attribute_type::VEC2));
 
-        vao.addBinding(attribs["vMvp0"].bindBuffer(&vInstance, gloop::enums::vertex_attribute_type::VEC4, off, stride, 1));
+        vao->addBinding(attribs["vMvp0"].bindBuffer(vInstance, gloop::enums::vertex_attribute_type::VEC4, stride, off, 1));
         off += vec4_size;
-        vao.addBinding(attribs["vMvp1"].bindBuffer(&vInstance, gloop::enums::vertex_attribute_type::VEC4, off, stride, 1));
+        vao->addBinding(attribs["vMvp1"].bindBuffer(vInstance, gloop::enums::vertex_attribute_type::VEC4, stride, off, 1));
         off += vec4_size;
-        vao.addBinding(attribs["vMvp2"].bindBuffer(&vInstance, gloop::enums::vertex_attribute_type::VEC4, off, stride, 1));
+        vao->addBinding(attribs["vMvp2"].bindBuffer(vInstance, gloop::enums::vertex_attribute_type::VEC4, stride, off, 1));
         off += vec4_size;
-        vao.addBinding(attribs["vMvp3"].bindBuffer(&vInstance, gloop::enums::vertex_attribute_type::VEC4, off, stride, 1));
-        off += vec4_size;
-
-        vao.addBinding(attribs["vUVs"].bindBuffer(&vInstance, gloop::enums::vertex_attribute_type::VEC4, off, stride, 1));
-        off += uvSize;
-
-        vao.addBinding(attribs["vCTr0"].bindBuffer(&vInstance, gloop::enums::vertex_attribute_type::VEC4, off, stride, 1));
-        off += vec4_size;
-        vao.addBinding(attribs["vCTr1"].bindBuffer(&vInstance, gloop::enums::vertex_attribute_type::VEC4, off, stride, 1));
-        off += vec4_size;
-        vao.addBinding(attribs["vCTr2"].bindBuffer(&vInstance, gloop::enums::vertex_attribute_type::VEC4, off, stride, 1));
-        off += vec4_size;
-        vao.addBinding(attribs["vCTr3"].bindBuffer(&vInstance, gloop::enums::vertex_attribute_type::VEC4, off, stride, 1));
+        vao->addBinding(attribs["vMvp3"].bindBuffer(vInstance, gloop::enums::vertex_attribute_type::VEC4, stride, off, 1));
         off += vec4_size;
 
-        vao.addBinding(attribs["vCo"].bindBuffer(&vInstance, gloop::enums::vertex_attribute_type::VEC4, off, stride, 1));
+        vao->addBinding(attribs["vUVs"].bindBuffer(vInstance, gloop::enums::vertex_attribute_type::VEC4, stride, off, 1));
         off += vec4_size;
 
-        vao.addBinding(attribs["vIgnoreCT"].bindBuffer(&vInstance, gloop::enums::vertex_attribute_type::FLOAT, off, stride, 1));
+        vao->addBinding(attribs["vCTr0"].bindBuffer(vInstance, gloop::enums::vertex_attribute_type::VEC4, stride, off, 1));
+        off += vec4_size;
+        vao->addBinding(attribs["vCTr1"].bindBuffer(vInstance, gloop::enums::vertex_attribute_type::VEC4, stride, off, 1));
+        off += vec4_size;
+        vao->addBinding(attribs["vCTr2"].bindBuffer(vInstance, gloop::enums::vertex_attribute_type::VEC4, stride, off, 1));
+        off += vec4_size;
+        vao->addBinding(attribs["vCTr3"].bindBuffer(vInstance, gloop::enums::vertex_attribute_type::VEC4, stride, off, 1));
+        off += vec4_size;
 
-        std::swap(*_verts, verts);
-        std::swap(*_vInstance, vInstance);
-        std::swap(*_vao, vao);
+        vao->addBinding(attribs["vCo"].bindBuffer(vInstance, gloop::enums::vertex_attribute_type::VEC4, stride, off, 1));
+        off += vec4_size;
+
+        vao->addBinding(attribs["vIgnoreCT"].bindBuffer(vInstance, gloop::enums::vertex_attribute_type::FLOAT, stride, off, 1));
+
+        _verts.reset(verts);
+        _vInstance.reset(vInstance);
+        _vao.reset(vao);
     }
 
     void vbo_sprite_buffer::streamDraw() {
         unsigned int instanceSize = sizeof (draw_data_t) * this->_spriteCount;
+        auto * bufferData = this->_bufferData + this->_currentBuffer;
 
-        this->_bufferData[this->_currentBuffer]._vInstance->setData(0, instanceSize, this->_drawData);
-
+        bufferData->_vInstance->reallocate();                
+        bufferData->_vInstance->setData(0, instanceSize, _drawData.get());        
+        
         gloop::draw::arrays_instanced drawCall;
         drawCall.count = 4;
         drawCall.drawMode = gloop::draw::mode::TRIANGLE_STRIP;
         drawCall.first = 0;
         drawCall.primitiveCount = this->_spriteCount;
 
+        bufferData->_vao->bind();        
+
         drawCall();
+
         this->_spriteCount = 0;
         this->_currentBuffer = (this->_currentBuffer + 1) % BUFFER_COUNT;
     }
 
     void vbo_sprite_buffer::flush() {
-        if (this->_spriteCount == 0) {
+        if (this->_spriteCount == 0) {            
             return;
         } else if (this->_currentTexture == nullptr) {
             std::cout << "WARN: Attempted to flush vbo_sprite_buffer without specifying any textures!" << std::endl;
             return;
-        }
+        }                
 
         bindTexture(this->_currentTexture, this->_currentBuffer);
         apply(this->_currentBlendMode);
@@ -173,14 +188,14 @@ namespace glgfx {
             this->flush();
         }
 
-        if (this->_spriteCount == BATCH_SIZE) {
+        if (this->_spriteCount == BATCH_SIZE - 1) {
             this->flush();
         }
-        
+
         this->_currentTexture = s.textureData->texture;
         this->_currentBlendMode = s.blendMode;
 
-        draw_data_t * data = this->_drawData + this->_spriteCount;
+        draw_data_t * data = this->_drawData.get() + this->_spriteCount;
 
         data->vMvp = s.transformation;
 
@@ -189,9 +204,16 @@ namespace glgfx {
         data->vUVs[2] = s.textureData->u1;
         data->vUVs[3] = s.textureData->v1;
 
+        {
+            static gloop::vec4 identityCO{0.0F, 0.0F, 0.0F, 0.0F};
+
+            data->vCTr = gloop::matrices::identity4F();
+            data->vCo = identityCO;
+        }
+
         if (s.hasColorTransform) {
-            //TODO: implement            
-            data->vIgnoreCT = 1.0F;
+            //TODO: implement                    
+            data->vIgnoreCT = 0.0F;
         } else {
             data->vIgnoreCT = 1.0F;
         }

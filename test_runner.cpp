@@ -6,7 +6,7 @@
 
 #ifndef _LIB
 #ifndef TEST
-#define TEST lesson06
+#define TEST sprite_test
 #endif
 
 extern int TEST(int argc, char** argv);

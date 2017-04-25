@@ -47,6 +47,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/gloop/error/base_error.o \
 	${OBJECTDIR}/gloop/exception/base_exception.o \
 	${OBJECTDIR}/gloop/framebuffer.o \
+	${OBJECTDIR}/gloop/matrices.o \
 	${OBJECTDIR}/gloop/pixel_formats.o \
 	${OBJECTDIR}/gloop/program.o \
 	${OBJECTDIR}/gloop/program_uniform_binding.o \
@@ -91,6 +92,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/gloop/wrapper/glew_vertex_arrays.o \
 	${OBJECTDIR}/lesson06.o \
 	${OBJECTDIR}/simple_rect.o \
+	${OBJECTDIR}/sprite_test.o \
 	${OBJECTDIR}/test_runner.o
 
 
@@ -177,6 +179,11 @@ ${OBJECTDIR}/gloop/framebuffer.o: gloop/framebuffer.cpp
 	${MKDIR} -p ${OBJECTDIR}/gloop
 	${RM} "$@.d"
 	$(COMPILE.cc) -O3 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/framebuffer.o gloop/framebuffer.cpp
+
+${OBJECTDIR}/gloop/matrices.o: gloop/matrices.cpp
+	${MKDIR} -p ${OBJECTDIR}/gloop
+	${RM} "$@.d"
+	$(COMPILE.cc) -O3 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/matrices.o gloop/matrices.cpp
 
 ${OBJECTDIR}/gloop/pixel_formats.o: gloop/pixel_formats.cpp
 	${MKDIR} -p ${OBJECTDIR}/gloop
@@ -397,6 +404,11 @@ ${OBJECTDIR}/simple_rect.o: simple_rect.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O3 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/simple_rect.o simple_rect.cpp
+
+${OBJECTDIR}/sprite_test.o: sprite_test.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O3 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/sprite_test.o sprite_test.cpp
 
 ${OBJECTDIR}/test_runner.o: test_runner.cpp
 	${MKDIR} -p ${OBJECTDIR}

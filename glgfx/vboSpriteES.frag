@@ -16,5 +16,5 @@ void main() {
         gl_FragColor = baseColor;
     } else {
         gl_FragColor = fCt * baseColor + fCo;
-    }
+    }    
 }

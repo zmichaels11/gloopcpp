@@ -154,6 +154,7 @@ namespace gloop {
 
     void texture2D::free() {
         if (isValid()) {
+            std::cout << "Deleting texture: " << _id << std::endl;
             wrapper::deleteTextures(1, &_id);
             _id = 0;
             _format = static_cast<enums::texture_internal_format> (0);

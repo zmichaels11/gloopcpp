@@ -100,7 +100,7 @@ namespace gloop {
     }
     
     void vertex_attribute_binding::apply() const {
-        const auto sizedType = vertexAttributeTypeSize(_type);
+        const auto sizedType = vertexAttributeTypeSize(_type);                
         
         _buffer->bind(gloop::enums::buffer_target::ARRAY);
         
@@ -108,7 +108,7 @@ namespace gloop {
             gloop::wrapper::vertexAttribDivisor(_id, _divisor);
         }
         
-        if (sizedType.type == gloop::wrapper::FLOAT) {
+        if (sizedType.type == gloop::wrapper::FLOAT) {            
             gloop::wrapper::vertexAttribPointer(_id, sizedType.size, sizedType.type, gloop::wrapper::FALSE, _stride, _ptr);
         } else {
             gloop::wrapper::vertexAttribIPointer(_id, sizedType.size, sizedType.type, _stride, _ptr);

@@ -23,7 +23,7 @@ namespace glgfx {
     enum class blend_mode : unsigned int;
     
     struct sprite {
-        struct texture_data_t {
+        struct texture_data {
             float u0;
             float v0;
             float u1;

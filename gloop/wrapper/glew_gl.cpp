@@ -15,7 +15,7 @@ namespace gloop {
     namespace wrapper {
         gloop::enum_t getError() {
             return glGetError();
-        }                
+        }
         
         void init() {
             if (glewInit() != GLEW_OK) {                

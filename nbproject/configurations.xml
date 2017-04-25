@@ -119,6 +119,7 @@
         <itemPath>gloop/framebuffer.hpp</itemPath>
         <itemPath>gloop/glint.hpp</itemPath>
         <itemPath>gloop/gloop_throw.hpp</itemPath>
+        <itemPath>gloop/matrices.hpp</itemPath>
         <itemPath>gloop/objects.hpp</itemPath>
         <itemPath>gloop/pixel_formats.hpp</itemPath>
         <itemPath>gloop/program.hpp</itemPath>
@@ -209,6 +210,7 @@
         <itemPath>gloop/application.cpp</itemPath>
         <itemPath>gloop/buffer.cpp</itemPath>
         <itemPath>gloop/framebuffer.cpp</itemPath>
+        <itemPath>gloop/matrices.cpp</itemPath>
         <itemPath>gloop/pixel_formats.cpp</itemPath>
         <itemPath>gloop/program.cpp</itemPath>
         <itemPath>gloop/program_uniform_binding.cpp</itemPath>
@@ -230,6 +232,7 @@
         <itemPath>tests/basic.frag</itemPath>
         <itemPath>tests/basic.vert</itemPath>
         <itemPath>simple_rect.cpp</itemPath>
+        <itemPath>sprite_test.cpp</itemPath>
         <itemPath>test_runner.cpp</itemPath>
       </logicalFolder>
     </logicalFolder>
@@ -256,13 +259,14 @@
       <compileType>
         <ccTool>
           <standard>11</standard>
-          <commandLine>-DGL=GLEW -D_DEBUG=1 -D_LIB=1</commandLine>
+          <commandLine>-DGL=GLEW -D_DEBUG=1 -DUSE_SDL_IMAGE=1</commandLine>
         </ccTool>
         <linkerTool>
           <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/gloopcpp_test</output>
           <linkerLibItems>
             <linkerOptionItem>`pkg-config --libs sdl2`</linkerOptionItem>
             <linkerOptionItem>`pkg-config --libs glew`</linkerOptionItem>
+            <linkerOptionItem>`pkg-config --libs gl`</linkerOptionItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>
@@ -468,6 +472,10 @@
       <item path="gloop/glint.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/gloop_throw.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/matrices.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="gloop/matrices.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/objects.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -783,6 +791,8 @@
       <item path="lesson06.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="simple_rect.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="sprite_test.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="test_runner.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -1027,6 +1037,10 @@
       </item>
       <item path="gloop/gloop_throw.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/matrices.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="gloop/matrices.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/objects.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/pixel_formats.cpp" ex="false" tool="1" flavor2="0">
@@ -1342,6 +1356,8 @@
       </item>
       <item path="simple_rect.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="sprite_test.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="test_runner.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="tests/basic.frag" ex="false" tool="3" flavor2="0">
@@ -1362,13 +1378,14 @@
       <compileType>
         <ccTool>
           <standard>11</standard>
-          <commandLine>-DGL=GLES2 -D_DEBUG=1</commandLine>
+          <commandLine>-DGL=GLES2 -D_DEBUG=1 -DUSE_SDL_IMAGE=1</commandLine>
         </ccTool>
         <linkerTool>
           <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/gloopcpp_test</output>
           <linkerLibItems>
             <linkerOptionItem>`pkg-config --libs sdl2`</linkerOptionItem>
             <linkerOptionItem>`pkg-config --libs glesv2`</linkerOptionItem>
+            <linkerOptionItem>`pkg-config --libs SDL2_image`</linkerOptionItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>
@@ -1577,6 +1594,10 @@
       <item path="gloop/glint.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/gloop_throw.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/matrices.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="gloop/matrices.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/objects.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -1898,6 +1919,8 @@
       <item path="lesson06.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="simple_rect.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="sprite_test.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="test_runner.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -1919,13 +1942,14 @@
       <compileType>
         <ccTool>
           <standard>11</standard>
-          <commandLine>-DGL=GLES3 -D_DEBUG=1</commandLine>
+          <commandLine>-DGL=GLES3 -D_DEBUG=1 -DUSE_SDL_IMAGE=1</commandLine>
         </ccTool>
         <linkerTool>
           <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/gloopcpp_test</output>
           <linkerLibItems>
             <linkerOptionItem>`pkg-config --libs sdl2`</linkerOptionItem>
             <linkerOptionItem>`pkg-config --libs glesv2`</linkerOptionItem>
+            <linkerOptionItem>`pkg-config --libs SDL2_image`</linkerOptionItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>
@@ -2134,6 +2158,10 @@
       <item path="gloop/glint.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/gloop_throw.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/matrices.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="gloop/matrices.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/objects.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -2455,6 +2483,8 @@
       <item path="lesson06.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="simple_rect.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="sprite_test.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="test_runner.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -2483,7 +2513,7 @@
         <linkerTool>
           <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/gloopcpp_test.html</output>
           <commandlineTool>em++</commandlineTool>
-          <commandLine>-s USE_SDL=2 --preload-file tests -O2</commandLine>
+          <commandLine>-s USE_SDL=2 --preload-file tests --preload-file glgfx/vboSpriteES.vert --preload-file glgfx/vboSpriteES.frag -O2</commandLine>
         </linkerTool>
       </compileType>
       <item path="glgfx/blend_mode.cpp" ex="false" tool="1" flavor2="0">
@@ -2691,6 +2721,10 @@
       <item path="gloop/glint.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/gloop_throw.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/matrices.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="gloop/matrices.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/objects.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -3013,6 +3047,8 @@
       </item>
       <item path="simple_rect.cpp" ex="false" tool="1" flavor2="11">
       </item>
+      <item path="sprite_test.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="test_runner.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="tests/basic.frag" ex="false" tool="3" flavor2="0">
@@ -3248,6 +3284,10 @@
       <item path="gloop/glint.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/gloop_throw.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/matrices.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="gloop/matrices.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/objects.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -3569,6 +3609,8 @@
       <item path="lesson06.cpp" ex="false" tool="1" flavor2="11">
       </item>
       <item path="simple_rect.cpp" ex="false" tool="1" flavor2="11">
+      </item>
+      <item path="sprite_test.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="test_runner.cpp" ex="false" tool="1" flavor2="11">
       </item>
@@ -3808,6 +3850,10 @@
       </item>
       <item path="gloop/gloop_throw.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/matrices.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="gloop/matrices.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/objects.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/pixel_formats.cpp" ex="false" tool="1" flavor2="11">
@@ -4129,6 +4175,8 @@
       </item>
       <item path="simple_rect.cpp" ex="false" tool="1" flavor2="11">
       </item>
+      <item path="sprite_test.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="test_runner.cpp" ex="false" tool="1" flavor2="11">
       </item>
       <item path="tests/basic.frag" ex="false" tool="3" flavor2="0">
@@ -4149,7 +4197,7 @@
       <compileType>
         <ccTool>
           <standard>11</standard>
-          <commandLine>-DGL=GLES2 -D_DEBUG=1</commandLine>
+          <commandLine>-DGL=GLES2 -D_DEBUG=1 -D_LIB=1</commandLine>
         </ccTool>
         <archiverTool>
         </archiverTool>
@@ -4360,6 +4408,10 @@
       </item>
       <item path="gloop/gloop_throw.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/matrices.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="gloop/matrices.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/objects.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/pixel_formats.cpp" ex="false" tool="1" flavor2="11">
@@ -4680,6 +4732,8 @@
       <item path="lesson06.cpp" ex="false" tool="1" flavor2="11">
       </item>
       <item path="simple_rect.cpp" ex="false" tool="1" flavor2="11">
+      </item>
+      <item path="sprite_test.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="test_runner.cpp" ex="false" tool="1" flavor2="11">
       </item>
