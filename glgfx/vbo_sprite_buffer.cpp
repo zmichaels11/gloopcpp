@@ -26,6 +26,8 @@
 #include "blend_mode.hpp"
 #include "sprite.hpp"
 
+const bool & glgfx::vbo_sprite_buffer::USE_BINDLESS = gloop::texture2D::FEATURES.bindless;
+
 namespace glgfx {
     namespace {
 
@@ -56,7 +58,7 @@ namespace glgfx {
             }
 
             return _attribs;
-        }
+        }                
 
         static void bindTexture(const gloop::texture2D * texture) {
             static gloop::program program;
@@ -82,14 +84,14 @@ namespace glgfx {
 
                 program.linkShaders(shaders, 2);
 
-                if (!gloop::texture2D::FEATURES.bindless) {
+                if (!vbo_sprite_buffer::USE_BINDLESS) {
                     textureBind = program.getUniformIntBinding("spritesheet", 0);
                 }
             }
 
             program.use();
 
-            if (!gloop::texture2D::FEATURES.bindless) {
+            if (!vbo_sprite_buffer::USE_BINDLESS) {
                 textureBind();
                 texture->bind(0);
             }
@@ -97,7 +99,7 @@ namespace glgfx {
     }
 
     vbo_sprite_buffer::vbo_sprite_buffer() {
-        if (gloop::texture2D::FEATURES.bindless) {
+        if (USE_BINDLESS) {
             _bindlessDrawData = std::make_unique < bindless_draw_data_t[]> (BATCH_SIZE);
         } else {
             _drawData = std::make_unique < draw_data_t[]> (BATCH_SIZE);
@@ -119,10 +121,8 @@ namespace glgfx {
         constexpr auto bind_buffer_size = bind_stride * BATCH_SIZE;
         constexpr auto bindless_buffer_size = bindless_stride * BATCH_SIZE;        
         
-        auto stride = gloop::texture2D::FEATURES.bindless ? bindless_stride : bind_stride;
-        auto buffer_size = gloop::texture2D::FEATURES.bindless ? bindless_buffer_size : bind_buffer_size;
-        
-        std::cout << "Stride: " << stride << std::endl;
+        const auto stride = USE_BINDLESS ? bindless_stride : bind_stride;
+        const auto buffer_size = USE_BINDLESS ? bindless_buffer_size : bind_buffer_size;                
 
         verts->allocate(gloop::enums::buffer_target::ARRAY, std::array<float, 8>{0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 0.0F, 1.0F, 1.0F});
         vInstance->allocate(gloop::enums::buffer_target::ARRAY, buffer_size, gloop::enums::buffer_storage_hint::STREAM_DRAW);
@@ -162,7 +162,7 @@ namespace glgfx {
         vao->addBinding(attribs["vIgnoreCT"].bindBuffer(vInstance, gloop::enums::vertex_attribute_type::FLOAT, stride, off, 1));
         off += vec2_size;
 
-        if (gloop::texture2D::FEATURES.bindless) {
+        if (USE_BINDLESS) {
             vao->addBinding(attribs["vImage"].bindBuffer(vInstance, gloop::enums::vertex_attribute_type::UVEC2, stride, off, 1));
         }
 
@@ -238,9 +238,7 @@ namespace glgfx {
     }
 
     void vbo_sprite_buffer::draw(sprite& s) {
-        const bool useBindless = gloop::texture2D::FEATURES.bindless;
-
-        if (!useBindless && this->_currentTexture != nullptr && this->_currentTexture != s.textureData->texture) {
+        if (!USE_BINDLESS && this->_currentTexture != nullptr && this->_currentTexture != s.textureData->texture) {
             this->flush();
         }
 
@@ -255,7 +253,7 @@ namespace glgfx {
         this->_currentTexture = s.textureData->texture;
         this->_currentBlendMode = s.blendMode;
 
-        if (useBindless) {
+        if (USE_BINDLESS) {
             bindless_draw_data_t * data = this->_bindlessDrawData.get() + this->_spriteCount;
 
             data->vMvp = s.transformation;
