@@ -65,22 +65,22 @@ namespace {
         glCtx->currentClear();
         
         auto size = glCtx->currentViewport.getSize();
-        float xSpacing = float(size.width) / 8.0F;
-        float ySpacing = float(size.height) / 8.0F;
+        float xSpacing = float(size.width) / 64.0F;
+        float ySpacing = float(size.height) / 64.0F;
         
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
+        for (int i = 0; i < 64; i++) {
+            for (int j = 0; j < 64; j++) {
                 glgfx::sprite sprite;
 
-                int frameSelect = (int(frame) + i * 8 + j) % 10;
+                int frameSelect = (int(frame) + i * 64 + j) % 10;
                 
                 sprite.textureData = glCtx->frames + frameSelect;
                 sprite.hasColorTransform = false;
                 sprite.blendMode = glgfx::blend_mode::NORMAL;
 
                 {
-                    static constexpr float width = 32;
-                    static constexpr float height = 64;
+                    static constexpr float width = 4;
+                    static constexpr float height = 8;
                     static const auto projection = gloop::matrices::ortho4F(glCtx->currentViewport);                                                                                                    
                     
                     auto mSize = gloop::matrices::scale4F(width, height, 1.0F, 1.0F);
