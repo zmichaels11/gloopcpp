@@ -11,6 +11,7 @@
 #include "gl_gles3.hpp"
 
 #include "../buffer.hpp"
+#include "../texture2D.hpp"
 
 #include <functional>
 #include <type_traits>
@@ -38,17 +39,21 @@ namespace {
 
 namespace {
     static gloop::buffer::features _bufferFeatures;
+    static gloop::texture2D::features _textureFeatures;
 
-    static void initBufferFeatures() {
+    static void initFeatures() {
         _bufferFeatures.map = true;
         _bufferFeatures.mapRange = true;
         _bufferFeatures.blockBind = true;
         _bufferFeatures.immutable = gloop::wrapper::EXT_buffer_storage;
+        
+        _textureFeatures.bindless = false;
     }
 }
 
 namespace gloop {
     const buffer::features& gloop::buffer::FEATURES = _bufferFeatures;
+    const texture2D::features& gloop::texture2D::FEATURES = _textureFeatures;
 }
 
 namespace gloop {
@@ -262,7 +267,7 @@ namespace gloop {
             
             init_NV_bindless_texture();
             
-            initBufferFeatures();
+            initFeatures();
         }
     }
 }

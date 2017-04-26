@@ -101,9 +101,7 @@ namespace gloop {
         
         const gloop::states::texture2D_parameters& getParameters() const;
         
-        gloop::uint64_t getHandle();
-        
-        gloop::uint64_t getHandle() const;
+        gloop::uint64_t getHandle();        
         
         void makeResident() const;
         

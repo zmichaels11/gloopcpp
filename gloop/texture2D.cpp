@@ -35,7 +35,7 @@ namespace gloop {
         
         template <bool isSupported = supports_bindless, typename std::enable_if<isSupported, void * >::type = nullptr>
         static inline gloop::uint64_t __getTextureHandle(gloop::uint_t texture) {
-            return wrapper::getTextureHandle(texture);
+            return wrapper::getTextureHandle(texture);            
         }
         
         template <bool isSupported = supports_bindless, typename std::enable_if<!isSupported, void * >::type = nullptr>
@@ -63,14 +63,11 @@ namespace gloop {
             gloop_throw(gloop::exception::invalid_operation_exception("Bindless textures are not supported!"));
         }
     }
-
-    gloop::uint64_t texture2D::getHandle() const {
-        return _handle;
-    }
-
+    
     gloop::uint64_t texture2D::getHandle() {
-        if (!_handle) {
+        if (_handle == 0) {
             _handle = __getTextureHandle(_id);
+            __makeTextureHandleResident(_handle);            
         }
 
         return _handle;

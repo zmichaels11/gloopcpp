@@ -17,7 +17,7 @@ in vec4 vCTr2;
 in vec4 vCTr3;
 in vec4 vCo;
 
-in float vIgnoreCT;
+in vec2 vIgnoreCT;
 
 flat out mat4 fCt;
 flat out vec4 fCo;
@@ -32,7 +32,7 @@ const mat4 IDENTITY = mat4(
     vec4(0.0, 0.0, 0.0, 1.0));
 
 void main() {
-    if (vIgnoreCT > 0.0) {
+    if (vIgnoreCT.x > 0.0) {
         fCt = IDENTITY;
         fCo = vec4(0.0, 0.0, 0.0, 0.0);        
     } else {
@@ -40,7 +40,7 @@ void main() {
         fCo = vCo;        
     }
 
-    fIgnoreCT = vIgnoreCT;
+    fIgnoreCT = vIgnoreCT.x;
 
     mat4 mvp = mat4(vMvp0, vMvp1, vMvp2, vMvp3);
 

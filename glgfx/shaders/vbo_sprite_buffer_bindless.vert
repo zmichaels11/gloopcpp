@@ -1,31 +1,35 @@
-#version 100
+#version 130
+#extension GL_ARB_bindless_texture : enable
 
 //HEADER_TAG
 
-precision mediump float;
+in vec2 vPos;
 
-attribute vec2 vPos;
+in vec4 vMvp0;
+in vec4 vMvp1;
+in vec4 vMvp2;
+in vec4 vMvp3;
 
-attribute vec4 vMvp0;
-attribute vec4 vMvp1;
-attribute vec4 vMvp2;
-attribute vec4 vMvp3;
+in vec4 vUVs;
 
-attribute vec4 vUVs;
+in vec4 vCTr0;
+in vec4 vCTr1;
+in vec4 vCTr2;
+in vec4 vCTr3;
+in vec4 vCo;
 
-attribute vec4 vCTr0;
-attribute vec4 vCTr1;
-attribute vec4 vCTr2;
-attribute vec4 vCTr3;
-attribute vec4 vCo;
+in vec2 vIgnoreCT;
 
-attribute vec2 vIgnoreCT;
+#ifdef GL_ARB_bindless_texture
+    in uvec2 vImage;
+    flat out sampler2D spritesheet;
+#endif
 
-varying mat4 fCt;
-varying vec4 fCo;
-varying float fIgnoreCT;
+flat out mat4 fCt;
+flat out vec4 fCo;
+flat out float fIgnoreCT;
 
-varying vec2 fUVs;
+out vec2 fUVs;
 
 const mat4 IDENTITY = mat4(
     vec4(1.0, 0.0, 0.0, 0.0),
@@ -49,4 +53,8 @@ void main() {
     fUVs = mix(vUVs.xy, vUVs.zw, vPos);
 
     gl_Position = mvp * vec4(vPos, 0.0, 1.0);
+
+#ifdef GL_ARB_bindless_texture
+    spritesheet = sampler2D(vImage);
+#endif
 }

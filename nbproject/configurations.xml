@@ -149,6 +149,8 @@
           <itemPath>glgfx/shaders/ES2_vbo_sprite_buffer.vert</itemPath>
           <itemPath>glgfx/shaders/vbo_sprite_buffer.frag</itemPath>
           <itemPath>glgfx/shaders/vbo_sprite_buffer.vert</itemPath>
+          <itemPath>glgfx/shaders/vbo_sprite_buffer_bindless.frag</itemPath>
+          <itemPath>glgfx/shaders/vbo_sprite_buffer_bindless.vert</itemPath>
         </logicalFolder>
         <itemPath>glgfx/blend_mode.cpp</itemPath>
         <itemPath>glgfx/vbo_sprite_buffer.cpp</itemPath>
@@ -301,6 +303,16 @@
             flavor2="0">
       </item>
       <item path="glgfx/shaders/vbo_sprite_buffer.vert"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="glgfx/shaders/vbo_sprite_buffer_bindless.frag"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="glgfx/shaders/vbo_sprite_buffer_bindless.vert"
             ex="false"
             tool="3"
             flavor2="0">
@@ -889,6 +901,16 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="glgfx/shaders/vbo_sprite_buffer_bindless.frag"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="glgfx/shaders/vbo_sprite_buffer_bindless.vert"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="glgfx/sprite.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="glgfx/vbo_sprite_buffer.cpp" ex="false" tool="1" flavor2="0">
@@ -1460,6 +1482,16 @@
             flavor2="0">
       </item>
       <item path="glgfx/shaders/vbo_sprite_buffer.vert"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="glgfx/shaders/vbo_sprite_buffer_bindless.frag"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="glgfx/shaders/vbo_sprite_buffer_bindless.vert"
             ex="false"
             tool="3"
             flavor2="0">
@@ -2048,6 +2080,16 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="glgfx/shaders/vbo_sprite_buffer_bindless.frag"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="glgfx/shaders/vbo_sprite_buffer_bindless.vert"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="glgfx/sprite.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="glgfx/vbo_sprite_buffer.cpp" ex="false" tool="1" flavor2="0">
@@ -2631,6 +2673,16 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="glgfx/shaders/vbo_sprite_buffer_bindless.frag"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="glgfx/shaders/vbo_sprite_buffer_bindless.vert"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="glgfx/sprite.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="glgfx/vbo_sprite_buffer.cpp" ex="false" tool="1" flavor2="0">
@@ -3210,6 +3262,16 @@
             flavor2="0">
       </item>
       <item path="glgfx/shaders/vbo_sprite_buffer.vert"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="glgfx/shaders/vbo_sprite_buffer_bindless.frag"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="glgfx/shaders/vbo_sprite_buffer_bindless.vert"
             ex="false"
             tool="3"
             flavor2="0">
@@ -3799,6 +3861,16 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="glgfx/shaders/vbo_sprite_buffer_bindless.frag"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="glgfx/shaders/vbo_sprite_buffer_bindless.vert"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="glgfx/sprite.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="glgfx/vbo_sprite_buffer.cpp" ex="false" tool="1" flavor2="0">
@@ -4373,6 +4445,16 @@
             flavor2="0">
       </item>
       <item path="glgfx/shaders/vbo_sprite_buffer.vert"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="glgfx/shaders/vbo_sprite_buffer_bindless.frag"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="glgfx/shaders/vbo_sprite_buffer_bindless.vert"
             ex="false"
             tool="3"
             flavor2="0">

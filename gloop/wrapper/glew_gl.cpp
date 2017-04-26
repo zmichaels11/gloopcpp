@@ -23,7 +23,7 @@ namespace {
         _bufferFeatures.blockBind = GLEW_VERSION_3_0;
         _bufferFeatures.immutable = GLEW_VERSION_4_4 || GLEW_ARB_buffer_storage;
         
-        _textureFeatures.bindless = GLEW_ARB_bindless_texture || GLEW_NV_bindless_texture;
+        _textureFeatures.bindless = GLEW_ARB_bindless_texture;
     }
 }
 

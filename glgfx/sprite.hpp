@@ -28,7 +28,7 @@ namespace glgfx {
             float v0;
             float u1;
             float v1;
-            const gloop::texture2D * texture;
+            gloop::texture2D * texture;
         } * textureData;
         
         std::array<float, 16> transformation;
