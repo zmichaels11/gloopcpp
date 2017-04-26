@@ -49,8 +49,7 @@ namespace glgfx {
                 _attribs.setLocation("vCo", 10);
                 _attribs.setLocation("vIgnoreCT", 11);
 
-                if (gloop::texture2D::FEATURES.bindless) {
-                    std::cout << "Using bindless images!" << std::endl;
+                if (gloop::texture2D::FEATURES.bindless) {                    
                     _attribs.setLocation("vImage", 12);
                 }
 
@@ -84,7 +83,7 @@ namespace glgfx {
 
                 program.linkShaders(shaders, 2);
 
-                if (!vbo_sprite_buffer::USE_BINDLESS) {
+                if (!vbo_sprite_buffer::USE_BINDLESS) {                    
                     textureBind = program.getUniformIntBinding("spritesheet", 0);
                 }
             }
