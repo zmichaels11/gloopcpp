@@ -7,6 +7,9 @@
       <logicalFolder name="f2" displayName="cglgfx" projectFiles="true">
       </logicalFolder>
       <logicalFolder name="f3" displayName="glgfx" projectFiles="true">
+        <logicalFolder name="f1" displayName="renderers" projectFiles="true">
+          <itemPath>glgfx/renderers/line_renderer.hpp</itemPath>
+        </logicalFolder>
         <itemPath>glgfx/blend_mode.hpp</itemPath>
         <itemPath>glgfx/sprite.hpp</itemPath>
         <itemPath>glgfx/vbo_sprite_buffer.hpp</itemPath>
@@ -274,6 +277,8 @@
       <item path="glgfx/blend_mode.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="glgfx/blend_mode.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/renderers/line_renderer.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="glgfx/sprite.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -839,6 +844,8 @@
       </item>
       <item path="glgfx/blend_mode.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="glgfx/renderers/line_renderer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="glgfx/sprite.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="glgfx/vboSpriteES.frag" ex="false" tool="3" flavor2="0">
@@ -1393,6 +1400,8 @@
       <item path="glgfx/blend_mode.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="glgfx/blend_mode.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/renderers/line_renderer.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="glgfx/sprite.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -1950,12 +1959,15 @@
           <linkerLibItems>
             <linkerOptionItem>`pkg-config --libs sdl2`</linkerOptionItem>
             <linkerOptionItem>`pkg-config --libs glesv2`</linkerOptionItem>
+            <linkerOptionItem>`pkg-config --libs SDL2_image`</linkerOptionItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>
       <item path="glgfx/blend_mode.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="glgfx/blend_mode.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/renderers/line_renderer.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="glgfx/sprite.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -2520,6 +2532,8 @@
       </item>
       <item path="glgfx/blend_mode.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="glgfx/renderers/line_renderer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="glgfx/sprite.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="glgfx/vboSpriteES.frag" ex="false" tool="3" flavor2="0">
@@ -3082,6 +3096,8 @@
       <item path="glgfx/blend_mode.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="glgfx/blend_mode.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/renderers/line_renderer.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="glgfx/sprite.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -3648,6 +3664,8 @@
       </item>
       <item path="glgfx/blend_mode.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="glgfx/renderers/line_renderer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="glgfx/sprite.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="glgfx/vboSpriteES.frag" ex="false" tool="3" flavor2="0">
@@ -4205,6 +4223,8 @@
       <item path="glgfx/blend_mode.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="glgfx/blend_mode.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/renderers/line_renderer.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="glgfx/sprite.hpp" ex="false" tool="3" flavor2="0">
       </item>

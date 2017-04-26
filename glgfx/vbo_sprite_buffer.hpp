@@ -27,8 +27,7 @@ namespace glgfx {
     class sprite;
 
     class vbo_sprite_buffer {
-    public:
-        constexpr static unsigned int BUFFER_COUNT = 1;
+    public:        
         constexpr static unsigned int BATCH_SIZE = 256;
     private:
 
@@ -38,7 +37,7 @@ namespace glgfx {
             std::unique_ptr<gloop::vertex_array> _vao;
 
             buffer_data_t();
-        } _bufferData[BUFFER_COUNT];
+        } _bufferData;
 
         struct draw_data_t {
             std::array<float, 16> vMvp;
@@ -48,8 +47,7 @@ namespace glgfx {
             float vIgnoreCT;
         };
         
-        std::unique_ptr<draw_data_t[]> _drawData;
-        unsigned int _currentBuffer;
+        std::unique_ptr<draw_data_t[]> _drawData;        
 
         unsigned int _spriteCount;
         blend_mode _currentBlendMode;

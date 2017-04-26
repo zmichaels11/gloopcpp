@@ -51,9 +51,9 @@ namespace glgfx {
             return _attribs;
         }
 
-        static void bindTexture(const gloop::texture2D * texture, int binding) {
+        static void bindTexture(const gloop::texture2D * texture) {
             static gloop::program program;
-            static gloop::uniform::uniform_int_binding textureBind[vbo_sprite_buffer::BUFFER_COUNT];
+            static gloop::uniform::uniform_int_binding textureBind;
 
             if (!program) {
                 program.setVertexAttributes(getAttributes());
@@ -65,21 +65,18 @@ namespace glgfx {
 
                 program.linkShaders(shaders, 2);
 
-                for (int i = 0; i < vbo_sprite_buffer::BUFFER_COUNT; i++) {
-                    textureBind[i] = program.getUniformIntBinding("spritesheet", i);
-                }
+                textureBind = program.getUniformIntBinding("spritesheet", 0);
             }
 
             program.use();
-            textureBind[binding]();
-            texture->bind(binding);
+            textureBind();
+            texture->bind(0);
         }
     }
 
     vbo_sprite_buffer::vbo_sprite_buffer() {
         _drawData = std::make_unique < vbo_sprite_buffer::draw_data_t[]> (BATCH_SIZE);
-        _spriteCount = 0;
-        _currentBuffer = 0;
+        _spriteCount = 0;        
         _currentBlendMode = blend_mode::NORMAL;
         _currentTexture = nullptr;
     }
@@ -135,11 +132,10 @@ namespace glgfx {
     }
 
     void vbo_sprite_buffer::streamDraw() {
-        unsigned int instanceSize = sizeof (draw_data_t) * this->_spriteCount;
-        auto * bufferData = this->_bufferData + this->_currentBuffer;
+        auto instanceSize = sizeof (draw_data_t) * this->_spriteCount;        
 
-        bufferData->_vInstance->reallocate();                
-        bufferData->_vInstance->setData(0, instanceSize, _drawData.get());        
+        this->_bufferData._vInstance->reallocate();                
+        this->_bufferData._vInstance->setData(0, instanceSize, _drawData.get());        
         
         gloop::draw::arrays_instanced drawCall;
         drawCall.count = 4;
@@ -147,12 +143,11 @@ namespace glgfx {
         drawCall.first = 0;
         drawCall.primitiveCount = this->_spriteCount;
 
-        bufferData->_vao->bind();        
+        this->_bufferData._vao->bind();        
 
         drawCall();
 
-        this->_spriteCount = 0;
-        this->_currentBuffer = (this->_currentBuffer + 1) % BUFFER_COUNT;
+        this->_spriteCount = 0;        
     }
 
     void vbo_sprite_buffer::flush() {
@@ -163,7 +158,7 @@ namespace glgfx {
             return;
         }                
 
-        bindTexture(this->_currentTexture, this->_currentBuffer);
+        bindTexture(this->_currentTexture);
         apply(this->_currentBlendMode);
         this->streamDraw();
     }
@@ -173,8 +168,7 @@ namespace glgfx {
     }
 
     void vbo_sprite_buffer::reset() {
-        this->_currentBlendMode = blend_mode::NORMAL;
-        this->_currentBuffer = (this->_currentBuffer + 1) % BUFFER_COUNT;
+        this->_currentBlendMode = blend_mode::NORMAL;        
         this->_currentTexture = nullptr;
         this->_spriteCount = 0;
     }
