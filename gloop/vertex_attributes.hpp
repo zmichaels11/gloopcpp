@@ -72,6 +72,6 @@ namespace gloop {
 
         void disableAttributes() const;
 
-        const vertex_attribute operator[](const std::string& name) const;
+        const vertex_attribute operator[](const std::string& name) const;        
     };
 }

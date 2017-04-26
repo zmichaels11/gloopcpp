@@ -37,6 +37,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/glgfx/blend_mode.o \
 	${OBJECTDIR}/glgfx/renderers/line_renderer.o \
+	${OBJECTDIR}/glgfx/renderers/solid_renderer.o \
 	${OBJECTDIR}/glgfx/vbo_sprite_buffer.o \
 	${OBJECTDIR}/gloop/application.o \
 	${OBJECTDIR}/gloop/bitfields/buffer_access_hint.o \
@@ -130,6 +131,11 @@ ${OBJECTDIR}/glgfx/renderers/line_renderer.o: glgfx/renderers/line_renderer.cpp
 	${MKDIR} -p ${OBJECTDIR}/glgfx/renderers
 	${RM} "$@.d"
 	$(COMPILE.cc) -g `pkg-config --cflags sdl2` `pkg-config --cflags glesv2` `pkg-config --cflags SDL2_image` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/glgfx/renderers/line_renderer.o glgfx/renderers/line_renderer.cpp
+
+${OBJECTDIR}/glgfx/renderers/solid_renderer.o: glgfx/renderers/solid_renderer.cpp
+	${MKDIR} -p ${OBJECTDIR}/glgfx/renderers
+	${RM} "$@.d"
+	$(COMPILE.cc) -g `pkg-config --cflags sdl2` `pkg-config --cflags glesv2` `pkg-config --cflags SDL2_image` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/glgfx/renderers/solid_renderer.o glgfx/renderers/solid_renderer.cpp
 
 ${OBJECTDIR}/glgfx/vbo_sprite_buffer.o: glgfx/vbo_sprite_buffer.cpp
 	${MKDIR} -p ${OBJECTDIR}/glgfx

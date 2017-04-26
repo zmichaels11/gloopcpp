@@ -9,6 +9,7 @@
       <logicalFolder name="f3" displayName="glgfx" projectFiles="true">
         <logicalFolder name="f1" displayName="renderers" projectFiles="true">
           <itemPath>glgfx/renderers/line_renderer.hpp</itemPath>
+          <itemPath>glgfx/renderers/solid_renderer.hpp</itemPath>
         </logicalFolder>
         <itemPath>glgfx/blend_mode.hpp</itemPath>
         <itemPath>glgfx/sprite.hpp</itemPath>
@@ -146,6 +147,7 @@
       <logicalFolder name="f3" displayName="glgfx" projectFiles="true">
         <logicalFolder name="f2" displayName="renderers" projectFiles="true">
           <itemPath>glgfx/renderers/line_renderer.cpp</itemPath>
+          <itemPath>glgfx/renderers/solid_renderer.cpp</itemPath>
         </logicalFolder>
         <logicalFolder name="f1" displayName="shaders" projectFiles="true">
           <itemPath>glgfx/shaders/ES2_line_renderer.frag</itemPath>
@@ -295,6 +297,10 @@
       <item path="glgfx/renderers/line_renderer.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="glgfx/renderers/line_renderer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/renderers/solid_renderer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="glgfx/renderers/solid_renderer.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="glgfx/shaders/ES2_line_renderer.frag"
             ex="false"
@@ -906,6 +912,10 @@
       </item>
       <item path="glgfx/renderers/line_renderer.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="glgfx/renderers/solid_renderer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="glgfx/renderers/solid_renderer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="glgfx/shaders/ES2_line_renderer.frag"
             ex="false"
             tool="3"
@@ -1506,6 +1516,10 @@
       <item path="glgfx/renderers/line_renderer.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="glgfx/renderers/line_renderer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/renderers/solid_renderer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="glgfx/renderers/solid_renderer.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="glgfx/shaders/ES2_line_renderer.frag"
             ex="false"
@@ -2117,6 +2131,10 @@
       </item>
       <item path="glgfx/renderers/line_renderer.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="glgfx/renderers/solid_renderer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="glgfx/renderers/solid_renderer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="glgfx/shaders/ES2_line_renderer.frag"
             ex="false"
             tool="3"
@@ -2726,6 +2744,10 @@
       </item>
       <item path="glgfx/renderers/line_renderer.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="glgfx/renderers/solid_renderer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="glgfx/renderers/solid_renderer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="glgfx/shaders/ES2_line_renderer.frag"
             ex="false"
             tool="3"
@@ -3334,6 +3356,10 @@
       <item path="glgfx/renderers/line_renderer.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="glgfx/renderers/line_renderer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/renderers/solid_renderer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="glgfx/renderers/solid_renderer.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="glgfx/shaders/ES2_line_renderer.frag"
             ex="false"
@@ -3946,6 +3972,10 @@
       </item>
       <item path="glgfx/renderers/line_renderer.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="glgfx/renderers/solid_renderer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="glgfx/renderers/solid_renderer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="glgfx/shaders/ES2_line_renderer.frag"
             ex="false"
             tool="3"
@@ -4549,6 +4579,10 @@
       <item path="glgfx/renderers/line_renderer.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="glgfx/renderers/line_renderer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/renderers/solid_renderer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="glgfx/renderers/solid_renderer.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="glgfx/shaders/ES2_line_renderer.frag"
             ex="false"

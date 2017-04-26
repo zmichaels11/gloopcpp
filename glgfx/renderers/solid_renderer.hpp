@@ -5,10 +5,10 @@
  */
 
 /* 
- * File:   line_renderer.hpp
+ * File:   solid_renderer.hpp
  * Author: zmichaels
  *
- * Created on April 26, 2017, 9:46 AM
+ * Created on April 26, 2017, 3:22 PM
  */
 
 #pragma once
@@ -23,11 +23,11 @@ namespace gloop {
 
 namespace glgfx {
     namespace renderers {
-        class line_renderer {
+        class solid_renderer {
         public:
-            static constexpr unsigned int BATCH_SIZE = 256;
-            static line_renderer* getInstance();
-                    
+            static constexpr unsigned int BATCH_SIZE = 96;
+            static solid_renderer * getInstance();
+            
         private:
             struct buffer_data_t {
                 std::unique_ptr<gloop::vertex_array> _vao;
@@ -36,28 +36,27 @@ namespace glgfx {
                 
                 buffer_data_t();
             } _bufferData;
+            
         public:
-            struct line_draw {
-                gloop::vec2 start;
-                gloop::vec2 end;
-                gloop::vec4 color;
+            struct point {
                 gloop::mat4 mvp;
+                gloop::vec2 pos;
+                gloop::vec4 color;
             };
             
         private:
-            std::unique_ptr<line_draw[]> _drawData;
-            unsigned int _lineCount;
-            
+            std::unique_ptr<point[]> _drawData;
+            unsigned int _pointCount;
             void streamDraw();
             
         public:
-            line_renderer();
+            solid_renderer();
             
             void flush();
             
-            void draw(const line_draw& drawCall);
+            void draw(const point& drawCall);
             
-            void reset();
+            void reset();            
         };
     }
 }
