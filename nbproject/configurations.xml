@@ -144,9 +144,13 @@
                    displayName="Source Files"
                    projectFiles="true">
       <logicalFolder name="f3" displayName="glgfx" projectFiles="true">
+        <logicalFolder name="f1" displayName="shaders" projectFiles="true">
+          <itemPath>glgfx/shaders/ES2_vbo_sprite_buffer.frag</itemPath>
+          <itemPath>glgfx/shaders/ES2_vbo_sprite_buffer.vert</itemPath>
+          <itemPath>glgfx/shaders/vbo_sprite_buffer.frag</itemPath>
+          <itemPath>glgfx/shaders/vbo_sprite_buffer.vert</itemPath>
+        </logicalFolder>
         <itemPath>glgfx/blend_mode.cpp</itemPath>
-        <itemPath>glgfx/vboSpriteES.frag</itemPath>
-        <itemPath>glgfx/vboSpriteES.vert</itemPath>
         <itemPath>glgfx/vbo_sprite_buffer.cpp</itemPath>
       </logicalFolder>
       <logicalFolder name="f1" displayName="gloop" projectFiles="true">
@@ -213,6 +217,7 @@
         <itemPath>gloop/application.cpp</itemPath>
         <itemPath>gloop/buffer.cpp</itemPath>
         <itemPath>gloop/framebuffer.cpp</itemPath>
+        <itemPath>gloop/gl_traits.hpp</itemPath>
         <itemPath>gloop/matrices.cpp</itemPath>
         <itemPath>gloop/pixel_formats.cpp</itemPath>
         <itemPath>gloop/program.cpp</itemPath>
@@ -280,11 +285,27 @@
       </item>
       <item path="glgfx/renderers/line_renderer.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="glgfx/shaders/ES2_vbo_sprite_buffer.frag"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="glgfx/shaders/ES2_vbo_sprite_buffer.vert"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="glgfx/shaders/vbo_sprite_buffer.frag"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="glgfx/shaders/vbo_sprite_buffer.vert"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="glgfx/sprite.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="glgfx/vboSpriteES.frag" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="glgfx/vboSpriteES.vert" ex="false" tool="3" flavor2="0">
       </item>
       <item path="glgfx/vbo_sprite_buffer.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -474,6 +495,8 @@
       <item path="gloop/framebuffer.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/framebuffer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/gl_traits.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/glint.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -846,11 +869,27 @@
       </item>
       <item path="glgfx/renderers/line_renderer.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="glgfx/shaders/ES2_vbo_sprite_buffer.frag"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="glgfx/shaders/ES2_vbo_sprite_buffer.vert"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="glgfx/shaders/vbo_sprite_buffer.frag"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="glgfx/shaders/vbo_sprite_buffer.vert"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="glgfx/sprite.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="glgfx/vboSpriteES.frag" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="glgfx/vboSpriteES.vert" ex="false" tool="3" flavor2="0">
       </item>
       <item path="glgfx/vbo_sprite_buffer.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -1040,6 +1079,8 @@
       <item path="gloop/framebuffer.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/framebuffer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/gl_traits.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/glint.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -1403,11 +1444,27 @@
       </item>
       <item path="glgfx/renderers/line_renderer.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="glgfx/shaders/ES2_vbo_sprite_buffer.frag"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="glgfx/shaders/ES2_vbo_sprite_buffer.vert"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="glgfx/shaders/vbo_sprite_buffer.frag"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="glgfx/shaders/vbo_sprite_buffer.vert"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="glgfx/sprite.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="glgfx/vboSpriteES.frag" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="glgfx/vboSpriteES.vert" ex="false" tool="3" flavor2="0">
       </item>
       <item path="glgfx/vbo_sprite_buffer.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -1600,6 +1657,8 @@
       <item path="gloop/framebuffer.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/framebuffer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/gl_traits.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/glint.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -1969,11 +2028,27 @@
       </item>
       <item path="glgfx/renderers/line_renderer.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="glgfx/shaders/ES2_vbo_sprite_buffer.frag"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="glgfx/shaders/ES2_vbo_sprite_buffer.vert"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="glgfx/shaders/vbo_sprite_buffer.frag"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="glgfx/shaders/vbo_sprite_buffer.vert"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="glgfx/sprite.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="glgfx/vboSpriteES.frag" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="glgfx/vboSpriteES.vert" ex="false" tool="3" flavor2="0">
       </item>
       <item path="glgfx/vbo_sprite_buffer.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -2166,6 +2241,8 @@
       <item path="gloop/framebuffer.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/framebuffer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/gl_traits.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/glint.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -2534,11 +2611,27 @@
       </item>
       <item path="glgfx/renderers/line_renderer.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="glgfx/shaders/ES2_vbo_sprite_buffer.frag"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="glgfx/shaders/ES2_vbo_sprite_buffer.vert"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="glgfx/shaders/vbo_sprite_buffer.frag"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="glgfx/shaders/vbo_sprite_buffer.vert"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="glgfx/sprite.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="glgfx/vboSpriteES.frag" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="glgfx/vboSpriteES.vert" ex="false" tool="3" flavor2="0">
       </item>
       <item path="glgfx/vbo_sprite_buffer.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -2731,6 +2824,8 @@
       <item path="gloop/framebuffer.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/framebuffer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/gl_traits.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/glint.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -3099,11 +3194,27 @@
       </item>
       <item path="glgfx/renderers/line_renderer.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="glgfx/shaders/ES2_vbo_sprite_buffer.frag"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="glgfx/shaders/ES2_vbo_sprite_buffer.vert"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="glgfx/shaders/vbo_sprite_buffer.frag"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="glgfx/shaders/vbo_sprite_buffer.vert"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="glgfx/sprite.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="glgfx/vboSpriteES.frag" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="glgfx/vboSpriteES.vert" ex="false" tool="3" flavor2="0">
       </item>
       <item path="glgfx/vbo_sprite_buffer.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -3296,6 +3407,8 @@
       <item path="gloop/framebuffer.cpp" ex="false" tool="1" flavor2="11">
       </item>
       <item path="gloop/framebuffer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/gl_traits.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/glint.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -3666,11 +3779,27 @@
       </item>
       <item path="glgfx/renderers/line_renderer.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="glgfx/shaders/ES2_vbo_sprite_buffer.frag"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="glgfx/shaders/ES2_vbo_sprite_buffer.vert"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="glgfx/shaders/vbo_sprite_buffer.frag"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="glgfx/shaders/vbo_sprite_buffer.vert"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="glgfx/sprite.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="glgfx/vboSpriteES.frag" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="glgfx/vboSpriteES.vert" ex="false" tool="3" flavor2="0">
       </item>
       <item path="glgfx/vbo_sprite_buffer.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -3863,6 +3992,8 @@
       <item path="gloop/framebuffer.cpp" ex="false" tool="1" flavor2="11">
       </item>
       <item path="gloop/framebuffer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/gl_traits.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/glint.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -4226,11 +4357,27 @@
       </item>
       <item path="glgfx/renderers/line_renderer.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="glgfx/shaders/ES2_vbo_sprite_buffer.frag"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="glgfx/shaders/ES2_vbo_sprite_buffer.vert"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="glgfx/shaders/vbo_sprite_buffer.frag"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="glgfx/shaders/vbo_sprite_buffer.vert"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="glgfx/sprite.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="glgfx/vboSpriteES.frag" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="glgfx/vboSpriteES.vert" ex="false" tool="3" flavor2="0">
       </item>
       <item path="glgfx/vbo_sprite_buffer.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -4423,6 +4570,8 @@
       <item path="gloop/framebuffer.cpp" ex="false" tool="1" flavor2="11">
       </item>
       <item path="gloop/framebuffer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/gl_traits.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/glint.hpp" ex="false" tool="3" flavor2="0">
       </item>

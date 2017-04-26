@@ -11,6 +11,7 @@
 #include "enums/buffer_target.hpp"
 #include "enums/buffer_storage_hint.hpp"
 #include "exception/invalid_operation_exception.hpp"
+#include "gl_traits.hpp"
 #include "glint.hpp"
 #include "gloop_throw.hpp"
 #include "wrapper/buffer_objects.hpp"
@@ -181,16 +182,8 @@ namespace gloop {
     }
 
     namespace {
-#define GLEW 1
-#define GLES2 2
-#define GLES3 3
-#ifndef GL
-#define __GL_NOT_DEFINED
-#define GL 0
-#endif        
-
-        static constexpr bool supports_getdata = (GL == GLEW);
-        static constexpr bool supports_blockbind = (GL == GLEW || GL == GLES3);
+        static constexpr bool supports_getdata = isGLEW;
+        static constexpr bool supports_blockbind = isGLEW || isGLES3;
 
         template<bool isSupported = supports_getdata, typename std::enable_if<isSupported, void * >::type = nullptr>
         static inline void __getNamedBufferSubData(
@@ -236,15 +229,6 @@ namespace gloop {
         static inline void __bindBufferRange(...) {
             gloop_throw(gloop::exception::invalid_operation_exception("BindBufferRange is not supported!"));
         }
-
-#ifdef __GL_NOT_DEFINED
-#undef GL
-#undef __GL_NOT_DEFINED
-#endif
-
-#undef GLES3
-#undef GLES2
-#undef GLEW
     }
 
     void buffer::getData(

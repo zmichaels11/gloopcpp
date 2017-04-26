@@ -11,9 +11,11 @@
 #include <memory>
 #include <cstddef>
 #include <cstring>
+#include <string>
 
 #include "../gloop/buffer.hpp"
 #include "../gloop/draw_calls.hpp"
+#include "../gloop/gl_traits.hpp"
 #include "../gloop/glint.hpp"
 #include "../gloop/enums.hpp"
 #include "../gloop/matrices.hpp"
@@ -57,10 +59,18 @@ namespace glgfx {
 
             if (!program) {
                 program.setVertexAttributes(getAttributes());
-
+                
+                std::string file;
+                
+                if (gloop::isGLES2) {
+                    file = "glgfx/shaders/ES2_vbo_sprite_buffer";
+                } else {
+                    file = "glgfx/shaders/vbo_sprite_buffer";
+                }
+                
                 gloop::shader shaders[]{
-                    gloop::shader::makeVertexShader("glgfx/vboSpriteES.vert"),
-                    gloop::shader::makeFragmentShader("glgfx/vboSpriteES.frag")
+                    gloop::shader::makeVertexShader(file + ".vert"),
+                    gloop::shader::makeFragmentShader(file + ".frag")
                 };
 
                 program.linkShaders(shaders, 2);

@@ -8,8 +8,6 @@
 #include "gl.hpp"
 #include "gl_gles2.hpp"
 
-#include "../buffer.hpp"
-
 #include <functional>
 #include <iostream>
 #include <type_traits>
@@ -18,6 +16,8 @@
 #include <SDL2/SDL_video.h>
 
 #include "../glint.hpp"
+#include "../buffer.hpp"
+#include "../texture2D.hpp"
 #include "../tools.hpp"
 
 namespace {
@@ -36,17 +36,21 @@ namespace {
 
 namespace {
     static gloop::buffer::features _bufferFeatures;
+    static gloop::texture2D::features _textureFeatures;
 
-    static void initBufferFeatures() {
+    static void initFeatures() {
         _bufferFeatures.map = gloop::wrapper::OES_mapbuffer;
         _bufferFeatures.mapRange = gloop::wrapper::EXT_map_buffer_range;
         _bufferFeatures.blockBind = false;
         _bufferFeatures.immutable = gloop::wrapper::EXT_buffer_storage;
+        
+        _textureFeatures.bindless = false;
     }
 }
 
 namespace gloop {
     const buffer::features& gloop::buffer::FEATURES = _bufferFeatures;
+    const texture2D::features& gloop::texture2D::FEATURES = _textureFeatures;
 }
 
 namespace gloop {
@@ -207,7 +211,7 @@ namespace gloop {
 
             init_EXT_texture_storage();
 
-
+            initFeatures();
         }
     }
 }

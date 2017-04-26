@@ -7,8 +7,10 @@
 #include "texture2D.hpp"
 
 #include <iostream>
+#include <type_traits>
 
 #include "enums/texture_internal_format.hpp"
+#include "gl_traits.hpp"
 #include "glint.hpp"
 #include "gloop_throw.hpp"
 #include "states/texture2D_parameters.hpp"
@@ -28,13 +30,47 @@ namespace gloop {
         _handle = 0;
     }
 
+    namespace {
+        static constexpr bool supports_bindless = isGLEW || isGLES3;
+        
+        template <bool isSupported = supports_bindless, typename std::enable_if<isSupported, void * >::type = nullptr>
+        static inline gloop::uint64_t __getTextureHandle(gloop::uint_t texture) {
+            return wrapper::getTextureHandle(texture);
+        }
+        
+        template <bool isSupported = supports_bindless, typename std::enable_if<!isSupported, void * >::type = nullptr>
+        static inline gloop::uint64_t __getTextureHandle(...) {
+            gloop_throw(gloop::exception::invalid_operation_exception("Bindless textures are not supported!"));
+        }
+        
+        template <bool isSupported = supports_bindless, typename std::enable_if<isSupported, void * >::type = nullptr>
+        static inline void __makeTextureHandleResident(gloop::uint64_t handle) {
+            wrapper::makeTextureHandleResident(handle);
+        }
+        
+        template <bool isSupported = supports_bindless, typename std::enable_if<!isSupported, void * >::type = nullptr>
+        static inline void __makeTextureHandleResident(...) {
+            gloop_throw(gloop::exception::invalid_operation_exception("Bindless textures are not supported!"));
+        }
+        
+        template <bool isSupported = supports_bindless, typename std::enable_if<isSupported, void * >::type = nullptr>
+        static inline void __makeTextureHandleNonResident(gloop::uint64_t handle) {
+            wrapper::makeTextureHandleNonResident(handle);
+        }
+        
+        template <bool isSupported = supports_bindless, typename std::enable_if<!isSupported, void * >::type = nullptr>
+        static inline void __makeTextureHandleNonResident(...) {
+            gloop_throw(gloop::exception::invalid_operation_exception("Bindless textures are not supported!"));
+        }
+    }
+
     gloop::uint64_t texture2D::getHandle() const {
         return _handle;
     }
 
     gloop::uint64_t texture2D::getHandle() {
         if (!_handle) {
-            _handle = wrapper::getTextureHandle(_id);
+            _handle = __getTextureHandle(_id);
         }
 
         return _handle;
@@ -42,13 +78,13 @@ namespace gloop {
 
     void texture2D::makeResident() const {
         if (_handle) {
-            wrapper::makeTextureHandleResident(_handle);
+            __makeTextureHandleResident(_handle);
         }
     }
 
     void texture2D::makeNonResident() const {
         if (_handle) {
-            wrapper::makeTextureHandleNonResident(_handle);
+            __makeTextureHandleNonResident(_handle);
         }
     }
 

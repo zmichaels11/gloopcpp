@@ -42,6 +42,8 @@ namespace gloop {
             if (glewInit() != GLEW_OK) {                
                 throw "GLEW could not be initialized!";
             }            
+            
+            initFeatures();
         }
         
         const gloop::ubyte_t * getString(gloop::enum_t param) {

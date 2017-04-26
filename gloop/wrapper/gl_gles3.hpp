@@ -13,6 +13,9 @@
 
 #pragma once
 
+#include <stdint.h>
+
+
 #define GLES3 3
 #if GL == GLES3
 
@@ -64,7 +67,11 @@ namespace gloop {
         
         extern const bool& OPENGLES_3_2;
         
+        extern const std::function<gloop::uint64_t(gloop::uint_t)>& glGetTextureHandleNV;
+        extern const std::function<void(gloop::uint64_t)>& glMakeTextureHandleResidentNV;
+        extern const std::function<void(gloop::uint64_t)>& glMakeTextureHandleNonResidentNV;
         
+        extern const bool& NV_bindless_texture;
     }
 }
 

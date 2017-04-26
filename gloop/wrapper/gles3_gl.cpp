@@ -220,6 +220,28 @@ namespace gloop {
         }
 
         __gloop_link(OPENGLES_3_0, _OPENGLES_3_0);
+        
+        namespace {
+            __gloop_decl(glGetTextureHandleNV, _glGetTextureHandleNV);
+            __gloop_decl(glMakeTextureHandleResidentNV, _glMakeTextureHandleResidentNV);
+            __gloop_decl(glMakeTextureHandleNonResidentNV, _glMakeTextureHandleNonResidentNV);
+            __gloop_decl(NV_bindless_texture, _NV_bindless_texture);
+            
+            static void init_NV_bindless_texture() {
+                _NV_bindless_texture = hasExtension("NV_bindless_texture");
+                
+                if (_NV_bindless_texture) {
+                    _glGetTextureHandleNV = load<GLuint64(GLuint)>("glGetTextureHandleNV");
+                    _glMakeTextureHandleResidentNV = load<void(GLuint64)>("glMakeTextureHandleResidentNV");
+                    _glMakeTextureHandleNonResidentNV = load<void(GLuint64)>("glMakeTextureHandleNonResidentNV");
+                }
+            }
+        }
+        
+        __gloop_link(glGetTextureHandleNV, _glGetTextureHandleNV);
+        __gloop_link(glMakeTextureHandleResidentNV, _glMakeTextureHandleResidentNV);
+        __gloop_link(glMakeTextureHandleNonResidentNV, _glMakeTextureHandleNonResidentNV);
+        __gloop_link(NV_bindless_texture, _NV_bindless_texture);
 
         gloop::enum_t getError() {
             return glGetError();
@@ -237,6 +259,8 @@ namespace gloop {
             init_OpenGLES_3_2();
 
             init_EXT_buffer_storage();
+            
+            init_NV_bindless_texture();
             
             initBufferFeatures();
         }

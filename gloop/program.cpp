@@ -9,14 +9,15 @@
 #include <cstddef>
 #include <string>
 
-#include "gloop_throw.hpp"
 #include "exception/invalid_uniform_name_exception.hpp"
 #include "exception/program_link_exception.hpp"
+#include "gl_traits.hpp"
+#include "gloop_throw.hpp"
 #include "shader.hpp"
-#include "wrapper/shaders_and_programs.hpp"
 #include "uniform/uniform_block_binding.hpp"
 #include "vertex_attributes.hpp"
 #include "wrapper/gl.hpp"
+#include "wrapper/shaders_and_programs.hpp"
 
 namespace {
 
