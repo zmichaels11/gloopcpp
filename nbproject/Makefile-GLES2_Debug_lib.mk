@@ -36,6 +36,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/glgfx/blend_mode.o \
+	${OBJECTDIR}/glgfx/renderers/line_renderer.o \
 	${OBJECTDIR}/glgfx/vbo_sprite_buffer.o \
 	${OBJECTDIR}/gloop/application.o \
 	${OBJECTDIR}/gloop/bitfields/buffer_access_hint.o \
@@ -126,6 +127,11 @@ ${OBJECTDIR}/glgfx/blend_mode.o: glgfx/blend_mode.cpp
 	${MKDIR} -p ${OBJECTDIR}/glgfx
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/glgfx/blend_mode.o glgfx/blend_mode.cpp
+
+${OBJECTDIR}/glgfx/renderers/line_renderer.o: glgfx/renderers/line_renderer.cpp
+	${MKDIR} -p ${OBJECTDIR}/glgfx/renderers
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/glgfx/renderers/line_renderer.o glgfx/renderers/line_renderer.cpp
 
 ${OBJECTDIR}/glgfx/vbo_sprite_buffer.o: glgfx/vbo_sprite_buffer.cpp
 	${MKDIR} -p ${OBJECTDIR}/glgfx

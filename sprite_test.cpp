@@ -17,12 +17,12 @@
 #include "gloop/tools.hpp"
 #include "glgfx/blend_mode.hpp"
 #include "gloop/matrices.hpp"
+#include "glgfx/renderers/line_renderer.hpp"
 
 namespace {
 
     static struct sprite_test_context : gloop::context {
-        glgfx::sprite::texture_data frames[10];
-        std::unique_ptr<glgfx::vbo_sprite_buffer> renderer;
+        glgfx::sprite::texture_data frames[10];              
         gloop::texture2D texture;                
     } glContext;
 
@@ -48,11 +48,7 @@ namespace {
             throw "Context is null!";
         }
 
-        auto glCtx = reinterpret_cast<sprite_test_context *> (ctx);
-
-        if (!glCtx->renderer) {
-            glCtx->renderer = std::make_unique<glgfx::vbo_sprite_buffer>();
-        }
+        auto glCtx = reinterpret_cast<sprite_test_context *> (ctx);        
 
         if (!glCtx->texture) {
             initFrames(glCtx);
@@ -67,6 +63,7 @@ namespace {
         auto size = glCtx->currentViewport.getSize();
         float xSpacing = float(size.width) / 64.0F;
         float ySpacing = float(size.height) / 64.0F;
+        static const auto projection = gloop::matrices::ortho4F(glCtx->currentViewport);
         
         for (int i = 0; i < 64; i++) {
             for (int j = 0; j < 64; j++) {
@@ -80,8 +77,7 @@ namespace {
 
                 {
                     static constexpr float width = 4;
-                    static constexpr float height = 8;
-                    static const auto projection = gloop::matrices::ortho4F(glCtx->currentViewport);                                                                                                    
+                    static constexpr float height = 8;                                                                                                                        
                     
                     auto mSize = gloop::matrices::scale4F(width, height, 1.0F, 1.0F);
                     auto mTr = gloop::matrices::translation4F(width / 2, 0.0F, 0.0F, 1.0F);
@@ -92,9 +88,18 @@ namespace {
                     sprite.transformation = mCat;
                 }
                 
-                glCtx->renderer->draw(sprite);        
+                glgfx::vbo_sprite_buffer::getInstance()->draw(sprite);
             }
         }
+        
+        glgfx::renderers::line_renderer::line_draw line;
+        
+        line.color = gloop::vec4{1.0F, 0.0F, 0.0F, 1.0F};
+        line.start = gloop::vec2{0.0F, 0.0F};
+        line.end = gloop::vec2{128.0F, 128.0F};
+        line.mvp = projection;
+        
+        glgfx::renderers::line_renderer::getInstance()->draw(line);
         
         static auto fpsStart = SDL_GetTicks();
         static unsigned int frameCount = 0;
@@ -110,7 +115,8 @@ namespace {
         
         frame = int(elapsedTime / 60);
         
-        glCtx->renderer->flush();
+        glgfx::vbo_sprite_buffer::getInstance()->flush();
+        glgfx::renderers::line_renderer::getInstance()->flush();
         frameCount++;
     }
 }

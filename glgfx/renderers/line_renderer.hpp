@@ -15,21 +15,47 @@
 
 #include <memory>
 
+#include "../../gloop/buffer.hpp"
 #include "../../gloop/matrices.hpp"
+#include "../../gloop/vertex_array.hpp"
 
 namespace glgfx {
     namespace renderers {
         class line_renderer {
         public:
-            struct draw_data_t {
+            static constexpr unsigned int BATCH_SIZE = 256;
+            static line_renderer* getInstance();
+                    
+        private:
+            struct buffer_data_t {
+                std::unique_ptr<gloop::vertex_array> _vao;
+                std::unique_ptr<gloop::buffer> _verts;
+                std::unique_ptr<gloop::buffer> _vInstance;
+                
+                buffer_data_t();
+            } _bufferData;
+        public:
+            struct line_draw {
                 gloop::vec2 start;
                 gloop::vec2 end;
                 gloop::vec4 color;
                 gloop::mat4 mvp;
             };
             
-            std::unique_ptr<draw_data_t[]> _drawData;
+        private:
+            std::unique_ptr<line_draw[]> _drawData;
+            unsigned int _lineCount;
             
+            void streamDraw();
+            
+        public:
+            line_renderer();
+            
+            void flush();
+            
+            void draw(const line_draw& drawCall);
+            
+            void reset();
         };
     }
 }

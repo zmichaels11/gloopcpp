@@ -99,9 +99,9 @@ namespace glgfx {
 
     vbo_sprite_buffer::vbo_sprite_buffer() {
         if (USE_BINDLESS) {
-            _bindlessDrawData = std::make_unique < bindless_draw_data_t[]> (BATCH_SIZE);
+            _bindlessDrawData = std::make_unique < bindless_draw_data[]> (BATCH_SIZE);
         } else {
-            _drawData = std::make_unique < draw_data_t[]> (BATCH_SIZE);
+            _drawData = std::make_unique < draw_data[]> (BATCH_SIZE);
         }
 
         _spriteCount = 0;
@@ -113,8 +113,8 @@ namespace glgfx {
         gloop::buffer * verts = new gloop::buffer;
         gloop::buffer * vInstance = new gloop::buffer;
 
-        constexpr auto bind_stride = sizeof (vbo_sprite_buffer::draw_data_t);
-        constexpr auto bindless_stride = sizeof (vbo_sprite_buffer::bindless_draw_data_t);
+        constexpr auto bind_stride = sizeof (vbo_sprite_buffer::draw_data);
+        constexpr auto bindless_stride = sizeof (vbo_sprite_buffer::bindless_draw_data);
         constexpr auto vec4_size = 4 * sizeof (gloop::float_t);
         constexpr auto vec2_size = 2 * sizeof (gloop::float_t);
         constexpr auto bind_buffer_size = bind_stride * BATCH_SIZE;
@@ -171,7 +171,7 @@ namespace glgfx {
     }
 
     void vbo_sprite_buffer::bindlessStreamDraw() {
-        auto instanceSize = sizeof (bindless_draw_data_t) * this->_spriteCount;
+        auto instanceSize = sizeof (bindless_draw_data) * this->_spriteCount;
 
         this->_bufferData._vInstance->reallocate();
         this->_bufferData._vInstance->setData(0, instanceSize, _bindlessDrawData.get());
@@ -190,7 +190,7 @@ namespace glgfx {
     }
 
     void vbo_sprite_buffer::streamDraw() {
-        auto instanceSize = sizeof (draw_data_t) * this->_spriteCount;
+        auto instanceSize = sizeof (draw_data) * this->_spriteCount;
 
         this->_bufferData._vInstance->reallocate();
         this->_bufferData._vInstance->setData(0, instanceSize, _drawData.get());
@@ -253,7 +253,7 @@ namespace glgfx {
         this->_currentBlendMode = s.blendMode;
 
         if (USE_BINDLESS) {
-            bindless_draw_data_t * data = this->_bindlessDrawData.get() + this->_spriteCount;
+            bindless_draw_data * data = this->_bindlessDrawData.get() + this->_spriteCount;
 
             data->vMvp = s.transformation;
 
@@ -279,7 +279,7 @@ namespace glgfx {
 
             data->texture = s.textureData->texture->getHandle();            
         } else {
-            draw_data_t * data = this->_drawData.get() + this->_spriteCount;
+            draw_data * data = this->_drawData.get() + this->_spriteCount;
 
             data->vMvp = s.transformation;
 
@@ -304,5 +304,15 @@ namespace glgfx {
         }
 
         this->_spriteCount++;
+    }
+    
+    vbo_sprite_buffer * vbo_sprite_buffer::getInstance() {
+        static std::unique_ptr<vbo_sprite_buffer> _instance;
+        
+        if (!_instance) {
+            _instance.reset(new vbo_sprite_buffer);
+        }
+        
+        return _instance.get();
     }
 }

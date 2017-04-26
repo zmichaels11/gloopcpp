@@ -33,6 +33,8 @@ namespace glgfx {
     public:
         constexpr static unsigned int BATCH_SIZE = 256;
         const static bool& USE_BINDLESS;
+        
+        static vbo_sprite_buffer * getInstance();
     private:
 
         struct buffer_data_t {
@@ -43,7 +45,7 @@ namespace glgfx {
             buffer_data_t();
         } _bufferData;
 
-        struct draw_data_t {
+        struct draw_data {
             gloop::mat4 vMvp;
             gloop::vec4 vUVs;
             gloop::mat4 vCTr;
@@ -51,7 +53,7 @@ namespace glgfx {
             gloop::vec2 vIgnoreCT;
         };
 
-        struct bindless_draw_data_t {
+        struct bindless_draw_data {
             gloop::mat4 vMvp;
             gloop::vec4 vUVs;
             gloop::mat4 vCTr;
@@ -61,8 +63,8 @@ namespace glgfx {
         };
 
         //NOTE: this can't be union :/
-        std::unique_ptr<draw_data_t[] > _drawData;
-        std::unique_ptr<bindless_draw_data_t[] > _bindlessDrawData;
+        std::unique_ptr<draw_data[] > _drawData;
+        std::unique_ptr<bindless_draw_data[] > _bindlessDrawData;
 
         unsigned int _spriteCount;
         blend_mode _currentBlendMode;
