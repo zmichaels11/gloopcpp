@@ -8,6 +8,8 @@
 #include "gl.hpp"
 #include "gl_gles2.hpp"
 
+#include "../buffer.hpp"
+
 #include <functional>
 #include <iostream>
 #include <type_traits>
@@ -30,6 +32,21 @@ namespace {
         return std::function<T>(reinterpret_cast<T*> (addr));
 #endif
     }
+}
+
+namespace {
+    static gloop::buffer::features _bufferFeatures;
+
+    static void initBufferFeatures() {
+        _bufferFeatures.map = gloop::wrapper::OES_mapbuffer;
+        _bufferFeatures.mapRange = gloop::wrapper::EXT_map_buffer_range;
+        _bufferFeatures.blockBind = false;
+        _bufferFeatures.immutable = gloop::wrapper::EXT_buffer_storage;
+    }
+}
+
+namespace gloop {
+    const buffer::features& gloop::buffer::FEATURES = _bufferFeatures;
 }
 
 namespace gloop {

@@ -41,6 +41,12 @@ namespace gloop {
     
     class texture2D {
     public:
+        struct features {
+            bool bindless;
+        };
+        
+        const static features& FEATURES;
+    public:
 
         struct size {
             gloop::sizei_t width;
@@ -54,6 +60,7 @@ namespace gloop {
         enums::texture_internal_format _format;
         gloop::sizei_t _levels;
         std::unique_ptr<states::texture2D_parameters> _params;
+        gloop::uint64_t _handle;
 
     public:
 
@@ -93,6 +100,14 @@ namespace gloop {
         void setParameters(const gloop::states::texture2D_parameters& params);
         
         const gloop::states::texture2D_parameters& getParameters() const;
+        
+        gloop::uint64_t getHandle();
+        
+        gloop::uint64_t getHandle() const;
+        
+        void makeResident() const;
+        
+        void makeNonResident() const;
        
         void update(
                 const gloop::sizei_t level,

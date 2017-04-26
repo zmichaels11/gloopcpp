@@ -17,7 +17,7 @@
 #include "gl.hpp"
 #include "gl_gles2.hpp"
 
-namespace gloop {
+namespace gloop {        
     namespace wrapper {        
         void bindBuffer(
                 gloop::enum_t target,

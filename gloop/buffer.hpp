@@ -26,6 +26,16 @@ namespace gloop {
     }
 
     class buffer {
+    public:
+        struct features {
+            bool mapRange;
+            bool map;
+            bool immutable;
+            bool blockBind;
+        };
+        
+        const static features& FEATURES;
+        
     private:
         enums::buffer_target _target;
         gloop::uint_t _id;

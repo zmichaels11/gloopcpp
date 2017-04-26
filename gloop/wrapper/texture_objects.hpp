@@ -81,5 +81,11 @@ namespace gloop {
         void bindTextureUnit(
                 gloop::uint_t unit,
                 gloop::uint_t texture);
+        
+        gloop::uint64_t getTextureHandle(gloop::uint_t texture);
+        
+        void makeTextureHandleResident(gloop::uint64_t handle);
+        
+        void makeTextureHandleNonResident(gloop::uint64_t handle);
     }
 }

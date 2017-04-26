@@ -17,6 +17,7 @@
 #include "wrapper/gl.hpp"
 
 namespace gloop {
+
     texture2D::texture2D() {
         _id = 0;
         _size.width = 0;
@@ -24,6 +25,31 @@ namespace gloop {
         _format = enums::texture_internal_format::UNKNOWN;
         _levels = 0;
         _params = std::make_unique<states::texture2D_parameters>();
+        _handle = 0;
+    }
+
+    gloop::uint64_t texture2D::getHandle() const {
+        return _handle;
+    }
+
+    gloop::uint64_t texture2D::getHandle() {
+        if (!_handle) {
+            _handle = wrapper::getTextureHandle(_id);
+        }
+
+        return _handle;
+    }
+
+    void texture2D::makeResident() const {
+        if (_handle) {
+            wrapper::makeTextureHandleResident(_handle);
+        }
+    }
+
+    void texture2D::makeNonResident() const {
+        if (_handle) {
+            wrapper::makeTextureHandleNonResident(_handle);
+        }
     }
 
     gloop::uint_t texture2D::getId() const {
@@ -193,21 +219,21 @@ namespace gloop {
                 << s.height
                 << ">";
     }
-    
+
     std::ostream& operator<<(std::ostream& os, const texture2D& t) {
-            os << "texture2D: [";
-            
-            if (t.isValid()) {
-                os << "id: " << t._id;
-                os << ", format: " << t._format;
-                os << ", levels: " << t._levels;
-                os << ", " << t._size;
-                os << ", " << *t._params;
-                os << "]";
-            } else {
-                os << "UNINITIALIZED]";
-            }
-            
-            return os;
+        os << "texture2D: [";
+
+        if (t.isValid()) {
+            os << "id: " << t._id;
+            os << ", format: " << t._format;
+            os << ", levels: " << t._levels;
+            os << ", " << t._size;
+            os << ", " << *t._params;
+            os << "]";
+        } else {
+            os << "UNINITIALIZED]";
         }
+
+        return os;
+    }
 }

@@ -10,6 +10,8 @@
 #include "gl.hpp"
 #include "gl_gles3.hpp"
 
+#include "../buffer.hpp"
+
 #include <functional>
 #include <type_traits>
 
@@ -33,6 +35,21 @@ namespace {
 
 #define __gloop_link(external, internal) decltype(external) external = internal
 #define __gloop_decl(external, internal) static std::decay<decltype(external)>::type internal
+
+namespace {
+    static gloop::buffer::features _bufferFeatures;
+
+    static void initBufferFeatures() {
+        _bufferFeatures.map = true;
+        _bufferFeatures.mapRange = true;
+        _bufferFeatures.blockBind = true;
+        _bufferFeatures.immutable = gloop::wrapper::EXT_buffer_storage;
+    }
+}
+
+namespace gloop {
+    const buffer::features& gloop::buffer::FEATURES = _bufferFeatures;
+}
 
 namespace gloop {
     namespace wrapper {
@@ -60,10 +77,10 @@ namespace gloop {
             __gloop_decl(glProgramUniformMatrix2fv, _glProgramUniformMatrix2fv);
             __gloop_decl(glProgramUniformMatrix3fv, _glProgramUniformMatrix3fv);
             __gloop_decl(glProgramUniformMatrix4fv, _glProgramUniformMatrix4fv);
-            
+
             __gloop_decl(glDrawArraysIndirect, _glDrawArraysIndirect);
             __gloop_decl(glDrawElementsIndirect, _glDrawElementsIndirect);
-            
+
             __gloop_decl(glDispatchCompute, _glDispatchCompute);
             __gloop_decl(glDispatchComputeIndirect, _glDispatchComputeIndirect);
 
@@ -108,10 +125,10 @@ namespace gloop {
                     _glProgramUniformMatrix2fv = load<void(GLuint, GLint, GLsizei, GLboolean, const GLfloat *) > ("glProgramUniform2fv");
                     _glProgramUniformMatrix3fv = load<void(GLuint, GLint, GLsizei, GLboolean, const GLfloat *) > ("glProgramUniform3fv");
                     _glProgramUniformMatrix4fv = load<void(GLuint, GLint, GLsizei, GLboolean, const GLfloat *) > ("glProgramUniform4fv");
-                    
+
                     _glDrawArraysIndirect = load<void(GLenum, const void *) > ("glDrawArraysIndirect");
                     _glDrawElementsIndirect = load<void(GLenum, GLenum, const void*) > ("glDrawElementsIndirect");
-                    
+
                     _glDispatchCompute = load<void(GLuint, GLuint, GLuint)> ("glDispatchCompute");
                     _glDispatchComputeIndirect = load<void(GLintptr)> ("glDispatchComputeIndirect");
                 }
@@ -141,17 +158,17 @@ namespace gloop {
         __gloop_link(glProgramUniformMatrix2fv, _glProgramUniformMatrix2fv);
         __gloop_link(glProgramUniformMatrix3fv, _glProgramUniformMatrix3fv);
         __gloop_link(glProgramUniformMatrix4fv, _glProgramUniformMatrix4fv);
-        
+
         __gloop_link(glDrawArraysIndirect, _glDrawArraysIndirect);
         __gloop_link(glDrawElementsIndirect, _glDrawElementsIndirect);
-        
+
         __gloop_link(glDispatchCompute, _glDispatchCompute);
         __gloop_link(glDispatchComputeIndirect, _glDispatchComputeIndirect);
 
         __gloop_link(OPENGLES_3_1, _OPENGLES_3_1);
 
         namespace {
-            __gloop_decl(OPENGLES_3_2, _OPENGLES_3_2);            
+            __gloop_decl(OPENGLES_3_2, _OPENGLES_3_2);
 
             static void init_OpenGLES_3_2() {
                 GLint major = 0;
@@ -212,14 +229,16 @@ namespace gloop {
             return glGetString(param);
         }
 
-        void init() {            
+        void init() {
             init_OpenGLES_3_0();
-            
+
             init_OpenGLES_3_1();
 
             init_OpenGLES_3_2();
-            
+
             init_EXT_buffer_storage();
+            
+            initBufferFeatures();
         }
     }
 }
