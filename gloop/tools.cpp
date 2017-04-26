@@ -11,6 +11,10 @@
 #include <memory>
 #include <string>
 
+#ifdef USE_SDL_IMAGE
+#include <SDL2/SDL_image.h>
+#endif
+
 #include <SDL2/SDL_rwops.h>
 #include <SDL2/SDL_surface.h>
 
@@ -32,14 +36,36 @@ namespace gloop {
 
             return str.size() >= suffix.size() && str.compare(str.size() - suffix.size(), suffix.size(), suffix) == 0;
         }
-    }
+    }   
 
     tools::loaded_texture2D tools::loadTexture(const std::string& file, const states::texture2D_parameters params) {
         loaded_texture2D out;
 
         out.texture.setParameters(params);
 
+#ifdef USE_SDL_IMAGE
+        static bool isInit = false;
+        
+        if (!isInit) {
+            auto result = IMG_Init(IMG_INIT_PNG);
+            
+            if ((result & IMG_INIT_PNG) != IMG_INIT_PNG) {
+                gloop_throw("Unable to initialize PNG library!");
+            } else {
+                std::cout << "INFO: initialized PNG library!" << std::endl;
+            }
+            
+            isInit = true;
+        }
+        
+        const auto img = IMG_Load(file.c_str());
+#else       
         const auto img = SDL_LoadBMP(file.c_str());
+#endif
+        
+        if (img == nullptr) {
+            gloop_throw("Unable to load image!");
+        }
         
         constexpr Uint32 rmask = 0x000000FF;
         constexpr Uint32 gmask = 0x0000FF00;

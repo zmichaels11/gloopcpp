@@ -100,8 +100,8 @@ OBJECTFILES= \
 CFLAGS=
 
 # CC Compiler Flags
-CCFLAGS=-DGL=GLES2 -s USE_SDL=2 -D_DEBUG=1
-CXXFLAGS=-DGL=GLES2 -s USE_SDL=2 -D_DEBUG=1
+CCFLAGS=-DGL=GLES2 -s USE_SDL=2 -s USE_SDL_IMAGE=2 -s SDL2_IMAGE_FORMATS='["png"]' -D_DEBUG=1 -DUSE_SDL_IMAGE=1
+CXXFLAGS=-DGL=GLES2 -s USE_SDL=2 -s USE_SDL_IMAGE=2 -s SDL2_IMAGE_FORMATS='["png"]' -D_DEBUG=1 -DUSE_SDL_IMAGE=1
 
 # Fortran Compiler Flags
 FFLAGS=
@@ -118,7 +118,7 @@ LDLIBSOPTIONS=
 
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/gloopcpp_test.html: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	em++ -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/gloopcpp_test.html ${OBJECTFILES} ${LDLIBSOPTIONS} -s USE_SDL=2 --preload-file tests --preload-file glgfx/vboSpriteES.vert --preload-file glgfx/vboSpriteES.frag -O2
+	em++ -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/gloopcpp_test.html ${OBJECTFILES} ${LDLIBSOPTIONS} -DGL=GLES2 -s USE_SDL=2 -s USE_SDL_IMAGE=2 -s SDL2_IMAGE_FORMATS='["png"]' --preload-file tests --preload-file glgfx/vboSpriteES.vert --preload-file glgfx/vboSpriteES.frag -O2
 
 ${OBJECTDIR}/glgfx/blend_mode.o: glgfx/blend_mode.cpp
 	${MKDIR} -p ${OBJECTDIR}/glgfx

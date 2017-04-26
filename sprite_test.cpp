@@ -27,7 +27,7 @@ namespace {
     } glContext;
 
     static void initFrames(sprite_test_context * ctx) {
-        auto tex = gloop::tools::loadTexture("tests/data/duke.bmp");
+        auto tex = gloop::tools::loadTexture("tests/data/duke.png");
 
         float scaleWidth = tex.view.u1;
         float scaleHeight = tex.view.v1;

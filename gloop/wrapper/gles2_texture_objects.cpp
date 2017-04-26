@@ -134,12 +134,9 @@ namespace gloop {
                 gloop::sizei_t width, gloop::sizei_t height,
                 gloop::enum_t format, gloop::enum_t type, const void * pixels) {
 
-            glBindTexture(GL_TEXTURE_2D, texture);
+            glBindTexture(GL_TEXTURE_2D, texture);                        
             
-            std::cout << "Format: " << format << std::endl;
-            
-            if (isBGR(format)) {                
-                std::cout << "isBGR" << std::endl;
+            if (isBGR(format)) {                                
                 if (!isBGRASupported()) {
                     const auto size = width * height - xOffset * yOffset;
 
