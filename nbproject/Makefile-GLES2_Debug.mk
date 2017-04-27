@@ -42,6 +42,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/glgfx/renderers/solid_renderer.o \
 	${OBJECTDIR}/glgfx/renderers/sprite_renderer.o \
 	${OBJECTDIR}/glgfx/sprite_buffers/vbo_sprite_buffer.o \
+	${OBJECTDIR}/glgfx/sprite_sheet.o \
 	${OBJECTDIR}/gloop/application.o \
 	${OBJECTDIR}/gloop/bitfields/buffer_access_hint.o \
 	${OBJECTDIR}/gloop/bitfields/buffer_immutable_storage_hint.o \
@@ -159,6 +160,11 @@ ${OBJECTDIR}/glgfx/sprite_buffers/vbo_sprite_buffer.o: glgfx/sprite_buffers/vbo_
 	${MKDIR} -p ${OBJECTDIR}/glgfx/sprite_buffers
 	${RM} "$@.d"
 	$(COMPILE.cc) -g `pkg-config --cflags sdl2` `pkg-config --cflags glesv2` `pkg-config --cflags SDL2_image` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/glgfx/sprite_buffers/vbo_sprite_buffer.o glgfx/sprite_buffers/vbo_sprite_buffer.cpp
+
+${OBJECTDIR}/glgfx/sprite_sheet.o: glgfx/sprite_sheet.cpp
+	${MKDIR} -p ${OBJECTDIR}/glgfx
+	${RM} "$@.d"
+	$(COMPILE.cc) -g `pkg-config --cflags sdl2` `pkg-config --cflags glesv2` `pkg-config --cflags SDL2_image` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/glgfx/sprite_sheet.o glgfx/sprite_sheet.cpp
 
 ${OBJECTDIR}/gloop/application.o: gloop/application.cpp
 	${MKDIR} -p ${OBJECTDIR}/gloop

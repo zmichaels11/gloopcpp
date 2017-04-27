@@ -21,22 +21,25 @@ namespace gloop {
 
 namespace glgfx {
     enum class blend_mode : unsigned int;
-    
+
     struct sprite {
+
         struct texture_data {
             float u0;
             float v0;
             float u1;
             float v1;
             gloop::texture2D * texture;
-        } * textureData;
-        
+        };
+
+        texture_data * textureData;
+
         std::array<float, 16> transformation;
-        
+
         std::array<float, 25> colorTransform;
-        
+
         bool hasColorTransform;
-        
+
         blend_mode blendMode;
     };
 }

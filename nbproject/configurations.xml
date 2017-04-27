@@ -21,6 +21,7 @@
         <itemPath>glgfx/renderer.hpp</itemPath>
         <itemPath>glgfx/sprite.hpp</itemPath>
         <itemPath>glgfx/sprite_buffer.hpp</itemPath>
+        <itemPath>glgfx/sprite_sheet.hpp</itemPath>
       </logicalFolder>
       <logicalFolder name="f1" displayName="gloop" projectFiles="true">
         <logicalFolder name="f6" displayName="bitfields" projectFiles="true">
@@ -181,6 +182,7 @@
         </logicalFolder>
         <itemPath>glgfx/blend_mode.cpp</itemPath>
         <itemPath>glgfx/graphics.cpp</itemPath>
+        <itemPath>glgfx/sprite_sheet.cpp</itemPath>
       </logicalFolder>
       <logicalFolder name="f1" displayName="gloop" projectFiles="true">
         <logicalFolder name="f7" displayName="bitfields" projectFiles="true">
@@ -427,6 +429,10 @@
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="glgfx/sprite_sheet.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="glgfx/sprite_sheet.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/application.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -1100,6 +1106,10 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="glgfx/sprite_sheet.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="glgfx/sprite_sheet.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/application.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gloop/application.hpp" ex="false" tool="3" flavor2="0">
@@ -1762,6 +1772,10 @@
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="glgfx/sprite_sheet.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="glgfx/sprite_sheet.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/application.cpp" ex="false" tool="1" flavor2="11">
       </item>
@@ -2435,6 +2449,10 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="glgfx/sprite_sheet.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="glgfx/sprite_sheet.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/application.cpp" ex="false" tool="1" flavor2="11">
       </item>
       <item path="gloop/application.hpp" ex="false" tool="3" flavor2="0">
@@ -3106,6 +3124,10 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="glgfx/sprite_sheet.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="glgfx/sprite_sheet.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/application.cpp" ex="false" tool="1" flavor2="11">
       </item>
       <item path="gloop/application.hpp" ex="false" tool="3" flavor2="0">
@@ -3776,6 +3798,10 @@
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="glgfx/sprite_sheet.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="glgfx/sprite_sheet.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/application.cpp" ex="false" tool="1" flavor2="11">
       </item>
@@ -4450,6 +4476,10 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="glgfx/sprite_sheet.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="glgfx/sprite_sheet.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/application.cpp" ex="false" tool="1" flavor2="11">
       </item>
       <item path="gloop/application.hpp" ex="false" tool="3" flavor2="0">
@@ -5115,6 +5145,10 @@
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="glgfx/sprite_sheet.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="glgfx/sprite_sheet.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/application.cpp" ex="false" tool="1" flavor2="11">
       </item>
