@@ -18,7 +18,7 @@ namespace glgfx {
             static sprite_buffer * _buffer;
             
             if (!_buffer) {
-                auto vboSpriteBuffer = glgfx::vbo_sprite_buffer::getInstance();
+                auto vboSpriteBuffer = glgfx::sprite_buffers::vbo_sprite_buffer::getInstance();
                 
                 if (vboSpriteBuffer->isSupported()) {
                     _buffer = vboSpriteBuffer;

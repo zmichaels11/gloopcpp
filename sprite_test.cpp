@@ -17,7 +17,7 @@
 #include "gloop/tools.hpp"
 #include "glgfx/blend_mode.hpp"
 #include "gloop/matrices.hpp"
-#include "glgfx/renderers/line_renderer.hpp"
+#include "glgfx/sprite_buffers/vbo_sprite_buffer.hpp"
 
 namespace {
 
