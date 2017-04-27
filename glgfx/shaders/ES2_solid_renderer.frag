@@ -1,6 +1,6 @@
 #version 100
 
-precision mediump float
+precision mediump float;
 
 //HEADER_TAG
 

@@ -6,6 +6,7 @@
 
 #include "skyline_packer.hpp"
 
+#include <iostream>
 #include <limits>
 
 namespace glgfx {
@@ -20,9 +21,11 @@ namespace glgfx {
     }
     
     skyline_packer::skyline_packer(unsigned int maxWidth, unsigned int maxHeight, int padding) {
+        _width = 128;
+        _height = 128;
         _maxWidth = maxWidth;
         _maxHeight = maxHeight;
-        _padding = padding;
+        _padding = padding;        
         _skyline.push_back({1, 1, maxWidth - 2});
         _usedSpace = 0;
     }
@@ -34,19 +37,19 @@ namespace glgfx {
     }
     
     int skyline_packer::fit(int index, unsigned int width, unsigned int height) {
-        auto baseNode = _skyline[index];
-        auto x = baseNode.x;        
-        auto widthLeft = width;
-        auto i = index;
+        const auto& baseNode = _skyline[index];
+        int x = baseNode.x;        
+        int widthLeft = width;
+        int i = index;
         
         if ((x + width) > (_width - 1)) {
             return -1;
         }
         
-        auto y = baseNode.y;
+        int y = baseNode.y;                
         
         while (widthLeft > 0) {
-            auto node = _skyline[i];
+            const auto& node = _skyline[i];
             
             if (node.y > y) {
                 y = node.y;
@@ -66,7 +69,7 @@ namespace glgfx {
     bool skyline_packer::addRectangle(unsigned int width, unsigned int height, rect& outRect) {
         auto region = rect{0,0, width, height};
         auto bestHeight = std::numeric_limits<unsigned int>::max();
-        auto bestIndex = -1;
+        int bestIndex = -1;
         auto bestWidth = std::numeric_limits<unsigned int>::min();
         int i;
         int y;
@@ -96,7 +99,7 @@ namespace glgfx {
         }
         
         node newNode{region.x, int(region.y + height), width};
-        _skyline[bestIndex] = newNode;
+        _skyline.insert(_skyline.begin() + bestIndex, newNode);
         
         node * prev;
         
@@ -144,7 +147,7 @@ namespace glgfx {
     
     void skyline_packer::pack(rect* r, unsigned int count) {
         bool isDone = false;
-        
+                
         do {
             clear();
             isDone = doPack(r, count);

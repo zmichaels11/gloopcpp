@@ -7,9 +7,12 @@
 #include <iostream>
 #include <memory>
 #include <utility>
+#include <string>
+#include <sstream>
 
-#include "glgfx/sprite.hpp"
 #include "glgfx/graphics.hpp"
+#include "glgfx/sprite.hpp"
+#include "glgfx/sprite_sheet.hpp"
 
 #include "gloop/application.hpp"
 #include "gloop/context.hpp"
@@ -17,29 +20,27 @@
 #include "gloop/tools.hpp"
 #include "glgfx/blend_mode.hpp"
 #include "gloop/matrices.hpp"
-#include "glgfx/sprite_buffers/vbo_sprite_buffer.hpp"
 
 namespace {
 
-    static struct sprite_test_context : gloop::context {
-        glgfx::sprite::texture_data frames[10];
-        gloop::texture2D texture;
+    static struct sprite_test_context : gloop::context {        
+        std::unique_ptr<glgfx::sprite_sheet> sprites;
     } glContext;
 
-    static void initFrames(sprite_test_context * ctx) {
-        auto tex = gloop::tools::loadTexture("tests/data/duke.png");
-
-        float scaleWidth = tex.view.u1;
-        float scaleHeight = tex.view.v1;
-
-        std::swap(ctx->texture, tex.texture);
-
+    static void initSprites(sprite_test_context * ctx) {
+        ctx->sprites.reset(new glgfx::sprite_sheet("duke_wave"));
+        
+        const std::string baseName = "duke";
+        const std::string basePath = "tests/data/duke";
+        
         for (int i = 0; i < 10; i++) {
-            ctx->frames[i].texture = &(ctx->texture);
-            ctx->frames[i].u0 = float(i) / 10.0F * scaleWidth;
-            ctx->frames[i].v0 = 0.0F;
-            ctx->frames[i].u1 = float(i + 1) / 10.0F * scaleWidth;
-            ctx->frames[i].v1 = scaleHeight;
+            std::ostringstream name;
+            std::ostringstream path;
+            
+            name << baseName << i;
+            path << basePath << i << ".png";
+            
+            ctx->sprites->addInput(name.str(), path.str());
         }
     }
 
@@ -50,8 +51,12 @@ namespace {
 
         auto glCtx = reinterpret_cast<sprite_test_context *> (ctx);
 
-        if (!glCtx->texture) {
-            initFrames(glCtx);
+        static bool texturesInit = false;
+        
+        if (!texturesInit) {
+            initSprites(glCtx);
+            texturesInit = true;
+            //initFrames(glCtx);
         }
 
         static float frame = 0.0F;
@@ -73,7 +78,9 @@ namespace {
 
                 int frameSelect = (int(frame) + i * 8 + j) % 10;
 
-                sprite.textureData = glCtx->frames + frameSelect;
+                const static std::string ids[] = {"duke0", "duke1", "duke2", "duke3", "duke4", "duke5", "duke6", "duke7", "duke8", "duke9"};
+                
+                sprite.textureData = glCtx->sprites->get(ids[frameSelect]);
                 sprite.hasColorTransform = false;
                 sprite.blendMode = glgfx::blend_mode::NORMAL;
 
@@ -97,8 +104,8 @@ namespace {
         gfx.drawLine(
                 projection,
                 gloop::vec4{1.0F, 0.0F, 0.0F, 1.0F},
-        gloop::vec2{0.0F, 0.0F},
-        gloop::vec2{128.0F, 128.0F});
+                gloop::vec2{0.0F, 0.0F},
+                gloop::vec2{128.0F, 128.0F});
         
         gfx.drawRect(projection, gloop::vec4{1.0F, 1.0F, 0.0F, 1.0F}, gloop::vec2{256.0F, 256.0F}, gloop::vec2{32.0F, 32.0F});
         

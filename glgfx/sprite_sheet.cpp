@@ -214,6 +214,9 @@ namespace glgfx {
 
         const auto width = packer.getWidth();
         const auto height = packer.getHeight();
+        
+        _size.width = width;
+        _size.height = height;
 
         _texture.reset(new gloop::texture2D);
         _texture->allocate(gloop::enums::texture_internal_format::R8_G8_B8_A8_UNORM, 1, width, height);
@@ -261,5 +264,14 @@ namespace glgfx {
 
             _imageData[sprite->name] = textureData;
         }
+        
+#ifdef _DEBUG
+        std::cout << "DEBUG: Generated spritesheet: ["                
+                << " name: " << _name
+                << " w: " << _size.width
+                << " h: " << _size.height
+                << " usage: " << packer.getUsageRatio()
+                << "]" << std::endl;
+#endif        
     }
 }
