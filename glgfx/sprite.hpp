@@ -30,9 +30,7 @@ namespace glgfx {
             float u1;
             float v1;
             gloop::texture2D * texture;
-        };
-
-        texture_data * textureData;
+        } * textureData;
 
         std::array<float, 16> transformation;
 

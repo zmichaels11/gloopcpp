@@ -35,6 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/cglgfx/graphics.o \
 	${OBJECTDIR}/glgfx/blend_mode.o \
 	${OBJECTDIR}/glgfx/graphics.o \
 	${OBJECTDIR}/glgfx/renderers/line_renderer.o \
@@ -126,6 +127,11 @@ LDLIBSOPTIONS=`pkg-config --libs sdl2` `pkg-config --libs glew` `pkg-config --li
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/gloopcpp_test: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/gloopcpp_test ${OBJECTFILES} ${LDLIBSOPTIONS}
+
+${OBJECTDIR}/cglgfx/graphics.o: cglgfx/graphics.cpp
+	${MKDIR} -p ${OBJECTDIR}/cglgfx
+	${RM} "$@.d"
+	$(COMPILE.cc) -g `pkg-config --cflags sdl2` `pkg-config --cflags glew` `pkg-config --cflags gl` `pkg-config --cflags SDL2_image` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cglgfx/graphics.o cglgfx/graphics.cpp
 
 ${OBJECTDIR}/glgfx/blend_mode.o: glgfx/blend_mode.cpp
 	${MKDIR} -p ${OBJECTDIR}/glgfx

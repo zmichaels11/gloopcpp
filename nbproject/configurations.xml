@@ -5,6 +5,7 @@
                    displayName="Header Files"
                    projectFiles="true">
       <logicalFolder name="f2" displayName="cglgfx" projectFiles="true">
+        <itemPath>cglgfx/graphics.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f3" displayName="glgfx" projectFiles="true">
         <logicalFolder name="f1" displayName="renderers" projectFiles="true">
@@ -153,6 +154,9 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <logicalFolder name="f4" displayName="cglgfx" projectFiles="true">
+        <itemPath>cglgfx/graphics.cpp</itemPath>
+      </logicalFolder>
       <logicalFolder name="f3" displayName="glgfx" projectFiles="true">
         <logicalFolder name="f2" displayName="renderers" projectFiles="true">
           <itemPath>glgfx/renderers/line_renderer.cpp</itemPath>
@@ -312,6 +316,10 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
+      <item path="cglgfx/graphics.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cglgfx/graphics.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="glgfx/blend_mode.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="glgfx/blend_mode.hpp" ex="false" tool="3" flavor2="0">
@@ -992,6 +1000,10 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
+      <item path="cglgfx/graphics.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cglgfx/graphics.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="glgfx/blend_mode.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="glgfx/blend_mode.hpp" ex="false" tool="3" flavor2="0">
@@ -1663,6 +1675,10 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
+      <item path="cglgfx/graphics.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cglgfx/graphics.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="glgfx/blend_mode.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="glgfx/blend_mode.hpp" ex="false" tool="3" flavor2="0">
@@ -2343,6 +2359,10 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
+      <item path="cglgfx/graphics.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cglgfx/graphics.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="glgfx/blend_mode.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="glgfx/blend_mode.hpp" ex="false" tool="3" flavor2="0">
@@ -3022,6 +3042,10 @@
           <commandLine>-DGL=GLES2 -s USE_SDL=2 -s USE_SDL_IMAGE=2 -s SDL2_IMAGE_FORMATS='["png"]' --preload-file tests --preload-file glgfx/shaders -O2</commandLine>
         </linkerTool>
       </compileType>
+      <item path="cglgfx/graphics.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cglgfx/graphics.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="glgfx/blend_mode.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="glgfx/blend_mode.hpp" ex="false" tool="3" flavor2="0">
@@ -3701,6 +3725,10 @@
           <commandLine>-DGL=GLES2 -s USE_SDL=2 -s USE_SDL_IMAGE=2 -s SDL2_IMAGE_FORMATS='["png"]' --preload-file tests --preload-file glgfx/shaders -O2</commandLine>
         </linkerTool>
       </compileType>
+      <item path="cglgfx/graphics.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cglgfx/graphics.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="glgfx/blend_mode.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="glgfx/blend_mode.hpp" ex="false" tool="3" flavor2="0">
@@ -4382,6 +4410,10 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
+      <item path="cglgfx/graphics.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cglgfx/graphics.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="glgfx/blend_mode.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="glgfx/blend_mode.hpp" ex="false" tool="3" flavor2="0">
@@ -5056,6 +5088,10 @@
         <archiverTool>
         </archiverTool>
       </compileType>
+      <item path="cglgfx/graphics.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cglgfx/graphics.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="glgfx/blend_mode.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="glgfx/blend_mode.hpp" ex="false" tool="3" flavor2="0">

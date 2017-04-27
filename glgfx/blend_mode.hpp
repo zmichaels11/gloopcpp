@@ -15,7 +15,7 @@
 
 namespace glgfx {
     enum class blend_mode : unsigned int {
-        NORMAL,
+        NORMAL = 0,
         MIN,
         MAX,
         ADD,

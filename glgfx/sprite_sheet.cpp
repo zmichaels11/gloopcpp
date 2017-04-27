@@ -71,8 +71,14 @@ namespace glgfx {
         _image = nullptr;
         _texture.reset(nullptr);
     }
+    
+    void sprite_sheet::clear() {
+        invalidate();
+        _inputs.clear();
+        _imageData.clear();
+    }
 
-    void sprite_sheet::remove(const std::string& name) {
+    void sprite_sheet::removeInput(const std::string& name) {
         invalidate();
 
         std::vector<input>::iterator toRemove;

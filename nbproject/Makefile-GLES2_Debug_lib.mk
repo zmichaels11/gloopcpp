@@ -35,6 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/cglgfx/graphics.o \
 	${OBJECTDIR}/glgfx/blend_mode.o \
 	${OBJECTDIR}/glgfx/graphics.o \
 	${OBJECTDIR}/glgfx/renderers/line_renderer.o \
@@ -128,6 +129,11 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libgloop_cpp.a: ${OBJECTFILES}
 	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libgloop_cpp.a
 	${AR} -rv ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libgloop_cpp.a ${OBJECTFILES} 
 	$(RANLIB) ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libgloop_cpp.a
+
+${OBJECTDIR}/cglgfx/graphics.o: cglgfx/graphics.cpp
+	${MKDIR} -p ${OBJECTDIR}/cglgfx
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cglgfx/graphics.o cglgfx/graphics.cpp
 
 ${OBJECTDIR}/glgfx/blend_mode.o: glgfx/blend_mode.cpp
 	${MKDIR} -p ${OBJECTDIR}/glgfx

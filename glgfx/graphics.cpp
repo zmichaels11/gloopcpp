@@ -26,6 +26,12 @@
 
 namespace glgfx {
 
+    graphics::graphics() {
+        _currentRenderer = renderers::sprite_renderer::getInstance();
+        _surface = gloop::framebuffer::getCurrentFramebuffer();
+        _viewport = std::make_unique<gloop::states::viewport> (gloop::states::viewport::getCurrentViewport());
+    }
+    
     graphics::graphics(gloop::framebuffer * surface, const gloop::states::viewport& viewport) {
         _currentRenderer = renderers::sprite_renderer::getInstance();
         _surface = surface;

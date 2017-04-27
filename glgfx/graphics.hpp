@@ -41,6 +41,8 @@ namespace glgfx {
         T * switchRenderer(T * r);
 
     public:
+        graphics();
+        
         graphics(gloop::framebuffer * surface, const gloop::states::viewport& viewport);
 
         ~graphics();

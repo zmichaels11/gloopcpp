@@ -81,7 +81,7 @@ namespace glgfx {
         
         void invalidate();
         
-        void remove(const std::string& name);
+        void removeInput(const std::string& name);
         
         void addInput(const std::string& name, const std::string& path);
         
