@@ -16,8 +16,9 @@
 #include <array>
 #include <memory>
 
-#include "../gloop/glint.hpp"
-#include "../gloop/matrices.hpp"
+#include "../sprite_buffer.hpp"
+#include "../../gloop/glint.hpp"
+#include "../../gloop/matrices.hpp"
 
 namespace gloop {
     class buffer;
@@ -29,7 +30,7 @@ namespace glgfx {
     enum class blend_mode : unsigned int;
     class sprite;
 
-    class vbo_sprite_buffer {
+    class vbo_sprite_buffer : public glgfx::sprite_buffer {
     public:
         constexpr static unsigned int BATCH_SIZE = 256;
         const static bool& USE_BINDLESS;
@@ -76,12 +77,12 @@ namespace glgfx {
     public:
         vbo_sprite_buffer();
 
-        void draw(sprite& s);
+        virtual void draw(sprite& s);
 
-        void flush();
+        virtual void flush();
 
-        void reset();
+        virtual void reset();
 
-        bool isSupported() const;
+        virtual bool isSupported() const;
     };
 }

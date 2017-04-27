@@ -9,6 +9,12 @@
 namespace gloop {
     namespace draw {
         struct draw_call {
+            struct features {
+                bool drawInstanced;
+            };
+            
+            const static features& FEATURES;
+            
             virtual void draw() const = 0;
             
             inline void operator()() const {

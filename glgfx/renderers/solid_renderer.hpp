@@ -14,7 +14,10 @@
 #pragma once
 
 #include <memory>
+
 #include "../../gloop/matrices.hpp"
+
+#include "../renderer.hpp"
 
 namespace gloop {
     class buffer;
@@ -23,7 +26,7 @@ namespace gloop {
 
 namespace glgfx {
     namespace renderers {
-        class solid_renderer {
+        class solid_renderer : public glgfx::renderer {
         public:
             static constexpr unsigned int BATCH_SIZE = 96;
             static solid_renderer * getInstance();
@@ -52,11 +55,11 @@ namespace glgfx {
         public:
             solid_renderer();
             
-            void flush();
+            virtual void flush();
             
             void draw(const point& drawCall);
             
-            void reset();            
+            virtual void reset();            
         };
     }
 }

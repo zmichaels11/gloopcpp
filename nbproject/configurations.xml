@@ -9,11 +9,18 @@
       <logicalFolder name="f3" displayName="glgfx" projectFiles="true">
         <logicalFolder name="f1" displayName="renderers" projectFiles="true">
           <itemPath>glgfx/renderers/line_renderer.hpp</itemPath>
+          <itemPath>glgfx/renderers/masked_image_renderer.hpp</itemPath>
           <itemPath>glgfx/renderers/solid_renderer.hpp</itemPath>
+          <itemPath>glgfx/renderers/sprite_renderer.hpp</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f2" displayName="sprite_buffers" projectFiles="true">
+          <itemPath>glgfx/sprite_buffers/vbo_sprite_buffer.hpp</itemPath>
         </logicalFolder>
         <itemPath>glgfx/blend_mode.hpp</itemPath>
+        <itemPath>glgfx/graphics.hpp</itemPath>
+        <itemPath>glgfx/renderer.hpp</itemPath>
         <itemPath>glgfx/sprite.hpp</itemPath>
-        <itemPath>glgfx/vbo_sprite_buffer.hpp</itemPath>
+        <itemPath>glgfx/sprite_buffer.hpp</itemPath>
       </logicalFolder>
       <logicalFolder name="f1" displayName="gloop" projectFiles="true">
         <logicalFolder name="f6" displayName="bitfields" projectFiles="true">
@@ -147,7 +154,9 @@
       <logicalFolder name="f3" displayName="glgfx" projectFiles="true">
         <logicalFolder name="f2" displayName="renderers" projectFiles="true">
           <itemPath>glgfx/renderers/line_renderer.cpp</itemPath>
+          <itemPath>glgfx/renderers/masked_image_renderer.cpp</itemPath>
           <itemPath>glgfx/renderers/solid_renderer.cpp</itemPath>
+          <itemPath>glgfx/renderers/sprite_renderer.cpp</itemPath>
         </logicalFolder>
         <logicalFolder name="f1" displayName="shaders" projectFiles="true">
           <itemPath>glgfx/shaders/ES2_line_renderer.frag</itemPath>
@@ -156,13 +165,18 @@
           <itemPath>glgfx/shaders/ES2_vbo_sprite_buffer.vert</itemPath>
           <itemPath>glgfx/shaders/line_renderer.frag</itemPath>
           <itemPath>glgfx/shaders/line_renderer.vert</itemPath>
+          <itemPath>glgfx/shaders/masked_image_renderer_bindless.frag</itemPath>
+          <itemPath>glgfx/shaders/masked_image_renderer_bindless.vert</itemPath>
           <itemPath>glgfx/shaders/vbo_sprite_buffer.frag</itemPath>
           <itemPath>glgfx/shaders/vbo_sprite_buffer.vert</itemPath>
           <itemPath>glgfx/shaders/vbo_sprite_buffer_bindless.frag</itemPath>
           <itemPath>glgfx/shaders/vbo_sprite_buffer_bindless.vert</itemPath>
         </logicalFolder>
+        <logicalFolder name="f3" displayName="sprite_buffers" projectFiles="true">
+          <itemPath>glgfx/sprite_buffers/vbo_sprite_buffer.cpp</itemPath>
+        </logicalFolder>
         <itemPath>glgfx/blend_mode.cpp</itemPath>
-        <itemPath>glgfx/vbo_sprite_buffer.cpp</itemPath>
+        <itemPath>glgfx/graphics.cpp</itemPath>
       </logicalFolder>
       <logicalFolder name="f1" displayName="gloop" projectFiles="true">
         <logicalFolder name="f7" displayName="bitfields" projectFiles="true">
@@ -294,13 +308,39 @@
       </item>
       <item path="glgfx/blend_mode.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="glgfx/graphics.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="glgfx/graphics.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/renderer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="glgfx/renderers/line_renderer.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="glgfx/renderers/line_renderer.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="glgfx/renderers/masked_image_renderer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="glgfx/renderers/masked_image_renderer.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="glgfx/renderers/solid_renderer.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="glgfx/renderers/solid_renderer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/renderers/sprite_renderer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="glgfx/renderers/sprite_renderer.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="glgfx/shaders/ES2_line_renderer.frag"
             ex="false"
@@ -326,6 +366,16 @@
       </item>
       <item path="glgfx/shaders/line_renderer.vert" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="glgfx/shaders/masked_image_renderer_bindless.frag"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="glgfx/shaders/masked_image_renderer_bindless.vert"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="glgfx/shaders/vbo_sprite_buffer.frag"
             ex="false"
             tool="3"
@@ -348,9 +398,17 @@
       </item>
       <item path="glgfx/sprite.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="glgfx/vbo_sprite_buffer.cpp" ex="false" tool="1" flavor2="0">
+      <item path="glgfx/sprite_buffer.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="glgfx/vbo_sprite_buffer.hpp" ex="false" tool="3" flavor2="0">
+      <item path="glgfx/sprite_buffers/vbo_sprite_buffer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="glgfx/sprite_buffers/vbo_sprite_buffer.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="gloop/application.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -908,13 +966,39 @@
       </item>
       <item path="glgfx/blend_mode.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="glgfx/graphics.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="glgfx/graphics.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/renderer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="glgfx/renderers/line_renderer.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="glgfx/renderers/line_renderer.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="glgfx/renderers/masked_image_renderer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="glgfx/renderers/masked_image_renderer.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="glgfx/renderers/solid_renderer.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="glgfx/renderers/solid_renderer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/renderers/sprite_renderer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="glgfx/renderers/sprite_renderer.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="glgfx/shaders/ES2_line_renderer.frag"
             ex="false"
@@ -940,6 +1024,16 @@
       </item>
       <item path="glgfx/shaders/line_renderer.vert" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="glgfx/shaders/masked_image_renderer_bindless.frag"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="glgfx/shaders/masked_image_renderer_bindless.vert"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="glgfx/shaders/vbo_sprite_buffer.frag"
             ex="false"
             tool="3"
@@ -962,9 +1056,17 @@
       </item>
       <item path="glgfx/sprite.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="glgfx/vbo_sprite_buffer.cpp" ex="false" tool="1" flavor2="0">
+      <item path="glgfx/sprite_buffer.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="glgfx/vbo_sprite_buffer.hpp" ex="false" tool="3" flavor2="0">
+      <item path="glgfx/sprite_buffers/vbo_sprite_buffer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="glgfx/sprite_buffers/vbo_sprite_buffer.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="gloop/application.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -1513,13 +1615,39 @@
       </item>
       <item path="glgfx/blend_mode.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="glgfx/graphics.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="glgfx/graphics.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/renderer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="glgfx/renderers/line_renderer.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="glgfx/renderers/line_renderer.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="glgfx/renderers/masked_image_renderer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="glgfx/renderers/masked_image_renderer.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="glgfx/renderers/solid_renderer.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="glgfx/renderers/solid_renderer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/renderers/sprite_renderer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="glgfx/renderers/sprite_renderer.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="glgfx/shaders/ES2_line_renderer.frag"
             ex="false"
@@ -1545,6 +1673,16 @@
       </item>
       <item path="glgfx/shaders/line_renderer.vert" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="glgfx/shaders/masked_image_renderer_bindless.frag"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="glgfx/shaders/masked_image_renderer_bindless.vert"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="glgfx/shaders/vbo_sprite_buffer.frag"
             ex="false"
             tool="3"
@@ -1567,9 +1705,17 @@
       </item>
       <item path="glgfx/sprite.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="glgfx/vbo_sprite_buffer.cpp" ex="false" tool="1" flavor2="0">
+      <item path="glgfx/sprite_buffer.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="glgfx/vbo_sprite_buffer.hpp" ex="false" tool="3" flavor2="0">
+      <item path="glgfx/sprite_buffers/vbo_sprite_buffer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="glgfx/sprite_buffers/vbo_sprite_buffer.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="gloop/application.cpp" ex="false" tool="1" flavor2="11">
       </item>
@@ -2127,13 +2273,39 @@
       </item>
       <item path="glgfx/blend_mode.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="glgfx/graphics.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="glgfx/graphics.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/renderer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="glgfx/renderers/line_renderer.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="glgfx/renderers/line_renderer.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="glgfx/renderers/masked_image_renderer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="glgfx/renderers/masked_image_renderer.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="glgfx/renderers/solid_renderer.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="glgfx/renderers/solid_renderer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/renderers/sprite_renderer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="glgfx/renderers/sprite_renderer.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="glgfx/shaders/ES2_line_renderer.frag"
             ex="false"
@@ -2159,6 +2331,16 @@
       </item>
       <item path="glgfx/shaders/line_renderer.vert" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="glgfx/shaders/masked_image_renderer_bindless.frag"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="glgfx/shaders/masked_image_renderer_bindless.vert"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="glgfx/shaders/vbo_sprite_buffer.frag"
             ex="false"
             tool="3"
@@ -2181,9 +2363,17 @@
       </item>
       <item path="glgfx/sprite.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="glgfx/vbo_sprite_buffer.cpp" ex="false" tool="1" flavor2="0">
+      <item path="glgfx/sprite_buffer.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="glgfx/vbo_sprite_buffer.hpp" ex="false" tool="3" flavor2="0">
+      <item path="glgfx/sprite_buffers/vbo_sprite_buffer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="glgfx/sprite_buffers/vbo_sprite_buffer.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="gloop/application.cpp" ex="false" tool="1" flavor2="11">
       </item>
@@ -2740,13 +2930,39 @@
       </item>
       <item path="glgfx/blend_mode.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="glgfx/graphics.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="glgfx/graphics.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/renderer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="glgfx/renderers/line_renderer.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="glgfx/renderers/line_renderer.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="glgfx/renderers/masked_image_renderer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="glgfx/renderers/masked_image_renderer.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="glgfx/renderers/solid_renderer.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="glgfx/renderers/solid_renderer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/renderers/sprite_renderer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="glgfx/renderers/sprite_renderer.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="glgfx/shaders/ES2_line_renderer.frag"
             ex="false"
@@ -2772,6 +2988,16 @@
       </item>
       <item path="glgfx/shaders/line_renderer.vert" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="glgfx/shaders/masked_image_renderer_bindless.frag"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="glgfx/shaders/masked_image_renderer_bindless.vert"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="glgfx/shaders/vbo_sprite_buffer.frag"
             ex="false"
             tool="3"
@@ -2794,9 +3020,17 @@
       </item>
       <item path="glgfx/sprite.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="glgfx/vbo_sprite_buffer.cpp" ex="false" tool="1" flavor2="0">
+      <item path="glgfx/sprite_buffer.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="glgfx/vbo_sprite_buffer.hpp" ex="false" tool="3" flavor2="0">
+      <item path="glgfx/sprite_buffers/vbo_sprite_buffer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="glgfx/sprite_buffers/vbo_sprite_buffer.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="gloop/application.cpp" ex="false" tool="1" flavor2="11">
       </item>
@@ -3353,13 +3587,39 @@
       </item>
       <item path="glgfx/blend_mode.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="glgfx/graphics.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="glgfx/graphics.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/renderer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="glgfx/renderers/line_renderer.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="glgfx/renderers/line_renderer.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="glgfx/renderers/masked_image_renderer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="glgfx/renderers/masked_image_renderer.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="glgfx/renderers/solid_renderer.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="glgfx/renderers/solid_renderer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/renderers/sprite_renderer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="glgfx/renderers/sprite_renderer.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="glgfx/shaders/ES2_line_renderer.frag"
             ex="false"
@@ -3385,6 +3645,16 @@
       </item>
       <item path="glgfx/shaders/line_renderer.vert" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="glgfx/shaders/masked_image_renderer_bindless.frag"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="glgfx/shaders/masked_image_renderer_bindless.vert"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="glgfx/shaders/vbo_sprite_buffer.frag"
             ex="false"
             tool="3"
@@ -3407,9 +3677,17 @@
       </item>
       <item path="glgfx/sprite.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="glgfx/vbo_sprite_buffer.cpp" ex="false" tool="1" flavor2="0">
+      <item path="glgfx/sprite_buffer.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="glgfx/vbo_sprite_buffer.hpp" ex="false" tool="3" flavor2="0">
+      <item path="glgfx/sprite_buffers/vbo_sprite_buffer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="glgfx/sprite_buffers/vbo_sprite_buffer.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="gloop/application.cpp" ex="false" tool="1" flavor2="11">
       </item>
@@ -3968,13 +4246,39 @@
       </item>
       <item path="glgfx/blend_mode.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="glgfx/graphics.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="glgfx/graphics.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/renderer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="glgfx/renderers/line_renderer.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="glgfx/renderers/line_renderer.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="glgfx/renderers/masked_image_renderer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="glgfx/renderers/masked_image_renderer.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="glgfx/renderers/solid_renderer.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="glgfx/renderers/solid_renderer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/renderers/sprite_renderer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="glgfx/renderers/sprite_renderer.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="glgfx/shaders/ES2_line_renderer.frag"
             ex="false"
@@ -4000,6 +4304,16 @@
       </item>
       <item path="glgfx/shaders/line_renderer.vert" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="glgfx/shaders/masked_image_renderer_bindless.frag"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="glgfx/shaders/masked_image_renderer_bindless.vert"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="glgfx/shaders/vbo_sprite_buffer.frag"
             ex="false"
             tool="3"
@@ -4022,9 +4336,17 @@
       </item>
       <item path="glgfx/sprite.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="glgfx/vbo_sprite_buffer.cpp" ex="false" tool="1" flavor2="0">
+      <item path="glgfx/sprite_buffer.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="glgfx/vbo_sprite_buffer.hpp" ex="false" tool="3" flavor2="0">
+      <item path="glgfx/sprite_buffers/vbo_sprite_buffer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="glgfx/sprite_buffers/vbo_sprite_buffer.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="gloop/application.cpp" ex="false" tool="1" flavor2="11">
       </item>
@@ -4576,13 +4898,39 @@
       </item>
       <item path="glgfx/blend_mode.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="glgfx/graphics.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="glgfx/graphics.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/renderer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="glgfx/renderers/line_renderer.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="glgfx/renderers/line_renderer.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="glgfx/renderers/masked_image_renderer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="glgfx/renderers/masked_image_renderer.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="glgfx/renderers/solid_renderer.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="glgfx/renderers/solid_renderer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/renderers/sprite_renderer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="glgfx/renderers/sprite_renderer.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="glgfx/shaders/ES2_line_renderer.frag"
             ex="false"
@@ -4608,6 +4956,16 @@
       </item>
       <item path="glgfx/shaders/line_renderer.vert" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="glgfx/shaders/masked_image_renderer_bindless.frag"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="glgfx/shaders/masked_image_renderer_bindless.vert"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="glgfx/shaders/vbo_sprite_buffer.frag"
             ex="false"
             tool="3"
@@ -4630,9 +4988,17 @@
       </item>
       <item path="glgfx/sprite.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="glgfx/vbo_sprite_buffer.cpp" ex="false" tool="1" flavor2="0">
+      <item path="glgfx/sprite_buffer.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="glgfx/vbo_sprite_buffer.hpp" ex="false" tool="3" flavor2="0">
+      <item path="glgfx/sprite_buffers/vbo_sprite_buffer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="glgfx/sprite_buffers/vbo_sprite_buffer.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="gloop/application.cpp" ex="false" tool="1" flavor2="11">
       </item>

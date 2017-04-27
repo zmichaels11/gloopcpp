@@ -13,18 +13,18 @@
 #include <cstring>
 #include <string>
 
-#include "../gloop/buffer.hpp"
-#include "../gloop/draw_calls.hpp"
-#include "../gloop/gl_traits.hpp"
-#include "../gloop/glint.hpp"
-#include "../gloop/enums.hpp"
-#include "../gloop/matrices.hpp"
-#include "../gloop/objects.hpp"
-#include "../gloop/uniforms.hpp"
-#include "../gloop/tools.hpp"
+#include "../../gloop/buffer.hpp"
+#include "../../gloop/draw_calls.hpp"
+#include "../../gloop/gl_traits.hpp"
+#include "../../gloop/glint.hpp"
+#include "../../gloop/enums.hpp"
+#include "../../gloop/matrices.hpp"
+#include "../../gloop/objects.hpp"
+#include "../../gloop/uniforms.hpp"
+#include "../../gloop/tools.hpp"
 
-#include "blend_mode.hpp"
-#include "sprite.hpp"
+#include "../blend_mode.hpp"
+#include "../sprite.hpp"
 
 const bool & glgfx::vbo_sprite_buffer::USE_BINDLESS = gloop::texture2D::FEATURES.bindless;
 
@@ -227,7 +227,7 @@ namespace glgfx {
     }
 
     bool vbo_sprite_buffer::isSupported() const {
-        return true;
+        return gloop::draw::draw_call::FEATURES.drawInstanced;
     }
 
     void vbo_sprite_buffer::reset() {

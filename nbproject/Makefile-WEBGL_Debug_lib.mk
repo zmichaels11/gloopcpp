@@ -36,9 +36,12 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/glgfx/blend_mode.o \
+	${OBJECTDIR}/glgfx/graphics.o \
 	${OBJECTDIR}/glgfx/renderers/line_renderer.o \
+	${OBJECTDIR}/glgfx/renderers/masked_image_renderer.o \
 	${OBJECTDIR}/glgfx/renderers/solid_renderer.o \
-	${OBJECTDIR}/glgfx/vbo_sprite_buffer.o \
+	${OBJECTDIR}/glgfx/renderers/sprite_renderer.o \
+	${OBJECTDIR}/glgfx/sprite_buffers/vbo_sprite_buffer.o \
 	${OBJECTDIR}/gloop/application.o \
 	${OBJECTDIR}/gloop/bitfields/buffer_access_hint.o \
 	${OBJECTDIR}/gloop/bitfields/buffer_immutable_storage_hint.o \
@@ -127,20 +130,35 @@ ${OBJECTDIR}/glgfx/blend_mode.o: glgfx/blend_mode.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -O `pkg-config --cflags glesv2` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/glgfx/blend_mode.o glgfx/blend_mode.cpp
 
+${OBJECTDIR}/glgfx/graphics.o: glgfx/graphics.cpp
+	${MKDIR} -p ${OBJECTDIR}/glgfx
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -O `pkg-config --cflags glesv2` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/glgfx/graphics.o glgfx/graphics.cpp
+
 ${OBJECTDIR}/glgfx/renderers/line_renderer.o: glgfx/renderers/line_renderer.cpp
 	${MKDIR} -p ${OBJECTDIR}/glgfx/renderers
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -O `pkg-config --cflags glesv2` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/glgfx/renderers/line_renderer.o glgfx/renderers/line_renderer.cpp
+
+${OBJECTDIR}/glgfx/renderers/masked_image_renderer.o: glgfx/renderers/masked_image_renderer.cpp
+	${MKDIR} -p ${OBJECTDIR}/glgfx/renderers
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -O `pkg-config --cflags glesv2` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/glgfx/renderers/masked_image_renderer.o glgfx/renderers/masked_image_renderer.cpp
 
 ${OBJECTDIR}/glgfx/renderers/solid_renderer.o: glgfx/renderers/solid_renderer.cpp
 	${MKDIR} -p ${OBJECTDIR}/glgfx/renderers
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -O `pkg-config --cflags glesv2` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/glgfx/renderers/solid_renderer.o glgfx/renderers/solid_renderer.cpp
 
-${OBJECTDIR}/glgfx/vbo_sprite_buffer.o: glgfx/vbo_sprite_buffer.cpp
-	${MKDIR} -p ${OBJECTDIR}/glgfx
+${OBJECTDIR}/glgfx/renderers/sprite_renderer.o: glgfx/renderers/sprite_renderer.cpp
+	${MKDIR} -p ${OBJECTDIR}/glgfx/renderers
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -O `pkg-config --cflags glesv2` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/glgfx/vbo_sprite_buffer.o glgfx/vbo_sprite_buffer.cpp
+	$(COMPILE.cc) -g -O `pkg-config --cflags glesv2` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/glgfx/renderers/sprite_renderer.o glgfx/renderers/sprite_renderer.cpp
+
+${OBJECTDIR}/glgfx/sprite_buffers/vbo_sprite_buffer.o: glgfx/sprite_buffers/vbo_sprite_buffer.cpp
+	${MKDIR} -p ${OBJECTDIR}/glgfx/sprite_buffers
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -O `pkg-config --cflags glesv2` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/glgfx/sprite_buffers/vbo_sprite_buffer.o glgfx/sprite_buffers/vbo_sprite_buffer.cpp
 
 ${OBJECTDIR}/gloop/application.o: gloop/application.cpp
 	${MKDIR} -p ${OBJECTDIR}/gloop

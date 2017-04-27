@@ -9,7 +9,7 @@
 #include <utility>
 
 #include "glgfx/sprite.hpp"
-#include "glgfx/vbo_sprite_buffer.hpp"
+#include "glgfx/graphics.hpp"
 
 #include "gloop/application.hpp"
 #include "gloop/context.hpp"
@@ -65,6 +65,8 @@ namespace {
         float ySpacing = float(size.height) / 64.0F;
         static const auto projection = gloop::matrices::ortho4F(glCtx->currentViewport);
         
+        glgfx::graphics gfx;
+        
         for (int i = 0; i < 64; i++) {
             for (int j = 0; j < 64; j++) {
                 glgfx::sprite sprite;
@@ -88,18 +90,11 @@ namespace {
                     sprite.transformation = mCat;
                 }
                 
-                glgfx::vbo_sprite_buffer::getInstance()->draw(sprite);
+                gfx.drawSprite(sprite);
             }
         }
         
-        glgfx::renderers::line_renderer::line_draw line;
-        
-        line.color = gloop::vec4{1.0F, 0.0F, 0.0F, 1.0F};
-        line.start = gloop::vec2{0.0F, 0.0F};
-        line.end = gloop::vec2{128.0F, 128.0F};
-        line.mvp = projection;
-        
-        glgfx::renderers::line_renderer::getInstance()->draw(line);
+        gfx.drawLine(projection, gloop::vec4{1.0F, 0.0F, 0.0F, 1.0F}, 0.0F, 0.0F, 128.0F, 128.0F);
         
         static auto fpsStart = SDL_GetTicks();
         static unsigned int frameCount = 0;
@@ -115,8 +110,7 @@ namespace {
         
         frame = int(elapsedTime / 60);
         
-        glgfx::vbo_sprite_buffer::getInstance()->flush();
-        glgfx::renderers::line_renderer::getInstance()->flush();
+        gfx.dispose();
         frameCount++;
     }
 }

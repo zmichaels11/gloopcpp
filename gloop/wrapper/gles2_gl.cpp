@@ -17,6 +17,7 @@
 
 #include "../glint.hpp"
 #include "../buffer.hpp"
+#include "../draw/call.hpp"
 #include "../texture2D.hpp"
 #include "../tools.hpp"
 
@@ -37,6 +38,7 @@ namespace {
 namespace {
     static gloop::buffer::features _bufferFeatures;
     static gloop::texture2D::features _textureFeatures;
+    static gloop::draw::draw_call::features _drawCallFeatures;
 
     static void initFeatures() {
         _bufferFeatures.map = gloop::wrapper::OES_mapbuffer;
@@ -45,12 +47,15 @@ namespace {
         _bufferFeatures.immutable = gloop::wrapper::EXT_buffer_storage;
         
         _textureFeatures.bindless = false;
+        
+        _drawCallFeatures.drawInstanced = gloop::wrapper::ANGLE_instanced_arrays;
     }
 }
 
 namespace gloop {
     const buffer::features& gloop::buffer::FEATURES = _bufferFeatures;
     const texture2D::features& gloop::texture2D::FEATURES = _textureFeatures;
+    const draw::draw_call::features& gloop::draw::draw_call::FEATURES = _drawCallFeatures;
 }
 
 namespace gloop {
