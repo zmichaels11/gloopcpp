@@ -41,6 +41,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/glgfx/renderers/masked_image_renderer.o \
 	${OBJECTDIR}/glgfx/renderers/solid_renderer.o \
 	${OBJECTDIR}/glgfx/renderers/sprite_renderer.o \
+	${OBJECTDIR}/glgfx/skyline_packer.o \
 	${OBJECTDIR}/glgfx/sprite_buffers/vbo_sprite_buffer.o \
 	${OBJECTDIR}/glgfx/sprite_sheet.o \
 	${OBJECTDIR}/gloop/application.o \
@@ -157,6 +158,11 @@ ${OBJECTDIR}/glgfx/renderers/sprite_renderer.o: glgfx/renderers/sprite_renderer.
 	${MKDIR} -p ${OBJECTDIR}/glgfx/renderers
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/glgfx/renderers/sprite_renderer.o glgfx/renderers/sprite_renderer.cpp
+
+${OBJECTDIR}/glgfx/skyline_packer.o: glgfx/skyline_packer.cpp
+	${MKDIR} -p ${OBJECTDIR}/glgfx
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/glgfx/skyline_packer.o glgfx/skyline_packer.cpp
 
 ${OBJECTDIR}/glgfx/sprite_buffers/vbo_sprite_buffer.o: glgfx/sprite_buffers/vbo_sprite_buffer.cpp
 	${MKDIR} -p ${OBJECTDIR}/glgfx/sprite_buffers

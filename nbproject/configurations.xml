@@ -19,6 +19,7 @@
         <itemPath>glgfx/blend_mode.hpp</itemPath>
         <itemPath>glgfx/graphics.hpp</itemPath>
         <itemPath>glgfx/renderer.hpp</itemPath>
+        <itemPath>glgfx/skyline_packer.hpp</itemPath>
         <itemPath>glgfx/sprite.hpp</itemPath>
         <itemPath>glgfx/sprite_buffer.hpp</itemPath>
         <itemPath>glgfx/sprite_sheet.hpp</itemPath>
@@ -182,6 +183,7 @@
         </logicalFolder>
         <itemPath>glgfx/blend_mode.cpp</itemPath>
         <itemPath>glgfx/graphics.cpp</itemPath>
+        <itemPath>glgfx/skyline_packer.cpp</itemPath>
         <itemPath>glgfx/sprite_sheet.cpp</itemPath>
       </logicalFolder>
       <logicalFolder name="f1" displayName="gloop" projectFiles="true">
@@ -415,6 +417,10 @@
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="glgfx/skyline_packer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="glgfx/skyline_packer.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="glgfx/sprite.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -1092,6 +1098,10 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="glgfx/skyline_packer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="glgfx/skyline_packer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="glgfx/sprite.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="glgfx/sprite_buffer.hpp" ex="false" tool="3" flavor2="0">
@@ -1758,6 +1768,10 @@
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="glgfx/skyline_packer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="glgfx/skyline_packer.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="glgfx/sprite.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -2435,6 +2449,10 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="glgfx/skyline_packer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="glgfx/skyline_packer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="glgfx/sprite.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="glgfx/sprite_buffer.hpp" ex="false" tool="3" flavor2="0">
@@ -3110,6 +3128,10 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="glgfx/skyline_packer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="glgfx/skyline_packer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="glgfx/sprite.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="glgfx/sprite_buffer.hpp" ex="false" tool="3" flavor2="0">
@@ -3784,6 +3806,10 @@
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="glgfx/skyline_packer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="glgfx/skyline_packer.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="glgfx/sprite.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -4462,6 +4488,10 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="glgfx/skyline_packer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="glgfx/skyline_packer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="glgfx/sprite.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="glgfx/sprite_buffer.hpp" ex="false" tool="3" flavor2="0">
@@ -5131,6 +5161,10 @@
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="glgfx/skyline_packer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="glgfx/skyline_packer.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="glgfx/sprite.hpp" ex="false" tool="3" flavor2="0">
       </item>

@@ -37,7 +37,7 @@ namespace glgfx {
     private:
         struct input {
             std::string name;
-            std::string image;            
+            std::string image;           
         };
         
         std::vector<input> _inputs;
