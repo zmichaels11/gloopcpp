@@ -25,14 +25,23 @@ namespace glgfx {
         renderer * _currentRenderer;
         blend_mode _currentBlendMode;
         
-        renderer * switchRenderer(renderer * r);
+        template<class T>
+        T * switchRenderer(T * r);
         
     public:
         graphics();
         
         void drawSprite(sprite& sprite);
         
-        void drawLine(const gloop::mat4& mvp, const gloop::vec4& color, float x1, float y1, float x2, float y2);
+        void drawLine(const gloop::mat4& mvp, const gloop::vec4& color, const gloop::vec2& p0, const gloop::vec2& p1);
+        
+        void drawRect(const gloop::mat4& mvp, const gloop::vec4& color, const gloop::vec2& pos, const gloop::vec2& size);
+        
+        void drawTriangle(const gloop::mat4& mvp, const gloop::vec4& color, const gloop::vec2& p0, const gloop::vec2& p1, const gloop::vec2& p2);
+        
+        void fillRect(const gloop::mat4& mvp, const gloop::vec4& color, const gloop::vec2& pos, const gloop::vec2& size);
+        
+        void fillTriangle(const gloop::mat4& mvp, const gloop::vec4& color, const gloop::vec2& p0, const gloop::vec2& p1, const gloop::vec2& p2);
         
         void flush();
         

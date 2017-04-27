@@ -90,6 +90,7 @@ namespace glgfx {
 
             constexpr auto stride = sizeof (point);
             constexpr auto buffer_size = stride * BATCH_SIZE;
+            constexpr auto vec2_size = 2 * sizeof (gloop::float_t);
             constexpr auto vec4_size = 4 * sizeof (gloop::float_t);
 
             verts->allocate(gloop::enums::buffer_target::ARRAY, buffer_size, gloop::enums::buffer_storage_hint::STREAM_DRAW);
@@ -98,7 +99,7 @@ namespace glgfx {
 
             int off = 0;
             vao->addBinding(attribs["vPos"].bindBuffer(verts, gloop::enums::vertex_attribute_type::VEC2, stride, off));
-            off += vec4_size;
+            off += vec2_size;
             vao->addBinding(attribs["vColor"].bindBuffer(verts, gloop::enums::vertex_attribute_type::VEC4, stride, off));
             off += vec4_size;
             vao->addBinding(attribs["vMvp0"].bindBuffer(verts, gloop::enums::vertex_attribute_type::VEC4, stride, off));
@@ -108,11 +109,14 @@ namespace glgfx {
             vao->addBinding(attribs["vMvp2"].bindBuffer(verts, gloop::enums::vertex_attribute_type::VEC4, stride, off));
             off += vec4_size;
             vao->addBinding(attribs["vMvp3"].bindBuffer(verts, gloop::enums::vertex_attribute_type::VEC4, stride, off));
+            
+            _verts.reset(verts);
+            _vao.reset(vao);            
         }
 
         void solid_renderer::streamDraw() {
-            auto instanceSize = sizeof (point) * _pointCount;
-
+            auto instanceSize = sizeof (point) * _pointCount;            
+            
             _bufferData._verts->reallocate();
             _bufferData._verts->setData(0, instanceSize, _drawData.get());
 
@@ -121,7 +125,8 @@ namespace glgfx {
             drawCall.count = _pointCount;
             drawCall.drawMode = gloop::draw::mode::TRIANGLES;
             drawCall.first = 0;
-
+            
+            
             _bufferData._vao->bind();
             drawCall();
             _pointCount = 0;

@@ -35,16 +35,15 @@ namespace glgfx {
             struct buffer_data_t {
                 std::unique_ptr<gloop::vertex_array> _vao;
                 std::unique_ptr<gloop::buffer> _verts;
-                std::unique_ptr<gloop::buffer> _vInstance;
                 
                 buffer_data_t();
             } _bufferData;
             
         public:
             struct point {
-                gloop::mat4 mvp;
                 gloop::vec2 pos;
                 gloop::vec4 color;
+                gloop::mat4 mvp;                
             };
             
         private:

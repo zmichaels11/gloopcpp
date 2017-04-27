@@ -161,12 +161,16 @@
         <logicalFolder name="f1" displayName="shaders" projectFiles="true">
           <itemPath>glgfx/shaders/ES2_line_renderer.frag</itemPath>
           <itemPath>glgfx/shaders/ES2_line_renderer.vert</itemPath>
+          <itemPath>glgfx/shaders/ES2_solid_renderer.frag</itemPath>
+          <itemPath>glgfx/shaders/ES2_solid_renderer.vert</itemPath>
           <itemPath>glgfx/shaders/ES2_vbo_sprite_buffer.frag</itemPath>
           <itemPath>glgfx/shaders/ES2_vbo_sprite_buffer.vert</itemPath>
           <itemPath>glgfx/shaders/line_renderer.frag</itemPath>
           <itemPath>glgfx/shaders/line_renderer.vert</itemPath>
           <itemPath>glgfx/shaders/masked_image_renderer_bindless.frag</itemPath>
           <itemPath>glgfx/shaders/masked_image_renderer_bindless.vert</itemPath>
+          <itemPath>glgfx/shaders/solid_renderer.frag</itemPath>
+          <itemPath>glgfx/shaders/solid_renderer.vert</itemPath>
           <itemPath>glgfx/shaders/vbo_sprite_buffer.frag</itemPath>
           <itemPath>glgfx/shaders/vbo_sprite_buffer.vert</itemPath>
           <itemPath>glgfx/shaders/vbo_sprite_buffer_bindless.frag</itemPath>
@@ -352,6 +356,16 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="glgfx/shaders/ES2_solid_renderer.frag"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="glgfx/shaders/ES2_solid_renderer.vert"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="glgfx/shaders/ES2_vbo_sprite_buffer.frag"
             ex="false"
             tool="3"
@@ -375,6 +389,10 @@
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="glgfx/shaders/solid_renderer.frag" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/shaders/solid_renderer.vert" ex="false" tool="3" flavor2="0">
       </item>
       <item path="glgfx/shaders/vbo_sprite_buffer.frag"
             ex="false"
@@ -1010,6 +1028,16 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="glgfx/shaders/ES2_solid_renderer.frag"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="glgfx/shaders/ES2_solid_renderer.vert"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="glgfx/shaders/ES2_vbo_sprite_buffer.frag"
             ex="false"
             tool="3"
@@ -1033,6 +1061,10 @@
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="glgfx/shaders/solid_renderer.frag" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/shaders/solid_renderer.vert" ex="false" tool="3" flavor2="0">
       </item>
       <item path="glgfx/shaders/vbo_sprite_buffer.frag"
             ex="false"
@@ -1659,6 +1691,16 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="glgfx/shaders/ES2_solid_renderer.frag"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="glgfx/shaders/ES2_solid_renderer.vert"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="glgfx/shaders/ES2_vbo_sprite_buffer.frag"
             ex="false"
             tool="3"
@@ -1682,6 +1724,10 @@
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="glgfx/shaders/solid_renderer.frag" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/shaders/solid_renderer.vert" ex="false" tool="3" flavor2="0">
       </item>
       <item path="glgfx/shaders/vbo_sprite_buffer.frag"
             ex="false"
@@ -2317,6 +2363,16 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="glgfx/shaders/ES2_solid_renderer.frag"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="glgfx/shaders/ES2_solid_renderer.vert"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="glgfx/shaders/ES2_vbo_sprite_buffer.frag"
             ex="false"
             tool="3"
@@ -2340,6 +2396,10 @@
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="glgfx/shaders/solid_renderer.frag" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/shaders/solid_renderer.vert" ex="false" tool="3" flavor2="0">
       </item>
       <item path="glgfx/shaders/vbo_sprite_buffer.frag"
             ex="false"
@@ -2974,6 +3034,16 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="glgfx/shaders/ES2_solid_renderer.frag"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="glgfx/shaders/ES2_solid_renderer.vert"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="glgfx/shaders/ES2_vbo_sprite_buffer.frag"
             ex="false"
             tool="3"
@@ -2997,6 +3067,10 @@
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="glgfx/shaders/solid_renderer.frag" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/shaders/solid_renderer.vert" ex="false" tool="3" flavor2="0">
       </item>
       <item path="glgfx/shaders/vbo_sprite_buffer.frag"
             ex="false"
@@ -3631,6 +3705,16 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="glgfx/shaders/ES2_solid_renderer.frag"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="glgfx/shaders/ES2_solid_renderer.vert"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="glgfx/shaders/ES2_vbo_sprite_buffer.frag"
             ex="false"
             tool="3"
@@ -3654,6 +3738,10 @@
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="glgfx/shaders/solid_renderer.frag" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/shaders/solid_renderer.vert" ex="false" tool="3" flavor2="0">
       </item>
       <item path="glgfx/shaders/vbo_sprite_buffer.frag"
             ex="false"
@@ -4290,6 +4378,16 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="glgfx/shaders/ES2_solid_renderer.frag"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="glgfx/shaders/ES2_solid_renderer.vert"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="glgfx/shaders/ES2_vbo_sprite_buffer.frag"
             ex="false"
             tool="3"
@@ -4313,6 +4411,10 @@
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="glgfx/shaders/solid_renderer.frag" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/shaders/solid_renderer.vert" ex="false" tool="3" flavor2="0">
       </item>
       <item path="glgfx/shaders/vbo_sprite_buffer.frag"
             ex="false"
@@ -4942,6 +5044,16 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="glgfx/shaders/ES2_solid_renderer.frag"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="glgfx/shaders/ES2_solid_renderer.vert"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="glgfx/shaders/ES2_vbo_sprite_buffer.frag"
             ex="false"
             tool="3"
@@ -4965,6 +5077,10 @@
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="glgfx/shaders/solid_renderer.frag" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="glgfx/shaders/solid_renderer.vert" ex="false" tool="3" flavor2="0">
       </item>
       <item path="glgfx/shaders/vbo_sprite_buffer.frag"
             ex="false"
