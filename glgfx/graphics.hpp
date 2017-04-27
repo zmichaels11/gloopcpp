@@ -13,9 +13,7 @@
 
 #pragma once
 
-#include <functional>
 #include <memory>
-#include <queue>
 
 #include "../gloop/matrices.hpp"
 
@@ -32,9 +30,7 @@ namespace glgfx {
     class sprite;
 
     class graphics {
-    private:
-        std::queue<std::function<void()>> _drawCommands;
-        
+    private:        
         renderer * _currentRenderer;
         blend_mode _currentBlendMode;
 

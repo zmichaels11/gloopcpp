@@ -77,14 +77,11 @@ namespace glgfx {
         
         clear_t clear(clearMask, clearColor, 1.0, 0);
         
-        auto cmd = [=](){
-            scissor_t::push();            
-            scissor();                        
-            clear();
-            scissor_t::pop();
-        };
         
-        _drawCommands.push(cmd);
+        scissor_t::push();            
+        scissor();                        
+        clear();
+        scissor_t::pop();        
     }
 
     void graphics::setBlendMode(blend_mode blend) {
@@ -116,12 +113,6 @@ namespace glgfx {
 
         gloop::states::blend::push();
         apply(blend_mode::NORMAL);
-
-        // render all stored commands
-        while (!_drawCommands.empty()) {
-            _drawCommands.front()();
-            _drawCommands.pop();
-        }
 
         if (_currentRenderer != defaultRenderer) {
             if (_currentRenderer) {
