@@ -65,7 +65,7 @@ namespace {
         float ySpacing = float(size.height) / 64.0F;
         static const auto projection = gloop::matrices::ortho4F(glCtx->currentViewport);
 
-        glgfx::graphics gfx;
+        glgfx::graphics gfx(gloop::framebuffer::getDefaultFramebuffer(), glCtx->currentViewport);
 
         for (int i = 0; i < 64; i++) {
             for (int j = 0; j < 64; j++) {
@@ -116,9 +116,7 @@ namespace {
             fpsStart = now;
         }
 
-        frame = int(elapsedTime / 60);
-
-        gfx.dispose();
+        frame = int(elapsedTime / 60);        
         frameCount++;
     }
 }

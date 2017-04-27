@@ -21,22 +21,22 @@
 #include "exception/invalid_enum_exception.hpp"
 
 namespace gloop {
-    
-    std::ostream& operator<<(std::ostream& os, framebuffer::attachment_type type) {
-            switch (type) {
-                case framebuffer::attachment_type::RENDERBUFFER:
-                    os << "RENDERBUFFER";
-                    break;
-                case framebuffer::attachment_type::TEXTURE:
-                    os << "TEXTURE";
-                    break;
-                default:
-                    os << "UNKNOWN";
-                    break;
-            }
 
-            return os;
+    std::ostream& operator<<(std::ostream& os, framebuffer::attachment_type type) {
+        switch (type) {
+            case framebuffer::attachment_type::RENDERBUFFER:
+                os << "RENDERBUFFER";
+                break;
+            case framebuffer::attachment_type::TEXTURE:
+                os << "TEXTURE";
+                break;
+            default:
+                os << "UNKNOWN";
+                break;
         }
+
+        return os;
+    }
 
     std::ostream& operator<<(std::ostream& os, const framebuffer::attachment& a) {
         os << "attachment: [";
@@ -68,13 +68,32 @@ namespace gloop {
     framebuffer::~framebuffer() {
         free();
     }
+    
+    framebuffer * framebuffer::getCurrentFramebuffer() {
+        return CURRENT_FRAMEBUFFER;
+    } 
+    
+    namespace {
+        static framebuffer DEFAULT_FRAMEBUFFER(0);
+    }
+    
+    framebuffer * framebuffer::CURRENT_FRAMEBUFFER = &DEFAULT_FRAMEBUFFER;
+    
+    framebuffer * framebuffer::getDefaultFramebuffer() {
+        return &DEFAULT_FRAMEBUFFER;
+    }
 
     void framebuffer::bind(const enums::framebuffer_target target) {
         wrapper::bindFramebuffer(static_cast<gloop::enum_t> (target), getId());
+        CURRENT_FRAMEBUFFER = this;
     }
 
     bool framebuffer::isValid() const {
-        return _id != 0;
+        if (_externalInit) {
+            return true;
+        } else {
+            return _id != 0;
+        }
     }
 
     gloop::uint_t framebuffer::getId() {

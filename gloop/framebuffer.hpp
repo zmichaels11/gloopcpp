@@ -19,17 +19,24 @@
 
 #include "glint.hpp"
 
-namespace gloop {   
-    
+namespace gloop {
+
     namespace enums {
         enum class framebuffer_attachment : gloop::enum_t;
         enum class framebuffer_target : gloop::enum_t;
     }
-    
+
     class renderbuffer;
-    class texture2D;    
+    class texture2D;
 
     class framebuffer {
+    private:
+        static framebuffer * CURRENT_FRAMEBUFFER;
+
+    public:
+        static framebuffer * getCurrentFramebuffer();
+        static framebuffer * getDefaultFramebuffer();
+
     public:
 
         enum class attachment_type {
@@ -52,13 +59,20 @@ namespace gloop {
         };
     private:
         gloop::uint_t _id;
+        bool _externalInit;
 
         std::map<enums::framebuffer_attachment, attachment> _attachments;
 
     public:
 
+        framebuffer(gloop::uint_t id) :
+        _id(id),
+        _externalInit(true) {
+        }
+
         framebuffer() :
-        _id(0) {
+        _id(0),
+        _externalInit(false) {
         }
 
         ~framebuffer();
