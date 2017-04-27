@@ -9,7 +9,9 @@
 #include <iostream>
 
 #include "../bitfields/clear_mask.hpp"
+#include "../exception/invalid_operation_exception.hpp"
 #include "../glint.hpp"
+#include "../gloop_throw.hpp"
 #include "../wrapper/states.hpp"
 
 namespace gloop {
@@ -28,6 +30,31 @@ namespace gloop {
     }
     
     namespace states {
+        std::stack<clear> clear::CLEAR_STACK;
+        clear clear::CURRENT_CLEAR;
+        
+        void clear::push() {
+            CLEAR_STACK.push(CURRENT_CLEAR);
+        }
+        
+        clear clear::pop() {
+            if (CLEAR_STACK.empty()) {
+                gloop_throw(gloop::exception::invalid_operation_exception("Attempted to pop empty stack!"));
+            } else {
+                clear current = CURRENT_CLEAR;
+                clear restore = CLEAR_STACK.top();
+                
+                CLEAR_STACK.pop();
+                
+                restore();
+                return current;
+            }
+        }
+        
+        const clear& clear::getCurrentClear() {
+            return CURRENT_CLEAR;
+        }
+        
         std::ostream& operator<<(std::ostream& os, clear c) {
             return os << "clear: ["
                     << c._color
@@ -94,6 +121,8 @@ namespace gloop {
         }
 
         void clear::apply() const {
+            CURRENT_CLEAR = *this;
+            
             if (maskHasColor(_mask)) {
                 gloop::wrapper::clearColor(_color.red, _color.green, _color.blue, _color.alpha);
             }

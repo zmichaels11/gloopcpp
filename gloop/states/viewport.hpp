@@ -7,6 +7,7 @@
 #pragma once
 
 #include <iostream>
+#include <stack>
 
 #include "../glint.hpp"
 #include "depth_range.hpp"
@@ -15,6 +16,15 @@ namespace gloop {
     namespace states {
 
         class viewport {
+        private:
+            static std::stack<viewport> VIEWPORT_STACK;
+            static viewport CURRENT_VIEWPORT;
+            
+        public:
+            static void push();
+            static viewport pop();
+            static const viewport& getCurrentViewport();
+            
         public:
 
             struct offset {

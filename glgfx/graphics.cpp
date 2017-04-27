@@ -8,8 +8,13 @@
 
 #include <algorithm>
 
+#include "../gloop/bitfields/clear_mask.hpp"
 #include "../gloop/framebuffer.hpp"
+#include "../gloop/glint.hpp"
 #include "../gloop/matrices.hpp"
+#include "../gloop/states/blend.hpp"
+#include "../gloop/states/clear.hpp"
+#include "../gloop/states/scissor.hpp"
 #include "../gloop/states/viewport.hpp"
 
 #include "blend_mode.hpp"
@@ -31,7 +36,59 @@ namespace glgfx {
         dispose();
     }
 
+    void graphics::clear() {
+        constexpr gloop::vec4 BLACK{0.0F, 0.0F, 0.0F, 1.0F};
+
+        clear(BLACK);
+    }
+
+    void graphics::clear(const gloop::vec4& color) {
+        auto size = _viewport->getSize();
+        auto offset = _viewport->getOffset();
+
+        clearRect(color, offset.x, offset.y, size.width, size.height);
+    }
+
+    void graphics::clearRect(const gloop::vec4& color, int x, int y, unsigned int width, unsigned int height) {
+        if (_currentRenderer != nullptr) {
+            _currentRenderer->flush();
+            _currentRenderer = renderers::sprite_renderer::getInstance();
+        }
+
+        using scissor_t = gloop::states::scissor;
+        using clear_t = gloop::states::clear;
+
+        auto viewSize = _viewport->getSize();
+        auto viewOff = _viewport->getOffset();
+        auto sx = gloop::int_t(x);
+        auto sy = gloop::int_t(viewSize.height - y - height);
+        auto sw = gloop::sizei_t(width);
+        auto sh = gloop::sizei_t(height);
+
+        scissor_t scissor(true,{sx, sy}, {sw, sh});
+        
+        clear_t::color clearColor;
+        clearColor.red = color[0];
+        clearColor.green = color[1];
+        clearColor.blue = color[2];
+        clearColor.alpha = color[3];
+        
+        static auto clearMask = gloop::bitfields::clear_mask::COLOR | gloop::bitfields::clear_mask::DEPTH;            
+        
+        clear_t clear(clearMask, clearColor, 1.0, 0);
+        
+        auto cmd = [=](){
+            scissor_t::push();            
+            scissor();                        
+            clear();
+            scissor_t::pop();
+        };
+        
+        _drawCommands.push(cmd);
+    }
+
     void graphics::setBlendMode(blend_mode blend) {
+        
         switchRenderer(renderers::sprite_renderer::getInstance());
         _currentBlendMode = blend;
         apply(blend);
@@ -48,31 +105,37 @@ namespace glgfx {
     }
 
     void graphics::flush() {
-        bool fbChanged = _surface != gloop::framebuffer::getCurrentFramebuffer();
-        gloop::framebuffer * stored = nullptr;
+        const bool fbChanged = _surface != gloop::framebuffer::getCurrentFramebuffer();
         renderer * defaultRenderer = renderers::sprite_renderer::getInstance();
 
         if (fbChanged) {
             defaultRenderer->flush();
-            stored = gloop::framebuffer::getCurrentFramebuffer();
+            gloop::framebuffer::push();
             _surface->bind();
         }
 
+        gloop::states::blend::push();
         apply(blend_mode::NORMAL);
 
         // render all stored commands
+        while (!_drawCommands.empty()) {
+            _drawCommands.front()();
+            _drawCommands.pop();
+        }
 
         if (_currentRenderer != defaultRenderer) {
             if (_currentRenderer) {
                 _currentRenderer->flush();
             }
-            
+
             _currentRenderer = defaultRenderer;
         }
 
+        gloop::states::blend::pop();
+
         if (fbChanged) {
             defaultRenderer->flush();
-            stored->bind();
+            gloop::framebuffer::pop();
         }
     }
 

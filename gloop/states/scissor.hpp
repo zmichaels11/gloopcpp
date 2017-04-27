@@ -7,6 +7,7 @@
 #pragma once
 
 #include <iostream>
+#include <stack>
 
 #include "../glint.hpp"
 
@@ -14,6 +15,15 @@ namespace gloop {
     namespace states {
 
         class scissor {
+        private:
+            static std::stack<scissor> SCISSOR_STACK;
+            static scissor CURRENT_SCISSOR;
+            
+        public:
+            static void push();
+            static scissor pop();
+            static const scissor& getCurrentScissor();
+            
         public:
 
             struct offset {

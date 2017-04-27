@@ -16,6 +16,7 @@
 #include <cstddef>
 #include <iostream>
 #include <map>
+#include <stack>
 
 #include "glint.hpp"
 
@@ -32,11 +33,14 @@ namespace gloop {
     class framebuffer {
     private:
         static framebuffer * CURRENT_FRAMEBUFFER;
+        static std::stack<framebuffer * > FB_STACK;
 
     public:
         static framebuffer * getCurrentFramebuffer();
-        static framebuffer * getDefaultFramebuffer();
-
+        static framebuffer * getDefaultFramebuffer();        
+        static void push();
+        static framebuffer * pop();
+        
     public:
 
         enum class attachment_type {

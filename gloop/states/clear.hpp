@@ -8,6 +8,7 @@
 #pragma once
 
 #include <iostream>
+#include <stack>
 
 #include "../glint.hpp"
 
@@ -19,6 +20,15 @@ namespace gloop {
     namespace states {
 
         class clear {
+        private:
+            static std::stack<clear> CLEAR_STACK;
+            static clear CURRENT_CLEAR;
+            
+        public:
+            static void push();
+            static clear pop();
+            static const clear& getCurrentClear();
+            
         public:
 
             struct color {

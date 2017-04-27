@@ -8,6 +8,7 @@
 #pragma once
 
 #include <iostream>
+#include <stack>
 
 #include "../glint.hpp"
 
@@ -21,6 +22,14 @@ namespace gloop {
         
         class blend {
         private:
+            static std::stack<blend> BLEND_STACK;
+            static blend CURRENT_BLEND;
+        public:
+            static void push();
+            static blend pop();
+            static const blend& getCurrentBlend();
+            
+        private:            
             bool _enabled;
             enums::blend_func _srcRGB;
             enums::blend_func _dstRGB;

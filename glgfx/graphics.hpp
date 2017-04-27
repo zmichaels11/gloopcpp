@@ -13,7 +13,9 @@
 
 #pragma once
 
+#include <functional>
 #include <memory>
+#include <queue>
 
 #include "../gloop/matrices.hpp"
 
@@ -31,6 +33,8 @@ namespace glgfx {
 
     class graphics {
     private:
+        std::queue<std::function<void()>> _drawCommands;
+        
         renderer * _currentRenderer;
         blend_mode _currentBlendMode;
 
@@ -45,7 +49,13 @@ namespace glgfx {
 
         ~graphics();
 
-        blend_mode getBlendMode();
+        blend_mode getBlendMode();                
+        
+        void clear();
+        
+        void clear(const gloop::vec4& color);
+        
+        void clearRect(const gloop::vec4& color, int x, int y, unsigned int width, unsigned int height);
 
         void setBlendMode(blend_mode blend);
 

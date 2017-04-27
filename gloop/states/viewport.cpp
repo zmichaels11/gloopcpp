@@ -7,13 +7,40 @@
 #include "viewport.hpp"
 
 #include <iostream>
+#include <stack>
 
+#include "../exception/invalid_operation_exception.hpp"
+#include "../gloop_throw.hpp"
 #include "../wrapper/states.hpp"
 #include "depth_range.hpp"
 
 namespace gloop {
     namespace states {
-
+        std::stack<viewport> viewport::VIEWPORT_STACK;
+        viewport viewport::CURRENT_VIEWPORT({0, 0}, {0, 0});
+        
+        void viewport::push() {
+            VIEWPORT_STACK.push(CURRENT_VIEWPORT);
+        }
+        
+        viewport viewport::pop() {
+            if (VIEWPORT_STACK.empty()) {
+                gloop_throw(gloop::exception::invalid_operation_exception("Attempted to pop empty stack!"));
+            } else {
+                viewport current = CURRENT_VIEWPORT;
+                viewport restore = VIEWPORT_STACK.top();
+                
+                VIEWPORT_STACK.pop();
+                
+                restore();
+                return current;
+            }
+        }
+        
+        const viewport& viewport::getCurrentViewport() {
+            return CURRENT_VIEWPORT;
+        }
+        
         std::ostream& operator<<(std::ostream& os, const viewport::offset& o) {
             return os << "offset: <" << o.x << ", " << o.y << ">";
         }
@@ -59,6 +86,7 @@ namespace gloop {
         }
 
         void viewport::apply() const {
+            CURRENT_VIEWPORT = *this;
             gloop::wrapper::viewport(_offset.x, _offset.y, _size.width, _size.height);
             _depthRange();
         }

@@ -8,6 +8,7 @@
 
 #include <cstddef>
 #include <iostream>
+#include <stack>
 
 #include "enums/framebuffer_attachment.hpp"
 #include "enums/framebuffer_target.hpp"
@@ -78,9 +79,28 @@ namespace gloop {
     }
     
     framebuffer * framebuffer::CURRENT_FRAMEBUFFER = &DEFAULT_FRAMEBUFFER;
+    std::stack<framebuffer * > framebuffer::FB_STACK;
     
     framebuffer * framebuffer::getDefaultFramebuffer() {
         return &DEFAULT_FRAMEBUFFER;
+    }
+    
+    void framebuffer::push() {
+        FB_STACK.push(CURRENT_FRAMEBUFFER);
+    }
+    
+    framebuffer * framebuffer::pop() {
+        if (FB_STACK.empty()) {
+            gloop_throw(gloop::exception::invalid_operation_exception("Attempted to pop empty stack!"));
+        }
+        
+        auto * current = CURRENT_FRAMEBUFFER;
+        auto * restore = FB_STACK.top();
+        
+        FB_STACK.pop();
+        
+        restore->bind();
+        return current;
     }
 
     void framebuffer::bind(const enums::framebuffer_target target) {

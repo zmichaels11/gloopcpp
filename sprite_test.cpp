@@ -56,9 +56,7 @@ namespace {
 
         static float frame = 0.0F;
 
-        int frameSelect = (int(frame)) % 10;
-
-        glCtx->currentClear();
+        int frameSelect = (int(frame)) % 10;        
 
         auto size = glCtx->currentViewport.getSize();
         float xSpacing = float(size.width) / 64.0F;
@@ -66,6 +64,8 @@ namespace {
         static const auto projection = gloop::matrices::ortho4F(glCtx->currentViewport);
 
         glgfx::graphics gfx(gloop::framebuffer::getDefaultFramebuffer(), glCtx->currentViewport);
+        
+        gfx.clear();
 
         for (int i = 0; i < 64; i++) {
             for (int j = 0; j < 64; j++) {

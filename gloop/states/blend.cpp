@@ -7,14 +7,42 @@
 #include "blend.hpp"
 
 #include <iostream>
+#include <stack>
 
 #include "../enums/blend_eq.hpp"
 #include "../enums/blend_func.hpp"
+#include "../exception/invalid_operation_exception.hpp"
+#include "../gloop_throw.hpp"
 #include "../wrapper/states.hpp"
 
 namespace gloop {
     namespace states {
-
+        blend blend::CURRENT_BLEND;
+        std::stack<blend> blend::BLEND_STACK;
+        
+        void blend::push() {
+            BLEND_STACK.push(CURRENT_BLEND);
+        }
+        
+        blend blend::pop() {
+            if (BLEND_STACK.empty()) {
+                gloop_throw(gloop::exception::invalid_operation_exception("Attempted to pop empty stack!"));
+            } else {
+                blend current = CURRENT_BLEND;
+                blend restore = BLEND_STACK.top();
+                
+                BLEND_STACK.pop();
+                
+                restore();
+                
+                return current;
+            }
+        }
+        
+        const blend& blend::getCurrentBlend() {
+            return CURRENT_BLEND;
+        }
+        
         std::ostream& operator<<(std::ostream& os, const blend& b) {
             return os << "blend: ["
                     << "rgb: [src: " << b._srcRGB
@@ -88,6 +116,8 @@ namespace gloop {
         }
 
         void blend::apply() const {
+            CURRENT_BLEND = *this;
+            
             if (_enabled) {
                 gloop::wrapper::enable(gloop::wrapper::BLEND);
 
