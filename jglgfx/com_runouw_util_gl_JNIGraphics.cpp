@@ -201,7 +201,7 @@ JNIEXPORT jlong JNICALL JavaCritical_com_runouw_util_gl_JNIGraphics_jglgfxGetSpr
  * Method:    glgfxDrawSprite
  * Signature: (JJ[F[F)V
  */
-JNIEXPORT void JNICALL Java_com_runouw_util_gl_JNIGraphics_glgfxDrawSprite
+JNIEXPORT void JNICALL JavaCritical_com_runouw_util_gl_JNIGraphics_glgfxDrawSprite
   (JNIEnv *, jclass, jlong spriteSheet, jlong sprite, jfloat * mvp, jfloat * colorTransform) {
     
     glgfxDrawSprite((void *) (intptr_t) spriteSheet, (void *) (intptr_t) sprite, (float *) mvp, (float *) colorTransform);

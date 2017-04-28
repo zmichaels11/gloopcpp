@@ -262,6 +262,14 @@ namespace gloop {
         }
 
         void init() {
+            static bool isInit = false;
+            
+            if (isInit) {
+                return;
+            } else {
+                isInit = true;
+            }
+            
             init_OpenGLES_3_0();
 
             init_OpenGLES_3_1();

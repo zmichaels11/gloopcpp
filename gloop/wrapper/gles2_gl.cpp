@@ -203,6 +203,13 @@ namespace gloop {
         }
 
         void init() {
+            static bool isInit = false;
+            
+            if (isInit) {
+                return;
+            } else {
+                isInit = true;
+            }
 
             init_EXT_buffer_storage();
 
