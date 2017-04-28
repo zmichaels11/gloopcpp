@@ -146,6 +146,9 @@
         <itemPath>gloop/vertex_attribute_binding.hpp</itemPath>
         <itemPath>gloop/vertex_attributes.hpp</itemPath>
       </logicalFolder>
+      <logicalFolder name="f4" displayName="jglgfx" projectFiles="true">
+        <itemPath>jglgfx/com_runouw_util_gl_JNIGraphics.h</itemPath>
+      </logicalFolder>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -268,6 +271,9 @@
         <itemPath>gloop/vertex_attribute_binding.cpp</itemPath>
         <itemPath>gloop/vertex_attributes.cpp</itemPath>
       </logicalFolder>
+      <logicalFolder name="f5" displayName="jglgfx" projectFiles="true">
+        <itemPath>jglgfx/com_runouw_util_gl_JNIGraphics.cpp</itemPath>
+      </logicalFolder>
       <logicalFolder name="f2" displayName="tests" projectFiles="true">
         <logicalFolder name="f1" displayName="nehe" projectFiles="true">
           <itemPath>lesson06.cpp</itemPath>
@@ -302,8 +308,18 @@
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <compileType>
+        <cTool>
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>include/linux</pElem>
+          </incDir>
+        </cTool>
         <ccTool>
           <standard>11</standard>
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>include/linux</pElem>
+          </incDir>
           <commandLine>-DGL=GLEW -D_DEBUG=1 -DUSE_SDL_IMAGE=1</commandLine>
         </ccTool>
         <linkerTool>
@@ -954,6 +970,16 @@
       </item>
       <item path="gloop/wrapper/vertex_arrays.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="jglgfx/com_runouw_util_gl_JNIGraphics.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="jglgfx/com_runouw_util_gl_JNIGraphics.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="lesson06.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="simple_rect.cpp" ex="false" tool="1" flavor2="0">
@@ -980,10 +1006,18 @@
       <compileType>
         <cTool>
           <developmentMode>5</developmentMode>
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>include/linux</pElem>
+          </incDir>
         </cTool>
         <ccTool>
           <developmentMode>5</developmentMode>
           <standard>11</standard>
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>include/linux</pElem>
+          </incDir>
           <commandLine>-DGL=GLEW</commandLine>
         </ccTool>
         <fortranCompilerTool>
@@ -1638,6 +1672,16 @@
       </item>
       <item path="gloop/wrapper/vertex_arrays.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="jglgfx/com_runouw_util_gl_JNIGraphics.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="jglgfx/com_runouw_util_gl_JNIGraphics.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="lesson06.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="simple_rect.cpp" ex="false" tool="1" flavor2="0">
@@ -1662,8 +1706,18 @@
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <compileType>
+        <cTool>
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>include/linux</pElem>
+          </incDir>
+        </cTool>
         <ccTool>
           <standard>11</standard>
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>include/linux</pElem>
+          </incDir>
           <commandLine>-DGL=GLES2 -D_DEBUG=1 -DUSE_SDL_IMAGE=1</commandLine>
         </ccTool>
         <linkerTool>
@@ -2322,6 +2376,16 @@
       </item>
       <item path="gloop/wrapper/vertex_arrays.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="jglgfx/com_runouw_util_gl_JNIGraphics.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="jglgfx/com_runouw_util_gl_JNIGraphics.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="lesson06.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="simple_rect.cpp" ex="false" tool="1" flavor2="0">
@@ -2346,8 +2410,18 @@
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <compileType>
+        <cTool>
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>include/linux</pElem>
+          </incDir>
+        </cTool>
         <ccTool>
           <standard>11</standard>
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>include/linux</pElem>
+          </incDir>
           <commandLine>-DGL=GLES3 -D_DEBUG=1 -DUSE_SDL_IMAGE=1</commandLine>
         </ccTool>
         <linkerTool>
@@ -3006,6 +3080,16 @@
       </item>
       <item path="gloop/wrapper/vertex_arrays.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="jglgfx/com_runouw_util_gl_JNIGraphics.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="jglgfx/com_runouw_util_gl_JNIGraphics.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="lesson06.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="simple_rect.cpp" ex="false" tool="1" flavor2="0">
@@ -3030,10 +3114,20 @@
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <compileType>
+        <cTool>
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>include/linux</pElem>
+          </incDir>
+        </cTool>
         <ccTool>
           <developmentMode>2</developmentMode>
           <standard>11</standard>
           <commandlineTool>em++</commandlineTool>
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>include/linux</pElem>
+          </incDir>
           <commandLine>-DGL=GLES2 -s USE_SDL=2 -s USE_SDL_IMAGE=2 -s SDL2_IMAGE_FORMATS='["png"]' -D_DEBUG=1 -DUSE_SDL_IMAGE=1</commandLine>
         </ccTool>
         <linkerTool>
@@ -3689,6 +3783,16 @@
       </item>
       <item path="gloop/wrapper/vertex_arrays.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="jglgfx/com_runouw_util_gl_JNIGraphics.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="jglgfx/com_runouw_util_gl_JNIGraphics.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="lesson06.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="simple_rect.cpp" ex="false" tool="1" flavor2="11">
@@ -3713,10 +3817,20 @@
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <compileType>
+        <cTool>
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>include/linux</pElem>
+          </incDir>
+        </cTool>
         <ccTool>
           <developmentMode>6</developmentMode>
           <standard>11</standard>
           <commandlineTool>em++</commandlineTool>
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>include/linux</pElem>
+          </incDir>
           <commandLine>-DGL=GLES2 -s USE_SDL=2 -s USE_SDL_IMAGE=2 -s SDL2_IMAGE_FORMATS='["png"]' -D_DEBUG=1 -DUSE_SDL_IMAGE=1</commandLine>
         </ccTool>
         <linkerTool>
@@ -4372,6 +4486,16 @@
       </item>
       <item path="gloop/wrapper/vertex_arrays.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="jglgfx/com_runouw_util_gl_JNIGraphics.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="jglgfx/com_runouw_util_gl_JNIGraphics.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="lesson06.cpp" ex="false" tool="1" flavor2="11">
       </item>
       <item path="simple_rect.cpp" ex="false" tool="1" flavor2="11">
@@ -4396,10 +4520,20 @@
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <compileType>
+        <cTool>
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>include/linux</pElem>
+          </incDir>
+        </cTool>
         <ccTool>
           <developmentMode>2</developmentMode>
           <standard>11</standard>
           <commandlineTool>em++</commandlineTool>
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>include/linux</pElem>
+          </incDir>
           <commandLine>-DGL=GLES2 -s USE_SDL=2 -D_DEBUG=1 -Dlib</commandLine>
         </ccTool>
         <linkerTool>
@@ -5057,6 +5191,16 @@
       </item>
       <item path="gloop/wrapper/vertex_arrays.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="jglgfx/com_runouw_util_gl_JNIGraphics.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="jglgfx/com_runouw_util_gl_JNIGraphics.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="lesson06.cpp" ex="false" tool="1" flavor2="11">
       </item>
       <item path="simple_rect.cpp" ex="false" tool="1" flavor2="11">
@@ -5081,8 +5225,18 @@
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <compileType>
+        <cTool>
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>include/linux</pElem>
+          </incDir>
+        </cTool>
         <ccTool>
           <standard>11</standard>
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>include/linux</pElem>
+          </incDir>
           <commandLine>-DGL=GLES2 -D_DEBUG=1 -D_LIB=1</commandLine>
         </ccTool>
         <archiverTool>
@@ -5734,6 +5888,16 @@
       <item path="gloop/wrapper/texture_objects.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/wrapper/vertex_arrays.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="jglgfx/com_runouw_util_gl_JNIGraphics.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="jglgfx/com_runouw_util_gl_JNIGraphics.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="lesson06.cpp" ex="false" tool="1" flavor2="11">
       </item>
