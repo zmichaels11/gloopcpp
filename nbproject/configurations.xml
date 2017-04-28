@@ -115,6 +115,7 @@
           <itemPath>gloop/wrapper/drawing_commands.hpp</itemPath>
           <itemPath>gloop/wrapper/framebuffer_objects.hpp</itemPath>
           <itemPath>gloop/wrapper/gl.hpp</itemPath>
+          <itemPath>gloop/wrapper/gl_gl.hpp</itemPath>
           <itemPath>gloop/wrapper/gl_gles2.hpp</itemPath>
           <itemPath>gloop/wrapper/gl_gles3.hpp</itemPath>
           <itemPath>gloop/wrapper/shaders_and_programs.hpp</itemPath>
@@ -853,6 +854,8 @@
       </item>
       <item path="gloop/wrapper/gl.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/wrapper/gl_gl.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/wrapper/gl_gles2.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/wrapper/gl_gles3.hpp" ex="false" tool="3" flavor2="0">
@@ -1554,6 +1557,8 @@
             flavor2="0">
       </item>
       <item path="gloop/wrapper/gl.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/wrapper/gl_gl.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/wrapper/gl_gles2.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -2259,6 +2264,8 @@
       </item>
       <item path="gloop/wrapper/gl.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/wrapper/gl_gl.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/wrapper/gl_gles2.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/wrapper/gl_gles3.hpp" ex="false" tool="3" flavor2="0">
@@ -2963,6 +2970,8 @@
       </item>
       <item path="gloop/wrapper/gl.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/wrapper/gl_gl.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/wrapper/gl_gles2.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/wrapper/gl_gles3.hpp" ex="false" tool="3" flavor2="0">
@@ -3666,6 +3675,8 @@
       </item>
       <item path="gloop/wrapper/gl.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/wrapper/gl_gl.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/wrapper/gl_gles2.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/wrapper/gl_gles3.hpp" ex="false" tool="3" flavor2="0">
@@ -4368,6 +4379,8 @@
             flavor2="0">
       </item>
       <item path="gloop/wrapper/gl.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/wrapper/gl_gl.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/wrapper/gl_gles2.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -5074,6 +5087,8 @@
       </item>
       <item path="gloop/wrapper/gl.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/wrapper/gl_gl.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/wrapper/gl_gles2.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/wrapper/gl_gles3.hpp" ex="false" tool="3" flavor2="0">
@@ -5771,6 +5786,8 @@
             flavor2="0">
       </item>
       <item path="gloop/wrapper/gl.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/wrapper/gl_gl.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/wrapper/gl_gles2.hpp" ex="false" tool="3" flavor2="0">
       </item>

@@ -13,9 +13,6 @@
 
 #pragma once
 
-#include <stdint.h>
-
-
 #define GLES3 3
 #if GL == GLES3
 
