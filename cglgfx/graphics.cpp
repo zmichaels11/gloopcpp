@@ -132,7 +132,7 @@ void glgfxSpritesheetAddInput(void * sprite_sheet, const char * name, const char
     spriteSheet->addInput(name, path);
 }
 
-void glgfxSpriteSheetRemoveInput(void * sprite_sheet, const char * name) {
+void glgfxSpritesheetRemoveInput(void * sprite_sheet, const char * name) {
     auto spriteSheet = reinterpret_cast<glgfx::sprite_sheet *> (sprite_sheet);
 
     spriteSheet->removeInput(name);

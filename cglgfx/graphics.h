@@ -58,7 +58,7 @@ void glgfxDestroySpritesheet(void * sprite_sheet);
 
 void glgfxSpritesheetAddInput(void * sprite_sheet, const char * name, const char * path);
 
-void glgfxSpriteSheetRemoveInput(void * sprite_sheet, const char * name);
+void glgfxSpritesheetRemoveInput(void * sprite_sheet, const char * name);
 
 void glgfxInvalidateSpritesheet(void * sprite_sheet);
 

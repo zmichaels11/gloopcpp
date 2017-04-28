@@ -126,8 +126,12 @@ JNIEXPORT void JNICALL Java_com_runouw_util_gl_JNIGraphics_jglgfxFlush
  * Signature: (Ljava/lang/String;)J
  */
 JNIEXPORT jlong JNICALL Java_com_runouw_util_gl_JNIGraphics_jglgfxCreateSpritesheet
-  (JNIEnv *, jclass, jstring name) {
+  (JNIEnv * env, jclass, jstring name) {
     
+    auto cname = env->GetStringUTFChars(name, nullptr);
+    auto spriteSheet = glgfxCreateSpritesheet(cname);
+    
+    return (jlong) (intptr_t) spriteSheet;
 }
 
 /*
@@ -147,7 +151,13 @@ JNIEXPORT void JNICALL Java_com_runouw_util_gl_JNIGraphics_jglgfxDestroySpritesh
  * Signature: (JLjava/lang/String;Ljava/lang/String;)V
  */
 JNIEXPORT void JNICALL Java_com_runouw_util_gl_JNIGraphics_jglgfxSpritesheetAddInput
-  (JNIEnv *, jclass, jlong, jstring, jstring);
+  (JNIEnv * env, jclass, jlong spriteSheet, jstring name, jstring path) {
+    
+    auto cname = env->GetStringUTFChars(name, nullptr);
+    auto cpath = env->GetStringUTFChars(path, nullptr);
+    
+    glgfxSpritesheetAddInput((void *) (intptr_t) spriteSheet, cname, cpath);
+}
 
 /*
  * Class:     com_runouw_util_gl_JNIGraphics
@@ -155,7 +165,12 @@ JNIEXPORT void JNICALL Java_com_runouw_util_gl_JNIGraphics_jglgfxSpritesheetAddI
  * Signature: (JLjava/lang/String;Ljava/lang/String;)V
  */
 JNIEXPORT void JNICALL Java_com_runouw_util_gl_JNIGraphics_jglgfxSpritesheetRemoveInput
-  (JNIEnv *, jclass, jlong, jstring, jstring);
+  (JNIEnv * env, jclass, jlong spriteSheet, jstring name) {
+    
+    auto cname = env->GetStringUTFChars(name, nullptr);
+    
+    glgfxSpritesheetRemoveInput((void *) (intptr_t) spriteSheet, cname);
+}
 
 /*
  * Class:     com_runouw_util_gl_JNIGraphics
@@ -163,15 +178,23 @@ JNIEXPORT void JNICALL Java_com_runouw_util_gl_JNIGraphics_jglgfxSpritesheetRemo
  * Signature: (J)V
  */
 JNIEXPORT void JNICALL Java_com_runouw_util_gl_JNIGraphics_jglgfxInvalidateSpritesheet
-  (JNIEnv *, jclass, jlong);
+  (JNIEnv *, jclass, jlong spriteSheet) {
+    
+    glgfxInvalidateSpritesheet((void *) (intptr_t) spriteSheet);
+}
 
 /*
  * Class:     com_runouw_util_gl_JNIGraphics
  * Method:    jglgfxGetSpritesheetImage
  * Signature: (J[I[I[I)J
  */
-JNIEXPORT jlong JNICALL Java_com_runouw_util_gl_JNIGraphics_jglgfxGetSpritesheetImage
-  (JNIEnv *, jclass, jlong, jintArray, jintArray, jintArray);
+JNIEXPORT jlong JNICALL JavaCritical_com_runouw_util_gl_JNIGraphics_jglgfxGetSpritesheetImage
+  (JNIEnv *, jclass, jlong spriteSheet, jint * width, jint * height, jint * pixels) {
+    
+    auto result = glgfxGetSpritesheetImage((void *) (intptr_t) spriteSheet, (unsigned int *) width, (unsigned int *) height, (unsigned int *) pixels);
+    
+    return (jlong) (intptr_t) result;
+}
 
 /*
  * Class:     com_runouw_util_gl_JNIGraphics
@@ -179,7 +202,10 @@ JNIEXPORT jlong JNICALL Java_com_runouw_util_gl_JNIGraphics_jglgfxGetSpritesheet
  * Signature: (JJ[F[F)V
  */
 JNIEXPORT void JNICALL Java_com_runouw_util_gl_JNIGraphics_glgfxDrawSprite
-  (JNIEnv *, jclass, jlong, jlong, jfloatArray, jfloatArray);
+  (JNIEnv *, jclass, jlong spriteSheet, jlong sprite, jfloat * mvp, jfloat * colorTransform) {
+    
+    glgfxDrawSprite((void *) (intptr_t) spriteSheet, (void *) (intptr_t) sprite, (float *) mvp, (float *) colorTransform);
+}
 
 /*
  * Class:     com_runouw_util_gl_JNIGraphics
@@ -187,4 +213,10 @@ JNIEXPORT void JNICALL Java_com_runouw_util_gl_JNIGraphics_glgfxDrawSprite
  * Signature: (JLjava/lang/String;)J
  */
 JNIEXPORT jlong JNICALL Java_com_runouw_util_gl_JNIGraphics_glgfxGetSpritesheetSprite
-  (JNIEnv *, jclass, jlong, jstring);
+  (JNIEnv * env, jclass, jlong spriteSheet, jstring name) {
+    
+    auto cname = env->GetStringUTFChars(name, nullptr);
+    auto result = glgfxGetSpritesheetSprite((void *) (intptr_t) spriteSheet, cname);
+    
+    return (jlong) (intptr_t) result;
+}
