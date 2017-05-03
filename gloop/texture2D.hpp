@@ -17,41 +17,46 @@
 #include <memory>
 
 #include "glint.hpp"
+#include "enums/texture_format.hpp"
+#include "buffer.hpp"
+#include "enums/texture_pixel_pack.hpp"
 
 namespace gloop {
+    class buffer;
 
     namespace enums {
         enum class texture_internal_format : gloop::enum_t;
-    }        
-    
+    }
+
     namespace pixel_formats {
         struct R8_G8_B8;
         struct R8_G8_B8_A8;
         struct B8_G8_R8;
         struct B8_G8_R8_A8;
         struct R32F_G32F_B32F;
-        struct R32F_G32F_B32F_A32F;       
+        struct R32F_G32F_B32F_A32F;
         struct B32F_G32F_R32F;
         struct B32F_G32F_R32F_A32F;
     }
-    
+
     namespace states {
         class texture2D_parameters;
     }
-    
+
     class texture2D {
     public:
+
         struct features {
             bool bindless;
         };
-        
+
         const static features& FEATURES;
     public:
 
         struct size {
             gloop::sizei_t width;
             gloop::sizei_t height;
-            
+
             friend std::ostream& operator<<(std::ostream& os, const size& s);
         };
     private:
@@ -67,15 +72,15 @@ namespace gloop {
         texture2D();
 
         ~texture2D();
-        
+
         texture2D(const texture2D&) = delete;
-        
+
         texture2D(texture2D&&) = default;
-        
+
         texture2D& operator=(const texture2D&) = delete;
-        
-        texture2D& operator=(texture2D&&) = default;    
-        
+
+        texture2D& operator=(texture2D&&) = default;
+
         friend std::ostream& operator<<(std::ostream& os, const texture2D& t);
 
         gloop::uint_t getId() const;
@@ -95,18 +100,18 @@ namespace gloop {
         void allocate(
                 const enums::texture_internal_format internalFormat,
                 const gloop::sizei_t levels,
-                const gloop::sizei_t width, const gloop::sizei_t height);                                       
-        
+                const gloop::sizei_t width, const gloop::sizei_t height);
+
         void setParameters(const gloop::states::texture2D_parameters& params);
-        
+
         const gloop::states::texture2D_parameters& getParameters() const;
-        
-        gloop::uint64_t getHandle();        
-        
+
+        gloop::uint64_t getHandle();
+
         void makeResident() const;
-        
+
         void makeNonResident() const;
-       
+
         void update(
                 const gloop::sizei_t level,
                 const gloop::int_t xOffset, const gloop::int_t yOffset,
@@ -153,10 +158,19 @@ namespace gloop {
                 const gloop::sizei_t level,
                 const gloop::int_t xOffset, const gloop::int_t yOffset,
                 const gloop::sizei_t width, const gloop::sizei_t height,
-                const gloop::pixel_formats::R8_G8_B8_A8 * ddata) const;        
+                const gloop::pixel_formats::R8_G8_B8_A8 * ddata) const;
+
+        void update(
+                const gloop::sizei_t level,
+                const gloop::int_t xOffset, const gloop::int_t yOffset,
+                const gloop::sizei_t width, const gloop::sizei_t height,
+                const gloop::enums::texture_format format,
+                const gloop::enums::texture_pixel_pack pixelPack,
+                const gloop::buffer& buffer,
+                const gloop::intptr_t offset = 0) const;
 
         void free();
 
-        void bind(const gloop::uint_t unit) const;                
+        void bind(const gloop::uint_t unit) const;
     };
 }

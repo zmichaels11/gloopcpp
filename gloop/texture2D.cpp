@@ -17,6 +17,8 @@
 #include "tools.hpp"
 #include "wrapper/texture_objects.hpp"
 #include "wrapper/gl.hpp"
+#include "wrapper/buffer_objects.hpp"
+#include "enums/buffer_target.hpp"
 
 namespace gloop {
 
@@ -209,6 +211,25 @@ namespace gloop {
             const gloop::pixel_formats::R8_G8_B8_A8* data) const {
 
         wrapper::textureSubImage2D(_id, level, xOffset, yOffset, width, height, wrapper::RGBA, wrapper::UNSIGNED_BYTE, data);
+    }
+    
+    void texture2D::update(
+    const gloop::sizei_t level, 
+            const gloop::int_t xOffset, const gloop::int_t yOffset, 
+            const gloop::sizei_t width, const gloop::sizei_t height,
+            const gloop::enums::texture_format format, 
+            const gloop::enums::texture_pixel_pack pixelPack, 
+            const gloop::buffer& buffer, const gloop::intptr_t offset) const {
+        
+        constexpr auto TARGET = static_cast<gloop::enum_t> (gloop::enums::buffer_target::PIXEL_UNPACK);        
+        const void * pOffset = (const void *) offset;
+        auto eFormat = static_cast<gloop::enum_t> (format);
+        auto eType = static_cast<gloop::enum_t> (pixelPack);
+        
+        
+        wrapper::bindBuffer(TARGET, buffer.getId());
+        wrapper::textureSubImage2D(_id, level, xOffset, yOffset, width, height, eFormat, eType, pOffset);
+        wrapper::bindBuffer(TARGET, 0);
     }
 
     void texture2D::free() {

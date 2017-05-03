@@ -36,7 +36,7 @@ namespace gloop {
         
         const static features& FEATURES;
         
-    private:
+    private:        
         enums::buffer_target _target;
         gloop::uint_t _id;
         gloop::sizeiptr_t _size;

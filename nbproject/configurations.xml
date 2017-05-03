@@ -59,6 +59,7 @@
           <itemPath>gloop/enums/texture_internal_format.hpp</itemPath>
           <itemPath>gloop/enums/texture_mag_filter.hpp</itemPath>
           <itemPath>gloop/enums/texture_min_filter.hpp</itemPath>
+          <itemPath>gloop/enums/texture_pixel_pack.hpp</itemPath>
           <itemPath>gloop/enums/texture_wrap.hpp</itemPath>
           <itemPath>gloop/enums/vertex_attribute_type.hpp</itemPath>
         </logicalFolder>
@@ -576,6 +577,8 @@
       <item path="gloop/enums/texture_mag_filter.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/enums/texture_min_filter.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/enums/texture_pixel_pack.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/enums/texture_wrap.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -1281,6 +1284,8 @@
       </item>
       <item path="gloop/enums/texture_min_filter.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/enums/texture_pixel_pack.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/enums/texture_wrap.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/enums/vertex_attribute_type.hpp"
@@ -1977,6 +1982,8 @@
       <item path="gloop/enums/texture_mag_filter.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/enums/texture_min_filter.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/enums/texture_pixel_pack.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/enums/texture_wrap.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -2684,6 +2691,8 @@
       </item>
       <item path="gloop/enums/texture_min_filter.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/enums/texture_pixel_pack.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/enums/texture_wrap.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/enums/vertex_attribute_type.hpp"
@@ -3389,6 +3398,8 @@
       </item>
       <item path="gloop/enums/texture_min_filter.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/enums/texture_pixel_pack.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/enums/texture_wrap.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/enums/vertex_attribute_type.hpp"
@@ -4093,6 +4104,8 @@
       <item path="gloop/enums/texture_mag_filter.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/enums/texture_min_filter.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/enums/texture_pixel_pack.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/enums/texture_wrap.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -4801,6 +4814,8 @@
       </item>
       <item path="gloop/enums/texture_min_filter.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/enums/texture_pixel_pack.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="gloop/enums/texture_wrap.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/enums/vertex_attribute_type.hpp"
@@ -5500,6 +5515,8 @@
       <item path="gloop/enums/texture_mag_filter.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/enums/texture_min_filter.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/enums/texture_pixel_pack.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/enums/texture_wrap.hpp" ex="false" tool="3" flavor2="0">
       </item>
