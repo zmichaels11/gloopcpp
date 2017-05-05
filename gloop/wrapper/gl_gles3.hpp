@@ -16,8 +16,6 @@
 #define GLES3 3
 #if GL == GLES3
 
-#include <functional>
-
 #include "../glint.hpp"
 
 #include "pfnglproc.hpp"
@@ -26,9 +24,20 @@
 
 namespace gloop {
     namespace wrapper {
-        namespace EXT {
-            extern glext buffer_storage;
-        }
+        struct ext_buffer_storage_support_t {
+            glext support;
+            pfnglproc<void(gloop::enum_t, gloop::sizeiptr_t, const void *, gloop::bitfield_t)> bufferStorageEXT;
+            
+            ext_buffer_storage_support_t() :
+            support("EXT_buffer_storage"),
+            bufferStorageEXT("glBufferStorageEXT") {}
+            
+            operator bool() {
+                return support;
+            }
+        };
+        
+        extern ext_buffer_storage_support_t EXT_buffer_storage;
 
         struct gles30_support_t {
             glversion support;

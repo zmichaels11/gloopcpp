@@ -22,15 +22,7 @@
 #include "pfnglproc.hpp"
 
 namespace gloop {
-    namespace wrapper {
-        namespace gl {
-            static pfnglproc<void(GLenum, GLsizeiptr, const void *, GLbitfield)> bufferStorageEXT("glBufferStorageEXT");
-        }
-       
-        namespace EXT {
-            glext buffer_storage("EXT_buffer_storage");
-        }
-
+    namespace wrapper {       
         void bindBuffer(
                 gloop::enum_t target,
                 gloop::uint_t buffer) {
@@ -57,10 +49,9 @@ namespace gloop {
                 gloop::bitfield_t flags) {
 
 
-            if (EXT::buffer_storage) {
+            if (EXT_buffer_storage) {
                 glBindBuffer(targetHint, buffer);
-                (*gl::bufferStorageEXT) (targetHint, size, data, flags);
-                std::cout << "Using pfngl!" << std::endl;
+                (*EXT_buffer_storage.bufferStorageEXT) (targetHint, size, data, flags);
             } else {
                 glBindBuffer(targetHint, buffer);
                 if (data == nullptr) {

@@ -15,12 +15,18 @@
 
 #define GLES2 2
 #if GL == GLES2
-#include <functional>
 
 #include "../glint.hpp"
 
+#include "pfnglproc.hpp"
+#include "glext.hpp"
+#include "glversion.hpp"
+
 namespace gloop {
     namespace wrapper {
+        namespace OES {
+            
+        }
         // OES_vertex_array_object        
         extern const std::function<void(gloop::sizei_t, gloop::uint_t *)>& glGenVertexArraysOES;
         extern const std::function<void(gloop::uint_t)>& glBindVertexArrayOES;

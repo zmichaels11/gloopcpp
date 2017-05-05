@@ -21,6 +21,15 @@
 
 #include <SDL2/SDL_video.h>
 
+namespace gloop {
+    namespace wrapper {
+        gles30_support_t GLES30;
+        gles31_support_t GLES31;
+        gles32_support_t GLES32;
+        ext_buffer_storage_support_t EXT_buffer_storage;
+    }
+}
+
 namespace {
     static gloop::buffer::features _bufferFeatures;
     static gloop::texture2D::features _textureFeatures;
@@ -30,7 +39,7 @@ namespace {
         _bufferFeatures.map = true;
         _bufferFeatures.mapRange = true;
         _bufferFeatures.blockBind = true;
-        _bufferFeatures.immutable = gloop::wrapper::EXT::buffer_storage;
+        _bufferFeatures.immutable = gloop::wrapper::EXT_buffer_storage;
         
         _textureFeatures.bindless = false;
         
@@ -45,11 +54,7 @@ namespace gloop {
 }
 
 namespace gloop {
-    namespace wrapper {
-        gles30_support_t GLES30;
-        gles31_support_t GLES31;
-        gles32_support_t GLES32;
-
+    namespace wrapper {        
         gloop::enum_t getError() {
             return glGetError();
         }
