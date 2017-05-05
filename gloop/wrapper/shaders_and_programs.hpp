@@ -80,59 +80,7 @@ namespace gloop {
         void bindAttribLocation(
                 gloop::uint_t program,
                 gloop::uint_t index,
-                const gloop::char_t * name);
-
-        void programUniform1f(
-                gloop::uint_t pid,
-                gloop::uint_t loc,
-                gloop::float_t value);
-
-        void programUniform2f(
-                gloop::uint_t pid,
-                gloop::uint_t loc,
-                gloop::float_t x,
-                gloop::float_t y);
-
-        void programUniform3f(
-                gloop::uint_t pid,
-                gloop::uint_t loc,
-                gloop::float_t x,
-                gloop::float_t y,
-                gloop::float_t z);
-
-        void programUniform4f(
-                gloop::uint_t pid,
-                gloop::uint_t loc,
-                gloop::float_t x,
-                gloop::float_t y,
-                gloop::float_t z,
-                gloop::float_t w);
-
-        void programUniform1i(
-                gloop::uint_t pId,
-                gloop::uint_t loc,
-                gloop::int_t value);
-
-        void programUniform2i(
-                gloop::uint_t pId,
-                gloop::uint_t loc,
-                gloop::int_t x,
-                gloop::int_t y);
-
-        void programUniform3i(
-                gloop::uint_t pId,
-                gloop::uint_t loc,
-                gloop::int_t x,
-                gloop::int_t y,
-                gloop::int_t z);
-
-        void programUniform4i(
-                gloop::uint_t pId,
-                gloop::uint_t loc,
-                gloop::int_t x,
-                gloop::int_t y,
-                gloop::int_t z,
-                gloop::int_t w);
+                const gloop::char_t * name);        
 
         void programUniform1fv(
                 gloop::uint_t pid,

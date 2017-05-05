@@ -13,7 +13,7 @@ namespace gloop {
     namespace uniform {
 
         void uniform_float_binding::apply() const {            
-            gloop::wrapper::programUniform1f(pId, loc, value);
+            gloop::wrapper::programUniform1fv(pId, loc, 1, &value);
         }
 
         void uniform_float_array_binding::apply() const {            
@@ -21,7 +21,7 @@ namespace gloop {
         }
 
         void uniform_int_binding::apply() const {            
-            gloop::wrapper::programUniform1i(pId, loc, value);
+            gloop::wrapper::programUniform1iv(pId, loc, 1, &value);
         }
 
         void uniform_int_array_binding::apply() const {            
@@ -29,7 +29,7 @@ namespace gloop {
         }
 
         void uniform_ivec2_binding::apply() const {            
-            gloop::wrapper::programUniform2i(pId, loc, value.x, value.y);
+            gloop::wrapper::programUniform2iv(pId, loc, 1, reinterpret_cast<const gloop::int_t *> (&value));
         }
 
         void uniform_ivec2_array_binding::apply() const {            
@@ -37,7 +37,7 @@ namespace gloop {
         }
 
         void uniform_ivec3_binding::apply() const {            
-            gloop::wrapper::programUniform3i(pId, loc, value.x, value.y, value.z);
+            gloop::wrapper::programUniform3iv(pId, loc, 1, reinterpret_cast<const gloop::int_t *> (&value));
         }
 
         void uniform_ivec3_array_binding::apply() const {            
@@ -45,7 +45,7 @@ namespace gloop {
         }
 
         void uniform_ivec4_binding::apply() const {            
-            gloop::wrapper::programUniform4i(pId, loc, value.x, value.y, value.z, value.w);
+            gloop::wrapper::programUniform4iv(pId, loc, 1, reinterpret_cast<const gloop::int_t *> (&value));
         }
 
         void uniform_ivec4_array_binding::apply() const {            
@@ -53,7 +53,7 @@ namespace gloop {
         }
 
         void uniform_vec2_binding::apply() const {            
-            gloop::wrapper::programUniform2f(pId, loc, value.x, value.y);
+            gloop::wrapper::programUniform2fv(pId, loc, 1, reinterpret_cast<const gloop::float_t *> (&value));
         }
 
         void uniform_vec2_array_binding::apply() const {            
@@ -61,7 +61,7 @@ namespace gloop {
         }
 
         void uniform_vec3_binding::apply() const {            
-            gloop::wrapper::programUniform3f(pId, loc, value.x, value.y, value.z);
+            gloop::wrapper::programUniform3fv(pId, loc, 1, reinterpret_cast<const gloop::float_t *> (&value));
         }
 
         void uniform_vec3_array_binding::apply() const {            
@@ -69,7 +69,7 @@ namespace gloop {
         }
 
         void uniform_vec4_binding::apply() const {            
-            gloop::wrapper::programUniform4f(pId, loc, value.x, value.y, value.z, value.w);
+            gloop::wrapper::programUniform4fv(pId, loc, 1, reinterpret_cast<const gloop::float_t *> (&value));
         }
 
         void uniform_vec4_array_binding::apply() const {            
