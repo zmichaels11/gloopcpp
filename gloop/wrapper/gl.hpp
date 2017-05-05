@@ -58,8 +58,8 @@ namespace gloop {
 
         const gloop::ubyte_t * getString(gloop::enum_t param);
 
-        void init();
-                
+        void init();                
+        
         inline bool hasExtension(const char * ext) {
             const auto extensions = reinterpret_cast<const char *> (getString(EXTENSIONS));
             

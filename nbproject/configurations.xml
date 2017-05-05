@@ -119,6 +119,9 @@
           <itemPath>gloop/wrapper/gl_gl.hpp</itemPath>
           <itemPath>gloop/wrapper/gl_gles2.hpp</itemPath>
           <itemPath>gloop/wrapper/gl_gles3.hpp</itemPath>
+          <itemPath>gloop/wrapper/glext.hpp</itemPath>
+          <itemPath>gloop/wrapper/glversion.hpp</itemPath>
+          <itemPath>gloop/wrapper/pfnglproc.hpp</itemPath>
           <itemPath>gloop/wrapper/shaders_and_programs.hpp</itemPath>
           <itemPath>gloop/wrapper/states.hpp</itemPath>
           <itemPath>gloop/wrapper/texture_objects.hpp</itemPath>
@@ -133,6 +136,7 @@
         <itemPath>gloop/errors.hpp</itemPath>
         <itemPath>gloop/exceptions.hpp</itemPath>
         <itemPath>gloop/framebuffer.hpp</itemPath>
+        <itemPath>gloop/gl_traits.hpp</itemPath>
         <itemPath>gloop/glint.hpp</itemPath>
         <itemPath>gloop/gloop_throw.hpp</itemPath>
         <itemPath>gloop/matrices.hpp</itemPath>
@@ -225,6 +229,9 @@
           <itemPath>gloop/uniform/uniform_bindings.cpp</itemPath>
         </logicalFolder>
         <logicalFolder name="f6" displayName="wrapper" projectFiles="true">
+          <logicalFolder name="f4" displayName="gl" projectFiles="true">
+            <itemPath>gloop/wrapper/gl_buffer_objects.cpp</itemPath>
+          </logicalFolder>
           <logicalFolder name="f2" displayName="gles2" projectFiles="true">
             <itemPath>gloop/wrapper/gles2_buffer_objects.cpp</itemPath>
             <itemPath>gloop/wrapper/gles2_drawing_commands.cpp</itemPath>
@@ -244,6 +251,7 @@
             <itemPath>gloop/wrapper/gles3_states.cpp</itemPath>
             <itemPath>gloop/wrapper/gles3_texture_objects.cpp</itemPath>
             <itemPath>gloop/wrapper/gles3_vertex_arrays.cpp</itemPath>
+            <itemPath>gloop/wrapper/gles3_wrapper.cpp</itemPath>
           </logicalFolder>
           <logicalFolder name="f1" displayName="glew" projectFiles="true">
             <itemPath>gloop/wrapper/glew_buffer_objects.cpp</itemPath>
@@ -259,7 +267,6 @@
         <itemPath>gloop/application.cpp</itemPath>
         <itemPath>gloop/buffer.cpp</itemPath>
         <itemPath>gloop/framebuffer.cpp</itemPath>
-        <itemPath>gloop/gl_traits.hpp</itemPath>
         <itemPath>gloop/matrices.cpp</itemPath>
         <itemPath>gloop/pixel_formats.cpp</itemPath>
         <itemPath>gloop/program.cpp</itemPath>
@@ -857,6 +864,11 @@
       </item>
       <item path="gloop/wrapper/gl.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/wrapper/gl_buffer_objects.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
       <item path="gloop/wrapper/gl_gl.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/wrapper/gl_gles2.hpp" ex="false" tool="3" flavor2="0">
@@ -931,6 +943,8 @@
             tool="1"
             flavor2="0">
       </item>
+      <item path="gloop/wrapper/gles3_wrapper.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="gloop/wrapper/glew_buffer_objects.cpp"
             ex="false"
             tool="1"
@@ -964,6 +978,12 @@
             ex="false"
             tool="1"
             flavor2="0">
+      </item>
+      <item path="gloop/wrapper/glext.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/wrapper/glversion.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/wrapper/pfnglproc.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/wrapper/shaders_and_programs.hpp"
             ex="false"
@@ -1563,6 +1583,11 @@
       </item>
       <item path="gloop/wrapper/gl.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/wrapper/gl_buffer_objects.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
       <item path="gloop/wrapper/gl_gl.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/wrapper/gl_gles2.hpp" ex="false" tool="3" flavor2="0">
@@ -1637,6 +1662,8 @@
             tool="1"
             flavor2="0">
       </item>
+      <item path="gloop/wrapper/gles3_wrapper.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="gloop/wrapper/glew_buffer_objects.cpp"
             ex="false"
             tool="1"
@@ -1670,6 +1697,12 @@
             ex="false"
             tool="1"
             flavor2="0">
+      </item>
+      <item path="gloop/wrapper/glext.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/wrapper/glversion.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/wrapper/pfnglproc.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/wrapper/shaders_and_programs.hpp"
             ex="false"
@@ -2271,6 +2304,11 @@
       </item>
       <item path="gloop/wrapper/gl.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/wrapper/gl_buffer_objects.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
       <item path="gloop/wrapper/gl_gl.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/wrapper/gl_gles2.hpp" ex="false" tool="3" flavor2="0">
@@ -2345,6 +2383,8 @@
             tool="1"
             flavor2="0">
       </item>
+      <item path="gloop/wrapper/gles3_wrapper.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="gloop/wrapper/glew_buffer_objects.cpp"
             ex="false"
             tool="1"
@@ -2378,6 +2418,12 @@
             ex="false"
             tool="1"
             flavor2="11">
+      </item>
+      <item path="gloop/wrapper/glext.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/wrapper/glversion.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/wrapper/pfnglproc.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/wrapper/shaders_and_programs.hpp"
             ex="false"
@@ -2979,6 +3025,11 @@
       </item>
       <item path="gloop/wrapper/gl.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/wrapper/gl_buffer_objects.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
       <item path="gloop/wrapper/gl_gl.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/wrapper/gl_gles2.hpp" ex="false" tool="3" flavor2="0">
@@ -3053,6 +3104,8 @@
             tool="1"
             flavor2="0">
       </item>
+      <item path="gloop/wrapper/gles3_wrapper.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="gloop/wrapper/glew_buffer_objects.cpp"
             ex="false"
             tool="1"
@@ -3086,6 +3139,12 @@
             ex="false"
             tool="1"
             flavor2="11">
+      </item>
+      <item path="gloop/wrapper/glext.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/wrapper/glversion.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/wrapper/pfnglproc.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/wrapper/shaders_and_programs.hpp"
             ex="false"
@@ -3686,6 +3745,11 @@
       </item>
       <item path="gloop/wrapper/gl.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/wrapper/gl_buffer_objects.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
       <item path="gloop/wrapper/gl_gl.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/wrapper/gl_gles2.hpp" ex="false" tool="3" flavor2="0">
@@ -3760,6 +3824,8 @@
             tool="1"
             flavor2="0">
       </item>
+      <item path="gloop/wrapper/gles3_wrapper.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="gloop/wrapper/glew_buffer_objects.cpp"
             ex="false"
             tool="1"
@@ -3793,6 +3859,12 @@
             ex="false"
             tool="1"
             flavor2="11">
+      </item>
+      <item path="gloop/wrapper/glext.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/wrapper/glversion.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/wrapper/pfnglproc.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/wrapper/shaders_and_programs.hpp"
             ex="false"
@@ -4393,6 +4465,11 @@
       </item>
       <item path="gloop/wrapper/gl.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/wrapper/gl_buffer_objects.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
       <item path="gloop/wrapper/gl_gl.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/wrapper/gl_gles2.hpp" ex="false" tool="3" flavor2="0">
@@ -4467,6 +4544,8 @@
             tool="1"
             flavor2="0">
       </item>
+      <item path="gloop/wrapper/gles3_wrapper.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="gloop/wrapper/glew_buffer_objects.cpp"
             ex="false"
             tool="1"
@@ -4500,6 +4579,12 @@
             ex="false"
             tool="1"
             flavor2="11">
+      </item>
+      <item path="gloop/wrapper/glext.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/wrapper/glversion.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/wrapper/pfnglproc.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/wrapper/shaders_and_programs.hpp"
             ex="false"
@@ -5102,6 +5187,11 @@
       </item>
       <item path="gloop/wrapper/gl.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/wrapper/gl_buffer_objects.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
       <item path="gloop/wrapper/gl_gl.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/wrapper/gl_gles2.hpp" ex="false" tool="3" flavor2="0">
@@ -5176,6 +5266,8 @@
             tool="1"
             flavor2="11">
       </item>
+      <item path="gloop/wrapper/gles3_wrapper.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="gloop/wrapper/glew_buffer_objects.cpp"
             ex="false"
             tool="1"
@@ -5209,6 +5301,12 @@
             ex="false"
             tool="1"
             flavor2="11">
+      </item>
+      <item path="gloop/wrapper/glext.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/wrapper/glversion.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/wrapper/pfnglproc.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/wrapper/shaders_and_programs.hpp"
             ex="false"
@@ -5804,6 +5902,11 @@
       </item>
       <item path="gloop/wrapper/gl.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gloop/wrapper/gl_buffer_objects.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
       <item path="gloop/wrapper/gl_gl.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/wrapper/gl_gles2.hpp" ex="false" tool="3" flavor2="0">
@@ -5878,6 +5981,8 @@
             tool="1"
             flavor2="11">
       </item>
+      <item path="gloop/wrapper/gles3_wrapper.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="gloop/wrapper/glew_buffer_objects.cpp"
             ex="false"
             tool="1"
@@ -5911,6 +6016,12 @@
             ex="false"
             tool="1"
             flavor2="11">
+      </item>
+      <item path="gloop/wrapper/glext.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/wrapper/glversion.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gloop/wrapper/pfnglproc.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gloop/wrapper/shaders_and_programs.hpp"
             ex="false"

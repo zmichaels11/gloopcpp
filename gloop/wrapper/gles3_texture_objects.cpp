@@ -22,29 +22,17 @@ namespace gloop {
     namespace wrapper {
 
         gloop::uint64_t getTextureHandle(gloop::uint_t texture) {
-            if (NV_bindless_texture) {
-                return glGetTextureHandleNV(texture);
-            } else {
-                gloop_throw(gloop::exception::invalid_operation_exception("Bindless textures are not supported!"));
-            }
+            gloop_throw(gloop::exception::invalid_operation_exception("Bindless textures are not supported!"));
         }
-        
+
         void makeTextureHandleResident(gloop::uint64_t handle) {
-            if (NV_bindless_texture) {
-                glMakeTextureHandleResidentNV(handle);
-            } else {
-                gloop_throw(gloop::exception::invalid_operation_exception("Bindless textures are not supported!"));
-            }
+            gloop_throw(gloop::exception::invalid_operation_exception("Bindless textures are not supported!"));
         }
-        
+
         void makeTextureHandleNonResident(gloop::uint64_t handle) {
-            if (NV_bindless_texture) {
-                glMakeTextureHandleNonResidentNV(handle);
-            } else {
-                gloop_throw(gloop::exception::invalid_operation_exception("Bindless textures are not supported!"));
-            }
+            gloop_throw(gloop::exception::invalid_operation_exception("Bindless textures are not supported!"));
         }
-        
+
         void textureParameterf(
                 gloop::uint_t texture,
                 gloop::enum_t pname,
@@ -87,7 +75,7 @@ namespace gloop {
 
             glBindTexture(GL_TEXTURE_2D, texture);
 
-            glTexStorage2D(GL_TEXTURE_2D, levels, internalFormat, width, 1);                        
+            glTexStorage2D(GL_TEXTURE_2D, levels, internalFormat, width, 1);
         }
 
         void textureStorage2D(

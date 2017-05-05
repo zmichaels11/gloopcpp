@@ -13,9 +13,14 @@
 #include "../glint.hpp"
 #include "gl.hpp"
 #include "gl_gles3.hpp"
+#include "pfnglproc.hpp"
 
 namespace gloop {
     namespace wrapper {
+        namespace gl {
+            pfnglproc<void(GLuint, GLint, GLsizei, const GLint *)> programUniform1iv("glProgramUniform1iv");
+            pfnglproc<void(GLuint, GLint, GLsizei, const GLfloat *)> programUniform1fv("glProgramUniform1fv");
+        }
 
         void getShaderiv(
                 gloop::uint_t shader,
@@ -125,8 +130,8 @@ namespace gloop {
                 gloop::uint_t loc,
                 gloop::float_t value) {
 
-            if (OPENGLES_3_1) {
-                glProgramUniform1f(pid, loc, value);
+            if (GLES31) {
+                (*GLES31.programUniform1fv) (pid, loc, 1, &value);
             } else {
                 glUseProgram(pid);
                 glUniform1f(loc, value);
@@ -139,8 +144,10 @@ namespace gloop {
                 gloop::float_t x,
                 gloop::float_t y) {
 
-            if (OPENGLES_3_1) {
-                glProgramUniform2f(pid, loc, x, y);
+            if (GLES31) {
+                float values[2] = {x, y};
+                
+                (*GLES31.programUniform2fv) (pid, loc, 1, values);
             } else {
                 glUseProgram(pid);
                 glUniform2f(loc, x, y);
@@ -154,8 +161,10 @@ namespace gloop {
                 gloop::float_t y,
                 gloop::float_t z) {
 
-            if (OPENGLES_3_1) {
-                glProgramUniform3f(pid, loc, x, y, z);
+            if (GLES31) {
+                float values[3] = {x, y, z};
+                
+                (*GLES31.programUniform3fv) (pid, loc, 1, values);
             } else {
                 glUseProgram(pid);
                 glUniform3f(loc, x, y, z);
@@ -170,8 +179,10 @@ namespace gloop {
                 gloop::float_t z,
                 gloop::float_t w) {
 
-            if (OPENGLES_3_1) {
-                glProgramUniform4f(pid, loc, x, y, z, w);
+            if (GLES31) {
+                float values[4] = {x, y, z, w};
+                
+                (*GLES31.programUniform4fv) (pid, loc, 1, values);
             } else {
                 glUseProgram(pid);
                 glUniform4f(loc, x, y, z, w);
@@ -183,8 +194,8 @@ namespace gloop {
                 gloop::uint_t loc,
                 gloop::int_t value) {
 
-            if (OPENGLES_3_1) {
-                glProgramUniform1i(pid, loc, value);
+            if (GLES31) {
+                (*GLES31.programUniform1iv) (pid, loc, 1, &value);
             } else {
                 glUseProgram(pid);
                 glUniform1i(loc, value);
@@ -197,8 +208,10 @@ namespace gloop {
                 gloop::int_t x,
                 gloop::int_t y) {
 
-            if (OPENGLES_3_1) {
-                glProgramUniform2i(pid, loc, x, y);
+            if (GLES31) {
+                int values[2] = {x, y};
+                
+                (*GLES31.programUniform2iv) (pid, loc, 1, values);
             } else {
                 glUseProgram(pid);
                 glUniform2i(loc, x, y);
@@ -212,8 +225,10 @@ namespace gloop {
                 gloop::int_t y,
                 gloop::int_t z) {
 
-            if (OPENGLES_3_1) {
-                glProgramUniform3i(pid, loc, x, y, z);
+            if (GLES31) {
+                int values[3] = {x, y, z};
+                
+                (*GLES31.programUniform3iv) (pid, loc, 1, values);
             } else {
                 glUseProgram(pid);
                 glUniform3i(loc, x, y, z);
@@ -228,8 +243,10 @@ namespace gloop {
                 gloop::int_t z,
                 gloop::int_t w) {
 
-            if (OPENGLES_3_1) {
-                glProgramUniform4i(pid, loc, x, y, z, w);
+            if (GLES31) {
+                int values[4] = {x, y, z, w};
+                
+                (*GLES31.programUniform4iv) (pid, loc, 1, values);
             } else {
                 glUseProgram(pid);
                 glUniform4i(loc, x, y, z, w);
@@ -242,8 +259,8 @@ namespace gloop {
                 gloop::sizei_t count,
                 const gloop::float_t * values) {
 
-            if (OPENGLES_3_1) {
-                glProgramUniform1fv(pid, loc, count, values);
+            if (GLES31) {
+                (*GLES31.programUniform1fv) (pid, loc, count, values);
             } else {
                 glUseProgram(pid);
                 glUniform1fv(loc, count, values);
@@ -256,8 +273,8 @@ namespace gloop {
                 gloop::sizei_t count,
                 const gloop::float_t * values) {
 
-            if (OPENGLES_3_1) {
-                glProgramUniform2fv(pid, loc, count, values);
+            if (GLES31) {
+                (*GLES31.programUniform2fv) (pid, loc, count, values);
             } else {
                 glUseProgram(pid);
                 glUniform2fv(loc, count, values);
@@ -270,8 +287,8 @@ namespace gloop {
                 gloop::sizei_t count,
                 const gloop::float_t * values) {
 
-            if (OPENGLES_3_1) {
-                glProgramUniform3fv(pid, loc, count, values);
+            if (GLES31) {
+                (*GLES31.programUniform3fv) (pid, loc, count, values);
             } else {
                 glUseProgram(pid);
                 glUniform3fv(loc, count, values);
@@ -284,8 +301,8 @@ namespace gloop {
                 gloop::sizei_t count,
                 const gloop::float_t * values) {
 
-            if (OPENGLES_3_1) {
-                glProgramUniform4fv(pid, loc, count, values);
+            if (GLES31) {
+                (*GLES31.programUniform4fv) (pid, loc, count, values);
             } else {
                 glUseProgram(pid);
                 glUniform4fv(loc, count, values);
@@ -298,8 +315,8 @@ namespace gloop {
                 gloop::sizei_t count,
                 const gloop::int_t * values) {
 
-            if (OPENGLES_3_1) {
-                glProgramUniform1iv(pid, loc, count, values);
+            if (GLES31) {
+                (*GLES31.programUniform1iv) (pid, loc, count, values);
             } else {
                 glUseProgram(pid);
                 glUniform1iv(loc, count, values);
@@ -312,8 +329,8 @@ namespace gloop {
                 gloop::sizei_t count,
                 const gloop::int_t * values) {
 
-            if (OPENGLES_3_1) {
-                glProgramUniform2iv(pid, loc, count, values);
+            if (GLES31) {
+                (*GLES31.programUniform2iv) (pid, loc, count, values);
             } else {
                 glUseProgram(pid);
                 glUniform2iv(loc, count, values);
@@ -326,8 +343,8 @@ namespace gloop {
                 gloop::sizei_t count,
                 const gloop::int_t * values) {
 
-            if (OPENGLES_3_1) {
-                glProgramUniform3iv(pid, loc, count, values);
+            if (GLES31) {
+                (*GLES31.programUniform3iv) (pid, loc, count, values);
             } else {
                 glUseProgram(pid);
                 glUniform3iv(loc, count, values);
@@ -340,8 +357,8 @@ namespace gloop {
                 gloop::sizei_t count,
                 const gloop::int_t * values) {
 
-            if (OPENGLES_3_1) {
-                glProgramUniform4iv(pid, loc, count, values);
+            if (GLES31) {
+                (*GLES31.programUniform4iv) (pid, loc, count, values);
             } else {
                 glUseProgram(pid);
                 glUniform4iv(loc, count, values);
@@ -355,8 +372,8 @@ namespace gloop {
                 gloop::boolean_t transpose,
                 const gloop::float_t * values) {
 
-            if (OPENGLES_3_1) {
-                glProgramUniformMatrix2fv(pid, loc, count, transpose, values);
+            if (GLES31) {
+                (*GLES31.programUniformMatrix2fv) (pid, loc, count, transpose, values);
             } else {
                 glUseProgram(pid);
                 glUniformMatrix2fv(loc, count, transpose, values);
@@ -370,8 +387,8 @@ namespace gloop {
                 gloop::boolean_t transpose,
                 const gloop::float_t * values) {
 
-            if (OPENGLES_3_1) {
-                glProgramUniformMatrix3fv(pid, loc, count, transpose, values);
+            if (GLES31) {
+                (*GLES31.programUniformMatrix3fv) (pid, loc, count, transpose, values);
             } else {
                 glUseProgram(pid);
                 glUniformMatrix3fv(loc, count, transpose, values);
@@ -385,8 +402,8 @@ namespace gloop {
                 gloop::boolean_t transpose,
                 const gloop::float_t * values) {
 
-            if (OPENGLES_3_1) {
-                glProgramUniformMatrix4fv(pid, loc, count, transpose, values);
+            if (GLES31) {
+                (*GLES31.programUniformMatrix4fv) (pid, loc, count, transpose, values);
             } else {
                 glUseProgram(pid);
                 glUniformMatrix4fv(loc, count, transpose, values);

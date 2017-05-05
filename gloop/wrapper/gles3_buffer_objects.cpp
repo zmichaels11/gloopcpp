@@ -10,20 +10,31 @@
 
 #include "buffer_objects.hpp"
 
+#include <iostream>
+
 #include <GLES3/gl3.h>
 
 #include "../glint.hpp"
 
 #include "gl.hpp"
 #include "gl_gles3.hpp"
+#include "glext.hpp"
+#include "pfnglproc.hpp"
 
 namespace gloop {
     namespace wrapper {
+        namespace gl {
+            static pfnglproc<void(GLenum, GLsizeiptr, const void *, GLbitfield)> bufferStorageEXT("glBufferStorageEXT");
+        }
+       
+        namespace EXT {
+            glext buffer_storage("EXT_buffer_storage");
+        }
 
         void bindBuffer(
                 gloop::enum_t target,
                 gloop::uint_t buffer) {
-
+            
             glBindBuffer(target, buffer);
         }
 
@@ -46,9 +57,10 @@ namespace gloop {
                 gloop::bitfield_t flags) {
 
 
-            if (EXT_buffer_storage) {
+            if (EXT::buffer_storage) {
                 glBindBuffer(targetHint, buffer);
-                glBufferStorageEXT(targetHint, size, data, flags);
+                (*gl::bufferStorageEXT) (targetHint, size, data, flags);
+                std::cout << "Using pfngl!" << std::endl;
             } else {
                 glBindBuffer(targetHint, buffer);
                 if (data == nullptr) {

@@ -58,8 +58,8 @@ namespace gloop {
                 gloop::enum_t mode,
                 const void * indices) {
 
-            if (OPENGLES_3_1) {
-                glDrawArraysIndirect(mode, indices);
+            if (GLES31) {
+                (*GLES31.drawArraysIndirect)(mode, indices);
             } else {
                 gloop_throw(gloop::exception::invalid_operation_exception("drawArraysIndirect is not available!"));
             }
@@ -70,8 +70,8 @@ namespace gloop {
                 gloop::enum_t type,
                 const void * indices) {
 
-            if (OPENGLES_3_1) {
-                glDrawElementsIndirect(mode, type, indices);
+            if (GLES31) {
+                (*GLES31.drawElementsIndirect)(mode, type, indices);
             } else {
                 gloop_throw(gloop::exception::invalid_operation_exception("drawElementsIndirect is not available!"));
             }
@@ -82,16 +82,16 @@ namespace gloop {
                 gloop::uint_t numGroupsY,
                 gloop::uint_t numGroupsZ) {
 
-            if (OPENGLES_3_1) {
-                glDispatchCompute(numGroupsX, numGroupsY, numGroupsZ);
+            if (GLES32) {
+                (*GLES32.dispatchCompute)(numGroupsX, numGroupsY, numGroupsZ);
             } else {
                 gloop_throw(gloop::exception::invalid_operation_exception("dispatchCompute is not available!"));
             }
         }
         
         void dispatchComputeIndirect(gloop::intptr_t indirect) {
-            if (OPENGLES_3_1) {
-                glDispatchComputeIndirect(indirect);
+            if (GLES32) {
+                (*GLES32.dispatchComputeIndirect) (indirect);
             } else {
                 gloop_throw(gloop::exception::invalid_operation_exception("dispatchComputeIndirect is not available!"));
             }

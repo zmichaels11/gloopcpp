@@ -74,6 +74,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/gloop/vertex_array.o \
 	${OBJECTDIR}/gloop/vertex_attribute_binding.o \
 	${OBJECTDIR}/gloop/vertex_attributes.o \
+	${OBJECTDIR}/gloop/wrapper/gl_buffer_objects.o \
 	${OBJECTDIR}/gloop/wrapper/gles2_buffer_objects.o \
 	${OBJECTDIR}/gloop/wrapper/gles2_drawing_commands.o \
 	${OBJECTDIR}/gloop/wrapper/gles2_framebuffer_objects.o \
@@ -90,6 +91,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/gloop/wrapper/gles3_states.o \
 	${OBJECTDIR}/gloop/wrapper/gles3_texture_objects.o \
 	${OBJECTDIR}/gloop/wrapper/gles3_vertex_arrays.o \
+	${OBJECTDIR}/gloop/wrapper/gles3_wrapper.o \
 	${OBJECTDIR}/gloop/wrapper/glew_buffer_objects.o \
 	${OBJECTDIR}/gloop/wrapper/glew_drawing_commands.o \
 	${OBJECTDIR}/gloop/wrapper/glew_framebuffer_objects.o \
@@ -324,6 +326,11 @@ ${OBJECTDIR}/gloop/vertex_attributes.o: gloop/vertex_attributes.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -O -Iinclude -Iinclude/linux `pkg-config --cflags glesv2` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/vertex_attributes.o gloop/vertex_attributes.cpp
 
+${OBJECTDIR}/gloop/wrapper/gl_buffer_objects.o: gloop/wrapper/gl_buffer_objects.cpp
+	${MKDIR} -p ${OBJECTDIR}/gloop/wrapper
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -O -Iinclude -Iinclude/linux `pkg-config --cflags glesv2` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/wrapper/gl_buffer_objects.o gloop/wrapper/gl_buffer_objects.cpp
+
 ${OBJECTDIR}/gloop/wrapper/gles2_buffer_objects.o: gloop/wrapper/gles2_buffer_objects.cpp
 	${MKDIR} -p ${OBJECTDIR}/gloop/wrapper
 	${RM} "$@.d"
@@ -403,6 +410,11 @@ ${OBJECTDIR}/gloop/wrapper/gles3_vertex_arrays.o: gloop/wrapper/gles3_vertex_arr
 	${MKDIR} -p ${OBJECTDIR}/gloop/wrapper
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -O -Iinclude -Iinclude/linux `pkg-config --cflags glesv2` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/wrapper/gles3_vertex_arrays.o gloop/wrapper/gles3_vertex_arrays.cpp
+
+${OBJECTDIR}/gloop/wrapper/gles3_wrapper.o: gloop/wrapper/gles3_wrapper.cpp
+	${MKDIR} -p ${OBJECTDIR}/gloop/wrapper
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -O -Iinclude -Iinclude/linux `pkg-config --cflags glesv2` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/wrapper/gles3_wrapper.o gloop/wrapper/gles3_wrapper.cpp
 
 ${OBJECTDIR}/gloop/wrapper/glew_buffer_objects.o: gloop/wrapper/glew_buffer_objects.cpp
 	${MKDIR} -p ${OBJECTDIR}/gloop/wrapper
