@@ -50,15 +50,7 @@ namespace gloop {
 }
 
 namespace gloop {
-    namespace wrapper {        
-        gloop::enum_t getError() {
-            return glGetError();
-        }
-
-        const gloop::ubyte_t * getString(gloop::enum_t param) {
-            return glGetString(param);
-        }
-
+    namespace wrapper {     
         void init() {
             static bool isInit = false;
             

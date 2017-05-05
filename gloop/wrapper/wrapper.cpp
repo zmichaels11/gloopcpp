@@ -29,7 +29,19 @@ namespace {
 
 namespace gloop {
     namespace wrapper {
-
+        gloop::enum_t getError() {
+            static pfnglproc<gloop::enum_t()> __glGetError("glGetError");
+            
+            return (*__glGetError) ();
+        }
+        
+        const gloop::ubyte_t * getString(gloop::enum_t param) {
+            static pfnglproc<gloop::ubyte_t *(gloop::enum_t)> __glGetString("glGetString");
+            
+            return (*__glGetString) (param);
+        }
+        
+        
         glext::operator bool() {
             switch (_state) {
                 case state::UNCHECKED:

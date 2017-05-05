@@ -75,6 +75,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/gloop/vertex_attribute_binding.o \
 	${OBJECTDIR}/gloop/vertex_attributes.o \
 	${OBJECTDIR}/gloop/wrapper/gl_buffer_objects.o \
+	${OBJECTDIR}/gloop/wrapper/gl_gl.o \
 	${OBJECTDIR}/gloop/wrapper/gles2_buffer_objects.o \
 	${OBJECTDIR}/gloop/wrapper/gles2_drawing_commands.o \
 	${OBJECTDIR}/gloop/wrapper/gles2_framebuffer_objects.o \
@@ -91,7 +92,6 @@ OBJECTFILES= \
 	${OBJECTDIR}/gloop/wrapper/gles3_states.o \
 	${OBJECTDIR}/gloop/wrapper/gles3_texture_objects.o \
 	${OBJECTDIR}/gloop/wrapper/gles3_vertex_arrays.o \
-	${OBJECTDIR}/gloop/wrapper/gles3_wrapper.o \
 	${OBJECTDIR}/gloop/wrapper/glew_buffer_objects.o \
 	${OBJECTDIR}/gloop/wrapper/glew_drawing_commands.o \
 	${OBJECTDIR}/gloop/wrapper/glew_framebuffer_objects.o \
@@ -100,6 +100,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/gloop/wrapper/glew_states.o \
 	${OBJECTDIR}/gloop/wrapper/glew_texture_objects.o \
 	${OBJECTDIR}/gloop/wrapper/glew_vertex_arrays.o \
+	${OBJECTDIR}/gloop/wrapper/wrapper.o \
 	${OBJECTDIR}/jglgfx/com_runouw_util_gl_JNIGraphics.o \
 	${OBJECTDIR}/lesson06.o \
 	${OBJECTDIR}/simple_rect.o \
@@ -331,6 +332,11 @@ ${OBJECTDIR}/gloop/wrapper/gl_buffer_objects.o: gloop/wrapper/gl_buffer_objects.
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -Iinclude -Iinclude/linux `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/wrapper/gl_buffer_objects.o gloop/wrapper/gl_buffer_objects.cpp
 
+${OBJECTDIR}/gloop/wrapper/gl_gl.o: gloop/wrapper/gl_gl.cpp
+	${MKDIR} -p ${OBJECTDIR}/gloop/wrapper
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -Iinclude -Iinclude/linux `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/wrapper/gl_gl.o gloop/wrapper/gl_gl.cpp
+
 ${OBJECTDIR}/gloop/wrapper/gles2_buffer_objects.o: gloop/wrapper/gles2_buffer_objects.cpp
 	${MKDIR} -p ${OBJECTDIR}/gloop/wrapper
 	${RM} "$@.d"
@@ -411,11 +417,6 @@ ${OBJECTDIR}/gloop/wrapper/gles3_vertex_arrays.o: gloop/wrapper/gles3_vertex_arr
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -Iinclude -Iinclude/linux `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/wrapper/gles3_vertex_arrays.o gloop/wrapper/gles3_vertex_arrays.cpp
 
-${OBJECTDIR}/gloop/wrapper/gles3_wrapper.o: gloop/wrapper/gles3_wrapper.cpp
-	${MKDIR} -p ${OBJECTDIR}/gloop/wrapper
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -Iinclude -Iinclude/linux `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/wrapper/gles3_wrapper.o gloop/wrapper/gles3_wrapper.cpp
-
 ${OBJECTDIR}/gloop/wrapper/glew_buffer_objects.o: gloop/wrapper/glew_buffer_objects.cpp
 	${MKDIR} -p ${OBJECTDIR}/gloop/wrapper
 	${RM} "$@.d"
@@ -455,6 +456,11 @@ ${OBJECTDIR}/gloop/wrapper/glew_vertex_arrays.o: gloop/wrapper/glew_vertex_array
 	${MKDIR} -p ${OBJECTDIR}/gloop/wrapper
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -Iinclude -Iinclude/linux `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/wrapper/glew_vertex_arrays.o gloop/wrapper/glew_vertex_arrays.cpp
+
+${OBJECTDIR}/gloop/wrapper/wrapper.o: gloop/wrapper/wrapper.cpp
+	${MKDIR} -p ${OBJECTDIR}/gloop/wrapper
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -Iinclude -Iinclude/linux `pkg-config --cflags sdl2` `pkg-config --cflags glew` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gloop/wrapper/wrapper.o gloop/wrapper/wrapper.cpp
 
 ${OBJECTDIR}/jglgfx/com_runouw_util_gl_JNIGraphics.o: jglgfx/com_runouw_util_gl_JNIGraphics.cpp
 	${MKDIR} -p ${OBJECTDIR}/jglgfx

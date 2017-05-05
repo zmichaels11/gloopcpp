@@ -38,11 +38,7 @@ namespace gloop {
 }
 
 namespace gloop {
-    namespace wrapper {
-        gloop::enum_t getError() {
-            return glGetError();
-        }
-        
+    namespace wrapper {                
         void init() {
             static bool isInit = false;
             
@@ -57,10 +53,6 @@ namespace gloop {
             }            
             
             initFeatures();
-        }
-        
-        const gloop::ubyte_t * getString(gloop::enum_t param) {
-            return glGetString(param);
         }
     }
 }
