@@ -37,6 +37,9 @@ namespace gloop {
             _extName(extName),
             _state(state::UNCHECKED) {
             }
+            
+            glext(const glext&) = delete;
+            glext(glext&&) = delete;
 
             operator bool();
         };

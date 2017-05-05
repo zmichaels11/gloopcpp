@@ -14,6 +14,7 @@
 #pragma once
 
 #include <functional>
+#include <iostream>
 #include <string>
 
 #include <SDL2/SDL_video.h>
@@ -41,7 +42,7 @@ namespace gloop {
                 _func = std::function<T>(reinterpret_cast<__stdcall T*> (addr));
 #else
                 _func = std::function<T>(reinterpret_cast<T*> (addr));
-#endif
+#endif                
                 
                 if (_func == nullptr) {
                     _state = state::UNSUPPORTED;
@@ -72,6 +73,9 @@ namespace gloop {
             _func(nullptr),
             _state(state::UNCHECKED) {
             }
+            
+            pfnglproc(const pfnglproc<T>&) = delete;
+            pfnglproc(pfnglproc<T>&&) = delete;
 
             operator bool() {
                 return check();

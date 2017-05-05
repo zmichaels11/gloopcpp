@@ -40,7 +40,7 @@ namespace gloop {
                 gloop::sizei_t count,
                 gloop::sizei_t instanceCount) {
 
-            glDrawArraysInstancedANGLE(mode, first, count, instanceCount);
+            (*ANGLE_instanced_arrays.drawArraysInstancedANGLE) (mode, first, count, instanceCount);
             tools::__debugAssertGLError("Unable to draw arrays instanced!");
         }
 
@@ -51,7 +51,7 @@ namespace gloop {
                 const void * indices,
                 gloop::sizei_t instanceCount) {
 
-            glDrawElementsInstancedANGLE(mode, count, type, indices, instanceCount);
+            (*ANGLE_instanced_arrays.drawElementsInstancedANGLE) (mode, count, type, indices, instanceCount);
             tools::__debugAssertGLError("Unable to draw elements instanced!");
         }
     }

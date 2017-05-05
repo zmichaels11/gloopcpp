@@ -12,14 +12,10 @@
 
 #include "../buffer.hpp"
 #include "../draw/call.hpp"
+#include "../glint.hpp"
 #include "../texture2D.hpp"
 
-#include <functional>
-#include <type_traits>
-
 #include <GLES3/gl3.h>
-
-#include <SDL2/SDL_video.h>
 
 namespace gloop {
     namespace wrapper {

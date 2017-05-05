@@ -48,7 +48,7 @@ namespace gloop {
 
             if (EXT_buffer_storage) {
                 glBindBuffer(targetHint, buffer);
-                glBufferStorageEXT(targetHint, size, data, flags);
+                (*EXT_buffer_storage.bufferStorageEXT) (targetHint, size, data, flags);
             } else {
                 glBindBuffer(targetHint, buffer);
                 if (data == nullptr) {
@@ -95,7 +95,7 @@ namespace gloop {
             if (EXT_map_buffer_range) {
                 glBindBuffer(targetHint, buffer);
 
-                void * out = glMapBufferRangeEXT(targetHint, offset, length, access);
+                auto out = (*EXT_map_buffer_range.mapBufferRangeEXT) (targetHint, offset, length, access);
                 
                 tools::__debugAssertGLError("Unable to map buffer range!");
 
@@ -103,7 +103,7 @@ namespace gloop {
             } else if (OES_mapbuffer) {
                 glBindBuffer(targetHint, buffer);
 
-                gloop::char_t * ptr = (gloop::char_t *) glMapBufferOES(targetHint, access);
+                auto ptr = reinterpret_cast<gloop::char_t *> ((*OES_mapbuffer.mapBufferOES) (targetHint, access));
                 
                 tools::__debugAssertGLError("Unable to map buffer!");
 
@@ -119,7 +119,7 @@ namespace gloop {
 
             if (OES_mapbuffer) {
                 glBindBuffer(targetHint, buffer);
-                glUnmapBufferOES(targetHint);
+                (*OES_mapbuffer.unmapBufferOES) (targetHint);
                 tools::__debugAssertGLError("Unable to unmap buffer!");
             } else {
                 gloop_throw("OES_mapbuffer is not supported!");

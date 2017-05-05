@@ -36,6 +36,9 @@ namespace gloop {
             _state(state::UNCHECKED) {
             }
             
+            glversion(const glversion&) = delete;
+            glversion(glversion&&) = delete;
+            
             operator bool();
         };
     }

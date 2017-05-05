@@ -88,7 +88,7 @@ namespace gloop {
             glBindTexture(GL_TEXTURE_2D, texture);
 
             if (EXT_texture_storage) {
-                glTexStorage2DEXT(GL_TEXTURE_2D, levels, internalFormat, width, height);
+                (*EXT_texture_storage.texStorage2DEXT) (GL_TEXTURE_2D, levels, internalFormat, width, height);
                 tools::__debugAssertGLError("Unable to allocate 2D storage!");
             } else {
                 GLenum glType = 0;

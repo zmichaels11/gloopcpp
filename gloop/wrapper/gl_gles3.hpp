@@ -32,7 +32,7 @@ namespace gloop {
             support("EXT_buffer_storage"),
             bufferStorageEXT("glBufferStorageEXT") {}
             
-            operator bool() {
+            inline operator bool() {
                 return support;
             }
         };
@@ -46,7 +46,7 @@ namespace gloop {
             support(3, 0) {
             }
 
-            operator bool() {
+            inline operator bool() {
                 return support;
             }
         };
@@ -89,7 +89,7 @@ namespace gloop {
             drawElementsIndirect("glDrawElementsIndirect") {
             }
 
-            operator bool() {
+            inline operator bool() {
                 return support;
             }
         };
@@ -108,7 +108,7 @@ namespace gloop {
             dispatchComputeIndirect("glDispatchComputeIndirect") {
             }
             
-            operator bool() {
+            inline operator bool() {
                 return support;
             }
         };
