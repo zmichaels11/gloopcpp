@@ -128,7 +128,7 @@ namespace {
     }
 }
 
-int sprite_test(int argc, char** argv) {
+int main(int argc, char** argv) {
     gloop::application app(640, 480, "Sprite Test");
 
     app.setGLHints(gloop::getDefaultContextHints());

@@ -1,142 +1,148 @@
-#
-#  There exist several targets which are by default empty and which can be 
-#  used for execution of your targets. These targets are usually executed 
-#  before and after some main targets. They are: 
-#
-#     .build-pre:              called before 'build' target
-#     .build-post:             called after 'build' target
-#     .clean-pre:              called before 'clean' target
-#     .clean-post:             called after 'clean' target
-#     .clobber-pre:            called before 'clobber' target
-#     .clobber-post:           called after 'clobber' target
-#     .all-pre:                called before 'all' target
-#     .all-post:               called after 'all' target
-#     .help-pre:               called before 'help' target
-#     .help-post:              called after 'help' target
-#
-#  Targets beginning with '.' are not intended to be called on their own.
-#
-#  Main targets can be executed directly, and they are:
-#  
-#     build                    build a specific configuration
-#     clean                    remove built files from a configuration
-#     clobber                  remove all built files
-#     all                      build all configurations
-#     help                     print help mesage
-#  
-#  Targets .build-impl, .clean-impl, .clobber-impl, .all-impl, and
-#  .help-impl are implemented in nbproject/makefile-impl.mk.
-#
-#  Available make variables:
-#
-#     CND_BASEDIR                base directory for relative paths
-#     CND_DISTDIR                default top distribution directory (build artifacts)
-#     CND_BUILDDIR               default top build directory (object files, ...)
-#     CONF                       name of current configuration
-#     CND_PLATFORM_${CONF}       platform name (current configuration)
-#     CND_ARTIFACT_DIR_${CONF}   directory of build artifact (current configuration)
-#     CND_ARTIFACT_NAME_${CONF}  name of build artifact (current configuration)
-#     CND_ARTIFACT_PATH_${CONF}  path to build artifact (current configuration)
-#     CND_PACKAGE_DIR_${CONF}    directory of package (current configuration)
-#     CND_PACKAGE_NAME_${CONF}   name of package (current configuration)
-#     CND_PACKAGE_PATH_${CONF}   path to package (current configuration)
-#
-# NOCDDL
+GL=glew
+LDLIBS=`pkg-config --libs sdl2` `pkg-config --libs SDL2_image`
 
+CXX=clang++
+OBJ_EXT=.o
 
-# Environment 
-MKDIR=mkdir
-CP=cp
-CCADMIN=CCadmin
+EMSCRIPTEN_FLAGS=-s USE_SDL=2 -s USE_SDL_IMAGE=2 -s SDL2_IMAGE_FORMATS='["png"]'
 
--include emsdk_env.mk
+ifeq ($(GL), webgl)
+	CXX=em++
+	OBJ_EXT=.bc
+endif
 
-# build
-build: .build-post
+ifeq ($(CXX), clang++)
+	CXXFLAGS+= -emit-llvm
+	OBJ_EXT=.bc
+endif
 
-.build-pre:
-# Add your pre 'build' code here...
+ifeq ($(GL), glew)
+	LDLIBS+= `pkg-config --libs glew`
+	CXXFLAGS=-DGL=GLEW -DUSE_SDL_IMAGE
+else ifeq ($(GL), gles3)
+	LDLIBS+= `pkg-config --libs glesv2`
+	CXXFLAGS=-DGL=GLES3 -DUSE_SDL_IMAGE
+else ifeq ($(GL), gles2)
+	LDLIBS+= `pkg-config --libs glesv2`
+	CXXFLAGS=-DGL=GLES2 -DUSE_SDL_IMAGE
+else ifeq ($(GL), webgl)
+	LDLIBS=$(EMSCRIPTEN_FLAGS)
+	CXXFLAGS=-DGL=GLES2 -DUSE_SDL_IMAGE $(EMSCRIPTEN_FLAGS)
+endif
 
-.build-post: .build-impl
-# Add your post 'build' code here...
+CXXFLAGS+= -std=c++14 -O2
 
+GLOOP_SOURCES=\
+gloop/bitfields/buffer_access_hint.cpp \
+gloop/bitfields/buffer_immutable_storage_hint.cpp \
+gloop/bitfields/clear_mask.cpp \
+gloop/enums/framebuffer_attachment.cpp \
+gloop/error/base_error.cpp \
+gloop/exception/base_exception.cpp \
+gloop/states/blend.cpp \
+gloop/states/clear.cpp \
+gloop/states/depth_range.cpp \
+gloop/states/scissor.cpp \
+gloop/states/texture2D_parameters.cpp \
+gloop/states/viewport.cpp \
+gloop/uniform/uniform_bindings.cpp \
+gloop/uniform/uniform_block_binding.cpp \
+gloop/wrapper/gles2_buffer_objects.cpp \
+gloop/wrapper/gles2_drawing_commands.cpp \
+gloop/wrapper/gles2_framebuffer_objects.cpp \
+gloop/wrapper/gles2_gl.cpp \
+gloop/wrapper/gles2_shaders_and_programs.cpp \
+gloop/wrapper/gles2_states.cpp \
+gloop/wrapper/gles2_texture_objects.cpp \
+gloop/wrapper/gles2_vertex_arrays.cpp \
+gloop/wrapper/gles3_buffer_objects.cpp \
+gloop/wrapper/gles3_drawing_commands.cpp \
+gloop/wrapper/gles3_framebuffer_objects.cpp \
+gloop/wrapper/gles3_gl.cpp \
+gloop/wrapper/gles3_shaders_and_programs.cpp \
+gloop/wrapper/gles3_states.cpp \
+gloop/wrapper/gles3_texture_objects.cpp \
+gloop/wrapper/gles3_vertex_arrays.cpp \
+gloop/wrapper/glew_buffer_objects.cpp \
+gloop/wrapper/glew_drawing_commands.cpp \
+gloop/wrapper/glew_framebuffer_objects.cpp \
+gloop/wrapper/glew_gl.cpp \
+gloop/wrapper/glew_shaders_and_programs.cpp \
+gloop/wrapper/glew_states.cpp \
+gloop/wrapper/glew_texture_objects.cpp \
+gloop/wrapper/glew_vertex_arrays.cpp \
+gloop/wrapper/wrapper.cpp \
+gloop/application.cpp \
+gloop/buffer.cpp \
+gloop/draw_calls.cpp \
+gloop/framebuffer.cpp \
+gloop/matrices.cpp \
+gloop/pixel_formats.cpp \
+gloop/program.cpp \
+gloop/program_uniform_binding.cpp \
+gloop/renderbuffer.cpp \
+gloop/shader.cpp \
+gloop/texture2D.cpp \
+gloop/tools.cpp \
+gloop/vertex_array.cpp \
+gloop/vertex_attribute_binding.cpp \
+gloop/vertex_attributes.cpp
 
-# clean
-clean: .clean-post
+GLGFX_SOURCES=\
+glgfx/renderers/line_renderer.cpp \
+glgfx/renderers/masked_image_renderer.cpp \
+glgfx/renderers/solid_renderer.cpp \
+glgfx/renderers/sprite_renderer.cpp \
+glgfx/sprite_buffers/vbo_sprite_buffer.cpp \
+glgfx/blend_mode.cpp \
+glgfx/graphics.cpp \
+glgfx/skyline_packer.cpp \
+glgfx/sprite_sheet.cpp
 
-.clean-pre:
-# Add your pre 'clean' code here...
+TEST_SOURCES=\
+sprite_test.cpp
 
-.clean-post: .clean-impl
-# Add your post 'clean' code here...
+GLOOP_OBJECTS=$(GLOOP_SOURCES:.cpp=$(OBJ_EXT))
+GLGFX_OBJECTS=$(GLGFX_SOURCES:.cpp=$(OBJ_EXT))
+TEST_OBJECTS=$(TEST_SOURCES:.cpp=$(OBJ_EXT))
 
+TARGET_LIBS=libGLOOP.bc libGLGFX.bc
+TARGET_TESTS=\
+sprite_test.exe \
+sprite_test.html sprite_test.js sprite_test.data sprite_test.html.mem
 
-# clobber
-clobber: .clobber-post
+all: $(TARGET_LIBS)
 
-.clobber-pre:
-# Add your pre 'clobber' code here...
+%.bc: %.cpp
+	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
-.clobber-post: .clobber-impl
-# Add your post 'clobber' code here...
+libGLOOP.bc: $(GLOOP_OBJECTS)
+	llvm-link $(GLOOP_OBJECTS) -o $@
+	opt -std-link-opts -O3 $@ -o $@
 
+libGLGFX.bc: $(GLGFX_OBJECTS)
+	llvm-link $(GLGFX_OBJECTS) -o $@
+	opt -std-link-opts -O3 $@ -o $@
 
-# all
-all: .all-post
+sprite_test.exe: sprite_test.bc libGLOOP.bc libGLGFX.bc
+	clang++ $(LDFLAGS) sprite_test.bc libGLOOP.bc libGLGFX.bc -o $@ $(LDLIBS)
 
-.all-pre:
-# Add your pre 'all' code here...
+sprite_test.html: sprite_test.bc libGLOOP.bc libGLGFX.bc
+	em++ $(LDFLAGS) sprite_test.bc libGLOOP.bc libGLGFX.bc -o $@ $(LDLIBS) --preload-file tests --preload-file tests/data --preload-file glgfx/shaders -O2
 
-.all-post: .all-impl
-# Add your post 'all' code here...
-
-
-# build tests
-build-tests: .build-tests-post
-
-.build-tests-pre:
-# Add your pre 'build-tests' code here...
-
-.build-tests-post: .build-tests-impl
-# Add your post 'build-tests' code here...
-
-
-# run tests
-test: .test-post
-
-.test-pre: build-tests
-# Add your pre 'test' code here...
-
-.test-post: .test-impl
-# Add your post 'test' code here...
-
-
-# help
-help: .help-post
-
-.help-pre:
-# Add your pre 'help' code here...
-
-.help-post: .help-impl
-# Add your post 'help' code here...
+clean:
+	rm -fv $(TARGET_TESTS)
+	rm -fv $(TARGET_LIBS)
+	rm -fv $(GLGFX_OBJECTS)
+	rm -fv $(GLOOP_OBJECTS)
+	rm -fv $(TEST_OBJECTS)
 
 emsdk_env.mk: .emsdk_portable/emsdk_set_env.sh
 	sed 's/"//g ; s/=/:=/' < $< > $@
-
-#.emsdk_portable/emsdk_set_env.sh: emsdk_activate
 
 emsdk_activate: emsdk_install
 	.emsdk_portable/emsdk activate latest
 	.emsdk_portable/emsdk construct_env
 
 emsdk_install: emsdk_update
-	.emsdk_portable/emsdk install latest
-
-emsdk_update:
-	.emsdk_portable/emsdk update
-
-# include project implementation makefile
-include nbproject/Makefile-impl.mk
-
-# include project make variables
-include nbproject/Makefile-variables.mk
+	.emsd_portable/emsdk update

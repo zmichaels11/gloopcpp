@@ -86,3 +86,9 @@ $RECYCLE.BIN/
 .emsdk_portable/emscripten-tags.txt
 emsdk_env.mk
 emsdk_set_env.sh
+
+*.bc
+*.html
+*.data
+*.mem
+*.js

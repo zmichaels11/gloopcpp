@@ -10,9 +10,12 @@
 #include <iostream>
 #include <memory>
 #include <string>
+#include <sstream>
 
 #ifdef USE_SDL_IMAGE
 #include <SDL2/SDL_image.h>
+#else
+#warning "SDL_Image is not included; PNG will not be available!"
 #endif
 
 #include <SDL2/SDL_rwops.h>
