@@ -39,7 +39,7 @@ bin/gles3/%.bc: %.cpp
 	clang++ -DGL=GLES3 -DUSE_SDL_IMAGE -emit-llvm -std=c++14 -O3 -c -o $@ $<
 
 bin/asmjs/%.bc: %.cpp
-	em++ -DGL=GLES2 -DUSE_SDL_IMAGE -emit-llvm -std=c++14 -O3 -s USE_SDL=2 -s USE_SDL_IMAGE=2 -s SDL2_IMAGE_FORMATS='["png"]'
+	em++ -DGL=GLES2 -DUSE_SDL_IMAGE -emit-llvm -std=c++14 -O3 -s USE_SDL=2 -s USE_SDL_IMAGE=2 -s SDL2_IMAGE_FORMATS='["png"]' -c -o $@ $<
 
 bin/glew/libGLOOP.bc: $(GLEW_GLOOP_OBJECTS)
 	llvm-link $(GLEW_GLOOP_OBJECTS) -o $@
@@ -72,7 +72,7 @@ bin/gles3/sprite_test.exe: directories bin/gles3/sprite_test.bc bin/gles3/libGLO
 	clang++ bin/gles3/sprite_test.bc bin/gles3/libGLOOP.bc bin/gles3/libGLGFX.bc -o $@ `pkg-config --libs sdl2` `pkg-config --libs SDL2_image` `pkg-config --libs glesv2`
 
 bin/asmjs/sprite_test.html: directories bin/asmjs/sprite_test.bc bin/asmjs/libGLOOP.bc bin/asmjs/libGLGFX.bc
-	em++ sprite_test.bc libGLOOP.bc libGLGFX.bc -o $@ --preload-file tests --preload-file tests/data --preload-file glgfx/shaders -O3
+	em++ -s USE_SDL=2 -s USE_SDL_IMAGE=2 -s SDL2_IMAGE_FORMATS='["png"]' bin/asmjs/sprite_test.bc bin/asmjs/libGLOOP.bc bin/asmjs/libGLGFX.bc -o $@ --preload-file tests --preload-file tests/data --preload-file glgfx/shaders -O3
 
 clean:
 	rm -fv $(GLEW_GLOOP_OBJECTS)
