@@ -66,6 +66,21 @@ glgfx.hpp: $(GLGFX_HEADERS)
 bin/glew/gloop.hpp: gloop.hpp
 	clang++ -DGL=GLEW -DUSE_SDL_IMAGE -E -std=c++14 -o $@ $<
 
+bin/gles3/gloop.hpp: gloop.hpp
+	clang++ -DGL=GLEW -DUSE_SDL_IMAGE -E -std=c++14 -o $@ $<
+
+bin/asmjs/gloop.hpp: gloop.hpp
+	clang++ -DGL=GLES2 -DUSE_SDL_IMAGE -E -std=c++14 -o $@ $<
+
+bin/glew/glgfx.hpp: glgfx.hpp
+	clang++ -DGL=GLEW -DUSE_SDL_IMAGE -E -std=c++14 -o $@ $<
+
+bin/gles3/glgfx.hpp: glgfx.hpp
+	clang++ -DGL=GLES3 -DUSE_SDL_IMAGE -E -std=c++14 -o $@ $<
+
+bin/asmjs/glgfx.hpp: glgfx.hpp
+	clang++ -DGL=GLES2 -DUSE_SDL_IMAGE -E -std=c++14 -o $@ $<
+
 bin/glew/%.bc: %.cpp
 	clang++ -DGL=GLEW -DUSE_SDL_IMAGE -emit-llvm -std=c++14 -O3 -c -o $@ $<
 
