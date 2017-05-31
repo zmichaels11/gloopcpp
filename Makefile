@@ -32,17 +32,19 @@ STATIC_GLES3_LIBS=$(addsuffix .a, $(addprefix bin/gles3/, $(LIBS)))
 STATIC_ASMJS_LIBS=$(addsuffix .a, $(addprefix bin/asmjs/, $(LIBS)))
 
 GLOOP_HEADERS:=$(shell find gloop -type f -name "*.hpp")
-GLGFX_HEADERS:=$(shell find glgfx -type -f -name "*.hpp")
+GLGFX_HEADERS:=$(shell find glgfx -type f -name "*.hpp")
 
-.PHONY: all tests static_libs llvm_libs directories clean emsdk_activate emsdk_install
+.PHONY: all tests static_libs llvm_libs directories clean emsdk_activate emsdk_install headers
 
 all: tests
 
-tests: $(GLEW_TESTS) $(GLES3_TESTS)
+tests: directories $(GLEW_TESTS) $(GLES3_TESTS)
 
-static_libs: $(STATIC_GLEW_LIBS) $(STATIC_GLES3_LIBS)
+static_libs: directories $(STATIC_GLEW_LIBS) $(STATIC_GLES3_LIBS)
 
-llvm_libs: $(LLVM_GLEW_LIBS) $(LLVM_GLES3_LIBS)
+llvm_libs: directories $(LLVM_GLEW_LIBS) $(LLVM_GLES3_LIBS)
+
+headers: bin/glew/gloop.hpp bin/glew/glgfx.hpp bin/gles3/gloop.hpp bin/gles3/glgfx.hpp bin/asmjs/gloop.hpp bin/asmjs/glgfx.hpp
 
 directories:
 	mkdir -p $(addprefix bin/glew/, $(GLOOP_DIRECTORIES))
@@ -51,7 +53,6 @@ directories:
 	mkdir -p $(addprefix bin/glew/, $(GLGFX_DIRECTORIES))
 	mkdir -p $(addprefix bin/gles3/, $(GLGFX_DIRECTORIES))
 	mkdir -p $(addprefix bin/asmjs/, $(GLGFX_DIRECTORIES))
-	mkdir -p headers
 
 gloop.hpp: $(GLOOP_HEADERS)
 	find gloop -type f -name "*.hpp" > gloop.tmp
@@ -64,21 +65,27 @@ glgfx.hpp: $(GLGFX_HEADERS)
 	rm glgfx.tmp
 
 bin/glew/gloop.hpp: gloop.hpp
+	mkdir -p bin/glew/
 	clang++ -DGL=GLEW -DUSE_SDL_IMAGE -E -std=c++14 -o $@ $<
 
 bin/gles3/gloop.hpp: gloop.hpp
+	mkdir -p bin/glew
 	clang++ -DGL=GLEW -DUSE_SDL_IMAGE -E -std=c++14 -o $@ $<
 
 bin/asmjs/gloop.hpp: gloop.hpp
+	mkdir -p bin/glew
 	clang++ -DGL=GLES2 -DUSE_SDL_IMAGE -E -std=c++14 -o $@ $<
 
 bin/glew/glgfx.hpp: glgfx.hpp
+	mkdir -p bin/glew
 	clang++ -DGL=GLEW -DUSE_SDL_IMAGE -E -std=c++14 -o $@ $<
 
 bin/gles3/glgfx.hpp: glgfx.hpp
+	mkdir -p bin/glew
 	clang++ -DGL=GLES3 -DUSE_SDL_IMAGE -E -std=c++14 -o $@ $<
 
 bin/asmjs/glgfx.hpp: glgfx.hpp
+	mkdir -p bin/glew
 	clang++ -DGL=GLES2 -DUSE_SDL_IMAGE -E -std=c++14 -o $@ $<
 
 bin/glew/%.bc: %.cpp
@@ -117,13 +124,13 @@ bin/gles3/libGLGFX.bc: $(GLES3_GLGFX_OBJECTS)
 	llvm-link $(GLES3_GLGFX_OBJECTS) -o $@
 	opt -std-link-opts -O3 $@ -o $@
 
-bin/glew/sprite_test.exe: directories gloop.hpp glgfx.hpp bin/glew/sprite_test.bc bin/glew/libGLOOP.bc bin/glew/libGLGFX.bc
+bin/glew/sprite_test.exe: gloop.hpp glgfx.hpp bin/glew/sprite_test.bc bin/glew/libGLOOP.bc bin/glew/libGLGFX.bc
 	clang++ bin/glew/sprite_test.bc bin/glew/libGLOOP.bc bin/glew/libGLGFX.bc -o $@ `pkg-config --libs sdl2` `pkg-config --libs SDL2_image` `pkg-config --libs glew`
 
-bin/gles3/sprite_test.exe: directories gloop.hpp glgfx.hpp bin/gles3/sprite_test.bc bin/gles3/libGLOOP.bc bin/gles3/libGLGFX.bc
+bin/gles3/sprite_test.exe: gloop.hpp glgfx.hpp bin/gles3/sprite_test.bc bin/gles3/libGLOOP.bc bin/gles3/libGLGFX.bc
 	clang++ bin/gles3/sprite_test.bc bin/gles3/libGLOOP.bc bin/gles3/libGLGFX.bc -o $@ `pkg-config --libs sdl2` `pkg-config --libs SDL2_image` `pkg-config --libs glesv2`
 
-bin/asmjs/sprite_test.html: directories gloop.hpp glgfx.hpp bin/asmjs/sprite_test.bc bin/asmjs/libGLOOP.bc bin/asmjs/libGLGFX.bc
+bin/asmjs/sprite_test.html: gloop.hpp glgfx.hpp bin/asmjs/sprite_test.bc bin/asmjs/libGLOOP.bc bin/asmjs/libGLGFX.bc
 	em++ -s USE_SDL=2 -s USE_SDL_IMAGE=2 -s SDL2_IMAGE_FORMATS='["png"]' bin/asmjs/sprite_test.bc bin/asmjs/libGLOOP.bc bin/asmjs/libGLGFX.bc -o $@ --preload-file tests --preload-file tests/data --preload-file glgfx/shaders -O3
 
 clean:
@@ -142,6 +149,8 @@ clean:
 	rm -fv $(STATIC_GLEW_LIBS)
 	rm -fv $(STATIC_GLES3_LIBS)
 	rm -fv $(STATIC_ASMJS_LIBS)
+	rm -f gloop.hpp
+	rm -f glgfx.hpp
 
 emsdk_env.mk: .emsdk_portable/emsdk_set_env.sh
 	sed 's/"//g ; s/=/:=/' < $< > $@
