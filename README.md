@@ -1,11 +1,18 @@
-# WebGL build
-1. install emscripten (see emscripten_README.md for installation instructions)
-2. run `make -f nbproject/Makefile-WEBGL_Debug.mk QMAKE= SUBPROJECTS= .build-conf`
-3. run the html binary in `dist/WEBGL_Debug`
+# GLOOP - an Object-Oriented Graphics Library
+Originally ported from a Java library I wrote of the same name. 
+GLOOP is designed to abstract OpenGL or OpenGL ES into a unified library.
 
-## Virtual Filesystem
-Currently files are included in the virtual file system using the linker.
+# Dependencies
+* GLOOP uses SDL2 and SDL2_image. It is possible to disable SDL2_image (requires some editing of the Makefile)
+* ASMJS builds require prior setup of an emscripten environment. 
+* GLOOP is written against OpenGLES 3.0, OpenGL 3.0, and WebGL. It can be built for OpenGLES 2.0, but requires a handful of extensions.
+* GLEW is required for the OpenGL builds.
+* Currently builds only tested on linux. Confirmed working on Bash on Ubuntu on Windows (requires Ubuntu 16.04)
 
-# Change test build
-1. Create a function for the entry point. Must be the declared as `int func(int argc, char** argv)` where `func` is a unique function name in global namespace.
-2. Add the compiler option `-Dtest_name` where `test_name` is the entry point
+# ASMJS build
+1. Setup emscripten environment.
+2. Build ASMJS targets (bin/asmjs)
+
+# Known bugs
+* Build fails if using Bash on Ubuntu on Windows for ASMJS builds if repository is located on Windows.
+* sprite_test segfaults if build is set to OpenGLES 2.0 and the extension ANGLE_instanced_arrays is not available.
