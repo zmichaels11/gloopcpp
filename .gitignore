@@ -93,3 +93,6 @@ emsdk_set_env.sh
 *.mem
 *.js
 *.a
+
+gloop.hpp
+glgfx.hpp

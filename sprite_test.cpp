@@ -10,16 +10,8 @@
 #include <string>
 #include <sstream>
 
-#include "glgfx/graphics.hpp"
-#include "glgfx/sprite.hpp"
-#include "glgfx/sprite_sheet.hpp"
-
-#include "gloop/application.hpp"
-#include "gloop/context.hpp"
-#include "gloop/objects.hpp"
-#include "gloop/tools.hpp"
-#include "glgfx/blend_mode.hpp"
-#include "gloop/matrices.hpp"
+#include "gloop.hpp"
+#include "glgfx.hpp"
 
 namespace {
 

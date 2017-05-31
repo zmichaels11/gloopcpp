@@ -1,6 +1,6 @@
 # GLOOP - an Object-Oriented Graphics Library
 Originally ported from a Java library I wrote of the same name. 
-GLOOP is designed to abstract OpenGL or OpenGL ES into a unified library.
+GLOOP is designed to abstract OpenGL, OpenGL ES, and WebGL into a unified library.
 
 # Dependencies
 * GLOOP uses SDL2 and SDL2_image. It is possible to disable SDL2_image (requires some editing of the Makefile)
@@ -8,6 +8,7 @@ GLOOP is designed to abstract OpenGL or OpenGL ES into a unified library.
 * GLOOP is written against OpenGLES 3.0, OpenGL 3.0, and WebGL. It can be built for OpenGLES 2.0, but requires a handful of extensions.
 * GLEW is required for the OpenGL builds.
 * Currently builds only tested on linux. Confirmed working on Bash on Ubuntu on Windows (requires Ubuntu 16.04)
+* Requires Clang compiler with support of C++14.
 
 # ASMJS build
 1. Setup emscripten environment.

@@ -31,6 +31,9 @@ STATIC_GLEW_LIBS=$(addsuffix .a, $(addprefix bin/glew/, $(Libs)))
 STATIC_GLES3_LIBS=$(addsuffix .a, $(addprefix bin/gles3/, $(LIBS)))
 STATIC_ASMJS_LIBS=$(addsuffix .a, $(addprefix bin/asmjs/, $(LIBS)))
 
+GLOOP_HEADERS:=$(shell find gloop -type f -name "*.hpp")
+GLGFX_HEADERS:=$(shell find glgfx -type -f -name "*.hpp")
+
 .PHONY: all tests static_libs llvm_libs directories clean emsdk_activate emsdk_install
 
 all: tests
@@ -48,6 +51,20 @@ directories:
 	mkdir -p $(addprefix bin/glew/, $(GLGFX_DIRECTORIES))
 	mkdir -p $(addprefix bin/gles3/, $(GLGFX_DIRECTORIES))
 	mkdir -p $(addprefix bin/asmjs/, $(GLGFX_DIRECTORIES))
+	mkdir -p headers
+
+gloop.hpp: $(GLOOP_HEADERS)
+	find gloop -type f -name "*.hpp" > gloop.tmp
+	awk '$$0="#include \""$$0"\""' gloop.tmp > gloop.hpp
+	rm gloop.tmp
+
+glgfx.hpp: $(GLGFX_HEADERS)
+	find glgfx -type f -name "*.hpp" > glgfx.tmp
+	awk '$$0="#include \""$$0"\""' glgfx.tmp > glgfx.hpp
+	rm glgfx.tmp
+
+bin/glew/gloop.hpp: gloop.hpp
+	clang++ -DGL=GLEW -DUSE_SDL_IMAGE -E -std=c++14 -o $@ $<
 
 bin/glew/%.bc: %.cpp
 	clang++ -DGL=GLEW -DUSE_SDL_IMAGE -emit-llvm -std=c++14 -O3 -c -o $@ $<
@@ -85,13 +102,13 @@ bin/gles3/libGLGFX.bc: $(GLES3_GLGFX_OBJECTS)
 	llvm-link $(GLES3_GLGFX_OBJECTS) -o $@
 	opt -std-link-opts -O3 $@ -o $@
 
-bin/glew/sprite_test.exe: directories bin/glew/sprite_test.bc bin/glew/libGLOOP.bc bin/glew/libGLGFX.bc
+bin/glew/sprite_test.exe: directories gloop.hpp glgfx.hpp bin/glew/sprite_test.bc bin/glew/libGLOOP.bc bin/glew/libGLGFX.bc
 	clang++ bin/glew/sprite_test.bc bin/glew/libGLOOP.bc bin/glew/libGLGFX.bc -o $@ `pkg-config --libs sdl2` `pkg-config --libs SDL2_image` `pkg-config --libs glew`
 
-bin/gles3/sprite_test.exe: directories bin/gles3/sprite_test.bc bin/gles3/libGLOOP.bc bin/gles3/libGLGFX.bc
+bin/gles3/sprite_test.exe: directories gloop.hpp glgfx.hpp bin/gles3/sprite_test.bc bin/gles3/libGLOOP.bc bin/gles3/libGLGFX.bc
 	clang++ bin/gles3/sprite_test.bc bin/gles3/libGLOOP.bc bin/gles3/libGLGFX.bc -o $@ `pkg-config --libs sdl2` `pkg-config --libs SDL2_image` `pkg-config --libs glesv2`
 
-bin/asmjs/sprite_test.html: directories bin/asmjs/sprite_test.bc bin/asmjs/libGLOOP.bc bin/asmjs/libGLGFX.bc
+bin/asmjs/sprite_test.html: directories gloop.hpp glgfx.hpp bin/asmjs/sprite_test.bc bin/asmjs/libGLOOP.bc bin/asmjs/libGLGFX.bc
 	em++ -s USE_SDL=2 -s USE_SDL_IMAGE=2 -s SDL2_IMAGE_FORMATS='["png"]' bin/asmjs/sprite_test.bc bin/asmjs/libGLOOP.bc bin/asmjs/libGLGFX.bc -o $@ --preload-file tests --preload-file tests/data --preload-file glgfx/shaders -O3
 
 clean:
