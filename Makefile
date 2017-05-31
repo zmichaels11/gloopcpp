@@ -19,10 +19,27 @@ GLES3_TEST_OBJECTS=$(addprefix bin/gles3/, $(TEST_OBJECTS))
 TESTS=sprite_test.exe
 GLES3_TESTS=$(addprefix bin/gles3/, $(TESTS))
 GLEW_TESTS=$(addprefix bin/glew/, $(TESTS))
+LIBS=\
+libGLOOP \
+libGLGFX
 
-.PHONY: directories
+LLVM_GLEW_LIBS=$(addsuffix .bc, $(addprefix bin/glew/, $(LIBS)))
+LLVM_GLES3_LIBS=$(addsuffix .bc, $(addprefix bin/gles3/, $(LIBS)))
+LLVM_ASMJS_LIBS=$(addsuffix .bc, $(addprefix bin/asmjs/, $(LIBS)))
 
-all: $(GLEW_TESTS) $(GLES3_TESTS)
+STATIC_GLEW_LIBS=$(addsuffix .a, $(addprefix bin/glew/, $(Libs)))
+STATIC_GLES3_LIBS=$(addsuffix .a, $(addprefix bin/gles3/, $(LIBS)))
+STATIC_ASMJS_LIBS=$(addsuffix .a, $(addprefix bin/asmjs/, $(LIBS)))
+
+.PHONY: all tests static_libs llvm_libs directories clean emsdk_activate emsdk_install
+
+all: tests
+
+tests: $(GLEW_TESTS) $(GLES3_TESTS)
+
+static_libs: $(STATIC_GLEW_LIBS) $(STATIC_GLES3_LIBS)
+
+llvm_libs: $(LLVM_GLEW_LIBS) $(LLVM_GLES3_LIBS)
 
 directories:
 	mkdir -p $(addprefix bin/glew/, $(GLOOP_DIRECTORIES))
@@ -40,6 +57,9 @@ bin/gles3/%.bc: %.cpp
 
 bin/asmjs/%.bc: %.cpp
 	em++ -DGL=GLES2 -DUSE_SDL_IMAGE -emit-llvm -std=c++14 -O3 -s USE_SDL=2 -s USE_SDL_IMAGE=2 -s SDL2_IMAGE_FORMATS='["png"]' -c -o $@ $<
+
+bin/glew/%.a: %.bc
+	llvm-ar rc $@ $<
 
 bin/glew/libGLOOP.bc: $(GLEW_GLOOP_OBJECTS)
 	llvm-link $(GLEW_GLOOP_OBJECTS) -o $@
@@ -84,6 +104,12 @@ clean:
 	rm -fv $(GLES3_GLOOP_OBJECTS)
 	rm -fv $(GLES3_GLGFX_OBJECTS)	
 	rm -fv $(GLES3_TEST_OBJECTS)
+	rm -fv $(LLVM_GLEW_LIBS)
+	rm -fv $(LLVM_GLES3_LIBS)
+	rm -fv $(LLVM_ASMJS_LIBS)
+	rm -fv $(STATIC_GLEW_LIBS)
+	rm -fv $(STATIC_GLES3_LIBS)
+	rm -fv $(STATIC_ASMJS_LIBS)
 
 emsdk_env.mk: .emsdk_portable/emsdk_set_env.sh
 	sed 's/"//g ; s/=/:=/' < $< > $@
