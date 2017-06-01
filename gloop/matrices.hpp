@@ -181,6 +181,19 @@ namespace gloop {
                 in0[3] + in1[3]};
         }
 
+		constexpr vec3 add(const vec3& in0, const vec3& in1) {
+			return vec3{
+				in0[0] + in1[0],
+				in0[1] + in1[1],
+				in0[2] + in1[2]};
+		}
+
+		constexpr vec2 add(const vec2& in0, const vec2& in1) {
+			return vec2{
+				in0[0] + in1[0],
+				in0[1] + in1[1]};
+		}
+
         constexpr vec4 subtract(const vec4& in0, const vec4& in1) {
             return vec4{
                 in0[0] - in1[0],
@@ -188,6 +201,19 @@ namespace gloop {
                 in0[2] - in1[2],
                 in0[3] - in1[3]};
         }
+
+		constexpr vec3 subtract(const vec3& in0, const vec3& in1) {
+			return vec3{
+				in0[0] - in1[0],
+				in0[1] - in1[1],
+				in0[2] - in1[2]};
+		}
+
+		constexpr vec2 subtract(const vec2& in0, const vec2& in1) {
+			return vec2{
+				in0[0] - in1[0],
+				in0[1] - in1[1]};
+		}
 
         constexpr vec4 scale(const vec4& in0, float scale) {
             return vec4{
@@ -197,6 +223,13 @@ namespace gloop {
                 in0[3] * scale};
         }
 
+		constexpr vec3 scale(const vec3& in0, float scale) {
+			return vec3{
+				in0[0] * scale,
+				in0[1] * scale,
+				in0[2] * scale};
+		}
+
         constexpr vec4 scale(const vec4& in0, const vec4& in1) {
             return vec4{
                 in0[0] * in1[0],
@@ -205,6 +238,19 @@ namespace gloop {
                 in0[3] * in1[3]};
         }
 
+		constexpr vec3 scale(const vec3& in0, const vec3& in1) {
+			return vec3{
+				in0[0] * in1[0],
+				in0[1] * in1[1],
+				in0[2] * in1[2]};
+		}
+
+		constexpr vec2 scale(const vec2& in0, const vec2& in1) {
+			return vec2{
+				in0[0] * in1[0],
+				in0[1] * in1[1]};
+		}
+
         constexpr float dot(const vec4& in0, const vec4& in1) {
             return in0[0] * in1[0]
                     + in0[1] * in1[1]
@@ -212,22 +258,56 @@ namespace gloop {
                     + in0[3] * in1[3];
         }
 
+		constexpr float dot(const vec3& in0, const vec3& in1) {
+			return in0[0] * in1[0]
+				+ in0[1] * in1[1]
+				+ in0[2] * in1[2];
+		}
+
+		constexpr float dot(const vec2& in0, const vec2& in1) {
+			return in0[0] * in1[0] + in0[1] * in1[1];
+		}
+
         constexpr float length2(const vec4& in) {
             return dot(in, in);
         }
 
+		constexpr float length2(const vec3& in) {
+			return dot(in, in);
+		}
+
+		constexpr float length2(const vec2& in) {
+			return dot(in, in);
+		}
+
         float length(const vec4& in);
+
+		float length(const vec3& in);
+
+		float length(const vec2& in);
+
+		constexpr vec4 asVec4(const vec3& in, float w = 0.0F) {
+			return vec4{in[0], in[1], in[2], w};
+		}
+
+		constexpr vec4 asVec4(const vec2& in, float y = 0.0F, float z = 0.0F) {
+			return vec4{in[0], in[1], y, z};
+		}
+
+		constexpr vec3 asVec3(const vec4& in) {
+			return vec3{in[0], in[1], in[2]};
+		}
+
+		constexpr vec3 asVec3(const vec2& in, float z = 0.0F) {
+			return vec3{in[0], in[1], z};
+		}
+
+		constexpr vec2 asVec2(const vec4& in) {
+			return vec2{in[0], in[1]};
+		}
 
         constexpr vec2 asVec2(const vec3& in) {
             return vec2{in[0], in[1]};
-        }
-
-        constexpr vec3 asVec3(const vec4& in) {
-            return vec3{in[0], in[1], in[2]};
-        }
-
-        constexpr vec4 asVec4(const vec5& in) {
-            return vec4{in[0], in[1], in[2], in[3]};
         }
     }
 }

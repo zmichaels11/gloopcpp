@@ -74,5 +74,11 @@ namespace gloop {
         return std::sqrt(length2(in));
     }
 
+	float vectors::length(const vec3& in) {
+		return std::sqrt(length2(in));
+	}
 
+	float vectors::length(const vec2& in) {
+		return std::sqrt(length2(in));
+	}
 }
