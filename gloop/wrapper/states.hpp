@@ -36,6 +36,8 @@ namespace gloop {
                 gloop::double_t near,
                 gloop::double_t far);
 
+		void depthFunc(gloop::enum_t depthFunc);
+
         void scissor(
                 gloop::int_t x, gloop::int_t y,
                 gloop::sizei_t width, gloop::sizei_t height);

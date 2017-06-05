@@ -47,6 +47,10 @@ namespace gloop {
             glDepthRangef((float) near, (float) far);
         }
 
+		void depthFunc(gloop::enum_t depthFunc) {
+			glDepthFunc(depthFunc);
+		}	
+
         void scissor(
                 gloop::int_t x, gloop::int_t y,
                 gloop::sizei_t width, gloop::sizei_t height) {

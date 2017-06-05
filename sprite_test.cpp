@@ -129,6 +129,11 @@ int main(int argc, char** argv) {
 
     app.setMainLoop(render);
 
+	gloop::vec2 x = {1.0F, 2.0F};
+	gloop::vec2 y = {2.0F, 3.0F};
+	
+	std::cout << "z: " << (x + y) << std::endl;
+
     try {
         app.start();
     } catch (const char * err) {

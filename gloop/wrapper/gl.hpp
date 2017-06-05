@@ -36,6 +36,7 @@ namespace gloop {
         constexpr gloop::enum_t LINK_STATUS = 0x8B82;
         constexpr gloop::enum_t INVALID_INDEX = 0xFFFFFFFF;
         constexpr gloop::enum_t BLEND = 0x0BE2;
+		constexpr gloop::enum_t DEPTH_TEST = 0x0B71;
         constexpr gloop::enum_t SCISSOR = 0x0C11;
         constexpr gloop::enum_t TEXTURE_MAG_FILTER = 0x2800;
         constexpr gloop::enum_t TEXTURE_MIN_FILTER = 0x2801;

@@ -8,6 +8,7 @@ gloop/exception/base_exception.cpp \
 gloop/states/blend.cpp \
 gloop/states/clear.cpp \
 gloop/states/depth_range.cpp \
+gloop/states/depth_test.cpp \
 gloop/states/scissor.cpp \
 gloop/states/texture2D_parameters.cpp \
 gloop/states/viewport.cpp \
