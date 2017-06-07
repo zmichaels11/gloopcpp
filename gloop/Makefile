@@ -103,13 +103,13 @@ bin/gles3/libGLOOP_base.bc: $(GLES3_OBJECTS)
 bin/asmjs/libGLOOP_base.bc: $(ASMJS_OBJECTS)
 	llvm-link $(ASMJS_OBJECTS) -o $@
 
-bin/glew/libGLOOP.bc: modules bin/glew/libGLOOP_base.bc
+bin/glew/libGLOOP.bc: modules
 	llvm-link $(GLEW_MODULES) -o $@
 
-bin/gles3/libGLOOP.bc: modules bin/gles3/libGLOOP_base.bc
+bin/gles3/libGLOOP.bc: modules
 	llvm-link $(GLES3_MODULES) -o $@
 
-bin/asmjs/libGLOOP.bc: modules bin/asmjs/libGLOOP_base.bc
+bin/asmjs/libGLOOP.bc: modules
 	llvm-link $(ASMJS_MODULES) -o $@
 
 objects.hpp:

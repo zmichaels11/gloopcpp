@@ -23,6 +23,8 @@ ASMJS_MODULES:=$(addprefix bin/asmjs/, $(MODULES))
 all: directories modules tests
 
 tests: modules
+	$(MAKE) bin/glew/sprite_test.exe
+	$(MAKE) bin/gles3/sprite_test.exe
 
 directories:
 	mkdir -p $(DIR)
@@ -42,17 +44,17 @@ glgfx: gloop
 bin/glew/%.bc: src/%.cpp
 	clang++ $(CXXFLAGS) -c -emit-llvm -DGL=GLEW -o $@ $<
 
-bin/gles3/%.bc: modules src/%.cpp
+bin/gles3/%.bc: src/%.cpp
 	clang++ $(CXXFLAGS) -c -emit-llvm -DGL=GLES3 -o $@ $<
 
-bin/asmjs/%.bc: modules src/%.cpp
+bin/asmjs/%.bc: src/%.cpp
 	em++ $(EMXXFLAGS) -c -emit-llvm -DGL=GLES2 -o $@ $<
 
 bin/glew/sprite_test.exe: modules $(GLEW_OBJECTS)
 	clang++ bin/glew/libGLOOP.bc bin/glew/libGLGFX.bc $(GLEW_OBJECTS) -O3 -o $@ -lGL -lGLEW -lSDL2 -lSDL2_image
 
 bin/gles3/sprite_test.exe: modules $(GLES3_OBJECTS)
-	clang++ bin/gles3/libGLOOP.bc bin/gles3/libGLGFX.bc $(GLEW_OBJECTS) -O3 -o $@ -lGLESv2 -lSDL2 -lSDL2_image
+	clang++ bin/gles3/libGLOOP.bc bin/gles3/libGLGFX.bc $(GLES3_OBJECTS) -O3 -o $@ -lGLESv2 -lSDL2 -lSDL2_image
 
 bin/asmjs/sprite_test.html: modules $(ASMJS_OBJECTS)
 	em++ bin/asmjs/libGLOOP.bc bin/asmjs/libGLGFX.bc $(ASMJS_OBJECTS) -O3 -o $@

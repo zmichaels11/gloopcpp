@@ -29,7 +29,7 @@ bin/glew/%.bc: src/%.cpp
 	clang++ $(CXXFLAGS) -c -emit-llvm -DGL=GLEW -o $@ $<
 
 bin/gles3/%.bc: src/%.cpp
-	clang++ $(CXXFLAGS) -c -emit-llvm -DGL=GLEW -o $@ $<
+	clang++ $(CXXFLAGS) -c -emit-llvm -DGL=GLES3 -o $@ $<
 
 bin/asmjs/%.bc: src/%.cpp
 	em++ $(EMXXFLAGS) -c -emit-llvm -DGL=GLES2 -o $@ $<
