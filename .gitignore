@@ -96,3 +96,11 @@ emsdk_set_env.sh
 
 gloop.hpp
 glgfx.hpp
+gloop/bitfields.hpp
+gloop/draw_calls.hpp
+gloop/enums.hpp
+gloop/errors.hpp
+gloop/exceptions.hpp
+gloop/states.hpp
+gloop/uniforms.hpp
+gloop/wrapper.hpp

@@ -26,23 +26,6 @@ namespace gloop {
             REPEAT = 0x2901
         };
         
-        inline std::ostream& operator<<(std::ostream& os, texture_wrap enumval) {
-            switch (enumval) {
-                case texture_wrap::CLAMP_TO_EDGE:
-                    os << "CLAMP_TO_EDGE";
-                    break;
-                case texture_wrap::MIRRORED_REPEAT:
-                    os << "MIRRORED_REPEAT";
-                    break;
-                case texture_wrap::REPEAT:
-                    os << "REPEAT";
-                    break;
-                default:
-                    os << "UNKNOWN";
-                    break;
-            }
-            
-            return os;
-        }
+        std::ostream& operator<<(std::ostream& os, texture_wrap enumval);
     }
 }

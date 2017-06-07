@@ -38,53 +38,6 @@ namespace gloop {
             ONE_MINUS_CONSTANT_ALPHA = 0x8004
         };
         
-        inline std::ostream& operator<<(std::ostream& os, blend_func enumval) {
-            switch (enumval) {
-                case blend_func::ZERO:
-                    os << "ZERO";
-                    break;
-                case blend_func::ONE:
-                    os << "ONE";
-                    break;
-                case blend_func::SRC_COLOR:
-                    os << "SRC_COLOR";
-                    break;
-                case blend_func::ONE_MINUS_SRC_COLOR:
-                    os << "ONE_MINUS_SRC_COLOR";
-                    break;
-                case blend_func::DST_COLOR:
-                    os << "DST_COLOR";
-                    break;
-                case blend_func::ONE_MINUS_DST_COLOR:
-                    os << "ONE_MINUS_DST_COLOR";
-                    break;
-                case blend_func::SRC_ALPHA:
-                    os << "SRC_ALPHA";
-                    break;
-                case blend_func::ONE_MINUS_SRC_ALPHA:
-                    os << "ONE_MINUS_SRC_ALPHA";
-                    break;
-                case blend_func::DST_ALPHA:
-                    os << "DST_ALPHA";
-                    break;
-                case blend_func::ONE_MINUS_DST_ALPHA:
-                    os << "ONE_MINUS_DST_ALPHA";
-                    break;
-                case blend_func::CONSTANT_COLOR:
-                    os << "CONSTANT_COLOR";
-                    break;
-                case blend_func::CONSTANT_ALPHA:
-                    os << "CONSTANT_ALPHA";
-                    break;
-                case blend_func::ONE_MINUS_CONSTANT_ALPHA:
-                    os << "ONE_MINUS_CONSTANT_ALPHA";
-                    break;
-                default:
-                    os << "UNKNOWN";
-                    break;
-            }
-            
-            return os;
-        }
+        std::ostream& operator<<(std::ostream& os, blend_func enumval);
     }
 }

@@ -29,29 +29,6 @@ namespace gloop {
             MAX = 0x8008
         };
         
-        inline std::ostream& operator<<(std::ostream& os, const blend_eq enumval) {
-            switch (enumval) {
-                case blend_eq::ADD:
-                    os << "ADD";
-                    break;
-                case blend_eq::SUBTRACT:
-                    os << "SUBTRACT";
-                    break;
-                case blend_eq::REVERSE_SUBTRACT:
-                    os << "REVERSE_SUBTRACT";
-                    break;
-                case blend_eq::MIN:
-                    os << "MIN";
-                    break;
-                case blend_eq::MAX:
-                    os << "MAX";
-                    break;
-                default:
-                    os << "UNKNOWN";
-                    break;
-            }
-            
-            return os;
-        }
+        std::ostream& operator<<(std::ostream& os, const blend_eq enumval);
     }
 }

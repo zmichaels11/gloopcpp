@@ -24,17 +24,6 @@ namespace gloop {
             FRAMEBUFFER = 0x8D40
         };
         
-        inline std::ostream& operator<<(std::ostream& os, framebuffer_target tgt) {
-            switch (tgt) {
-                case framebuffer_target::FRAMEBUFFER:
-                    os << "FRAMEBUFFER";
-                    break;
-                default:
-                    os << "UNKNOWN";
-                    break;
-            }
-            
-            return os;
-        }
+        std::ostream& operator<<(std::ostream& os, framebuffer_target tgt);
     }
 }

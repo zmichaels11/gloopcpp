@@ -13,9 +13,6 @@
 
 #pragma once
 
-#include "errors.hpp"
-#include "exceptions.hpp"
-
 #ifdef __EMSCRIPTEN__
 #include <iostream>
 #define gloop_throw(ex) std::cout << ex << std::endl; std::terminate()

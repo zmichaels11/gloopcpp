@@ -36,14 +36,5 @@ namespace gloop {
             width, height
         }) {
         }
-
-        inline friend std::ostream& operator<<(std::ostream& os, const context& ctx) {
-            return os << "context: ["
-                    << "blend: " << ctx.currentBlend
-                    << ", scissor: " << ctx.currentScissor
-                    << ", viewport: " << ctx.currentViewport
-                    << ", clear: " << ctx.currentClear
-                    << "]";
-        }
     };
 }

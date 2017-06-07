@@ -33,41 +33,6 @@ namespace gloop {
             STREAM_COPY = 0x88E2
         };
         
-        inline std::ostream& operator<<(std::ostream& os, buffer_storage_hint hint) {
-            switch (hint) {
-                case buffer_storage_hint::STATIC_DRAW:
-                    os << "STATIC_DRAW";
-                    break;
-                case buffer_storage_hint::STATIC_READ:
-                    os << "STATIC_READ";
-                    break;
-                case buffer_storage_hint::STATIC_COPY:
-                    os << "STATIC_COPY";
-                    break;
-                case buffer_storage_hint::DYNAMIC_DRAW:
-                    os << "DYNAMIC_DRAW";
-                    break;
-                case buffer_storage_hint::DYNAMIC_READ:
-                    os << "DYNAMIC_READ";
-                    break;
-                case buffer_storage_hint::DYNAMIC_COPY:
-                    os << "DYNAMIC_COPY";
-                    break;
-                case buffer_storage_hint::STREAM_DRAW:
-                    os << "STREAM_DRAW";
-                    break;
-                case buffer_storage_hint::STREAM_READ:
-                    os << "STREAM_READ";
-                    break;
-                case buffer_storage_hint::STREAM_COPY:
-                    os << "STREAM_COPY";
-                    break;
-                default:
-                    os << "UNKNOWN";
-                    break;
-            }
-            
-            return os;
-        }
+        std::ostream& operator<<(std::ostream& os, buffer_storage_hint hint);
     }
 }

@@ -1,163 +1,59 @@
-include sources.mk
+SOURCES:=sprite_test.cpp
 
-GLOOP_OBJECTS=$(GLOOP_SOURCES:.cpp=.bc)
-GLGFX_OBJECTS=$(GLGFX_SOURCES:.cpp=.bc)
-TEST_OBJECTS=$(TEST_SOURCES:.cpp=.bc)
+OBJECTS:=$(SOURCES:.cpp=.bc)
+DIR:=bin/glew bin/gles3 bin/asmjs
 
-GLEW_GLOOP_OBJECTS=$(addprefix bin/glew/, $(GLOOP_OBJECTS))
-GLEW_GLGFX_OBJECTS=$(addprefix bin/glew/, $(GLGFX_OBJECTS))
-GLEW_TEST_OBJECTS=$(addprefix bin/glew/, $(TEST_OBJECTS))
+CXXFLAGS:=-DUSE_SDL_IMAGE -std=c++14 -O3 -I.
+EMXXFLAGS:=$(CXXFLAGS) -s USE_SDL=2 -s USE_SDL_IMAGE=2 -s SDL2_IMAGE_FORMATS='["png"]'
 
-ASMJS_GLOOP_OBJECTS=$(addprefix bin/asmjs/, $(GLOOP_OBJECTS))
-ASMJS_GLGFX_OBJECTS=$(addprefix bin/asmjs/, $(GLGFX_OBJECTS))
-ASMJS_TEST_OBJECTS=$(addprefix bin/asmjs/, $(TEST_OBJECTS))
+GLEW_OBJECTS:=$(addprefix bin/glew/, $(OBJECTS))
+GLES3_OBJECTS:=$(addprefix bin/gles3/, $(OBJECTS))
+ASMJS_OBJECTS:=$(addprefix bin/asmjs/, $(OBJECTS))
 
-GLES3_GLOOP_OBJECTS=$(addprefix bin/gles3/, $(GLOOP_OBJECTS))
-GLES3_GLGFX_OBJECTS=$(addprefix bin/gles3/, $(GLGFX_OBJECTS))
-GLES3_TEST_OBJECTS=$(addprefix bin/gles3/, $(TEST_OBJECTS))
+MODULES:=libGLOOP.bc libGLGFX.bc
 
-TESTS=sprite_test.exe
-GLES3_TESTS=$(addprefix bin/gles3/, $(TESTS))
-GLEW_TESTS=$(addprefix bin/glew/, $(TESTS))
-LIBS=\
-libGLOOP \
-libGLGFX
+GLEW_MODULES:=$(addprefix bin/glew/, $(MODULES))
+GLES3_MODULES:=$(addprefix bin/gles3/, $(MODULES))
+ASMJS_MODULES:=$(addprefix bin/asmjs/, $(MODULES))
 
-LLVM_GLEW_LIBS=$(addsuffix .bc, $(addprefix bin/glew/, $(LIBS)))
-LLVM_GLES3_LIBS=$(addsuffix .bc, $(addprefix bin/gles3/, $(LIBS)))
-LLVM_ASMJS_LIBS=$(addsuffix .bc, $(addprefix bin/asmjs/, $(LIBS)))
+.PHONY: all modules gloop glgfx clean
 
-STATIC_GLEW_LIBS=$(addsuffix .a, $(addprefix bin/glew/, $(Libs)))
-STATIC_GLES3_LIBS=$(addsuffix .a, $(addprefix bin/gles3/, $(LIBS)))
-STATIC_ASMJS_LIBS=$(addsuffix .a, $(addprefix bin/asmjs/, $(LIBS)))
-
-GLOOP_HEADERS:=$(shell find gloop -type f -name "*.hpp")
-GLGFX_HEADERS:=$(shell find glgfx -type f -name "*.hpp")
-
-.PHONY: all tests static_libs llvm_libs directories clean emsdk_activate emsdk_install headers
-
-all: tests
-
-tests: directories $(GLEW_TESTS) $(GLES3_TESTS)
-
-static_libs: directories $(STATIC_GLEW_LIBS) $(STATIC_GLES3_LIBS)
-
-llvm_libs: directories $(LLVM_GLEW_LIBS) $(LLVM_GLES3_LIBS)
-
-headers: bin/glew/gloop.hpp bin/glew/glgfx.hpp bin/gles3/gloop.hpp bin/gles3/glgfx.hpp bin/asmjs/gloop.hpp bin/asmjs/glgfx.hpp
+all: directories gloop glgfx bin/glew/sprite_test.exe bin/gles3/sprite_test.exe
 
 directories:
-	mkdir -p $(addprefix bin/glew/, $(GLOOP_DIRECTORIES))
-	mkdir -p $(addprefix bin/gles3/, $(GLOOP_DIRECTORIES))
-	mkdir -p $(addprefix bin/asmjs/, $(GLOOP_DIRECTORIES))
-	mkdir -p $(addprefix bin/glew/, $(GLGFX_DIRECTORIES))
-	mkdir -p $(addprefix bin/gles3/, $(GLGFX_DIRECTORIES))
-	mkdir -p $(addprefix bin/asmjs/, $(GLGFX_DIRECTORIES))
+	mkdir -p $(DIR)
 
-gloop.hpp: $(GLOOP_HEADERS)
-	find gloop -type f -name "*.hpp" > gloop.tmp
-	awk '$$0="#include \""$$0"\""' gloop.tmp > gloop.hpp
-	rm gloop.tmp
+modules: gloop glgfx
 
-glgfx.hpp: $(GLGFX_HEADERS)
-	find glgfx -type f -name "*.hpp" > glgfx.tmp
-	awk '$$0="#include \""$$0"\""' glgfx.tmp > glgfx.hpp
-	rm glgfx.tmp
+gloop:
+	$(MAKE) -C gloop
+	ln -sf ../../gloop/bin/glew/libGLOOP.bc bin/glew/libGLOOP.bc
+	ln -sf ../../gloop/bin/gles3/libGLOOP.bc bin/gles3/libGLOOP.bc
 
-bin/glew/gloop.hpp: gloop.hpp
-	mkdir -p bin/glew/
-	clang++ -DGL=GLEW -DUSE_SDL_IMAGE -E -std=c++14 -o $@ $<
+glgfx:
+	$(MAKE) -C glgfx
+	ln -sf ../../glgfx/bin/glew/libGLGFX.bc bin/glew/libGLGFX.bc
+	ln -sf ../../glgfx/bin/gles3/libGLGFX.bc bin/gles3/libGLGFX.bc
 
-bin/gles3/gloop.hpp: gloop.hpp
-	mkdir -p bin/glew
-	clang++ -DGL=GLEW -DUSE_SDL_IMAGE -E -std=c++14 -o $@ $<
+bin/glew/%.bc: src/%.cpp
+	clang++ $(CXXFLAGS) -c -emit-llvm -DGL=GLEW -o $@ $<
 
-bin/asmjs/gloop.hpp: gloop.hpp
-	mkdir -p bin/glew
-	clang++ -DGL=GLES2 -DUSE_SDL_IMAGE -E -std=c++14 -o $@ $<
+bin/gles3/%.bc: src/%.cpp
+	clang++ $(CXXFLAGS) -c -emit-llvm -DGL=GLES3 -o $@ $<
 
-bin/glew/glgfx.hpp: glgfx.hpp
-	mkdir -p bin/glew
-	clang++ -DGL=GLEW -DUSE_SDL_IMAGE -E -std=c++14 -o $@ $<
+bin/asmjs/%.bc: src/%.cpp
+	em++ $(EMXXFLAGS) -c -emit-llvm -DGL=GLES2 -o $@ $<
 
-bin/gles3/glgfx.hpp: glgfx.hpp
-	mkdir -p bin/glew
-	clang++ -DGL=GLES3 -DUSE_SDL_IMAGE -E -std=c++14 -o $@ $<
+bin/glew/sprite_test.exe: $(GLEW_OBJECTS)
+	clang++ bin/glew/libGLOOP.bc bin/glew/libGLGFX.bc $(GLEW_OBJECTS) -O3 -o $@ -lGL -lGLEW -lSDL2 -lSDL2_image
 
-bin/asmjs/glgfx.hpp: glgfx.hpp
-	mkdir -p bin/glew
-	clang++ -DGL=GLES2 -DUSE_SDL_IMAGE -E -std=c++14 -o $@ $<
+bin/gles3/sprite_test.exe: $(GLES3_OBJECTS)
+	clang++ bin/gles3/libGLOOP.bc bin/gles3/libGLGFX.bc $(GLEW_OBJECTS) -O3 -o $@ -lGLESv2 -lSDL2 -lSDL2_image
 
-bin/glew/%.bc: %.cpp
-	clang++ -DGL=GLEW -DUSE_SDL_IMAGE -emit-llvm -std=c++14 -O3 -c -o $@ $<
-
-bin/gles3/%.bc: %.cpp
-	clang++ -DGL=GLES3 -DUSE_SDL_IMAGE -emit-llvm -std=c++14 -O3 -c -o $@ $<
-
-bin/asmjs/%.bc: %.cpp
-	em++ -DGL=GLES2 -DUSE_SDL_IMAGE -emit-llvm -std=c++14 -O3 -s USE_SDL=2 -s USE_SDL_IMAGE=2 -s SDL2_IMAGE_FORMATS='["png"]' -c -o $@ $<
-
-bin/glew/%.a: %.bc
-	llvm-ar rc $@ $<
-
-bin/glew/libGLOOP.bc: $(GLEW_GLOOP_OBJECTS)
-	llvm-link $(GLEW_GLOOP_OBJECTS) -o $@
-	opt -std-link-opts -O3 $@ -o $@
-
-bin/glew/libGLGFX.bc: $(GLEW_GLGFX_OBJECTS)
-	llvm-link $(GLEW_GLGFX_OBJECTS) -o $@
-	opt -std-link-opts -O3 $@ -o $@
-
-bin/asmjs/libGLOOP.bc: $(ASMJS_GLOOP_OBJECTS)
-	llvm-link $(ASMJS_GLOOP_OBJECTS) -o $@
-	opt -std-link-opts -O3 $@ -o $@
-
-bin/asmjs/libGLGFX.bc: $(ASMJS_GLGFX_OBJECTS)
-	llvm-link $(ASMJS_GLGFX_OBJECTS) -o $@
-	opt -std-link-opts -O3 $@ -o $@
-
-bin/gles3/libGLOOP.bc: $(GLES3_GLOOP_OBJECTS)
-	llvm-link $(GLES3_GLOOP_OBJECTS) -o $@
-	opt -std-link-opts -O3 $@ -o $@
-
-bin/gles3/libGLGFX.bc: $(GLES3_GLGFX_OBJECTS)
-	llvm-link $(GLES3_GLGFX_OBJECTS) -o $@
-	opt -std-link-opts -O3 $@ -o $@
-
-bin/glew/sprite_test.exe: gloop.hpp glgfx.hpp bin/glew/sprite_test.bc bin/glew/libGLOOP.bc bin/glew/libGLGFX.bc
-	clang++ bin/glew/sprite_test.bc bin/glew/libGLOOP.bc bin/glew/libGLGFX.bc -o $@ `pkg-config --libs sdl2` `pkg-config --libs SDL2_image` `pkg-config --libs glew`
-
-bin/gles3/sprite_test.exe: gloop.hpp glgfx.hpp bin/gles3/sprite_test.bc bin/gles3/libGLOOP.bc bin/gles3/libGLGFX.bc
-	clang++ bin/gles3/sprite_test.bc bin/gles3/libGLOOP.bc bin/gles3/libGLGFX.bc -o $@ `pkg-config --libs sdl2` `pkg-config --libs SDL2_image` `pkg-config --libs glesv2`
-
-bin/asmjs/sprite_test.html: gloop.hpp glgfx.hpp bin/asmjs/sprite_test.bc bin/asmjs/libGLOOP.bc bin/asmjs/libGLGFX.bc
-	em++ -s USE_SDL=2 -s USE_SDL_IMAGE=2 -s SDL2_IMAGE_FORMATS='["png"]' bin/asmjs/sprite_test.bc bin/asmjs/libGLOOP.bc bin/asmjs/libGLGFX.bc -o $@ --preload-file tests --preload-file tests/data --preload-file glgfx/shaders -O3
+bin/asmjs/sprite_test.html: $(ASMJS_OBJECTS)
+	em++ bin/asmjs/libGLOOP.bc bin/asmjs/libGLGFX.bc $(ASMJS_OBJECTS) -O3 -o $@
 
 clean:
-	rm -fv $(GLEW_GLOOP_OBJECTS)
-	rm -fv $(GLEW_GLGFX_OBJECTS)
-	rm -fv $(GLEW_TEST_OBJECTS)
-	rm -fv $(ASMJS_GLOOP_OBJECTS)
-	rm -fv $(ASMJS_GLGFX_OBJECTS)
-	rm -fv $(ASMJS_TEST_OBJECTS)
-	rm -fv $(GLES3_GLOOP_OBJECTS)
-	rm -fv $(GLES3_GLGFX_OBJECTS)	
-	rm -fv $(GLES3_TEST_OBJECTS)
-	rm -fv $(LLVM_GLEW_LIBS)
-	rm -fv $(LLVM_GLES3_LIBS)
-	rm -fv $(LLVM_ASMJS_LIBS)
-	rm -fv $(STATIC_GLEW_LIBS)
-	rm -fv $(STATIC_GLES3_LIBS)
-	rm -fv $(STATIC_ASMJS_LIBS)
-	rm -f gloop.hpp
-	rm -f glgfx.hpp
-
-emsdk_env.mk: .emsdk_portable/emsdk_set_env.sh
-	sed 's/"//g ; s/=/:=/' < $< > $@
-
-emsdk_activate: emsdk_install
-	.emsdk_portable/emsdk activate latest
-	.emsdk_portable/emsdk construct_env
-
-emsdk_install: emsdk_update
-	.emsd_portable/emsdk update
+	rm -rfv bin
+	$(MAKE) -C gloop clean
+	$(MAKE) -C glgfx clean

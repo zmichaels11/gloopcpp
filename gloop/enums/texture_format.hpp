@@ -13,6 +13,8 @@
 
 #pragma once
 
+#include <iostream>
+
 #include "../glint.hpp"
 
 namespace gloop {
@@ -25,5 +27,7 @@ namespace gloop {
             BGR = 0x80E0,
             BGRA = 0x80E1
         };                
+
+		std::ostream& operator<<(std::ostream& os, texture_format fmt);
     }
 }

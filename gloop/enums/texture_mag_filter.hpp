@@ -25,20 +25,6 @@ namespace gloop {
             LINEAR = 0x2601
         };
         
-        inline std::ostream& operator<<(std::ostream& os, texture_mag_filter enumval) {
-            switch (enumval) {
-                case texture_mag_filter::NEAREST:
-                    os << "NEAREST";
-                    break;
-                case texture_mag_filter::LINEAR:
-                    os << "LINEAR";
-                    break;
-                default:
-                    os << "UNKNOWN";
-                    break;
-            }
-            
-            return os;
-        }
+        std::ostream& operator<<(std::ostream& os, texture_mag_filter enumval);
     }
 }

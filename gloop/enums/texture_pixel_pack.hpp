@@ -13,15 +13,20 @@
 
 #pragma once
 
+#include <iostream>
+
 #include "../glint.hpp"
 
 namespace gloop {
     namespace enums {
-        enum class texture_pixel_pack : gloop::enum_t { 
+        enum class texture_pixel_pack : gloop::enum_t {
+			UNKNOWN = 0,
             UINT8 = 0x1401,
             UINT16 = 0x1403,
             UINT32 = 0x1405,
             FLOAT32 = 0x1406
         };
+
+		std::ostream& operator<< (std::ostream& os, texture_pixel_pack tpp);
     }
 }

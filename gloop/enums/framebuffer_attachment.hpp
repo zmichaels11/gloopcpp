@@ -36,27 +36,6 @@ namespace gloop {
         
         framebuffer_attachment& operator-=(framebuffer_attachment& attach, gloop::int_t offset);
         
-        inline std::ostream& operator<<(std::ostream& os, framebuffer_attachment enumval) {
-            switch (enumval) {
-                case framebuffer_attachment::DEPTH_ATTACHMENT:
-                    os << "DEPTH_ATTACHMENT";
-                    break;
-                case framebuffer_attachment::DEPTH_STENCIL:
-                    os << "DEPTH_STENCIL";
-                    break;
-                default:
-                    constexpr auto valColor0 = static_cast<gloop::enum_t> (framebuffer_attachment::COLOR0);
-                    auto value = static_cast<gloop::enum_t> (enumval);
-                    
-                    if (value < valColor0) {
-                        os << "UNKNOWN";
-                    } else {
-                        os << "COLOR" << (value - valColor0);
-                    }
-                    break;
-            }
-            
-            return os;
-        }
+        std::ostream& operator<<(std::ostream& os, framebuffer_attachment enumval);
     }
 }

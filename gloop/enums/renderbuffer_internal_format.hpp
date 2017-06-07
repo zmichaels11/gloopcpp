@@ -30,29 +30,6 @@ namespace gloop {
             STENCIL_INDEX8 = 0x8D48
         };
         
-        inline std::ostream& operator<<(std::ostream& os, renderbuffer_internal_format enumval) {
-            switch (enumval) {
-                case renderbuffer_internal_format::DEPTH16:
-                    os << "DEPTH16";
-                    break;
-                case renderbuffer_internal_format::R4_G4_B4_A4:
-                    os << "R4_G4_B4_A4";
-                    break;
-                case renderbuffer_internal_format::R5_G6_B5:
-                    os << "R5_G6_R5";
-                    break;
-                case renderbuffer_internal_format::R5_G5_B5_A1:
-                    os << "R5_G5_B5_A1";
-                    break;
-                case renderbuffer_internal_format::STENCIL_INDEX8:
-                    os << "STENCIL_INDEX8";
-                    break;
-                default:
-                    os << "UNKNOWN";
-                    break;
-            }
-            
-            return os;
-        }
+        std::ostream& operator<<(std::ostream& os, renderbuffer_internal_format enumval);
     }
 }
