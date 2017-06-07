@@ -37,47 +37,8 @@ namespace gloop {
         
         constexpr bool hasFlag(clear_mask lhs, clear_mask rhs) {
             return (static_cast<gloop::bitfield_t> (lhs) & static_cast<gloop::bitfield_t> (rhs));
-        }
-        
-        inline std::ostream& operator<< (std::ostream& os, clear_mask m) {
-            switch (m) {
-                case clear_mask::NONE:
-                    os << "NONE";
-                    break;
-                case clear_mask::COLOR:
-                    os << "COLOR";
-                    break;
-                case clear_mask::DEPTH:
-                    os << "DEPTH";
-                    break;
-                case clear_mask::STENCIL:
-                    os << "STENCIL";
-                    break;
-                default:
-                    os << "[";
-                    
-                    auto apply = [] (std::ostream& os, clear_mask lhs, clear_mask rhs, bool applyPipe) {
-                        if (hasFlag(lhs, rhs)) {
-                            if (applyPipe) {
-                                os << " | ";                                
-                            }
-                            
-                            os << lhs;
-                            return true;
-                        }
-                        
-                        return false;
-                    };
-                    
-                    bool applyPipe = apply(os, m, clear_mask::COLOR, false);
-                    applyPipe = apply(os, m, clear_mask::DEPTH, applyPipe);
-                    applyPipe = apply(os, m, clear_mask::STENCIL, applyPipe);
-                    
-                    os << "]";
-                    break;
-            }
-            
-            return os;
-        }
+        }       
+
+        std::ostream& operator<< (std::ostream& os, clear_mask m);
     }
 }

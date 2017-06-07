@@ -42,55 +42,6 @@ namespace gloop {
             return (static_cast<gloop::bitfield_t> (lhs) & static_cast<gloop::bitfield_t> (rhs));
         }                
         
-        inline std::ostream& operator<<(std::ostream& os, buffer_immutable_storage_hint hint) {
-            switch (hint) {
-                case buffer_immutable_storage_hint::READ:
-                    os << "READ";
-                    break;
-                case buffer_immutable_storage_hint::WRITE:
-                    os << "WRITE";
-                    break;
-                case buffer_immutable_storage_hint::DYNAMIC_STORAGE:
-                    os << "DYNAMIC_STORAGE";
-                    break;
-                case buffer_immutable_storage_hint::CLIENT_STORAGE:
-                    os << "CLIENT_STORAGE";
-                    break;
-                case buffer_immutable_storage_hint::COHERENT:
-                    os << "COHERENT";
-                    break;
-                case buffer_immutable_storage_hint::PERSISTENT:
-                    os << "PERSISTENT";
-                    break;
-                default:
-                    os << "[";
-                    
-                    auto apply = [] (std::ostream& os, buffer_immutable_storage_hint lhs, buffer_immutable_storage_hint rhs, bool applyPipe){
-                        if (hasFlag(lhs, rhs)) {
-                            if (applyPipe) {
-                                os << " | ";
-                            }
-                            
-                            os << lhs;
-                            
-                            return true;
-                        }
-                        
-                        return false;
-                    };
-                    
-                    bool applyPipe = apply(os, hint, buffer_immutable_storage_hint::READ, false);
-                    applyPipe = apply(os, hint, buffer_immutable_storage_hint::WRITE, applyPipe);
-                    applyPipe = apply(os, hint, buffer_immutable_storage_hint::CLIENT_STORAGE, applyPipe);
-                    applyPipe = apply(os, hint, buffer_immutable_storage_hint::DYNAMIC_STORAGE, applyPipe);
-                    applyPipe = apply(os, hint, buffer_immutable_storage_hint::PERSISTENT, applyPipe);
-                    applyPipe = apply(os, hint, buffer_immutable_storage_hint::COHERENT, applyPipe);
-                    
-                    os << "]";
-                    break;
-            }
-            
-            return os;
-        }
+        std::ostream& operator<<(std::ostream& os, buffer_immutable_storage_hint hint);
     }
 }

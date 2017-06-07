@@ -6,6 +6,8 @@
 
 #include "clear_mask.hpp"
 
+#include <iostream>
+
 #include "../glint.hpp"
 
 namespace gloop {
@@ -71,5 +73,41 @@ namespace gloop {
             
             return lhs;
         }
+
+		std::ostream& operator<<(std::ostream& os, clear_mask m) {
+			switch (m) {
+				case clear_mask::NONE:
+					return os << "NONE";
+				case clear_mask::COLOR:
+					return os << "COLOR";
+				case clear_mask::DEPTH:
+					return os << "DEPTH";
+				case clear_mask::STENCIL:
+					return os << "STENCIL";
+				default:
+					os << "[";
+                    
+                    auto apply = [] (std::ostream& os, clear_mask lhs, clear_mask rhs, bool applyPipe) {
+                        if (hasFlag(lhs, rhs)) {
+                            if (applyPipe) {
+                                os << " | ";                                
+                            }
+                            
+                            os << lhs;
+                            return true;
+                        }
+                        
+                        return false;
+                    };
+                    
+                    bool applyPipe = apply(os, m, clear_mask::COLOR, false);
+                    applyPipe = apply(os, m, clear_mask::DEPTH, applyPipe);
+                    applyPipe = apply(os, m, clear_mask::STENCIL, applyPipe);
+                    
+                    os << "]";
+
+					return os;
+			}
+		}
     }
 }

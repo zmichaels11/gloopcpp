@@ -6,6 +6,8 @@
 
 #include "buffer_immutable_storage_hint.hpp"
 
+#include <iostream>
+
 #include "../glint.hpp"
 
 namespace gloop {
@@ -71,5 +73,48 @@ namespace gloop {
             
             return lhs;
         }
+
+		std::ostream& operator<<(std::ostream& os, buffer_immutable_storage_hint hint) {
+			switch (hint) {
+				case buffer_immutable_storage_hint::READ:
+					return os << "READ";
+				case buffer_immutable_storage_hint::WRITE:
+					return os << "WRITE";
+				case buffer_immutable_storage_hint::DYNAMIC_STORAGE:
+					return os << "DYNAMIC_STORAGE";
+				case buffer_immutable_storage_hint::CLIENT_STORAGE:
+					return os << "CLIENT_STORAGE";
+				case buffer_immutable_storage_hint::COHERENT:
+					return os << "COHERENT";
+				case buffer_immutable_storage_hint::PERSISTENT:
+					return os << "PERSISTENT";
+				default:
+					os << "[";
+                    
+                    auto apply = [] (std::ostream& os, buffer_immutable_storage_hint lhs, buffer_immutable_storage_hint rhs, bool applyPipe){
+                        if (hasFlag(lhs, rhs)) {
+                            if (applyPipe) {
+                                os << " | ";
+                            }
+                            
+                            os << lhs;
+                            
+                            return true;
+                        }
+                        
+                        return false;
+                    };
+                    
+                    bool applyPipe = apply(os, hint, buffer_immutable_storage_hint::READ, false);
+                    applyPipe = apply(os, hint, buffer_immutable_storage_hint::WRITE, applyPipe);
+                    applyPipe = apply(os, hint, buffer_immutable_storage_hint::CLIENT_STORAGE, applyPipe);
+                    applyPipe = apply(os, hint, buffer_immutable_storage_hint::DYNAMIC_STORAGE, applyPipe);
+                    applyPipe = apply(os, hint, buffer_immutable_storage_hint::PERSISTENT, applyPipe);
+                    applyPipe = apply(os, hint, buffer_immutable_storage_hint::COHERENT, applyPipe);
+                    
+                    os << "]";
+					return os;				
+			}
+		}
     }
 }
