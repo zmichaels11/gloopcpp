@@ -1,3 +1,5 @@
+MAKEFLAGS:=-j4
+
 SOURCES:=sprite_test.cpp
 
 OBJECTS:=$(SOURCES:.cpp=.bc)
@@ -16,9 +18,11 @@ GLEW_MODULES:=$(addprefix bin/glew/, $(MODULES))
 GLES3_MODULES:=$(addprefix bin/gles3/, $(MODULES))
 ASMJS_MODULES:=$(addprefix bin/asmjs/, $(MODULES))
 
-.PHONY: all modules gloop glgfx clean
+.PHONY: all modules tests gloop glgfx clean
 
-all: directories gloop glgfx bin/glew/sprite_test.exe bin/gles3/sprite_test.exe
+all: directories modules tests
+
+tests: modules
 
 directories:
 	mkdir -p $(DIR)
@@ -30,7 +34,7 @@ gloop:
 	ln -sf ../../gloop/bin/glew/libGLOOP.bc bin/glew/libGLOOP.bc
 	ln -sf ../../gloop/bin/gles3/libGLOOP.bc bin/gles3/libGLOOP.bc
 
-glgfx:
+glgfx: gloop
 	$(MAKE) -C glgfx
 	ln -sf ../../glgfx/bin/glew/libGLGFX.bc bin/glew/libGLGFX.bc
 	ln -sf ../../glgfx/bin/gles3/libGLGFX.bc bin/gles3/libGLGFX.bc
@@ -38,19 +42,19 @@ glgfx:
 bin/glew/%.bc: src/%.cpp
 	clang++ $(CXXFLAGS) -c -emit-llvm -DGL=GLEW -o $@ $<
 
-bin/gles3/%.bc: src/%.cpp
+bin/gles3/%.bc: modules src/%.cpp
 	clang++ $(CXXFLAGS) -c -emit-llvm -DGL=GLES3 -o $@ $<
 
-bin/asmjs/%.bc: src/%.cpp
+bin/asmjs/%.bc: modules src/%.cpp
 	em++ $(EMXXFLAGS) -c -emit-llvm -DGL=GLES2 -o $@ $<
 
-bin/glew/sprite_test.exe: $(GLEW_OBJECTS)
+bin/glew/sprite_test.exe: modules $(GLEW_OBJECTS)
 	clang++ bin/glew/libGLOOP.bc bin/glew/libGLGFX.bc $(GLEW_OBJECTS) -O3 -o $@ -lGL -lGLEW -lSDL2 -lSDL2_image
 
-bin/gles3/sprite_test.exe: $(GLES3_OBJECTS)
+bin/gles3/sprite_test.exe: modules $(GLES3_OBJECTS)
 	clang++ bin/gles3/libGLOOP.bc bin/gles3/libGLGFX.bc $(GLEW_OBJECTS) -O3 -o $@ -lGLESv2 -lSDL2 -lSDL2_image
 
-bin/asmjs/sprite_test.html: $(ASMJS_OBJECTS)
+bin/asmjs/sprite_test.html: modules $(ASMJS_OBJECTS)
 	em++ bin/asmjs/libGLOOP.bc bin/asmjs/libGLGFX.bc $(ASMJS_OBJECTS) -O3 -o $@
 
 clean:

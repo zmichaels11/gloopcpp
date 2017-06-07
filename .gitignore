@@ -101,6 +101,7 @@ gloop/draw_calls.hpp
 gloop/enums.hpp
 gloop/errors.hpp
 gloop/exceptions.hpp
+gloop/objects.hpp
 gloop/states.hpp
 gloop/uniforms.hpp
 gloop/wrapper.hpp

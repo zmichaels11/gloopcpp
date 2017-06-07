@@ -23,13 +23,15 @@ GLEW_MODULES:=$(addprefix bin/glew/, $(MODULES))
 GLES3_MODULES:=$(addprefix bin/glew/, $(MODULES))
 ASMJS_MODULES:=$(addprefix bin/asmjs/, $(MODULES))
 
-.PHONY: all directories libs modules renderers sprite_buffers
+.PHONY: all directories libs modules renderers sprite_buffers headers
 
-all: directories libs
+all: directories libs headers
 
 libs: bin/glew/libGLGFX_base.bc bin/gles3/libGLGFX_base.bc bin/glew/libGLGFX.bc bin/gles3/libGLGFX.bc
 
 modules: renderers sprite_buffers
+
+headers: ../glgfx.hpp
 
 renderers:
 	$(MAKE) -C renderers
@@ -71,7 +73,11 @@ bin/gles3/libGLGFX.bc: modules bin/gles3/libGLGFX_base.bc
 bin/asmjs/libGLGFX.bc: modules bin/asmjs/libGLGFX_base.bc
 	llvm-link $(ASMJS_MODULES) -o $@
 
+../glgfx.hpp:
+	echo $(HEADERS) | awk '{split($$0, a); print "#pragma once"; for(h in a) print "#include \"glgfx/"$$h"\""}' > $@
+
 clean:
 	rm -rfv bin
+	rm -rfv ../glgfx.hpp
 	$(MAKE) -C renderers clean
 	$(MAKE) -C sprite_buffers clean
