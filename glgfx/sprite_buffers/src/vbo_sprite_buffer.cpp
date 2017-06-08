@@ -71,6 +71,8 @@ namespace glgfx {
 
                     if (gloop::isGLES2()) {
                         file = "glgfx/shaders/ES2_vbo_sprite_buffer";
+					} else if (gloop::isGLES3()) {
+						file = "glgfx/shaders/ES3_vbo_sprite_buffer";
                     } else if (gloop::texture2D::FEATURES.bindless) {
                         file = "glgfx/shaders/vbo_sprite_buffer_bindless";
                     } else {

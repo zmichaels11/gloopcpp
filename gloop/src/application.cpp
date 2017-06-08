@@ -46,8 +46,13 @@ namespace gloop {
             gloop_throw("Unable to initialize SDL!");
         }
         
+#ifdef __EMSCRIPTEN__
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
+#else
         SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, this->_hints.version.major);
         SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, this->_hints.version.minor);
+#endif
 
         switch (this->_hints.profile) {
             case context_profile::CORE:

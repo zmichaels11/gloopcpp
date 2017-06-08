@@ -19,4 +19,6 @@ namespace gloop {
 	bool isGLES3();
 	bool isGL();
 	bool isGLES();
+	bool isWebGL();
+	bool isWebGL2();
 }

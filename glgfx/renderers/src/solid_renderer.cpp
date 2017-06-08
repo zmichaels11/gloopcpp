@@ -53,6 +53,8 @@ namespace glgfx {
 
                     if (gloop::isGLES2()) {
                         file = "glgfx/shaders/ES2_solid_renderer";
+					} else if (gloop::isGLES3()) {
+						file = "glgfx/shaders/ES3_solid_renderer";
                     } else {
                         file = "glgfx/shaders/solid_renderer";
                     }

@@ -30,4 +30,20 @@ namespace gloop {
 	bool isGLEW() {
 		return !isGLES();
 	}
+
+	bool isWebGL() {
+#ifdef __EMSCRIPTEN__		
+		return isGLES2();
+#else
+		return false;
+#endif
+	}
+
+	bool isWebGL2() {
+#ifdef __EMSCRIPTEN__
+		return isGLES3();
+#else
+		return false;
+#endif
+	}
 }

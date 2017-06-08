@@ -61,6 +61,8 @@ namespace glgfx {
 
                 if (gloop::isGLES2()) {
                     file = "glgfx/shaders/ES2_masked_image_renderer";
+				} else if (gloop::isGLES3()) {
+					file = "glgfx/shaders/ES3_masked_image_renderer";
                 } else if (masked_image_renderer::USE_BINDLESS) {
                     file = "glgfx/shaders/masked_image_renderer_bindless";
                 } else {

@@ -54,6 +54,8 @@ namespace glgfx {
 
                     if (gloop::isGLES2()) {
                         file = "glgfx/shaders/ES2_line_renderer";
+					} else if (gloop::isGLES3()) {
+						file = "glgfx/shaders/ES3_line_renderer";
                     } else {
                         file = "glgfx/shaders/line_renderer";
                     }
