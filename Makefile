@@ -5,15 +5,15 @@ OBJECTS:=$(SOURCES:.cpp=.bc)
 CXXFLAGS:=-std=c++14 -I. -Wall -Wno-missing-braces
 EMXXFLAGS:=-s USE_SDL=2 -s USE_SDL_IMAGE=2 -s SDL2_IMAGE_FORMATS='["png"]'
 
-GLES2_LDFLAGS:=-lGLESv2 -lSDL2 -lSDL2_image
-GLES3_LDFLAGS:=-lGLESv2 -lSDL2 -lSDL2_image
-GLEW_LDFLAGS:=-lGL -lGLEW -lSDL2 -lSDL2_image
-EMXX_LDFLAGS:=-s USE_SDL=2 -s USE_SDL_IMAGE=2 -s SDL2_IMAGE_FORMATS='["png"]'
+GLES2_LDFLAGS:=-O2 -lGLESv2 -lSDL2 -lSDL2_image
+GLES3_LDFLAGS:=-O2 -lGLESv2 -lSDL2 -lSDL2_image
+GLEW_LDFLAGS:=-O2 -lGL -lGLEW -lSDL2 -lSDL2_image
+EMXX_LDFLAGS:=-O2 -s USE_SDL=2 -s USE_SDL_IMAGE=2 -s SDL2_IMAGE_FORMATS='["png"]'
 
 GLES2_LDLIBS:=
 GLES3_LDLIBS:=
 GLEW_LDLIBS:=
-EMXX_LDLIBS:=--preload-file tests --preload-file tests/data --preload-file glgfx/shaders -O2
+EMXX_LDLIBS:=--preload-file tests --preload-file tests/data --preload-file glgfx/shaders
 
 CXX:=clang++
 
@@ -21,11 +21,7 @@ TARGET:=$(shell clang --version | grep "Target:" | awk '{print $$2}')
 ASMJS_TARGET:=asmjs-unknown-emscripten
 BINARY_EXT:=exe
 
-MODULES:=libGLOOP.bc libGLGFX.bc
-GLOOP_MODULES:=gles2/libGLOOP.bc gles3/libGLOOP.bc glew/libGLOOP.bc
-
 TARGET_OBJECTS:=$(addprefix bin/$(TARGET)/, $(OBJECTS))
-TARGET_SPRITE_TEST_OBJECTS:=bin/$(TARGET)/sprite_test.bc bin/$(TARGET)/libGLGFX.bc
 GLEW_GLOOP:=bin/$(TARGET)/glew/libGLOOP.bc
 GLES2_GLOOP:=bin/$(TARGET)/gles2/libGLOOP.bc
 GLES3_GLOOP:=bin/$(TARGET)/gles3/libGLOOP.bc
@@ -36,10 +32,10 @@ ifeq ($(TARGET), $(ASMJS_TARGET))
 	CXXFLAGS+= $(EMXXFLAGS)
 	BINARY_EXT:=html
 	GLES2_LDFLAGS:=$(EMXX_LDFLAGS)
-	GLES3_LDFLAGS:=$(EMXX_LDFLAGS)
+	GLES3_LDFLAGS:=$(EMXX_LDFLAGS) -s USE_WEBGL2=1
 	GLEW_LDFLAGS:=$(EMXX_LDFLAGS)
 	GLES2_LDLIBS:=$(EMXX_LDLIBS)
-	GLES3_LDLIBS:=$(EMXX_LDLIBS) -s USE_WEBGL2=1
+	GLES3_LDLIBS:=$(EMXX_LDLIBS)
 	GLEW_LDLIBS:=$(EMXX_LDLIBS)
 else
 	CXXFLAGS+= -target $(TARGET)
