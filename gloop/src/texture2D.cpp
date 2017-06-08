@@ -32,59 +32,37 @@ namespace gloop {
         _params = std::make_unique<states::texture2D_parameters>();
         _handle = 0;
     }
-
-    namespace {
-        static constexpr bool supports_bindless = isGLEW || isGLES3;
-        
-        template <bool isSupported = supports_bindless, typename std::enable_if<isSupported, void * >::type = nullptr>
-        static inline gloop::uint64_t __getTextureHandle(gloop::uint_t texture) {
-            return wrapper::getTextureHandle(texture);            
-        }
-        
-        template <bool isSupported = supports_bindless, typename std::enable_if<!isSupported, void * >::type = nullptr>
-        static inline gloop::uint64_t __getTextureHandle(...) {
-            gloop_throw(gloop::exception::invalid_operation_exception("Bindless textures are not supported!"));
-        }
-        
-        template <bool isSupported = supports_bindless, typename std::enable_if<isSupported, void * >::type = nullptr>
-        static inline void __makeTextureHandleResident(gloop::uint64_t handle) {
-            wrapper::makeTextureHandleResident(handle);
-        }
-        
-        template <bool isSupported = supports_bindless, typename std::enable_if<!isSupported, void * >::type = nullptr>
-        static inline void __makeTextureHandleResident(...) {
-            gloop_throw(gloop::exception::invalid_operation_exception("Bindless textures are not supported!"));
-        }
-        
-        template <bool isSupported = supports_bindless, typename std::enable_if<isSupported, void * >::type = nullptr>
-        static inline void __makeTextureHandleNonResident(gloop::uint64_t handle) {
-            wrapper::makeTextureHandleNonResident(handle);
-        }
-        
-        template <bool isSupported = supports_bindless, typename std::enable_if<!isSupported, void * >::type = nullptr>
-        static inline void __makeTextureHandleNonResident(...) {
-            gloop_throw(gloop::exception::invalid_operation_exception("Bindless textures are not supported!"));
-        }
-    }
     
     gloop::uint64_t texture2D::getHandle() {
+		if (!isGL()) {
+			gloop_throw(gloop::exception::invalid_operation_exception("Bindless textures are not supported!"));
+		}
+
         if (_handle == 0) {
-            _handle = __getTextureHandle(_id);
-            __makeTextureHandleResident(_handle);            
+            _handle = wrapper::getTextureHandle(_id);
+			wrapper::makeTextureHandleResident(_handle);            
         }
 
         return _handle;
     }
 
     void texture2D::makeResident() const {
+		if (!isGL()) {
+			gloop_throw(gloop::exception::invalid_operation_exception("Bindless textures are not supported!"));
+		}
+
         if (_handle) {
-            __makeTextureHandleResident(_handle);
+            wrapper::makeTextureHandleResident(_handle);
         }
     }
 
     void texture2D::makeNonResident() const {
+		if (!isGL()) {
+			gloop_throw(gloop::exception::invalid_operation_exception("Bindless textures are not supported!"));
+		}
+
         if (_handle) {
-            __makeTextureHandleNonResident(_handle);
+            wrapper::makeTextureHandleNonResident(_handle);
         }
     }
 

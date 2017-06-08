@@ -3,9 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-#define GLES2 2
-#if GL == GLES2
 #include "states.hpp"
 
 #include <SDL2/SDL_opengles2.h>
@@ -83,5 +80,3 @@ namespace gloop {
         }
     }
 }
-#endif
-#undef GLES2

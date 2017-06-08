@@ -12,11 +12,7 @@
 #include <string>
 #include <sstream>
 
-#ifdef USE_SDL_IMAGE
 #include <SDL2/SDL_image.h>
-#else
-#warning "SDL_Image is not included; PNG will not be available!"
-#endif
 
 #include <SDL2/SDL_rwops.h>
 #include <SDL2/SDL_surface.h>
@@ -33,23 +29,12 @@
 #include "wrapper/gl.hpp"
 #include "pixel_formats.hpp"
 
-namespace gloop {
-    namespace {
-
-        static bool hasSuffix(
-                const std::string& str,
-                const std::string& suffix) {
-
-            return str.size() >= suffix.size() && str.compare(str.size() - suffix.size(), suffix.size(), suffix) == 0;
-        }
-    }   
-
+namespace gloop {       
     tools::loaded_texture2D tools::loadTexture(const std::string& file, const states::texture2D_parameters params) {
         loaded_texture2D out;
 
         out.texture.setParameters(params);
 
-#ifdef USE_SDL_IMAGE
         static bool isInit = false;
         
         if (!isInit) {
@@ -65,12 +50,16 @@ namespace gloop {
         }
         
         const auto img = IMG_Load(file.c_str());
-#else       
-        const auto img = SDL_LoadBMP(file.c_str());
-#endif
         
         if (img == nullptr) {
-            gloop_throw("Unable to load image!");
+			std::stringstream err;
+			
+			err << "Unable to load image: ["
+				<< file
+				<< "]: "
+				<< IMG_GetError();
+
+            gloop_throw(err.str());
         }
         
         constexpr Uint32 rmask = 0x000000FF;

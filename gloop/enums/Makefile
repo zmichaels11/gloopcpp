@@ -5,45 +5,38 @@ SOURCES:=$(SOURCES:./src/%=%)
 HEADERS:=$(HEADERS:./%=%)
 
 OBJECTS:=$(SOURCES:.cpp=.bc)
-DIR:=bin/glew bin/gles3 bin/asmjs
+TARGET:=$(shell clang --version | grep "Target:" | awk '{print $$2}')
+BINARY:=libGLOOP_enums.bc
 
-CXXFLAGS:=-DUSE_SDL_IMAGE -std=c++14 -O3 -I.
-EMXXFLAGS:=$(CXXFLAGS)
+CXXFLAGS:=-std=c++14 -I. -Wall
+CXX:=clang++
 
-GLEW_OBJECTS:=$(addprefix bin/glew/, $(OBJECTS))
-GLES3_OBJECTS:=$(addprefix bin/gles3/, $(OBJECTS))
-ASMJS_OBJECTS:=$(addprefix bin/asmjs/, $(OBJECTS))
+TARGET_OBJECTS:=$(addprefix bin/$(TARGET)/, $(OBJECTS))
+
+ifeq ($(TARGET), asmjs-unknown-emscripten)
+	CXX:=em++
+else
+	CXXFLAGS+= -target $(TARGET)
+endif
 
 .PHONY: all directories libs headers clean
 
 all: directories libs headers
 
-libs: bin/glew/libGLOOP_enums.bc bin/gles3/libGLOOP_enums.bc
+libs: bin/$(TARGET)/$(BINARY)
 
 headers: ../enums.hpp
 
 directories:
-	mkdir -p $(DIR)
+	mkdir -p bin/$(TARGET)
 
-bin/glew/%.bc: src/%.cpp
-	clang++ $(CXXFLAGS) -c -emit-llvm -DGL=GLEW -o $@ $<
+bin/$(TARGET)/%.bc: src/%.cpp
+	$(CXX) $(CXXFLAGS) -c -emit-llvm -o $@ $<
 
-bin/gles3/%.bc: src/%.cpp
-	clang++ $(CXXFLAGS) -c -emit-llvm -DGL=GLES3 -o $@ $<
+bin/$(TARGET)/$(BINARY): $(TARGET_OBJECTS)
+	llvm-link $^ -o $@
 
-bin/asmjs/%.bc: src/%.cpp
-	em++ $(EMXXFLAGS) -c -emit-llvm -DGL=GLES2 -o $@ $<
-
-bin/glew/libGLOOP_enums.bc: $(GLEW_OBJECTS)
-	llvm-link $(GLEW_OBJECTS) -o $@
-
-bin/gles3/libGLOOP_enums.bc: $(GLES3_OBJECTS)
-	llvm-link $(GLES3_OBJECTS) -o $@
-
-bin/asmjs/libGLOOP_enums.bc: $(ASMJS_OBJECTS)
-	llvm-link $(ASMJS_OBJECTS) -o $@
-
-../enums.hpp:
+../enums.hpp: $(HEADERS)
 	echo $(HEADERS) | awk '{split($$0, a); print "#pragma once"; for(h in a) print "#include \"enums/"$$h"\""}' > $@
 
 clean:

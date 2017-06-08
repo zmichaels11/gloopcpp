@@ -39,9 +39,8 @@ namespace gloop {
 
         vertex_array() :
         _id(0),
-        _indexBuffer(nullptr),                
-        _numBindings(0) {
-        }
+		_numBindings(0),
+        _indexBuffer(nullptr) {}
         
         ~vertex_array();
 

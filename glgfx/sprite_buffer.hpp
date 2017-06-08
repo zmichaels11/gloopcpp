@@ -16,7 +16,8 @@
 namespace glgfx {
     class sprite;
     
-    struct sprite_buffer {
+    class sprite_buffer {
+	public:
         virtual void draw(sprite& s) = 0;
         
         virtual void flush() = 0;

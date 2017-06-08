@@ -12,7 +12,8 @@
 namespace gloop {
     namespace uniform {
 
-        struct uniform_int_binding : uniform_binding {
+        class uniform_int_binding : public uniform_binding {
+		public:
             gloop::uint_t pId;
             gloop::uint_t loc;
             gloop::int_t value;            

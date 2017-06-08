@@ -1,5 +1,3 @@
-#define GLES2 2
-#if GL == GLES2
 #include "texture_objects.hpp"
 
 #include <algorithm>
@@ -10,6 +8,7 @@
 #include <SDL2/SDL_opengles2.h>
 
 #include "../enums/texture_format.hpp"
+#include "../exception/invalid_enum_exception.hpp"
 #include "../glint.hpp"
 #include "../gloop_throw.hpp"
 #include "../pixel_formats.hpp"
@@ -208,5 +207,3 @@ namespace gloop {
         }
     }
 }
-#endif
-#undef GLES2

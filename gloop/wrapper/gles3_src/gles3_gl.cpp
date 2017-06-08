@@ -11,6 +11,7 @@
 #include "gl_gles3.hpp"
 
 #include "../buffer.hpp"
+#include "../context_hints.hpp"
 #include "../draw/call.hpp"
 #include "../glint.hpp"
 #include "../texture2D.hpp"
@@ -50,7 +51,11 @@ namespace gloop {
 }
 
 namespace gloop {
-    namespace wrapper {     
+    namespace wrapper {
+		gloop::context_hints getDefaultContextHints() {
+			return {{3, 0}, gloop::context_profile::ES, 1, true};
+		}
+	  
         void init() {
             static bool isInit = false;
             

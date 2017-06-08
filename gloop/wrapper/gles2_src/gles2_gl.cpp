@@ -3,14 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-#define GLES2 2
-#if GL == GLES2
 #include "gl.hpp"
 #include "gl_gles2.hpp"
 
 #include <iostream>
 
 #include "../buffer.hpp"
+#include "../context_hints.hpp"
 #include "../draw/call.hpp"
 #include "../glint.hpp"
 #include "../texture2D.hpp"
@@ -33,6 +32,8 @@ namespace {
     static gloop::texture2D::features _textureFeatures;
     static gloop::draw::draw_call::features _drawCallFeatures;
 
+	static gloop::context_hints _defaultContextHints = {{2, 0}, gloop::context_profile::ES, 1, true};
+
     static void initFeatures() {
         _bufferFeatures.map = gloop::wrapper::OES_mapbuffer;
         _bufferFeatures.mapRange = gloop::wrapper::EXT_map_buffer_range;
@@ -52,7 +53,11 @@ namespace gloop {
 }
 
 namespace gloop {
-    namespace wrapper {                
+    namespace wrapper {
+		gloop::context_hints getDefaultContextHints() {
+			return {{2, 0}, gloop::context_profile::ES, 1, true};
+		}
+              
         void init() {
             static bool isInit = false;
             
@@ -63,6 +68,3 @@ namespace gloop {
         }
     }
 }
-
-#endif
-#undef GLES2

@@ -13,7 +13,8 @@
 namespace gloop {
     namespace uniform {
 
-        struct uniform_ivec2_array_binding : uniform_binding {
+        class uniform_ivec2_array_binding : public uniform_binding {
+		public:
             gloop::uint_t pId;
             gloop::uint_t loc;
             gloop::sizei_t count;

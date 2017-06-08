@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 
-#define GLES2 2
-#if GL == GLES2
 #include "buffer_objects.hpp"
 
 #include <iostream>
@@ -127,5 +125,3 @@ namespace gloop {
         }
     }
 }
-#endif
-#undef GLES2

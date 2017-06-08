@@ -22,7 +22,8 @@ namespace gloop {
 namespace glgfx {
     enum class blend_mode : unsigned int;
 
-    struct sprite {
+    class sprite {
+	public:
 
         struct texture_data {
             float u0;

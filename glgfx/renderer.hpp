@@ -14,7 +14,8 @@
 #pragma once
 
 namespace glgfx {
-    struct renderer {
+    class renderer {
+	public:
         virtual void flush() = 0;
         
         virtual void reset() = 0;

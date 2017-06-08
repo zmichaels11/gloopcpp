@@ -181,63 +181,17 @@ namespace gloop {
                 data);
     }
 
-    namespace {
-        static constexpr bool supports_getdata = isGLEW;
-        static constexpr bool supports_blockbind = isGLEW || isGLES3;
-
-        template<bool isSupported = supports_getdata, typename std::enable_if<isSupported, void * >::type = nullptr>
-        static inline void __getNamedBufferSubData(
-                gloop::enum_t targetHint,
-                gloop::uint_t buffer,
-                gloop::intptr_t offset,
-                gloop::sizeiptr_t size,
-                void * data) {
-
-            wrapper::getNamedBufferSubData(targetHint, buffer, offset, size, data);
-        }
-
-        template<bool isSupported = supports_getdata, typename std::enable_if<!isSupported, void * >::type = nullptr>
-        static inline void __getNamedBufferSubData(...) {
-            gloop_throw(gloop::exception::invalid_operation_exception("GetBufferSubData is not supported!"));
-        }
-
-        template<bool isSupported = supports_blockbind, typename std::enable_if<isSupported, void * >::type = nullptr>
-        static inline void __bindBufferBase(
-                gloop::enum_t target,
-                gloop::uint_t index,
-                gloop::uint_t buffer) {
-
-            wrapper::bindBufferBase(target, index, buffer);
-        }
-
-        template<bool isSupported = supports_blockbind, typename std::enable_if<!isSupported, void * >::type = nullptr>
-        static inline void __bindBufferBase(...) {
-            gloop_throw(gloop::exception::invalid_operation_exception("BindBufferBase is not supported!"));
-        }
-
-        template<bool isSupported = supports_blockbind, typename std::enable_if<isSupported, void * >::type = nullptr>
-        static inline void __bindBufferRange(
-                gloop::enum_t target,
-                gloop::uint_t index,
-                gloop::uint_t buffer,
-                gloop::intptr_t offset, gloop::sizeiptr_t size) {
-
-            wrapper::bindBufferRange(target, index, buffer, offset, size);
-        }
-
-        template<bool isSupported = supports_blockbind, typename std::enable_if<!isSupported, void * >::type = nullptr>
-        static inline void __bindBufferRange(...) {
-            gloop_throw(gloop::exception::invalid_operation_exception("BindBufferRange is not supported!"));
-        }
-    }
-
     void buffer::getData(
             const gloop::intptr_t offset,
             const gloop::sizeiptr_t size,
             void * data) const {
 
+		if (isGLES()) {
+            gloop_throw(gloop::exception::invalid_operation_exception("GetBufferSubData is not supported!"));
+		}
+
         if (this->isInitialized()) {
-            __getNamedBufferSubData(
+            wrapper::getNamedBufferSubData(
                     static_cast<gloop::enum_t> (_target),
                     _id,
                     offset,
@@ -281,8 +235,12 @@ namespace gloop {
             const gloop::intptr_t offset,
             const gloop::intptr_t size) const {
 
+		if (isGLES2()) {
+			gloop_throw(gloop::exception::invalid_operation_exception("BindBufferBase is not supported!"));
+		}
+
         if (this->isInitialized()) {
-            __bindBufferRange(
+            wrapper::bindBufferRange(
                     static_cast<gloop::enum_t> (target),
                     binding,
                     _id,
@@ -295,8 +253,12 @@ namespace gloop {
             const enums::buffer_target target,
             const gloop::uint_t binding) const {
 
+		if (isGLES2()) {
+			gloop_throw(gloop::exception::invalid_operation_exception("BindBufferBase is not supported!"));
+		}
+
         if (this->isInitialized()) {
-            __bindBufferBase(
+            wrapper::bindBufferBase(
                     static_cast<gloop::enum_t> (target),
                     binding,
                     _id);

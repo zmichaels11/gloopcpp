@@ -1,76 +1,79 @@
 GENERIC_SOURCES:=$(shell find ./src -name '*.cpp')
-ASMJS_SOURCES:=$(shell find ./gles2_src -name '*.cpp')
+GLES2_SOURCES:=$(shell find ./gles2_src -name '*.cpp')
 GLES3_SOURCES:=$(shell find ./gles3_src -name '*.cpp')
 GLEW_SOURCES:=$(shell find ./glew_src -name '*.cpp')
-
-$(info "RAW GLES3 Sources: [$(GLES3_SOURCES)]")
 
 HEADERS:=$(shell find -path ./impl -prune -o -name '*.hpp')
 HEADERS:=$(filter-out ./impl, $(HEADERS))
 HEADERS:=$(HEADERS:./%=%)
+
 GENERIC_SOURCES:=$(GENERIC_SOURCES:./src/%=%)
-ASMJS_SOURCES:=$(ASMJS_SOURCES:./gles2_src/%=%)
+GLES2_SOURCES:=$(GLES2_SOURCES:./gles2_src/%=%)
 GLES3_SOURCES:=$(GLES3_SOURCES:./gles3_src/%=%)
 GLEW_SOURCES:=$(GLEW_SOURCES:./glew_src/%=%)
 
-GLES3_SOURCES+= $(GENERIC_SOURCES)
-ASMJS_SOURCES+= $(GENERIC_SOURCES)
-GLEW_SOURCES+= $(GENERIC_SOURCES)
-
-$(info "GLES3 Sources: [$(GLES3_SOURCES)]")
-
+GENERIC_OBJECTS:=$(GENERIC_SOURCES:.cpp=.bc)
 GLEW_OBJECTS:=$(GLEW_SOURCES:.cpp=.bc)
-ASMJS_OBJECTS:=$(ASMJS_SOURCES:.cpp=.bc)
+GLES2_OBJECTS:=$(GLES2_SOURCES:.cpp=.bc)
 GLES3_OBJECTS:=$(GLES3_SOURCES:.cpp=.bc)
 
-GLEW_OBJECTS:=$(addprefix bin/glew/, $(GLEW_OBJECTS))
-ASMJS_OBJECTS:=$(addprefix bin/asmjs/, $(ASMJS_OBJECTS))
-GLES3_OBJECTS:=$(addprefix bin/gles3/, $(GLES3_OBJECTS))
+TARGET:=$(shell clang --version | grep "Target:" | awk '{print $$2}')
+TARGET_GENERIC_OBJECTS:=$(addprefix bin/$(TARGET)/, $(GENERIC_OBJECTS))
+BINARY:=libGLOOP_wrapper.bc
 
-CXXFLAGS:=-DUSE_SDL_IMAGE -std=c++14 -O3 -I. -Iimpl
-EMXXFLAGS:=$(CXXFLAGS)
+GLEW_OBJECTS:=$(addprefix bin/$(TARGET)/glew/, $(GLEW_OBJECTS))
+GLES2_OBJECTS:=$(addprefix bin/$(TARGET)/gles2/, $(GLES2_OBJECTS))
+GLES3_OBJECTS:=$(addprefix bin/$(TARGET)/gles3/, $(GLES3_OBJECTS))
 
-DIR:= bin/generic bin/asmjs bin/gles3 bin/glew
+GLEW_OBJECTS+=$(TARGET_GENERIC_OBJECTS)
+GLES2_OBJECTS+=$(TARGET_GENERIC_OBJECTS)
+GLES3_OBJECTS+=$(TARGET_GENERIC_OBJECTS)
+
+GLEWFLAGS:=-DGL=GLEW
+GLES2FLAGS:=-DGL=GLES2
+GLES3FLAGS:=-DGL=GLES3
+CXXFLAGS:=-std=c++14 -I. -Iimpl
+CXX:=clang++
+
+ifeq ($(TARGET), asmjs-unknown-emscripten)
+	CXX:=em++
+else
+	CXXFLAGS+= -target $(TARGET)
+endif
 
 .PHONY: all directories libs headers clean
 
 all: directories headers libs
 
-libs: bin/gles3/libGLOOP_wrapper.bc bin/glew/libGLOOP_wrapper.bc
+libs: bin/$(TARGET)/glew/$(BINARY) bin/$(TARGET)/gles2/$(BINARY) bin/$(TARGET)/gles3/$(BINARY)
 
 headers: ../wrapper.hpp
 
 directories:
-	mkdir -p $(DIR)
+	mkdir -p bin/$(TARGET)/glew bin/$(TARGET)/gles2 bin/$(TARGET)/gles3
 
-bin/glew/%.bc: glew_src/%.cpp
-	clang++ $(CXXFLAGS) -c -emit-llvm -DGL=GLEW -o $@ $<
+bin/$(TARGET)/%.bc: src/%.cpp
+	$(CXX) $(CXXFLAGS) -c -emit-llvm -o $@ $<
 
-bin/gles3/%.bc: gles3_src/%.cpp
-	clang++ $(CXXFLAGS) -c -emit-llvm -DGL=GLES3 -o $@ $<
+bin/$(TARGET)/glew/%.bc: glew_src/%.cpp
+	$(CXX) $(CXXFLAGS) $(GLEWFLAGS) -c -emit-llvm -o $@ $<
 
-bin/asmjs/%.bc: gles2_src/%.cpp
-	em++ $(EMXXFLAGS) -c -emit-llvm -DGL=GLES2 -o $@ $<
+bin/$(TARGET)/gles2/%.bc: gles2_src/%.cpp
+	$(CXX) $(CXXFLAGS) $(GLES2FLAGS) -c -emit-llvm -o $@ $<
 
-bin/gles3/%.bc: src/%.cpp
-	clang++ $(CXXFLAGS) -c -emit-llvm -DGL=GLES3 -o $@ $<
+bin/$(TARGET)/gles3/%.bc: gles3_src/%.cpp
+	$(CXX) $(CXXFLAGS) $(GLES3FLAGS) -c -emit-llvm -o $@ $<
 
-bin/glew/%.bc: src/%.cpp
-	clang++ $(CXXFLAGS) -c -emit-llvm -DGL=GLEW -o $@ $<
+bin/$(TARGET)/glew/$(BINARY): $(GLEW_OBJECTS)
+	llvm-link $^ -o $@
 
-bin/asmjs/%.bc: src/%.cpp
-	em++ $(EMXXFLAGS) -c -emit-llvm -DGL=GLES2 -o $@ $<
+bin/$(TARGET)/gles2/$(BINARY): $(GLES2_OBJECTS)
+	llvm-link $^ -o $@
 
-bin/glew/libGLOOP_wrapper.bc: $(GLEW_OBJECTS)
-	llvm-link $(GLEW_OBJECTS) -o $@
+bin/$(TARGET)/gles3/$(BINARY): $(GLES3_OBJECTS)
+	llvm-link $^ -o $@
 
-bin/gles3/libGLOOP_wrapper.bc: $(GLES3_OBJECTS)
-	llvm-link $(GLES3_OBJECTS) -o $@
-
-bin/asmjs/libGLOOP_wrapper.bc: $(ASMJS_OBJECTS)
-	llvm-link $(ASMJS_OBJECTS) -o $@
-
-../wrapper.hpp:
+../wrapper.hpp: $(HEADERS)
 	echo $(HEADERS) | awk '{split($$0, a); print "#pragma once"; for(h in a) print "#include \"wrapper/"$$h"\""}' > $@
 
 clean:

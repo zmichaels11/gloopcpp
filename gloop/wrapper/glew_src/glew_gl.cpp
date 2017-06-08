@@ -38,7 +38,11 @@ namespace gloop {
 }
 
 namespace gloop {
-    namespace wrapper {                
+    namespace wrapper {
+		gloop::context_hints getDefaultContextHints() {
+			return {{3, 3}, gloop::context_profile::CORE, 1, true};
+		}
+
         void init() {
             static bool isInit = false;
             

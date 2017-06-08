@@ -14,27 +14,9 @@
 #pragma once
 
 namespace gloop {
-#define GLEW 1
-#define GLES2 2
-#define GLES3 3
-    
-#ifndef GL
-#define __GL_NOT_DEFINED
-#define GL 0
-#endif
-    
-    constexpr bool isGLEW = (GL == GLEW);
-    constexpr bool isGLES2 = (GL == GLES2);
-    constexpr bool isGLES3 = (GL == GLES3);
-    constexpr bool isGL = isGLEW;
-    constexpr bool isGLES = isGLES2 || isGLES3;    
-    
-#ifdef __GL_NOT_DEFINED
-#undef GL
-#undef __GL_NOT_DEFINED
-#endif
-    
-#undef GLES3
-#undef GLES2
-#undef GLEW
+	bool isGLEW();
+	bool isGLES2();
+	bool isGLES3();
+	bool isGL();
+	bool isGLES();
 }

@@ -76,6 +76,13 @@ namespace gloop {
             glDeleteBuffers(n, buffers);
         }
 
+		void getNamedBufferSubData(
+				gloop::enum_t,
+				gloop::uint_t,
+				gloop::intptr_t,
+				gloop::sizeiptr_t,
+				void *) {}
+
         void namedBufferSubData(
                 gloop::enum_t targetHint,
                 gloop::uint_t buffer,

@@ -12,7 +12,8 @@
 namespace gloop {
     namespace uniform {
 
-        struct uniform_ivec4_binding : uniform_binding {
+        class uniform_ivec4_binding : public uniform_binding {
+		public:
             gloop::uint_t pId;
             gloop::uint_t loc;
 

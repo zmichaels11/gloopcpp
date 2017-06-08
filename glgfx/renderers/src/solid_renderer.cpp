@@ -51,7 +51,7 @@ namespace glgfx {
 
                     std::string file;
 
-                    if (gloop::isGLES2) {
+                    if (gloop::isGLES2()) {
                         file = "glgfx/shaders/ES2_solid_renderer";
                     } else {
                         file = "glgfx/shaders/solid_renderer";

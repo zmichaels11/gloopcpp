@@ -7,12 +7,11 @@
 #include "sprite_sheet.hpp"
 
 #include <memory>
+#include <sstream>
 
 #include <SDL2/SDL_surface.h>
 
-#ifdef USE_SDL_IMAGE
 #include <SDL2/SDL_image.h>
-#endif
 
 #include "../gloop/enums/texture_internal_format.hpp"
 #include "../gloop/gloop_throw.hpp"
@@ -146,7 +145,6 @@ namespace glgfx {
     namespace {
 
         static SDL_Surface * __load(const std::string& img) {
-#ifdef USE_SDL_IMAGE
             static bool isInit = false;
 
             if (!isInit) {
@@ -160,12 +158,14 @@ namespace glgfx {
             }
 
             const auto unprocessed = IMG_Load(img.c_str());
-#else
-            const auto unprocessed = SDL_LoadBMP(img.c_str());
-#endif
 
             if (unprocessed == nullptr) {
-                gloop_throw("Unable to load image!");
+				std::stringstream err;
+
+				err << "Unable to load image [" << img << "]! "
+					<< IMG_GetError();
+
+                gloop_throw(err.str());
             }
 
             constexpr Uint32 rmask = 0x000000FF;

@@ -15,10 +15,13 @@
 
 #include <cstring>
 
+#include "../context_hints.hpp"
 #include "../glint.hpp"
 
 namespace gloop {
-    namespace wrapper {
+    namespace wrapper {		
+		gloop::context_hints getDefaultContextHints();
+
         constexpr gloop::enum_t TRUE = 1;
         constexpr gloop::enum_t FALSE = 0;
         constexpr gloop::enum_t NO_ERROR = 0;

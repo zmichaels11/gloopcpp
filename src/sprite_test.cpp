@@ -123,7 +123,7 @@ namespace {
 int main(int argc, char** argv) {
     gloop::application app(640, 480, "Sprite Test");
 
-    app.setGLHints(gloop::getDefaultContextHints());
+    app.setGLHints(gloop::wrapper::getDefaultContextHints());
 
     app.setGLContext(&glContext);
 

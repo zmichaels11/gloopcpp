@@ -8,7 +8,8 @@
 
 namespace gloop {
     namespace uniform {
-        struct uniform_binding {
+        class uniform_binding {
+		public:
             virtual void apply() const = 0;
 
             inline virtual void operator()() {

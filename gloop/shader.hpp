@@ -19,9 +19,9 @@ namespace gloop {
     
     class shader {
     private:
-        gloop::uint_t _id;
-        std::string _src;
         enums::shader_type _type;
+        std::string _src;
+        gloop::uint_t _id;
 
         void init();
     public:
@@ -30,8 +30,9 @@ namespace gloop {
         }
 
         shader(enums::shader_type type, std::string src) :
-        _type(type), _src(src), _id(0) {
-        }
+        _type(type), 
+		_src(src), 
+		_id(0) {        }
 
         ~shader();
 

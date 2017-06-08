@@ -15,8 +15,8 @@
 
 #include "../glint.hpp"
 #include "call.hpp"
-#include "mode.hpp"
 #include "index_type.hpp"
+#include "mode.hpp"
 
 namespace gloop {
     namespace draw {

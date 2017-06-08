@@ -69,7 +69,7 @@ namespace glgfx {
 
                     std::string file;
 
-                    if (gloop::isGLES2) {
+                    if (gloop::isGLES2()) {
                         file = "glgfx/shaders/ES2_vbo_sprite_buffer";
                     } else if (gloop::texture2D::FEATURES.bindless) {
                         file = "glgfx/shaders/vbo_sprite_buffer_bindless";

@@ -59,7 +59,7 @@ namespace glgfx {
 
                 std::string file;
 
-                if (gloop::isGLES2) {
+                if (gloop::isGLES2()) {
                     file = "glgfx/shaders/ES2_masked_image_renderer";
                 } else if (masked_image_renderer::USE_BINDLESS) {
                     file = "glgfx/shaders/masked_image_renderer_bindless";
