@@ -33,10 +33,12 @@ GLEWFLAGS:=-DGL=GLEW
 GLES2FLAGS:=-DGL=GLES2
 GLES3FLAGS:=-DGL=GLES3
 CXXFLAGS:=-std=c++14 -I. -Iimpl
+EMXXFLAGS:=-s USE_SDL=2
 CXX:=clang++
 
 ifeq ($(TARGET), asmjs-unknown-emscripten)
 	CXX:=em++
+	CXXFLAGS+= $(EMXXFLAGS)
 else
 	CXXFLAGS+= -target $(TARGET)
 endif

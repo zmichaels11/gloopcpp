@@ -1,11 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-#define GLES3 3
-#if GL == GLES3
 #include "framebuffer_objects.hpp"
 
 #include <GLES3/gl3.h>
@@ -80,5 +72,3 @@ namespace gloop {
         }
     }
 }
-#endif
-#undef GLES3

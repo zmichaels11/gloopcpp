@@ -1,12 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-#define GLES3 3
-#if GL == GLES3
-
 #include "gl.hpp"
 #include "gl_gles3.hpp"
 
@@ -66,6 +57,3 @@ namespace gloop {
         }
     }
 }
-
-#endif
-#undef GLES3

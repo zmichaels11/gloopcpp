@@ -58,7 +58,7 @@ namespace {
             const std::string& srcOrFile) {
 
         if (hasSuffix(srcOrFile, suffix) || hasSuffix(srcOrFile, ".glsl")) {
-            auto file = SDL_RWFromFile(srcOrFile.c_str(), "rb");
+            auto file = SDL_RWFromFile(srcOrFile.c_str(), "rb");			
             auto src = gloop::tools::readAll(file);
 
             return gloop::shader(type, src);

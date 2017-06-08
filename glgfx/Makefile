@@ -8,6 +8,7 @@ OBJECTS:=$(SOURCES:.cpp=.bc)
 TARGET:=$(shell clang --version | grep "Target:" | awk '{print $$2}')
 
 CXXFLAGS:=-std=c++14 -I. -Wall -Wno-missing-braces
+EMXXFLAGS:=-s USE_SDL=2 -s USE_SDL_IMAGE=2 -s SDL2_IMAGE_FORMATS='["png"]'
 CXX:=clang++
 
 TARGET_OBJECTS:=$(addprefix bin/$(TARGET)/, $(OBJECTS))
@@ -19,6 +20,7 @@ libGLGFX_renderers.bc
 
 ifeq ($(TARGET), asmjs-unknown-emscripten)
 	CXX:=em++
+	CXXFLAGS+= $(EMXXFLAGS)
 else
 	CXXFLAGS+= -target $(TARGET)
 endif

@@ -1,5 +1,3 @@
-#define GLES3 3
-#if GL == GLES3
 #include "texture_objects.hpp"
 
 #include <algorithm>
@@ -145,5 +143,3 @@ namespace gloop {
         }
     }
 }
-#endif
-#undef GLES3
