@@ -44,7 +44,11 @@ namespace gloop {
 namespace gloop {
     namespace wrapper {
 		gloop::context_hints getDefaultContextHints() {
+#ifdef __EMSCRIPTEN__
+			return {{2, 0}, gloop::context_profile::ES, 1, true};
+#else
 			return {{3, 0}, gloop::context_profile::ES, 1, true};
+#endif
 		}
 	  
         void init() {
