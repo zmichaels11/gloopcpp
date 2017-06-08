@@ -7,6 +7,8 @@
 #include "program.hpp"
 
 #include <cstddef>
+
+#include <memory>
 #include <string>
 
 #include "exception/invalid_operation_exception.hpp"
@@ -28,19 +30,17 @@ namespace {
 
         gloop::wrapper::getProgramiv(program, gloop::wrapper::INFO_LOG_LENGTH, &maxLength);        
 
-        auto infoLog = new gloop::char_t[maxLength];
+		auto infoLog = std::make_unique<gloop::char_t[]> (maxLength);
 
-        gloop::wrapper::getProgramInfoLog(program, maxLength, &logLength, infoLog);
+        gloop::wrapper::getProgramInfoLog(program, maxLength, &logLength, infoLog.get());
 
         std::string out;
 
         if (logLength > 0) {
-            out = std::string(reinterpret_cast<char *> (infoLog));
+            out = std::string(reinterpret_cast<char *> (infoLog.get()));
         } else {
             out = "No shader log!";
         }
-
-        delete[] infoLog;
 
         return out;
     }

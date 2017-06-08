@@ -7,6 +7,7 @@
 #include "shader.hpp"
 
 #include <iostream>
+#include <memory>
 #include <string>
 
 #include <SDL2/SDL_rwops.h>
@@ -28,19 +29,17 @@ namespace {
 
         gloop::wrapper::getShaderiv(shader, gloop::wrapper::INFO_LOG_LENGTH, &maxLength);
 
-        auto infoLog = new gloop::char_t[maxLength];
+		auto infoLog = std::make_unique<gloop::char_t[]> (maxLength);
 
-        gloop::wrapper::getShaderInfoLog(shader, maxLength, &logLength, infoLog);
+        gloop::wrapper::getShaderInfoLog(shader, maxLength, &logLength, infoLog.get());
 
         std::string out;
 
         if (logLength > 0) {
-            out = std::string(reinterpret_cast<char *> (infoLog));
+            out = std::string(reinterpret_cast<char *> (infoLog.get()));
         } else {
             out = "No shader log!";
         }
-
-        delete[] infoLog;
 
         return out;
     }

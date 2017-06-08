@@ -5,6 +5,8 @@
 
 #include <cstring>
 
+#include <memory>
+
 #include <SDL2/SDL_opengles2.h>
 
 #include "../enums/texture_format.hpp"
@@ -140,23 +142,19 @@ namespace gloop {
                     const auto size = width * height - xOffset * yOffset;
 
                     if (isFloat(type)) {
-                        auto dst = new gloop::pixel_formats::R32F_G32F_B32F[size];
+						auto dst = std::make_unique<pixel_formats::R32F_G32F_B32F[]> (size);
                         const auto src = reinterpret_cast<const pixel_formats::B32F_G32F_R32F *> (pixels);
 
-                        pixel_formats::reorder(dst, src, size);
+                        pixel_formats::reorder(dst.get(), src, size);
 
-                        glTexSubImage2D(GL_TEXTURE_2D, level, xOffset, yOffset, width, height, wrapper::RGB, wrapper::FLOAT, dst);
-
-                        delete[] dst;
+                        glTexSubImage2D(GL_TEXTURE_2D, level, xOffset, yOffset, width, height, wrapper::RGB, wrapper::FLOAT, dst.get());
                     } else if (isUint8(type)) {                                                
-                        auto dst = new pixel_formats::R8_G8_B8[size];
+						auto dst = std::make_unique<pixel_formats::R8_G8_B8[]> (size);
                         const auto src = reinterpret_cast<const pixel_formats::B8_G8_R8 *> (pixels);                        
 
-                        pixel_formats::reorder(dst, src, size);
+                        pixel_formats::reorder(dst.get(), src, size);
 
-                        glTexSubImage2D(GL_TEXTURE_2D, level, xOffset, yOffset, width, height, wrapper::RGB, wrapper::UNSIGNED_BYTE, dst);
-
-                        delete[] dst;
+                        glTexSubImage2D(GL_TEXTURE_2D, level, xOffset, yOffset, width, height, wrapper::RGB, wrapper::UNSIGNED_BYTE, dst.get());
                     } else {
                         gloop_throw(gloop::exception::invalid_enum_exception("Unsupported type!"));
                     }
@@ -168,23 +166,19 @@ namespace gloop {
                     const auto size = width * height - xOffset * yOffset;
 
                     if (isFloat(type)) {
-                        auto dst = new gloop::pixel_formats::R32F_G32F_B32F_A32F[size];
+						auto dst = std::make_unique<pixel_formats::R32F_G32F_B32F_A32F[]> (size);
                         const auto src = reinterpret_cast<const pixel_formats::B32F_G32F_R32F_A32F *> (pixels);
 
-                        pixel_formats::reorder(dst, src, size);
+                        pixel_formats::reorder(dst.get(), src, size);
 
-                        glTexSubImage2D(GL_TEXTURE_2D, level, xOffset, yOffset, width, height, wrapper::RGBA, wrapper::FLOAT, dst);
-
-                        delete[] dst;
+                        glTexSubImage2D(GL_TEXTURE_2D, level, xOffset, yOffset, width, height, wrapper::RGBA, wrapper::FLOAT, dst.get());
                     } else if (isUint8(type)) {
-                        auto dst = new pixel_formats::R8_G8_B8_A8[size];
+						auto dst = std::make_unique<pixel_formats::R8_G8_B8_A8[]> (size);
                         const auto src = reinterpret_cast<const pixel_formats::B8_G8_R8_A8 *> (pixels);
 
-                        pixel_formats::reorder(dst, src, size);
+                        pixel_formats::reorder(dst.get(), src, size);
 
-                        glTexSubImage2D(GL_TEXTURE_2D, level, xOffset, yOffset, width, height, wrapper::RGBA, wrapper::UNSIGNED_BYTE, dst);
-
-                        delete[] dst;
+                        glTexSubImage2D(GL_TEXTURE_2D, level, xOffset, yOffset, width, height, wrapper::RGBA, wrapper::UNSIGNED_BYTE, dst.get());
                     } else {
                         gloop_throw(gloop::exception::invalid_enum_exception("Unsupported type!"));
                     }
