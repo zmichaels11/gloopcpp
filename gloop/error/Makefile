@@ -24,6 +24,7 @@ endif
 all: directories libs headers
 
 headers: ../errors.hpp
+	$(CXX) $(CXXFLAGS) $< -o $<.gch
 
 libs: bin/$(TARGET)/$(BINARY)
 
@@ -42,3 +43,4 @@ bin/$(TARGET)/$(BINARY): $(TARGET_OBJECTS)
 clean:
 	rm -rfv bin
 	rm -fv ../errors.hpp
+	rm -fv ../errors.hpp.gch

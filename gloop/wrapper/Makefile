@@ -50,6 +50,7 @@ all: directories headers libs
 libs: bin/$(TARGET)/glew/$(BINARY) bin/$(TARGET)/gles2/$(BINARY) bin/$(TARGET)/gles3/$(BINARY)
 
 headers: ../wrapper.hpp
+	$(CXX) $(CXXFLAGS) -o $<.gch $<
 
 directories:
 	mkdir -p bin/$(TARGET)/glew bin/$(TARGET)/gles2 bin/$(TARGET)/gles3
@@ -81,3 +82,4 @@ bin/$(TARGET)/gles3/$(BINARY): $(GLES3_OBJECTS)
 clean:
 	rm -rfv bin
 	rm -fv ../wrapper.hpp
+	rm -fv ../wrapper.hpp.gch

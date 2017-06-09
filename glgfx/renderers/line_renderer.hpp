@@ -15,14 +15,9 @@
 
 #include <memory>
 
-#include "../../gloop/matrices.hpp"
+#include "gloop.hpp"
 
 #include "../renderer.hpp"
-
-namespace gloop {
-    class buffer;
-    class vertex_array;
-}
 
 namespace glgfx {
     namespace renderers {

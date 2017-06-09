@@ -6,9 +6,7 @@
 
 #include "blend_mode.hpp"
 
-#include "../gloop/enums/blend_eq.hpp"
-#include "../gloop/enums/blend_func.hpp"
-#include "../gloop/states/blend.hpp"
+#include "gloop.hpp"
 
 namespace {
     static const gloop::states::blend _min(

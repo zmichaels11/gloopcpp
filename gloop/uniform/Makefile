@@ -29,6 +29,7 @@ directories:
 	mkdir -p bin/$(TARGET)
 
 headers: ../uniforms.hpp
+	$(CXX) $(CXXFLAGS) -o $<.gch $<
 
 bin/$(TARGET)/%.bc: src/%.cpp
 	$(CXX) $(CXXFLAGS) -c -emit-llvm -o $@ $<
@@ -42,3 +43,4 @@ bin/$(TARGET)/$(BINARY): $(TARGET_OBJECTS)
 clean:
 	rm -rfv bin
 	rm -fv ../uniforms.hpp
+	rm -fv ../uniforms.hpp.gch

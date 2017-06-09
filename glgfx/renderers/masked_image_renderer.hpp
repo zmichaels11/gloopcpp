@@ -15,16 +15,9 @@
 
 #include <memory>
 
-#include "../../gloop/glint.hpp"
-#include "../../gloop/matrices.hpp"
+#include "gloop.hpp"
 
 #include "../renderer.hpp"
-
-namespace gloop {
-    class buffer;
-    class texture2D;
-    class vertex_array;
-}
 
 namespace glgfx {
     namespace renderers {

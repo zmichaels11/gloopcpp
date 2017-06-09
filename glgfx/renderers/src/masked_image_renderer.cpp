@@ -9,19 +9,7 @@
 #include <iostream>
 #include <memory>
 
-#include "../../gloop/gl_traits.hpp"
-#include "../../gloop/buffer.hpp"
-#include "../../gloop/draw/arrays_instanced.hpp"
-#include "../../gloop/enums/buffer_storage_hint.hpp"
-#include "../../gloop/enums/buffer_target.hpp"
-#include "../../gloop/enums/vertex_attribute_type.hpp"
-#include "../../gloop/program.hpp"
-#include "../../gloop/shader.hpp"
-#include "../../gloop/texture2D.hpp"
-#include "../../gloop/uniform/uniform_int_binding.hpp"
-#include "../../gloop/vertex_array.hpp"
-#include "../../gloop/vertex_attribute_binding.hpp"
-#include "../../gloop/vertex_attributes.hpp"
+#include "gloop.hpp"
 
 const bool& glgfx::renderers::masked_image_renderer::USE_BINDLESS = gloop::texture2D::FEATURES.bindless;
 

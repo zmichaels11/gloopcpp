@@ -13,15 +13,7 @@
 #include <cstring>
 #include <string>
 
-#include "../../gloop/buffer.hpp"
-#include "../../gloop/draw_calls.hpp"
-#include "../../gloop/gl_traits.hpp"
-#include "../../gloop/glint.hpp"
-#include "../../gloop/enums.hpp"
-#include "../../gloop/matrices.hpp"
-#include "../../gloop/objects.hpp"
-#include "../../gloop/uniforms.hpp"
-#include "../../gloop/tools.hpp"
+#include "gloop.hpp"
 
 #include "../blend_mode.hpp"
 #include "../sprite.hpp"

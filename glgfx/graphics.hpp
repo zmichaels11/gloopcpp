@@ -15,7 +15,7 @@
 
 #include <memory>
 
-#include "../gloop/matrices.hpp"
+#include "gloop.hpp"
 
 namespace gloop {
     class framebuffer;

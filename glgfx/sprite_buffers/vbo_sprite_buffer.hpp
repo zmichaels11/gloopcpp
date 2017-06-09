@@ -16,15 +16,9 @@
 #include <array>
 #include <memory>
 
-#include "../sprite_buffer.hpp"
-#include "../../gloop/glint.hpp"
-#include "../../gloop/matrices.hpp"
+#include "gloop.hpp"
 
-namespace gloop {
-    class buffer;
-    class texture2D;
-    class vertex_array;
-}
+#include "../sprite_buffer.hpp"
 
 namespace glgfx {
     enum class blend_mode : unsigned int;

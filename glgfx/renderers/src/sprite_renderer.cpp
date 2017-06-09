@@ -6,8 +6,7 @@
 
 #include "sprite_renderer.hpp"
 
-#include "../../gloop/exception/invalid_operation_exception.hpp"
-#include "../../gloop/gloop_throw.hpp"
+#include "gloop.hpp"
 
 #include "../sprite_buffer.hpp"
 #include "../sprite_buffers/vbo_sprite_buffer.hpp"

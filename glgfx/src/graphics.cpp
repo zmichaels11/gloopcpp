@@ -8,14 +8,7 @@
 
 #include <algorithm>
 
-#include "../gloop/bitfields/clear_mask.hpp"
-#include "../gloop/framebuffer.hpp"
-#include "../gloop/glint.hpp"
-#include "../gloop/matrices.hpp"
-#include "../gloop/states/blend.hpp"
-#include "../gloop/states/clear.hpp"
-#include "../gloop/states/scissor.hpp"
-#include "../gloop/states/viewport.hpp"
+#include "gloop.hpp"
 
 #include "blend_mode.hpp"
 #include "sprite.hpp"

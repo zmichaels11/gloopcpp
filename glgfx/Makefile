@@ -7,7 +7,9 @@ HEADERS:=$(HEADERS:./%=%)
 OBJECTS:=$(SOURCES:.cpp=.bc)
 TARGET:=$(shell clang --version | grep "Target:" | awk '{print $$2}')
 
-CXXFLAGS:=-std=c++14 -I. -Wall -Wno-missing-braces
+GLOOP_INC:=..
+
+CXXFLAGS:=-std=c++14 -I. -I$(GLOOP_INC) -Wall -Wno-missing-braces
 EMXXFLAGS:=-s USE_SDL=2 -s USE_SDL_IMAGE=2 -s SDL2_IMAGE_FORMATS='["png"]'
 CXX:=clang++
 
@@ -36,6 +38,7 @@ libs: bin/$(TARGET)/libGLGFX_base.bc bin/$(TARGET)/libGLGFX.bc
 modules: renderers sprite_buffers
 
 headers: ../glgfx.hpp
+	$(CXX) $(CXXFLAGS) -o $<.gch $<
 
 renderers:
 	$(MAKE) -C renderers

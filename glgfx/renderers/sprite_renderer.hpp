@@ -13,12 +13,15 @@
 
 #pragma once
 
+#include "gloop.hpp"
+
 #include "../renderer.hpp"
 
 namespace glgfx {
-    class sprite;
-    class sprite_buffer;
     
+	class sprite_buffer;
+	class sprite;
+
     namespace renderers {
         class sprite_renderer : public glgfx::renderer {
         public:

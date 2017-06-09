@@ -27,6 +27,7 @@ all: directories libs headers
 libs: bin/$(TARGET)/$(BINARY)
 
 headers: ../bitfields.hpp
+	$(CXX) $(CXXFLAGS) $< -o $<.gch
 
 directories:
 	mkdir -p bin/$(TARGET)
@@ -43,4 +44,5 @@ bin/$(TARGET)/$(BINARY): $(TARGET_OBJECTS)
 clean:
 	rm -rfv bin
 	rm -fv ../bitfields.hpp
+	rm -fv ../bitfields.hpp.gch
 

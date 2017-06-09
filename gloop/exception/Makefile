@@ -26,6 +26,7 @@ all: directories libs headers
 libs: bin/$(TARGET)/$(BINARY)
 
 headers: ../exceptions.hpp
+	$(CXX) $(CXXFLAGS) -o $<.gch $<
 
 directories:
 	mkdir -p bin/$(TARGET)
@@ -42,3 +43,4 @@ bin/$(TARGET)/$(BINARY): $(TARGET_OBJECTS)
 clean:
 	rm -rfv bin
 	rm -fv ../exceptions.hpp
+	rm -fv ../exceptions.hpp.gch

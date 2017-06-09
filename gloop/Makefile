@@ -78,6 +78,8 @@ wrapper:
 libs: bin/$(TARGET)/libGLOOP_base.bc bin/$(TARGET)/glew/libGLOOP.bc bin/$(TARGET)/gles2/libGLOOP.bc bin/$(TARGET)/gles3/libGLOOP.bc
 
 headers: objects.hpp ../gloop.hpp
+	$(CXX) $(CXXFLAGS) -o objects.hpp.gch objects.hpp
+	$(CXX) $(CXXFLAGS) -o ../gloop.hpp.gch ../gloop.hpp
 
 directories:
 	mkdir -p bin/$(TARGET) bin/$(TARGET)/glew bin/$(TARGET)/gles2 bin/$(TARGET)/gles3
@@ -106,7 +108,9 @@ objects.hpp:
 clean:
 	rm -rfv bin
 	rm -fv objects.hpp
+	rm -fv objects.hpp.gch
 	rm -fv ../gloop.hpp
+	rm -fv ../gloop.hpp.gch
 	$(MAKE) -C bitfields clean
 	$(MAKE) -C draw clean
 	$(MAKE) -C enums clean

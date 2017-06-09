@@ -9,17 +9,10 @@
 #include <iostream>
 #include <memory>
 
-#include "../../gloop/gl_traits.hpp"
-#include "../../gloop/buffer.hpp"
-#include "../../gloop/draw/arrays.hpp"
-#include "../../gloop/enums/buffer_storage_hint.hpp"
-#include "../../gloop/enums/buffer_target.hpp"
-#include "../../gloop/enums/vertex_attribute_type.hpp"
-#include "../../gloop/program.hpp"
-#include "../../gloop/shader.hpp"
-#include "../../gloop/vertex_array.hpp"
-#include "../../gloop/vertex_attribute_binding.hpp"
-#include "../../gloop/vertex_attributes.hpp"
+#include "gloop.hpp"
+
+#include "../sprite.hpp"
+#include "../sprite_buffer.hpp"
 
 namespace glgfx {
     namespace renderers {

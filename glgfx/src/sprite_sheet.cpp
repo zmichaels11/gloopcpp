@@ -13,10 +13,7 @@
 
 #include <SDL2/SDL_image.h>
 
-#include "../gloop/enums/texture_internal_format.hpp"
-#include "../gloop/gloop_throw.hpp"
-#include "../gloop/pixel_formats.hpp"
-#include "../gloop/texture2D.hpp"
+#include "gloop.hpp"
 
 #include "skyline_packer.hpp"
 

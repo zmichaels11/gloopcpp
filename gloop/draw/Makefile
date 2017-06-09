@@ -26,6 +26,7 @@ all: directories libs headers
 libs: bin/$(TARGET)/$(BINARY)
 
 headers: ../draw_calls.hpp
+	$(CXX) $(CXXFLAGS) -o $<.gch $<
 
 directories:
 	mkdir -p bin/$(TARGET)
@@ -42,3 +43,4 @@ bin/$(TARGET)/$(BINARY): $(TARGET_OBJECTS)
 clean:
 	rm -rfv bin
 	rm -fv ../draw_calls.hpp
+	rm -fv ../draw_calls.hpp.gch
