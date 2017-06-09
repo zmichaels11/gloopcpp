@@ -6,11 +6,20 @@
 
 #include "../glint.hpp"
 #include "../uniforms.hpp"
+#include "../texture2D.hpp"
 #include "../wrapper/gl.hpp"
 #include "../wrapper/shaders_and_programs.hpp"
 
 namespace gloop {
     namespace uniform {
+		void uniform_binding::operator()() const {
+			apply();
+		}
+
+		void uniform_int_binding::operator()(const gloop::texture2D& img) const {
+			gloop::wrapper::programUniform1iv(pId, loc, 1, &value);
+			img.bind(value);
+		}
 
         void uniform_float_binding::apply() const {            
             gloop::wrapper::programUniform1fv(pId, loc, 1, &value);

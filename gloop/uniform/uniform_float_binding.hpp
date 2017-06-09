@@ -19,7 +19,7 @@ namespace gloop {
             gloop::uint_t loc;
             gloop::float_t value;            
 
-            virtual void apply() const;
+            virtual void apply() const override;
         };
     }
 }

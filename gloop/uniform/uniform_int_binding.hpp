@@ -10,6 +10,8 @@
 #include "uniform_binding.hpp"
 
 namespace gloop {
+	class texture2D;
+
     namespace uniform {
 
         class uniform_int_binding : public uniform_binding {
@@ -18,7 +20,11 @@ namespace gloop {
             gloop::uint_t loc;
             gloop::int_t value;            
 
-            virtual void apply() const;
+            virtual void apply() const override;
+
+			using uniform_binding::operator();
+
+			virtual void operator()(const gloop::texture2D& img) const;
         };
     }
 }

@@ -24,7 +24,7 @@ namespace gloop {
                 gloop::float_t z;
             } value;
 
-            virtual void apply() const;
+            virtual void apply() const override;
         };
     }
 }

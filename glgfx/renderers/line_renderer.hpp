@@ -51,11 +51,11 @@ namespace glgfx {
         public:
             line_renderer();
             
-            virtual void flush();
+            virtual void flush() override;
             
-            void draw(const line_draw& drawCall);
+            virtual void draw(const line_draw& drawCall);
             
-            virtual void reset();
+            virtual void reset() override;
         };
     }
 }

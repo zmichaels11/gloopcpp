@@ -64,7 +64,7 @@ namespace glgfx {
 
                 _program.linkShaders(shaders, 2);
 
-                if (masked_image_renderer::USE_BINDLESS) {
+                if (!masked_image_renderer::USE_BINDLESS) {
                     _bindImage = _program.getUniformIntBinding("image", 0);
                     _bindMask = _program.getUniformIntBinding("mask", 1);
                 }

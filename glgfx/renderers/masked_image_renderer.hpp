@@ -73,11 +73,11 @@ namespace glgfx {
             
             masked_image_renderer();
             
-            virtual void flush();
+            virtual void flush() override;
             
-            void draw(const masked_image& drawCall);
+            virtual void draw(const masked_image& drawCall);
             
-            virtual void reset();
+            virtual void reset() override;
         };
     }
 }

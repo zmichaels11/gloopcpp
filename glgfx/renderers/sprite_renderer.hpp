@@ -31,11 +31,11 @@ namespace glgfx {
             sprite_buffer * getSpriteBuffer();
             
         public:            
-            virtual void flush();
+            virtual void flush() override;
             
-            virtual void reset();
+            virtual void reset() override;
             
-            void draw(glgfx::sprite& sprite);
+            virtual void draw(glgfx::sprite& sprite);
         };
     }
 }

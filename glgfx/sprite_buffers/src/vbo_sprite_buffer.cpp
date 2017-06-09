@@ -86,8 +86,7 @@ namespace glgfx {
                 program.use();
 
                 if (!vbo_sprite_buffer::USE_BINDLESS) {
-                    textureBind();
-                    texture->bind(0);
+                    textureBind(*texture);
                 }
             }
         }

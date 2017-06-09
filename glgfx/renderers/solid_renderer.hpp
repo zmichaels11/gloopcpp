@@ -49,11 +49,11 @@ namespace glgfx {
         public:
             solid_renderer();
             
-            virtual void flush();
+            virtual void flush() override;
             
-            void draw(const point& drawCall);
+            virtual void draw(const point& drawCall);
             
-            virtual void reset();            
+            virtual void reset() override;
         };
     }
 }

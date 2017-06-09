@@ -26,7 +26,7 @@ namespace gloop {
                 } row[3];
             } * values;
 
-            virtual void apply() const;
+            virtual void apply() const override;
         };
     }
 }

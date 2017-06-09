@@ -20,7 +20,7 @@ namespace gloop {
             gloop::sizei_t count;
             const gloop::float_t * values;            
 
-            virtual void apply() const;
+            virtual void apply() const override;
         };
     }
 }

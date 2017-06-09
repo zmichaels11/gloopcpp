@@ -73,13 +73,13 @@ namespace glgfx {
         public:
             vbo_sprite_buffer();
 
-            virtual void draw(sprite& s);
+            virtual void draw(sprite& s) override;
 
-            virtual void flush();
+            virtual void flush() override;
 
-            virtual void reset();
+            virtual void reset() override;
 
-            virtual bool isSupported() const;
+            virtual bool isSupported() const override;
         };
     }
 }

@@ -12,9 +12,7 @@ namespace gloop {
 		public:
             virtual void apply() const = 0;
 
-            inline virtual void operator()() {
-                apply();
-            }
+            virtual void operator()() const;
         };
     }
 }
